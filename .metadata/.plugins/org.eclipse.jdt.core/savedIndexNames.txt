@@ -1,1 +1,0 @@
-INDEX VERSION 1.134+C:\Users\Marko\Desktop\LMS-Projekat\.metadata\.plugins\org.eclipse.jdt.core
