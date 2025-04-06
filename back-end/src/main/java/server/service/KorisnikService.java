@@ -22,8 +22,7 @@ public class KorisnikService extends BaseService<Korisnik, KorisnikDTO, Long>{
 
 	@Override
 	protected KorisnikDTO convertToDTO(Korisnik entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return new KorisnikDTO(entity.getId(),entity.getEmail(),entity.getKorisnickoIme(),entity.getLozinka());
 	}
 
 	@Override
