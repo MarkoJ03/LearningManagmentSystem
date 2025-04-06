@@ -5,22 +5,27 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import server.model.DepartmanNastavnik;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class NastavnikDTO {
 
-	private Integer id;
+	private Long id;
 
+	private KorisnikDTO korisnik;
+	
 	private String ime;
 
+	private String prezime;
+	
 	private String jmbg;
 	
 	private List<ZvanjeDTO> zvanja;
 	
-	private KorisnikDTO korisnik;
 	
 	private List<DepartmanNastavnikDTO> departmani;
+	
+	private List<KatedraNastavnikDTO> katedre;
 }
