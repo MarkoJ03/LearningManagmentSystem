@@ -1,5 +1,9 @@
 package server.repository;
 
-public interface AdresaRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import server.model.Adresa;
+
+public interface AdresaRepository extends CrudRepository<Adresa, Long>{
 
 }

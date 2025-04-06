@@ -1,5 +1,9 @@
 package server.repository;
 
-public interface GodinaStudijaRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import server.model.GodinaStudija;
+
+public interface GodinaStudijaRepository extends CrudRepository<GodinaStudija, Long> {
 
 }

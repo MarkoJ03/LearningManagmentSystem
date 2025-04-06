@@ -5,9 +5,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import server.model.DepartmanNastavnik;
-import server.model.Fakultet;
-import server.model.Nastavnik;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,14 +14,15 @@ public class DepartmanDTO {
 
 	private Long id;
 	
+	private String naziv;
 
-	private Fakultet fakultet;
+	private FakultetDTO fakultet;
 	
 
-	private Nastavnik sekretarDepartmana;
+	private NastavnikDTO sekretarDepartmana;
 	
 	
-	private Nastavnik direktorDepartmana;
+	private NastavnikDTO direktorDepartmana;
 	
 	
 	private List<DepartmanNastavnikDTO> nastavnici;

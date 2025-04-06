@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import server.model.Student;
+
 
 @Data
 @NoArgsConstructor
@@ -16,5 +16,7 @@ public class GodinaStudijaDTO {
 	
 	private String godina;
 	
-	private List<StudentDTO> studenti;
+	private List<StudentNaGodiniDTO> studentiNaGodini;
+	
+	private StudijskiProgramDTO studijskiProgram;
 }

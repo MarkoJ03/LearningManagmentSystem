@@ -22,13 +22,14 @@ public class Adresa {
 	
 	@Column(nullable = false)
 	private String drzava;
+	
 	@Column(nullable = false)
 	private String grad;
+	
 	@Column(nullable = false)
-
 	private String ulica;
+	
 	@Column(nullable = false)
-
 	private String broj;
 
 }
