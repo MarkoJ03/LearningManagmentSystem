@@ -1,5 +1,9 @@
 package server.repository;
 
-public interface StudentRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import server.model.Student;
+
+public interface StudentRepository extends CrudRepository<Student, Long>{
 
 }

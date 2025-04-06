@@ -1,5 +1,9 @@
 package server.repository;
 
-public interface DepartmanNastavnikRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import server.model.DepartmanNastavnik;
+
+public interface DepartmanNastavnikRepository extends CrudRepository<DepartmanNastavnik, Long> {
 
 }

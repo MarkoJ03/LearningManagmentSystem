@@ -16,4 +16,5 @@ public class StudentNaGodiniDTO {
 	private String brojIndeksa;
 	private Date datumUpisa;
 	private StudentDTO student;
+	private GodinaStudijaDTO godinaStudija;
 }

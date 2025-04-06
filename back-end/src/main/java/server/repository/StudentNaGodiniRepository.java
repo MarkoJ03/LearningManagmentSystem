@@ -1,5 +1,9 @@
 package server.repository;
 
-public interface StudentNaGodiniRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import server.model.StudentNaGodini;
+
+public interface StudentNaGodiniRepository extends CrudRepository<StudentNaGodini, Long> {
 
 }
