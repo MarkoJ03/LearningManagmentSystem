@@ -17,4 +17,6 @@ public class NaucnaOblastDTO {
 	
 
 	private List<ZvanjeDTO> zvanja;
+	
+	private Boolean vidljiv = true;
 }

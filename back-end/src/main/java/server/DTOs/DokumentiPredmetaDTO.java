@@ -19,4 +19,6 @@ public class DokumentiPredmetaDTO {
 
 
     private PredmetDTO predmet;
+    
+    private Boolean vidljiv = true;
 }

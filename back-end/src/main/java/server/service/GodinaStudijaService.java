@@ -44,7 +44,7 @@ public class GodinaStudijaService extends BaseService<GodinaStudija, GodinaStudi
 			 StudentNaGodiniDTO e = studentNaGodiniService.convertToDTO(s); 
 			 studenti.add(e);
 		 }
-		return new GodinaStudijaDTO(entity.getId(),entity.getGodina(),studenti, new StudijskiProgramDTO(entity.getStudijskiProgram().getId(),entity.getStudijskiProgram().getNaziv(),null,null,null));
+		return new GodinaStudijaDTO(entity.getId(),entity.getGodina(),studenti, new StudijskiProgramDTO(entity.getStudijskiProgram().getId(),entity.getStudijskiProgram().getNaziv(),null,null,null, entity.getStudijskiProgram().getVidljiv()),entity.getVidljiv());
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class GodinaStudijaService extends BaseService<GodinaStudija, GodinaStudi
 			 studenti.add(e);
 		 }
 		
-		 return new GodinaStudija(dto.getId(),dto.getGodina(),studenti, new StudijskiProgram(dto.getStudijskiProgram().getId(),dto.getStudijskiProgram().getNaziv(),null,null,null));		}
+		 return new GodinaStudija(dto.getId(),dto.getGodina(),studenti, new StudijskiProgram(dto.getStudijskiProgram().getId(),dto.getStudijskiProgram().getNaziv(),null,null,null,dto.getStudijskiProgram().getVidljiv()),dto.getVidljiv());	}
 
 
 

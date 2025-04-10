@@ -36,7 +36,7 @@ public class TipZvanjaService extends BaseService<TipZvanja, TipZvanjaDTO, Long>
 			zvanja.add(zDTO);
 		}
 		
-		return new TipZvanjaDTO(entity.getId(), entity.getNaziv(), zvanja);
+		return new TipZvanjaDTO(entity.getId(), entity.getNaziv(), zvanja, entity.getVidljiv());
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class TipZvanjaService extends BaseService<TipZvanja, TipZvanjaDTO, Long>
 			zvanja.add(z);
 		}
 		
-		return new TipZvanja(dto.getId(), dto.getNaziv(), zvanja);
+		return new TipZvanja(dto.getId(), dto.getNaziv(), zvanja, dto.getVidljiv());
 	}
 
 }

@@ -35,10 +35,10 @@ public class StudijskiProgramService extends BaseService<StudijskiProgram, Studi
 	@Override
 	protected StudijskiProgramDTO convertToDTO(StudijskiProgram entity) {
 		TipProgramaDTO tipPrograma = new TipProgramaDTO(entity.getTipPrograma().getId(), entity.getTipPrograma().getNaziv(),
-				null);
+				null, entity.getTipPrograma().getVidljiv());
 		
 		KatedraDTO katedra = new KatedraDTO(entity.getKatedra().getId(), entity.getKatedra().getNaziv(),
-				null, null, null, null);
+				null, null, null, null, entity.getKatedra().getVidljiv());
 		
 		ArrayList<GodinaStudijaDTO> godineStudija = new ArrayList<GodinaStudijaDTO>();
 		for(GodinaStudija gs : entity.getGodineStudija()) {
@@ -46,16 +46,16 @@ public class StudijskiProgramService extends BaseService<StudijskiProgram, Studi
 			godineStudija.add(gsDTO);
 		}
 		
-		return new StudijskiProgramDTO(entity.getId(), entity.getNaziv(), tipPrograma, katedra, godineStudija);
+		return new StudijskiProgramDTO(entity.getId(), entity.getNaziv(), tipPrograma, katedra, godineStudija, entity.getVidljiv());
 	}
 
 	@Override
 	protected StudijskiProgram convertToEntity(StudijskiProgramDTO dto) {
 		TipPrograma tipPrograma = new TipPrograma(dto.getTipPrograma().getId(), dto.getTipPrograma().getNaziv(),
-				null);
+				null, dto.getTipPrograma().getVidljiv());
 		
 		Katedra katedra = new Katedra(dto.getKatedra().getId(), dto.getKatedra().getNaziv(),
-				null, null, null, null);
+				null, null, null, null, dto.getKatedra().getVidljiv());
 		
 		ArrayList<GodinaStudija> godineStudija = new ArrayList<GodinaStudija>();
 		for(GodinaStudijaDTO gsDTO : dto.getGodineStudija()) {
@@ -63,7 +63,7 @@ public class StudijskiProgramService extends BaseService<StudijskiProgram, Studi
 			godineStudija.add(gs);
 		}
 		
-		return new StudijskiProgram(dto.getId(), dto.getNaziv(), tipPrograma, katedra, godineStudija);
+		return new StudijskiProgram(dto.getId(), dto.getNaziv(), tipPrograma, katedra, godineStudija, dto.getVidljiv());
 	}
 
 }

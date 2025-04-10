@@ -38,10 +38,10 @@ public class DepartmanService extends BaseService<Departman, DepartmanDTO, Long>
 	protected DepartmanDTO convertToDTO(Departman entity) {
 
 		return new DepartmanDTO(entity.getId(),entity.getNaziv()
-				,new FakultetDTO(entity.getFakultet().getId(),entity.getFakultet().getNaziv(), null,null), 
-				new NastavnikDTO(entity.getSekretarDepartmana().getId(), entity.getSekretarDepartmana().getIme(),entity.getSekretarDepartmana().getPrezime(),entity.getSekretarDepartmana().getJmbg(), null, null, null, null, null),
-				new NastavnikDTO(entity.getDirektorDepartmana().getId(), entity.getDirektorDepartmana().getIme(),entity.getDirektorDepartmana().getPrezime(),entity.getDirektorDepartmana().getJmbg(),null,null,null, null, null),
-						null);
+				,new FakultetDTO(entity.getFakultet().getId(),entity.getFakultet().getNaziv(), null,null, entity.getFakultet().getVidljiv()), 
+				new NastavnikDTO(entity.getSekretarDepartmana().getId(), entity.getSekretarDepartmana().getIme(),entity.getSekretarDepartmana().getPrezime(),entity.getSekretarDepartmana().getJmbg(), null, null, null, null, null,entity.getSekretarDepartmana().getVidljiv()),
+				new NastavnikDTO(entity.getDirektorDepartmana().getId(), entity.getDirektorDepartmana().getIme(),entity.getDirektorDepartmana().getPrezime(),entity.getDirektorDepartmana().getJmbg(),null,null,null, null, null,entity.getDirektorDepartmana().getVidljiv()),
+						null, entity.getVidljiv());
 	}
 
 	@Override
@@ -50,11 +50,11 @@ public class DepartmanService extends BaseService<Departman, DepartmanDTO, Long>
 		
 
 		return new Departman(dto.getId(),dto.getNaziv()
-				,new Fakultet(dto.getFakultet().getId(),dto.getFakultet().getNaziv(), null,null), 
-				new Nastavnik(dto.getSekretarDepartmana().getId(),null, dto.getSekretarDepartmana().getIme(),dto.getSekretarDepartmana().getPrezime(),dto.getSekretarDepartmana().getJmbg(),null,null,null, null),
-				new Nastavnik(dto.getDirektorDepartmana().getId(),null, dto.getDirektorDepartmana().getIme(),dto.getDirektorDepartmana().getPrezime(),dto.getDirektorDepartmana().getJmbg(),null,null,null, null),
-						null);
-		}
+				,new Fakultet(dto.getFakultet().getId(),dto.getFakultet().getNaziv(), null,null, dto.getFakultet().getVidljiv()), 
+				new Nastavnik(dto.getSekretarDepartmana().getId(),null, dto.getSekretarDepartmana().getIme(),dto.getSekretarDepartmana().getPrezime(),dto.getSekretarDepartmana().getJmbg(), null, null, null, null ,dto.getSekretarDepartmana().getVidljiv()),
+				new Nastavnik(dto.getDirektorDepartmana().getId(),null, dto.getDirektorDepartmana().getIme(),dto.getDirektorDepartmana().getPrezime(),dto.getDirektorDepartmana().getJmbg(),null,null,null, null,dto.getDirektorDepartmana().getVidljiv()),
+						null, dto.getVidljiv());
+	}
 
 
 

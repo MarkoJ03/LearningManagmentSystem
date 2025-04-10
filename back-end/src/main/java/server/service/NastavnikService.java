@@ -52,7 +52,7 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 	@Override
 	protected NastavnikDTO convertToDTO(Nastavnik entity) {
 		KorisnikDTO korisnik = new KorisnikDTO(entity.getKorisnik().getId(), entity.getKorisnik().getEmail(),
-				entity.getKorisnik().getKorisnickoIme(), entity.getKorisnik().getLozinka());
+				entity.getKorisnik().getKorisnickoIme(), entity.getKorisnik().getLozinka(), entity.getKorisnik().getVidljiv());
 
 		ArrayList<ZvanjeDTO> zvanja = new ArrayList<ZvanjeDTO>();
 		for (Zvanje z : entity.getZvanja()) {
@@ -79,13 +79,13 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 		}
 
 		return new NastavnikDTO(entity.getId(), entity.getIme(), entity.getPrezime(), entity.getJmbg(), zvanja,
-				korisnik, departmaniNastavnici, realizacijePredmeta, obavestenja);
+				korisnik, departmaniNastavnici, realizacijePredmeta, obavestenja, entity.getVidljiv());
 	}
 
 	@Override
 	protected Nastavnik convertToEntity(NastavnikDTO dto) {
 		Korisnik korisnik = new Korisnik(dto.getKorisnik().getId(), dto.getKorisnik().getEmail(),
-				dto.getKorisnik().getKorisnickoIme(), dto.getKorisnik().getLozinka());
+				dto.getKorisnik().getKorisnickoIme(), dto.getKorisnik().getLozinka(), dto.getKorisnik().getVidljiv());
 
 		ArrayList<Zvanje> zvanja = new ArrayList<Zvanje>();
 		for (ZvanjeDTO zDTO : dto.getZvanja()) {
@@ -112,7 +112,7 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 		}
 
 		return new Nastavnik(dto.getId(), korisnik, dto.getIme(), dto.getPrezime(), dto.getJmbg(), 
-				zvanja, departmaniNastavnici, realizacijePredmeta, obavestenja);
+				zvanja, departmaniNastavnici, realizacijePredmeta, obavestenja, dto.getVidljiv());
 	}
 
 }

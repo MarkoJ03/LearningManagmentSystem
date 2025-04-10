@@ -36,7 +36,7 @@ public class TipProgramaService extends BaseService<TipPrograma, TipProgramaDTO,
 			studijskiProgrami.add(spDTO);
 		}
 		
-		return new TipProgramaDTO(entity.getId(), entity.getNaziv(), studijskiProgrami);
+		return new TipProgramaDTO(entity.getId(), entity.getNaziv(), studijskiProgrami, entity.getVidljiv());
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class TipProgramaService extends BaseService<TipPrograma, TipProgramaDTO,
 			studijskiProgrami.add(sp);
 		}
 		
-		return new TipPrograma(dto.getId(), dto.getNaziv(), studijskiProgrami);
+		return new TipPrograma(dto.getId(), dto.getNaziv(), studijskiProgrami, dto.getVidljiv());
 	}
 
 }

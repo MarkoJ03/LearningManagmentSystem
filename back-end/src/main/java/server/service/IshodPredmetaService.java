@@ -24,17 +24,17 @@ public class IshodPredmetaService extends BaseService<IshodPredmeta, IshodPredme
 	@Override
 	protected IshodPredmetaDTO convertToDTO(IshodPredmeta entity) {
 		RealizacijaPredmetaDTO realizacijaPredmeta = new RealizacijaPredmetaDTO(entity.getRealizacijaPredmeta().getId(),
-				null, null, null, null, null);
+				null, null, null, null, null, entity.getRealizacijaPredmeta().getVidljiv());
 		
-		return new IshodPredmetaDTO(entity.getId(), entity.getOcena(), realizacijaPredmeta);
+		return new IshodPredmetaDTO(entity.getId(), entity.getOcena(), realizacijaPredmeta, entity.getVidljiv());
 	}
 
 	@Override
 	protected IshodPredmeta convertToEntity(IshodPredmetaDTO dto) {
 		RealizacijaPredmeta realizacijaPredmeta = new RealizacijaPredmeta(dto.getRealizacijaPredmeta().getId(),
-				null, null, null, null, null);
+				null, null, null, null, null, dto.getRealizacijaPredmeta().getVidljiv());
 		
-		return new IshodPredmeta(dto.getId(), dto.getOcena(), realizacijaPredmeta);
+		return new IshodPredmeta(dto.getId(), dto.getOcena(), realizacijaPredmeta,dto.getVidljiv());
 	}
 
 }

@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GodinaStudijaPredmetDTO {
+	 private Long id;
 	private GodinaStudijaDTO godinaStudija;
 	private PredmetDTO predmet;
+	private Boolean vidljiv = true;
 }

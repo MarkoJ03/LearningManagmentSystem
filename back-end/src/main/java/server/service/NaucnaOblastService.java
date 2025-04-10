@@ -36,7 +36,7 @@ public class NaucnaOblastService extends BaseService<NaucnaOblast, NaucnaOblastD
 			zvanja.add(zDTO);
 		}
 		
-		return new NaucnaOblastDTO(entity.getId(), entity.getNaziv(), zvanja);
+		return new NaucnaOblastDTO(entity.getId(), entity.getNaziv(), zvanja, entity.getVidljiv());
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class NaucnaOblastService extends BaseService<NaucnaOblast, NaucnaOblastD
 			zvanja.add(z);
 		}
 		
-		return new NaucnaOblast(dto.getId(), dto.getNaziv(), zvanja);
+		return new NaucnaOblast(dto.getId(), dto.getNaziv(), zvanja, dto.getVidljiv());
 	}
 
 }
