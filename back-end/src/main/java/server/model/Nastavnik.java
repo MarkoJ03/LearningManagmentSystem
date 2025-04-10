@@ -41,5 +41,8 @@ public class Nastavnik {
 	private List<RealizacijaPredmeta> realizacijePredmeta;
 	@OneToMany(mappedBy = "nastavnik")
 	private List<Obavestenje> obavestenja;
+	
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
 
 }

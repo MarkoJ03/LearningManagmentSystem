@@ -34,8 +34,14 @@ public class Student {
 
     @Column(length = 13, unique = true)
     private String jmbg;
+    
 
     @ManyToOne
     @JoinColumn(name = "adresa_id", nullable = false)
     private Adresa adresa;
+    
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
+    
+    
 }
