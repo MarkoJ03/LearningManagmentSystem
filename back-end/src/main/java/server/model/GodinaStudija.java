@@ -33,5 +33,8 @@ public class GodinaStudija {
     @ManyToOne(optional = false)
     private StudijskiProgram studijskiProgram;
     
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
+    
     
 }

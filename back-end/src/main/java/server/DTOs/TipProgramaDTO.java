@@ -21,5 +21,5 @@ public class TipProgramaDTO {
 	
 
 	private List<StudijskiProgramDTO> programi;
-	
+	private Boolean vidljiv = true;
 }

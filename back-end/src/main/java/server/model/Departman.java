@@ -39,4 +39,7 @@ public class Departman {
 	
 	@OneToMany(mappedBy = "departman")
 	private List<DepartmanNastavnik> nastavnici;
+	
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
 }

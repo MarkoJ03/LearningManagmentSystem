@@ -32,4 +32,7 @@ public class Fakultet {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fakultet")
 	private List<Departman> departmani;
+	
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
 }

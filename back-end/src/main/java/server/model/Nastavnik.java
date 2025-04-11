@@ -28,19 +28,24 @@ public class Nastavnik {
     private Korisnik korisnik;
 	@Column(nullable=false)
 	private String ime;
-	
 	@Column(nullable = false)
 	private String prezime;
-	
 	@Column(nullable=false, length = 13, unique = true)
 	private String jmbg;
 	@OneToMany (fetch= FetchType.LAZY, mappedBy = "nastavnik")
 	private List<Zvanje> zvanja;
-	
 	@OneToMany(mappedBy = "nastavnik")
 	private List<DepartmanNastavnik> departmani;
 	
 	@OneToMany(mappedBy = "nastavnik")
 	private List<KatedraNastavnik> katedre;
+	
+	@OneToMany(mappedBy = "nastavnik")
+	private List<RealizacijaPredmeta> realizacijePredmeta;
+	@OneToMany(mappedBy = "nastavnik")
+	private List<Obavestenje> obavestenja;
+	
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
 
 }
