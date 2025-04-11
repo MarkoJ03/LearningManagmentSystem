@@ -17,4 +17,6 @@ public class UniverzitetDTO {
 	private Date datumOsnivanja;
 	private AdresaDTO adresa;
 	private List<FakultetDTO> fakulteti;
+	
+	private Boolean vidljiv = true;
 }

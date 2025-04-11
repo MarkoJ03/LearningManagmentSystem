@@ -2,6 +2,7 @@ package server.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,4 +23,7 @@ public class Kalendar {
 	
 	@OneToMany(mappedBy = "kalendar")
 	private List<TerminNastave> terminiNastave;
+	
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
 }

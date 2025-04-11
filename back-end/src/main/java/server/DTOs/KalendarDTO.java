@@ -12,4 +12,6 @@ import lombok.NoArgsConstructor;
 public class KalendarDTO {
 	private Long id;
 	private List<TerminNastaveDTO> terminiNastave;
+	
+	private Boolean vidljiv = true;
 }

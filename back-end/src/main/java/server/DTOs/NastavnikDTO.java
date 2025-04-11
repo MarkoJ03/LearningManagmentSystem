@@ -5,7 +5,8 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import server.model.DepartmanNastavnik;
+
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,7 +27,10 @@ public class NastavnikDTO {
 	
 	private List<DepartmanNastavnikDTO> departmani;
 	
+	private List<KatedraNastavnikDTO> katedre;
+	
 	private List<RealizacijaPredmetaDTO> realizacijaPredmeta;
 	
 	private List<ObavestenjeDTO> obavestenja;
+	private Boolean vidljiv = true;
 }

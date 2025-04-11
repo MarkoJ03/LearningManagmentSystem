@@ -17,4 +17,5 @@ public class StudentNaGodiniDTO {
 	private Date datumUpisa;
 	private StudentDTO student;
 	private GodinaStudijaDTO godinaStudija;
+	private Boolean vidljiv = true;
 }

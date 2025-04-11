@@ -36,7 +36,7 @@ public class TipNastaveService extends BaseService<TipNastave, TipNastaveDTO, Lo
 			realizacijePredmeta.add(rpDTO);
 		}
 		
-		return new TipNastaveDTO(entity.getId(), entity.getNaziv(), realizacijePredmeta);
+		return new TipNastaveDTO(entity.getId(), entity.getNaziv(), realizacijePredmeta, entity.getVidljiv());
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class TipNastaveService extends BaseService<TipNastave, TipNastaveDTO, Lo
 			realizacijePredmeta.add(rp);
 		}
 		
-		return new TipNastave(dto.getId(), dto.getNaziv(), realizacijePredmeta);
+		return new TipNastave(dto.getId(), dto.getNaziv(), realizacijePredmeta, dto.getVidljiv());
 	}
 
 }

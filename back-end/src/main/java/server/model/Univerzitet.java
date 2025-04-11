@@ -38,4 +38,7 @@ public class Univerzitet {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "univerzitet")
 	private List<Fakultet> fakulteti;
+	
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
 }

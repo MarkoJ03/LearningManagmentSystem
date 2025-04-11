@@ -16,4 +16,5 @@ public class RealizacijaPredmetaDTO {
 	private PredmetDTO predmet;
 	private List<TerminNastaveDTO> terminiNastave;
 	private List<IshodPredmetaDTO> ishodiPredmeta;
+	private Boolean vidljiv = true;
 }

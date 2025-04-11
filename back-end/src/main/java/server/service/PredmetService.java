@@ -33,7 +33,7 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 	@Override
 	protected PredmetDTO convertToDTO(Predmet entity) {
 		DokumentiPredmetaDTO dokumentiPredmeta = new DokumentiPredmetaDTO(entity.getDokumentiPredmeta().getId(),
-				entity.getDokumentiPredmeta().getSilabus(), entity.getDokumentiPredmeta().getAkreditacija(), null);
+				entity.getDokumentiPredmeta().getSilabus(), entity.getDokumentiPredmeta().getAkreditacija(), null, entity.getDokumentiPredmeta().getVidljiv());
 		
 		ArrayList<RealizacijaPredmetaDTO> realizacijePredmeta = new ArrayList<RealizacijaPredmetaDTO>();
 		for(RealizacijaPredmeta rp : entity.getRealizacijePredmeta()) {
@@ -43,13 +43,13 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 		
 		return new PredmetDTO(entity.getId(), entity.getEsbp(), entity.getObavezan(), 
 				entity.getBrojPredavanja(), entity.getBrojVezbi(), entity.getIstrazivackiRad(), 
-				entity.getBrojSemestara(), entity.getOpis(), entity.getCilj(), dokumentiPredmeta, realizacijePredmeta);
+				entity.getBrojSemestara(), entity.getOpis(), entity.getCilj(), dokumentiPredmeta, realizacijePredmeta,entity.getVidljiv());
 	}
 
 	@Override
 	protected Predmet convertToEntity(PredmetDTO dto) {
 		DokumentiPredmeta dokumentiPredmeta = new DokumentiPredmeta(dto.getDokumentiPredmeta().getId(),
-				dto.getDokumentiPredmeta().getSilabus(), dto.getDokumentiPredmeta().getAkreditacija(), null);
+				dto.getDokumentiPredmeta().getSilabus(), dto.getDokumentiPredmeta().getAkreditacija(), null, dto.getDokumentiPredmeta().getVidljiv());
 		
 		ArrayList<RealizacijaPredmeta> realizacijePredmeta = new ArrayList<RealizacijaPredmeta>();
 		for(RealizacijaPredmetaDTO rpDTO : dto.getRealizacijaPredmeta()) {
@@ -59,7 +59,7 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 		
 		return new Predmet(dto.getId(), dto.getEsbp(), dto.getObavezan(), dto.getBrojPredavanja(), 
 				dto.getBrojVezbi(), dto.getIstrazivackiRad(), dto.getBrojSemestara(), dto.getOpis(), 
-				dto.getCilj(), dokumentiPredmeta, realizacijePredmeta);
+				dto.getCilj(), dokumentiPredmeta, realizacijePredmeta,dto.getVidljiv());
 	}
 
 }

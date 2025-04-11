@@ -28,26 +28,26 @@ public class ZvanjeService extends BaseService<Zvanje, ZvanjeDTO, Long> {
 	@Override
 	protected ZvanjeDTO convertToDTO(Zvanje entity) {
 		TipZvanjaDTO tipZvanja = new TipZvanjaDTO(entity.getTipZvanja().getId(), entity.getTipZvanja().getNaziv(),
-				null);
+				null, entity.getTipZvanja().getVidljiv());
 		NaucnaOblastDTO naucnaOblast = new NaucnaOblastDTO(entity.getNaucnaOblast().getId(),
-				entity.getNaucnaOblast().getNaziv(), null);
+				entity.getNaucnaOblast().getNaziv(), null, entity.getNaucnaOblast().getVidljiv());
 		NastavnikDTO nastavnik = new NastavnikDTO(entity.getNastavnik().getId(), entity.getNastavnik().getIme(),
-				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null, null);
+				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null, null,null, entity.getNastavnik().getVidljiv());
 
 		return new ZvanjeDTO(entity.getId(), entity.getDatumIzbora(), entity.getDatumPrestanka(), tipZvanja,
-				naucnaOblast, nastavnik);
+				naucnaOblast, nastavnik, entity.getVidljiv());
 	}
 
 	@Override
 	protected Zvanje convertToEntity(ZvanjeDTO dto) {
 		TipZvanja tipZvanja = new TipZvanja(dto.getTipZvanja().getId(), dto.getTipZvanja().getNaziv(),
-				null);
+				null, dto.getTipZvanja().getVidljiv());
 		NaucnaOblast naucnaOblast = new NaucnaOblast(dto.getNaucnaOblast().getId(),
-				dto.getNaucnaOblast().getNaziv(), null);
+				dto.getNaucnaOblast().getNaziv(), null, dto.getNaucnaOblast().getVidljiv());
 		Nastavnik nastavnik = new Nastavnik(dto.getNastavnik().getId(), null,dto.getNastavnik().getIme(),
-				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null, null);
+				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null, null,null, dto.getNastavnik().getVidljiv());
 		
-		return new Zvanje(dto.getId(), dto.getDatumIzbora(), dto.getDatumPrestanka(), tipZvanja, naucnaOblast, nastavnik);
+		return new Zvanje(dto.getId(), dto.getDatumIzbora(), dto.getDatumPrestanka(), tipZvanja, naucnaOblast, nastavnik,dto.getVidljiv());
 	}
 
 }

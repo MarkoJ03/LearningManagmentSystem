@@ -22,4 +22,7 @@ public class IshodPredmeta {
 	private Integer ocena;
 	@ManyToOne
 	private RealizacijaPredmeta realizacijaPredmeta;
+	
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
 }

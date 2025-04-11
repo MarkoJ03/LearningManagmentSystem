@@ -45,4 +45,7 @@ public class Predmet {
 	
     @OneToMany
     private List<RealizacijaPredmeta> realizacijePredmeta;
+    
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
 }

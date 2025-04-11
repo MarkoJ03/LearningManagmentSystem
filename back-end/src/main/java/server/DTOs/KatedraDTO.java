@@ -29,4 +29,6 @@ public class KatedraDTO {
 	
 
 	private List<KatedraNastavnikDTO> nastavnici;
+	
+	private Boolean vidljiv = true;
 }

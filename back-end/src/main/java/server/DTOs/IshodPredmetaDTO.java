@@ -11,4 +11,5 @@ public class IshodPredmetaDTO {
 	private Long id;
 	private Integer ocena;
 	private RealizacijaPredmetaDTO realizacijaPredmeta;
+	private Boolean vidljiv = true;
 }

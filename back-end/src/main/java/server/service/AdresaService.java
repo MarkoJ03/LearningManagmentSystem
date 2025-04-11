@@ -24,13 +24,13 @@ public class AdresaService extends BaseService<Adresa, AdresaDTO, Long>{
 
 	@Override
 	protected AdresaDTO convertToDTO(Adresa entity) {
-		return new AdresaDTO(entity.getId(),entity.getDrzava(),entity.getGrad(),entity.getUlica(), entity.getBroj());
+		return new AdresaDTO(entity.getId(),entity.getDrzava(),entity.getGrad(),entity.getUlica(), entity.getBroj(),entity.getVidljiv());
 	}
 
 	@Override
 	protected Adresa convertToEntity(AdresaDTO dto) {
 	
-		return new Adresa(dto.getId(),dto.getDrzava(),dto.getGrad(),dto.getUlica(), dto.getBroj());
+		return new Adresa(dto.getId(),dto.getDrzava(),dto.getGrad(),dto.getUlica(), dto.getBroj(),dto.getVidljiv());
 		}
 
 

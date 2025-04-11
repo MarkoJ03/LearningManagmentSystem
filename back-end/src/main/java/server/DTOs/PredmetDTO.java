@@ -40,4 +40,8 @@ public class PredmetDTO {
 
     private DokumentiPredmetaDTO dokumentiPredmeta;
     private List<RealizacijaPredmetaDTO> realizacijaPredmeta;
+    
+    private Boolean vidljiv = true;
+    
+    
 }

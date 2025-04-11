@@ -30,4 +30,7 @@ public class TerminNastave {
 	private RealizacijaPredmeta realizacijaPredmeta;
 	@ManyToOne
 	private Kalendar kalendar;
+	
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
 }

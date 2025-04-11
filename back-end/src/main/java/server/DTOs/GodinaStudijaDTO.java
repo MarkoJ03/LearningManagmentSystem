@@ -19,4 +19,6 @@ public class GodinaStudijaDTO {
 	private List<StudentNaGodiniDTO> studentiNaGodini;
 	
 	private StudijskiProgramDTO studijskiProgram;
+	
+	private Boolean vidljiv = true;
 }
