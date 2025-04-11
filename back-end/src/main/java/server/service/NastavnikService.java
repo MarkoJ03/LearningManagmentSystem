@@ -9,12 +9,14 @@ import org.springframework.stereotype.Service;
 
 import server.DTOs.DepartmanNastavnikDTO;
 import server.DTOs.FakultetDTO;
+import server.DTOs.KatedraNastavnikDTO;
 import server.DTOs.KorisnikDTO;
 import server.DTOs.NastavnikDTO;
 import server.DTOs.ObavestenjeDTO;
 import server.DTOs.RealizacijaPredmetaDTO;
 import server.DTOs.ZvanjeDTO;
 import server.model.DepartmanNastavnik;
+import server.model.KatedraNastavnik;
 import server.model.Korisnik;
 import server.model.Nastavnik;
 import server.model.Obavestenje;
@@ -35,6 +37,10 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 	@Autowired
 	@Lazy
 	private DepartmanNastavnikService departmanNastavnikService;
+	
+	@Autowired
+	@Lazy
+	private KatedraNastavnikService katedraNastavnikService;
 
 	@Autowired
 	@Lazy
@@ -65,6 +71,12 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 			DepartmanNastavnikDTO dnDTO = departmanNastavnikService.convertToDTO(dn);
 			departmaniNastavnici.add(dnDTO);
 		}
+		
+		ArrayList<KatedraNastavnikDTO> katedreNastavnici = new ArrayList<KatedraNastavnikDTO>();
+		for (KatedraNastavnik dn : entity.getKatedre()) {
+			KatedraNastavnikDTO dnDTO = katedraNastavnikService.convertToDTO(dn);
+			katedreNastavnici.add(dnDTO);
+		}
 
 		ArrayList<RealizacijaPredmetaDTO> realizacijePredmeta = new ArrayList<RealizacijaPredmetaDTO>();
 		for (RealizacijaPredmeta rp : entity.getRealizacijePredmeta()) {
@@ -79,7 +91,7 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 		}
 
 		return new NastavnikDTO(entity.getId(), entity.getIme(), entity.getPrezime(), entity.getJmbg(), zvanja,
-				korisnik, departmaniNastavnici, realizacijePredmeta, obavestenja, entity.getVidljiv());
+				korisnik, departmaniNastavnici, katedreNastavnici, realizacijePredmeta, obavestenja, entity.getVidljiv());
 	}
 
 	@Override
@@ -99,6 +111,12 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 			departmaniNastavnici.add(dn);
 		}
 
+		ArrayList<KatedraNastavnik> katedreNastavnici = new ArrayList<KatedraNastavnik>();
+		for (KatedraNastavnikDTO dn : dto.getKatedre()) {
+			KatedraNastavnik dnDTO = katedraNastavnikService.convertToEntity(dn);
+			katedreNastavnici.add(dnDTO);
+		}
+		
 		ArrayList<RealizacijaPredmeta> realizacijePredmeta = new ArrayList<RealizacijaPredmeta>();
 		for (RealizacijaPredmetaDTO rpDTO : dto.getRealizacijaPredmeta()) {
 			RealizacijaPredmeta rp = realizacijaPredmetaService.convertToEntity(rpDTO);
@@ -112,7 +130,7 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 		}
 
 		return new Nastavnik(dto.getId(), korisnik, dto.getIme(), dto.getPrezime(), dto.getJmbg(), 
-				zvanja, departmaniNastavnici, realizacijePredmeta, obavestenja, dto.getVidljiv());
+				zvanja, departmaniNastavnici, katedreNastavnici, realizacijePredmeta, obavestenja, dto.getVidljiv());
 	}
 
 }

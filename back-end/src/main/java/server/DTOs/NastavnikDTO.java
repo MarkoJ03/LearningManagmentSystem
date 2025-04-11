@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -25,6 +26,8 @@ public class NastavnikDTO {
 	private KorisnikDTO korisnik;
 	
 	private List<DepartmanNastavnikDTO> departmani;
+	
+	private List<KatedraNastavnikDTO> katedre;
 	
 	private List<RealizacijaPredmetaDTO> realizacijaPredmeta;
 	

@@ -43,7 +43,7 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 	@Override
 	protected RealizacijaPredmetaDTO convertToDTO(RealizacijaPredmeta entity) {
 		NastavnikDTO nastavnik = new NastavnikDTO(entity.getNastavnik().getId(), entity.getNastavnik().getIme(),
-				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null, null, entity.getNastavnik().getVidljiv());
+				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null, null,null, entity.getNastavnik().getVidljiv());
 		TipNastaveDTO tipNastave = new TipNastaveDTO(entity.getTipNastave().getId(), entity.getTipNastave().getNaziv(),
 				null, entity.getTipNastave().getVidljiv());
 		PredmetDTO predmet = new PredmetDTO(entity.getPredmet().getId(), entity.getPredmet().getEsbp(),
@@ -69,7 +69,7 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 	@Override
 	protected RealizacijaPredmeta convertToEntity(RealizacijaPredmetaDTO dto) {
 		Nastavnik nastavnik = new Nastavnik(dto.getNastavnik().getId(), null, dto.getNastavnik().getIme(),
-				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null, null, dto.getNastavnik().getVidljiv());
+				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null, null,null, dto.getNastavnik().getVidljiv());
 		TipNastave tipNastave = new TipNastave(dto.getTipNastave().getId(), dto.getTipNastave().getNaziv(),
 				null, dto.getTipNastave().getVidljiv());
 		Predmet predmet = new Predmet(dto.getPredmet().getId(), dto.getPredmet().getEsbp(),
