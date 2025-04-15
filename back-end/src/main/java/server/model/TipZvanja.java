@@ -28,6 +28,7 @@ public class TipZvanja{
 	@OneToMany (fetch= FetchType.LAZY, mappedBy = "tipZvanja")
 	private List<Zvanje> zvanja;
 
-
+	@Column(nullable = false)
+    private Boolean vidljiv = true;
 
 }

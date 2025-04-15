@@ -26,4 +26,6 @@ public class DepartmanDTO {
 	
 	
 	private List<DepartmanNastavnikDTO> nastavnici;
+	
+	private Boolean vidljiv = true;
 }

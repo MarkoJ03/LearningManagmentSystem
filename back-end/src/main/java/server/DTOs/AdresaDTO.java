@@ -14,4 +14,5 @@ public class AdresaDTO {
 	private String grad;
 	private String ulica;
 	private String broj;
+	private Boolean vidljiv = true;
 }

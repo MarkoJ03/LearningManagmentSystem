@@ -32,4 +32,6 @@ public class Adresa {
 	@Column(nullable = false)
 	private String broj;
 
+	@Column(nullable = false)
+    private Boolean vidljiv = true;
 }

@@ -35,4 +35,7 @@ public class StudijskiProgram {
 	
 	@OneToMany(mappedBy = "studijskiProgram")
 	private List<GodinaStudija> godineStudija;
+	
+	@Column(nullable = false)
+    private Boolean vidljiv = true;
 }

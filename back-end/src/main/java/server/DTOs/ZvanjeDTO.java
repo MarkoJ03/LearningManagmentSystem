@@ -25,4 +25,6 @@ public class ZvanjeDTO {
 	
 
 	private NastavnikDTO nastavnik;
+	
+	private Boolean vidljiv = true;
 }

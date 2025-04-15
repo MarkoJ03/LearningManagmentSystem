@@ -26,16 +26,16 @@ public class StudentService extends BaseService<Student, StudentDTO, Long>{
 
 	@Override
 	protected StudentDTO convertToDTO(Student entity) {
-		KorisnikDTO korisnik= new KorisnikDTO(entity.getKorisnik().getId(), entity.getKorisnik().getEmail(), entity.getKorisnik().getKorisnickoIme(), entity.getKorisnik().getLozinka());
-		AdresaDTO adresa = new AdresaDTO(entity.getAdresa().getId(),entity.getAdresa().getDrzava(),entity.getAdresa().getGrad(),entity.getAdresa().getUlica(), entity.getAdresa().getBroj());
-		return new StudentDTO(entity.getId(),korisnik,entity.getIme(),entity.getPrezime(),entity.getJmbg(), adresa); 
+		KorisnikDTO korisnik= new KorisnikDTO(entity.getKorisnik().getId(), entity.getKorisnik().getEmail(), entity.getKorisnik().getKorisnickoIme(), entity.getKorisnik().getLozinka(), null);
+		AdresaDTO adresa = new AdresaDTO(entity.getAdresa().getId(),entity.getAdresa().getDrzava(),entity.getAdresa().getGrad(),entity.getAdresa().getUlica(), entity.getAdresa().getBroj(), null);
+		return new StudentDTO(entity.getId(),korisnik,entity.getIme(),entity.getPrezime(),entity.getJmbg(), adresa, null); 
 	}
 
 	@Override
 	protected Student convertToEntity(StudentDTO dto) {
-		Korisnik korisnik= new Korisnik(dto.getKorisnik().getId(), dto.getKorisnik().getEmail(), dto.getKorisnik().getKorisnickoIme(), dto.getKorisnik().getLozinka());
-		Adresa adresa = new Adresa(dto.getAdresa().getId(),dto.getAdresa().getDrzava(),dto.getAdresa().getGrad(),dto.getAdresa().getUlica(), dto.getAdresa().getBroj());
-		return new Student(dto.getId(),korisnik,dto.getIme(),dto.getPrezime(),dto.getJmbg(), adresa); 	
+		Korisnik korisnik= new Korisnik(dto.getKorisnik().getId(), dto.getKorisnik().getEmail(), dto.getKorisnik().getKorisnickoIme(), dto.getKorisnik().getLozinka(), null);
+		Adresa adresa = new Adresa(dto.getAdresa().getId(),dto.getAdresa().getDrzava(),dto.getAdresa().getGrad(),dto.getAdresa().getUlica(), dto.getAdresa().getBroj(), null);
+		return new Student(dto.getId(),korisnik,dto.getIme(),dto.getPrezime(),dto.getJmbg(), adresa, null, null, null); 	
 		}
 
 

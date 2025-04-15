@@ -12,6 +12,11 @@ import lombok.NoArgsConstructor;
 @Data
 public class NastavnikDTO {
 
+	public NastavnikDTO(Long id2, String ime2, String prezime2, String jmbg2, Object object, Object object2,
+			Object object3, Object object4, Object object5, Object object6, Boolean vidljiv2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	private Long id;
 
 	private KorisnikDTO korisnik;
@@ -28,4 +33,6 @@ public class NastavnikDTO {
 	private List<DepartmanNastavnikDTO> departmani;
 	
 	private List<KatedraNastavnikDTO> katedre;
+	
+	private Boolean vidljiv = true;
 }

@@ -27,4 +27,6 @@ public class NaucnaOblast {
 	@OneToMany (fetch= FetchType.LAZY, mappedBy = "naucnaOblast")
 	private List<Zvanje> zvanja;
 
+	@Column(nullable = false)
+    private Boolean vidljiv = true;
 }

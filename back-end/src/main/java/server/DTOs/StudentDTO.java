@@ -24,4 +24,6 @@ public class StudentDTO {
     private String jmbg;
 
     private AdresaDTO adresa;
+    
+    private Boolean vidljiv = true;
 }

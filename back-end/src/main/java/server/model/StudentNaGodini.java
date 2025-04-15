@@ -35,4 +35,9 @@ public class StudentNaGodini {
 	@ManyToOne(optional = false)
 	private GodinaStudija godinaStudija;
 	
+	@ManyToOne(optional = false)
+	private GrupaStudenata grupaStudenata;
+	
+	@Column(nullable = false)
+    private Boolean vidljiv = true;
 }

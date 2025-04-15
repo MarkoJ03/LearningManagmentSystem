@@ -29,4 +29,6 @@ public class Korisnik {
     @Column(nullable = false, unique = true)
     private String email;
 	
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
 }

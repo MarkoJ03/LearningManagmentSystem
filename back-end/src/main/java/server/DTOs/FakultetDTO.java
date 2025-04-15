@@ -18,4 +18,6 @@ public class FakultetDTO {
 	
 	private List<DepartmanDTO> departmani;
 	
+	private Boolean vidljiv = true;
+	
 }

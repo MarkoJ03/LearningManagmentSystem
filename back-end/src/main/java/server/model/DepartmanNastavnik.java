@@ -1,5 +1,6 @@
 package server.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,4 +25,7 @@ public class DepartmanNastavnik {
 
     @ManyToOne(optional = false)
     private Nastavnik nastavnik;
+    
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
 }

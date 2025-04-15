@@ -1,11 +1,16 @@
 package server.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +36,9 @@ public class Predmet {
 	private Integer brojPredavanja;
 	
 	@Column(nullable = false)
+    private Boolean vidljiv = true;
+	
+	@Column(nullable = false)
 	private Integer brojVezbi;
 	
 	@Column(nullable = false)
@@ -48,5 +56,10 @@ public class Predmet {
     @OneToOne
     @JoinColumn(name = "dokumenti_id", nullable = false)
     private DokumentiPredmeta dokumentiPredmeta;
+    
+    @OneToMany (fetch= FetchType.LAZY, mappedBy = "tipZvanja")
+	private List<EvaluacijaZnanja> evaluacijaZnanja;
 	
+    @OneToMany (fetch= FetchType.LAZY, mappedBy = "tipZvanja")
+	private List<GrupaStudenataPredmet> grupaStudenataPredmet;
 }

@@ -18,4 +18,6 @@ public class KatedraNastavnikDTO {
 
 
 	    private NastavnikDTO nastavnik;
+	    
+	    private Boolean vidljiv = true;
 }

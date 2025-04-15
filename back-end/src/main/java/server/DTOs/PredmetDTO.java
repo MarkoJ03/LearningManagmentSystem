@@ -37,4 +37,6 @@ public class PredmetDTO {
 	
 
     private DokumentiPredmetaDTO dokumentiPredmeta;
+    
+    private Boolean vidljiv = true;
 }

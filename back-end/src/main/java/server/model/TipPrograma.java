@@ -27,4 +27,7 @@ public class TipPrograma {
 	
 	@OneToMany(mappedBy = "tipPrograma")
 	private List<StudijskiProgram> programi;
+
+	@Column(nullable = false)
+    private Boolean vidljiv = true;
 }

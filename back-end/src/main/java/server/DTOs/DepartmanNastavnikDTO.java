@@ -16,4 +16,6 @@ public class DepartmanNastavnikDTO {
 
 
     private NastavnikDTO nastavnik;
+    
+    private Boolean vidljiv = true;
 }
