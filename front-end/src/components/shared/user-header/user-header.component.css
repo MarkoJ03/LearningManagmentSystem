@@ -1,0 +1,22 @@
+aside {
+    background-color: lightgray;
+    box-shadow: 0px 0px 3px black;
+    width: 15%;
+    padding: 10px;
+    align-items: center;
+
+    img {
+        height: 100px;
+        width: 100px;
+    }
+
+    ul {
+        text-align: center;
+        padding-left: 0;
+        
+        li {
+            list-style-type: none;
+            margin: 2px;
+        }
+    }
+}
