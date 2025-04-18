@@ -13,12 +13,12 @@ import lombok.NoArgsConstructor;
 public class GrupaStudenataDTO {
 
 private Long id;
-	
+
 	private List<StudentNaGodiniDTO> studentNaGodini;
-	
+
 	private List<GrupaStudenataPredmetDTO> grupaStudenataPredmet;
-	
+
 	private KalendarDTO kalendar;
-	
+
     private Boolean vidljiv = true;
 }

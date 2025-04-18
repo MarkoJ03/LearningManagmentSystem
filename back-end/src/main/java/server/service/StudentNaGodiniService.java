@@ -19,11 +19,11 @@ public class StudentNaGodiniService extends BaseService<StudentNaGodini, Student
 
 	@Autowired
 	private StudentNaGodiniRepository studentNaGodiniRepository;
-	
+
 	@Autowired
 	@Lazy
 	private StudentService studentService;
-	
+
   @Override
  protected CrudRepository<StudentNaGodini, Long> getRepository() {
       return studentNaGodiniRepository;
@@ -31,14 +31,24 @@ public class StudentNaGodiniService extends BaseService<StudentNaGodini, Student
 
 	@Override
 	protected StudentNaGodiniDTO convertToDTO(StudentNaGodini entity) {
+<<<<<<< HEAD
 		GodinaStudijaDTO godinaStudija = new GodinaStudijaDTO(entity.getGodinaStudija().getId(),entity.getGodinaStudija().getGodina(),null,null, null);
 		return new StudentNaGodiniDTO(entity.getId(),entity.getBrojIndeksa(),entity.getDatumUpisa(),studentService.convertToDTO(entity.getStudent()),godinaStudija, null);
+=======
+		GodinaStudijaDTO godinaStudija = new GodinaStudijaDTO(entity.getGodinaStudija().getId(),entity.getGodinaStudija().getGodina(),null,null, entity.getGodinaStudija().getVidljiv());
+		return new StudentNaGodiniDTO(entity.getId(),entity.getBrojIndeksa(),entity.getDatumUpisa(),studentService.convertToDTO(entity.getStudent()),godinaStudija, entity.getVidljiv())
+>>>>>>> development
 	}
 
 	@Override
 	protected StudentNaGodini convertToEntity(StudentNaGodiniDTO dto) {
+<<<<<<< HEAD
 		GodinaStudija godinaStudija = new GodinaStudija(dto.getGodinaStudija().getId(),dto.getGodinaStudija().getGodina(),null,null, null);
 		return new StudentNaGodini(dto.getId(),dto.getBrojIndeksa(),dto.getDatumUpisa(),studentService.convertToEntity(dto.getStudent()), godinaStudija, null, null);
+=======
+		GodinaStudija godinaStudija = new GodinaStudija(dto.getGodinaStudija().getId(),dto.getGodinaStudija().getGodina(),null,null, dto.getGodinaStudija().getVidljiv());
+		return new StudentNaGodini(dto.getId(),dto.getBrojIndeksa(),dto.getDatumUpisa(),studentService.convertToEntity(dto.getStudent()), godinaStudija,dto.getVidljiv())
+>>>>>>> development
 		}
 
 

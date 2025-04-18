@@ -15,13 +15,17 @@ public class TipProgramaDTO {
 
 
     private Long id;
-	
+
 
 	private String naziv;
-	
+
 
 	private List<StudijskiProgramDTO> programi;
-	
+<<<<<<< HEAD
+
 	private Boolean vidljiv = true;
-	
+
+=======
+	private Boolean vidljiv = true;
+>>>>>>> development
 }

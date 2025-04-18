@@ -14,18 +14,21 @@ import lombok.NoArgsConstructor;
 public class StudijskiProgramDTO {
 
     private Long id;
-	
+
     private String naziv;
-	
+
 
 	private TipProgramaDTO tipPrograma;
-	
+
 
 	private KatedraDTO katedra;
-	
+
 
 	private List<GodinaStudijaDTO> godineStudija;
-	
+<<<<<<< HEAD
+
+=======
+>>>>>>> development
 	private Boolean vidljiv = true;
 }
 

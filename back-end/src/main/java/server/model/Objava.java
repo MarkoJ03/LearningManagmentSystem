@@ -20,21 +20,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Objava {
 
-	
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	
+
 	@Column(nullable = false, unique = true)
 	private String naslov;
-	
+
 	@Column(nullable = false, unique = true)
 	private String sadrzaj;
-	
+
 	@ManyToOne(optional = false)
 	private StudentskaSluzba studentskaSluzba;
-	
+
 	@Column(nullable = false)
     private Boolean vidljiv = true;
-	
+
 }

@@ -13,6 +13,8 @@ public class KorisnikDTO {
 	private String email;
 	private String korisnickoIme;
 	private String lozinka;
-	
+
+
 	private Boolean vidljiv = true;
+
 }

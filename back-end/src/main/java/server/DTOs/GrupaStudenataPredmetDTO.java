@@ -13,12 +13,12 @@ import lombok.NoArgsConstructor;
 public class GrupaStudenataPredmetDTO {
 
 	private Long id;
-	
-	
+
+
 	private GrupaStudenataDTO grupaStudenata;
-	
+
 	private PredmetDTO predmet;
 
-	
+
     private Boolean vidljiv = true;
 }

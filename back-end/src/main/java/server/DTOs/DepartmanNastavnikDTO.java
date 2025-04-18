@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class DepartmanNastavnikDTO {
-	
+
     private Long id;
 
 
@@ -16,6 +16,6 @@ public class DepartmanNastavnikDTO {
 
 
     private NastavnikDTO nastavnik;
-    
+
     private Boolean vidljiv = true;
 }

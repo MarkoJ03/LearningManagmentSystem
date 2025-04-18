@@ -14,11 +14,11 @@ public class DokumentiPredmetaDTO {
     private Long id;
 
     private String silabus;
-    
+
     private String akreditacija;
 
 
     private PredmetDTO predmet;
-    
+
     private Boolean vidljiv = true;
 }

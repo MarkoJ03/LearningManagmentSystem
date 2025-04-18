@@ -22,24 +22,25 @@ public class Departman {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String naziv;
-	
+
 	@ManyToOne(optional = false)
 	private Fakultet fakultet;
-	
+
 	@ManyToOne
     @JoinColumn(name = "sekretarDepartmana_id", nullable = false)
 	private Nastavnik sekretarDepartmana;
-	
+
 	@ManyToOne
     @JoinColumn(name = "direktorDepartmana_id", nullable = false)
 	private Nastavnik direktorDepartmana;
-	
+
 	@OneToMany(mappedBy = "departman")
 	private List<DepartmanNastavnik> nastavnici;
-	
-	@Column(nullable = false)
+
+
+
     private Boolean vidljiv = true;
 }

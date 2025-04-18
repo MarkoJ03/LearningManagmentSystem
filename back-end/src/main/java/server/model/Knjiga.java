@@ -22,11 +22,11 @@ public class Knjiga {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	
+
 	@Column(nullable = false, unique = true)
 	private String naziv;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "knjiga")
 	private List<BibliotekaKnjiga> bibliotekaKnjiga;
 
 	@Column(nullable = false)

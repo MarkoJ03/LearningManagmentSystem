@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class StudentDTO {
 
-    private Long id; 
+    private Long id;
 
 
     private KorisnikDTO korisnik;
 
 
     private String ime;
-    
+
 
     private String prezime;
 
@@ -24,6 +24,6 @@ public class StudentDTO {
     private String jmbg;
 
     private AdresaDTO adresa;
-    
+
     private Boolean vidljiv = true;
 }

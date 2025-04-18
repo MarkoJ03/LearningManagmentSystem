@@ -14,7 +14,7 @@ public class KorisnikService extends BaseService<Korisnik, KorisnikDTO, Long>{
 
 	@Autowired
 	private KorisnikRepository korisnikRepository;
-	
+
   @Override
  protected CrudRepository<Korisnik, Long> getRepository() {
       return korisnikRepository;
@@ -22,14 +22,17 @@ public class KorisnikService extends BaseService<Korisnik, KorisnikDTO, Long>{
 
 	@Override
 	protected KorisnikDTO convertToDTO(Korisnik entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return new KorisnikDTO(entity.getId(),entity.getEmail(),entity.getKorisnickoIme(),entity.getLozinka(), entity.getVidljiv());
 	}
 
 	@Override
 	protected Korisnik convertToEntity(KorisnikDTO dto) {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		return new Korisnik(dto.getId(),dto.getEmail(),dto.getKorisnickoIme(),dto.getLozinka(), null); 	}
+=======
+		return new Korisnik(dto.getId(),dto.getEmail(),dto.getKorisnickoIme(),dto.getLozinka(), dto.getVidljiv()); 	}
+>>>>>>> development
 
 
 

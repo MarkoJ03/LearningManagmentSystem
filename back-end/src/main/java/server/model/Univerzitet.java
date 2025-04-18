@@ -25,20 +25,21 @@ public class Univerzitet {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String naziv;
-	
+
 	@Column(nullable = false)
 	private Date datumOsnivanja;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "adresa_id", nullable = false)
 	private Adresa adresa;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "univerzitet")
 	private List<Fakultet> fakulteti;
-	
+
+
 	@Column(nullable = false)
     private Boolean vidljiv = true;
 }

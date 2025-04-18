@@ -14,9 +14,9 @@ public class NaucnaOblastDTO {
 	private Long id;
 
 	private String naziv;
-	
+
 
 	private List<ZvanjeDTO> zvanja;
-	
+
 	private Boolean vidljiv = true;
 }

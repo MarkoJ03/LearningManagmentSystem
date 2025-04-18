@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentNaGodiniDTO {
-	
+
 	private Long id;
 	private String brojIndeksa;
 	private Date datumUpisa;
 	private StudentDTO student;
 	private GodinaStudijaDTO godinaStudija;
-	
+
 	private Boolean vidljiv = true;
 }

@@ -21,13 +21,13 @@ public class StudentskaSluzbaService extends BaseService<StudentskaSluzba, Stude
 
     @Override
     protected StudentskaSluzbaDTO convertToDTO(StudentskaSluzba entity) {
-        
+
         return null;
     }
 
     @Override
     protected StudentskaSluzba convertToEntity(StudentskaSluzbaDTO dto) {
-        
+
         return null;
     }
 }

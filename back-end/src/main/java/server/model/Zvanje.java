@@ -24,16 +24,17 @@ public class Zvanje {
 	private Date datumIzbora;
 	@Column(nullable=true)
 	private Date datumPrestanka;
-	
+
 	@ManyToOne(optional = false)
 	private TipZvanja tipZvanja;
-	
+
 	@ManyToOne(optional = false)
 	private NaucnaOblast naucnaOblast;
-	
+
 	@ManyToOne(optional=false)
 	private Nastavnik nastavnik;
-	
+
+
 	@Column(nullable = false)
     private Boolean vidljiv = true;
 }

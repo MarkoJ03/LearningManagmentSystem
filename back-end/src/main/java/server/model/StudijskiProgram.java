@@ -23,19 +23,20 @@ public class StudijskiProgram {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	
+
 	@Column(nullable = false)
 	private String naziv;
-	
+
 	@ManyToOne(optional = false)
 	private TipPrograma tipPrograma;
-	
+
 	@ManyToOne(optional = false)
 	private Katedra katedra;
-	
+
 	@OneToMany(mappedBy = "studijskiProgram")
 	private List<GodinaStudija> godineStudija;
-	
+
+
 	@Column(nullable = false)
     private Boolean vidljiv = true;
 }

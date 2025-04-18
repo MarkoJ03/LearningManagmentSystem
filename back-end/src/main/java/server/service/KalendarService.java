@@ -21,13 +21,13 @@ public class KalendarService extends BaseService<Kalendar, KalendarDTO, Long> {
 
     @Override
     protected KalendarDTO convertToDTO(Kalendar entity) {
-       
+
         return null;
     }
 
     @Override
     protected Kalendar convertToEntity(KalendarDTO dto) {
-        
+
         return null;
     }
 }

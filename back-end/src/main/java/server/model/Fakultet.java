@@ -2,7 +2,6 @@ package server.model;
 
 import java.util.List;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -26,20 +25,22 @@ public class Fakultet {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(nullable = false)
-	private String naziv;
-	
-	@ManyToOne(optional = false)
-	private Univerzitet univerzitet;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fakultet")
-	private List<Departman> departmani;
-	
-	@OneToOne
-    @JoinColumn(name = "id") 
-    private Fakultet fakultet;
 
 	@Column(nullable = false)
+	private String naziv;
+
+	@ManyToOne(optional = false)
+	private Univerzitet univerzitet;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fakultet")
+	private List<Departman> departmani;
+
+
+	@OneToOne
+    @JoinColumn(name = "id")
+    private Fakultet fakultet;
+
+
+    @Column(nullable = false)
     private Boolean vidljiv = true;
 }
