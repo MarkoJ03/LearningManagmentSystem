@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class FakultetDTO {
-	
+
 	private Long id;
 	private String naziv;
 	private UniverzitetDTO univerzitet;
-	
+
 	private List<DepartmanDTO> departmani;
-	
+
 	private Boolean vidljiv = true;
-	
+
 }

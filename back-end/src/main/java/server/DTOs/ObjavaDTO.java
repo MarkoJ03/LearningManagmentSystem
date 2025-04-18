@@ -12,23 +12,23 @@ import server.model.StudentskaSluzba;
 @Data
 public class ObjavaDTO {
 
-	
-	
-	
 
 
-		
-		
+
+
+
+
+
 	    private Long id;
-		
+
 		private String naslov;
-		
+
 		private String sadrzaj;
-		
+
 		private StudentskaSluzba studentskaSluzba;
-		
+
 	    private Boolean vidljiv = true;
-		
+
 	}
 
 

@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,11 +23,13 @@ public class Biblioteka {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "biblioteka")
 	private List<BibliotekaKnjiga> bibliotekaKnjiga;
-	
-	
+
+	@OneToOne
+	private StudentskaSluzba studentskaSluzba;
+
 	@Column(nullable = false)
     private Boolean vidljiv = true;
 }

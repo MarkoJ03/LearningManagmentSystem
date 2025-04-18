@@ -10,18 +10,18 @@ import lombok.NoArgsConstructor;
 public class OsobljeDTO {
 
 	 private Long id;
-		
-		
+
+
 		private String ime;
-		
+
 		private String prezime;
-		
+
 		private String jmbg;
-		
+
 		private StudentskaSluzbaDTO studentsaSluzba;
-		
+
 	    private Boolean vidljiv = true;
 	}
-	
-	
+
+
 

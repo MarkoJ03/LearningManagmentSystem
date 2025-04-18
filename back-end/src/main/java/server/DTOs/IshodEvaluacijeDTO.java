@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 public class IshodEvaluacijeDTO {
 
 private Long id;
-	
+
 	private String napomena;
-	
+
 	private Integer bodovi;
-	
+
 	private StudentDTO student;
-	
+
 	private EvaluacijaZnanjaDTO evaluacijaZnanja;
 
     private Boolean vidljiv = true;

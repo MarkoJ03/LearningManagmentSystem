@@ -25,7 +25,7 @@ public class DepartmanNastavnik {
 
     @ManyToOne(optional = false)
     private Nastavnik nastavnik;
-    
+
     @Column(nullable = false)
     private Boolean vidljiv = true;
 }

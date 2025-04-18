@@ -22,11 +22,11 @@ public class TipEvaluacije {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String naziv;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipEvaluacije")
 	private List<EvaluacijaZnanja> evaluacijeZnanja;
 
 	@Column(nullable = false)

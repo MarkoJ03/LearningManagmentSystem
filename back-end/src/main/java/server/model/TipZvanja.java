@@ -18,17 +18,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TipZvanja{
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(nullable=false)
 	private String naziv;
-	
+
 	@OneToMany (fetch= FetchType.LAZY, mappedBy = "tipZvanja")
 	private List<Zvanje> zvanja;
 
+
 	@Column(nullable = false)
     private Boolean vidljiv = true;
+
+
 
 }

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KatedraNastavnik {
-	
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,7 +25,7 @@ public class KatedraNastavnik {
 
     @ManyToOne(optional = false)
     private Nastavnik nastavnik;
-    
+
     @Column(nullable = false)
     private Boolean vidljiv = true;
 }

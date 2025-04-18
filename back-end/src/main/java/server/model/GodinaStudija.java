@@ -23,16 +23,20 @@ public class GodinaStudija {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String godina;
-	
+
     @OneToMany (fetch= FetchType.LAZY, mappedBy = "godinaStudija")
 	private List<StudentNaGodini> studentiNaGodini;
-    
+
     @ManyToOne(optional = false)
     private StudijskiProgram studijskiProgram;
-    
+
     @Column(nullable = false)
     private Boolean vidljiv = true;
+
+
+
+
 }

@@ -11,12 +11,15 @@ import lombok.NoArgsConstructor;
 @Data
 public class TipZvanjaDTO {
 
-	private Integer id;
+	private Long id;
 
 	private String naziv;
-	
+
 
 	private List<ZvanjeDTO> zvanja;
-	
+<<<<<<< HEAD
+
+=======
+>>>>>>> development
 	private Boolean vidljiv = true;
 }

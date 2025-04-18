@@ -19,10 +19,10 @@ public class Inventar {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@ManyToOne(optional = false)
 	private StudentskaSluzba studentskaSluzba;
-	
+
 	@Column(nullable = false)
     private Boolean vidljiv = true;
 }

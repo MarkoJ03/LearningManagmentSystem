@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import org.springframework.data.repository.CrudRepository;
 
 public abstract class BaseService<T, DTO, ID> {
@@ -19,7 +20,7 @@ public abstract class BaseService<T, DTO, ID> {
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
-    
+
     public List<DTO> findAllIncludeDeleted() {
         return ((List<T>) getRepository().findAll())
                 .stream()
@@ -35,7 +36,7 @@ public abstract class BaseService<T, DTO, ID> {
 
     public DTO save(DTO dto) {
         T entity = convertToEntity(dto);
-        setVidljiv(entity, true); 
+        setVidljiv(entity, true);
         return convertToDTO(getRepository().save(entity));
     }
 

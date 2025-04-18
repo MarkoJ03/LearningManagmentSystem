@@ -21,13 +21,13 @@ public class ObjavaService extends BaseService<Objava, ObjavaDTO, Long> {
 
     @Override
     protected ObjavaDTO convertToDTO(Objava entity) {
-        
+
         return null;
     }
 
     @Override
     protected Objava convertToEntity(ObjavaDTO dto) {
-        
+
         return null;
     }
 }

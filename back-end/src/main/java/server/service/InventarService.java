@@ -11,13 +11,13 @@ import server.repository.InventarRepository;
 @Service
 public class InventarService extends BaseService<Inventar, InventarDTO, Long>{
 
-	
-	
-	
+
+
+
 
 	@Autowired
 		private InventarRepository inventarRepository;
-		
+
 	  @Override
 	 protected CrudRepository<Inventar, Long> getRepository() {
 	      return inventarRepository;
@@ -25,13 +25,13 @@ public class InventarService extends BaseService<Inventar, InventarDTO, Long>{
 
 	@Override
 	protected InventarDTO convertToDTO(Inventar entity) {
-		
+
 		return null;
 	}
 
 	@Override
 	protected Inventar convertToEntity(InventarDTO dto) {
-		
+
 		return null;
 	}
 }

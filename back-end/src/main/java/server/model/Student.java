@@ -21,34 +21,40 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Student {
-	
+
 	@Id
-    private Long id; 
+    private Long id;
 
     @OneToOne
     @MapsId
-    @JoinColumn(name = "id") 
+    @JoinColumn(name = "id")
     private Korisnik korisnik;
 
     @Column(nullable = false)
     private String ime;
-    
+
     @Column(nullable = false)
     private String prezime;
 
     @Column(length = 13, unique = true)
     private String jmbg;
 
+
     @ManyToOne
     @JoinColumn(name = "adresa_id", nullable = false)
     private Adresa adresa;
-    
+
+
     @ManyToOne(optional = false)
 	private StudentskaSluzba studentskaSluzba;
-    
-    @OneToMany (fetch= FetchType.LAZY, mappedBy = "tipZvanja")
+
+    @OneToMany (fetch= FetchType.LAZY, mappedBy = "student")
 	private List<IshodEvaluacije> ishodEvaluacije;
-    
+
     @Column(nullable = false)
     private Boolean vidljiv = true;
+
+
+
+
 }

@@ -19,19 +19,19 @@ public class Osoblje {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	
+
 	@Column(nullable = false, unique = true)
 	private String ime;
-	
+
 	@Column(nullable = false, unique = true)
 	private String prezime;
-	
+
 	@Column(nullable = false, unique = true)
 	private String jmbg;
-	
+
 	@ManyToOne(optional = false)
 	private StudentskaSluzba studentskaSluzba;
-	
+
 	@Column(nullable = false)
     private Boolean vidljiv = true;
 }

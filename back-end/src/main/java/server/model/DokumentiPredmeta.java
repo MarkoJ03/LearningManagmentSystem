@@ -25,7 +25,7 @@ public class DokumentiPredmeta {
 
     @OneToOne(mappedBy = "dokumentiPredmeta")
     private Predmet predmet;
-    
+
     @Column(nullable = false)
     private Boolean vidljiv = true;
 }
