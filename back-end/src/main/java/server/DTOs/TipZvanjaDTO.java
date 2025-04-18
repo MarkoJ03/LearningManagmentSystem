@@ -17,9 +17,6 @@ public class TipZvanjaDTO {
 
 
 	private List<ZvanjeDTO> zvanja;
-<<<<<<< HEAD
 
-=======
->>>>>>> development
 	private Boolean vidljiv = true;
 }

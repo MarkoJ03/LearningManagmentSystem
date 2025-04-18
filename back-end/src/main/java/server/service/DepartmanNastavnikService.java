@@ -27,17 +27,16 @@ public class DepartmanNastavnikService extends BaseService<DepartmanNastavnik, D
 	@Override
 	protected DepartmanNastavnikDTO convertToDTO(DepartmanNastavnik entity) {
 		return new DepartmanNastavnikDTO(entity.getId(),new DepartmanDTO(entity.getDepartman().getId(),entity.getDepartman().getNaziv(),null,null,null,null,entity.getDepartman().getVidljiv())
-				,new NastavnikDTO(entity.getNastavnik().getId(),entity.getNastavnik().getIme(),entity.getNastavnik().getPrezime(),entity.getNastavnik().getJmbg(),null,null,null,null,null,null,entity.getNastavnik().getVidljiv()),entity.getVidljiv());
+				,new NastavnikDTO(entity.getNastavnik().getId(),null,entity.getNastavnik().getIme(),entity.getNastavnik().getPrezime(),entity.getNastavnik().getJmbg(),null,null,null,null,null,null,null, entity.getNastavnik().getVidljiv()),
+				entity.getVidljiv());
 	}
 
 	@Override
 	protected DepartmanNastavnik convertToEntity(DepartmanNastavnikDTO dto) {
-<<<<<<< HEAD
-=======
-		// TODO Auto-generated method stub
->>>>>>> development
+
 		return new DepartmanNastavnik(dto.getId(),new Departman(dto.getDepartman().getId(),dto.getDepartman().getNaziv(),null,null,null,null,dto.getDepartman().getVidljiv())
-				,new Nastavnik(dto.getNastavnik().getId(),null,dto.getNastavnik().getIme(),dto.getNastavnik().getPrezime(),dto.getNastavnik().getJmbg(),null,null,null,null,null, dto.getNastavnik().getVidljiv()),dto.getVidljiv());
+				,new Nastavnik(dto.getNastavnik().getId(),null,dto.getNastavnik().getIme(),dto.getNastavnik().getPrezime(),dto.getNastavnik().getJmbg(),null,null,null,null,null,null,null, dto.getNastavnik().getVidljiv()),
+				dto.getVidljiv());
 		}
 
 

@@ -29,9 +29,7 @@ public class IshodEvaluacije {
 	@ManyToOne(optional = false)
 	private Student student;
 
-	//ovo nije moje tako da nmg dalje
-	//@ManyToOne(optional = false)
-	//private IshodPredmeta ishodPredmeta;
+
 
 	@ManyToOne(optional = false)
 	private EvaluacijaZnanja evaluacijaZnanja;

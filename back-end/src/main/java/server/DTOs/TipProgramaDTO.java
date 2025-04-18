@@ -21,11 +21,11 @@ public class TipProgramaDTO {
 
 
 	private List<StudijskiProgramDTO> programi;
-<<<<<<< HEAD
+
 
 	private Boolean vidljiv = true;
 
-=======
-	private Boolean vidljiv = true;
->>>>>>> development
+
+
+
 }

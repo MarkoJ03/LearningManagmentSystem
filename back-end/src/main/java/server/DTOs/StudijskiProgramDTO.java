@@ -25,10 +25,7 @@ public class StudijskiProgramDTO {
 
 
 	private List<GodinaStudijaDTO> godineStudija;
-<<<<<<< HEAD
 
-=======
->>>>>>> development
 	private Boolean vidljiv = true;
 }
 

@@ -20,6 +20,8 @@ public class NastavnikDTO {
 
 	private Long id;
 
+	private KorisnikDTO korisnik;
+	
 	private String ime;
 
 	private String prezime;
@@ -28,16 +30,17 @@ public class NastavnikDTO {
 
 	private List<ZvanjeDTO> zvanja;
 
-	private KorisnikDTO korisnik;
-
 	private List<DepartmanNastavnikDTO> departmani;
 
 	private List<KatedraNastavnikDTO> katedre;
-
+	
+	private StudentskaSluzbaDTO studentskaSluzba;
 
 	private List<RealizacijaPredmetaDTO> realizacijaPredmeta;
 
 	private List<ObavestenjeDTO> obavestenja;
+	
+	private List<EvaluacijaZnanjaDTO> evaluacijeZnanja;
 
 	private Boolean vidljiv = true;
 }
