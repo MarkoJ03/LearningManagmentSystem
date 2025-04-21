@@ -38,7 +38,7 @@ section {
         border: black;
     }
 
-    div {
+    form {
         display: grid;
 
         input {
@@ -50,6 +50,11 @@ section {
             border-radius: 7px;
             background-color: brown;
             color: white;
+
+            a {
+                text-decoration: none;
+                color: black;
+            }
         }
     }
 }

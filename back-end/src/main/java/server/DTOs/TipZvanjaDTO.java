@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class TipZvanjaDTO {
 
-	private Long id;
+	private Integer id;
 
 	private String naziv;
 	
