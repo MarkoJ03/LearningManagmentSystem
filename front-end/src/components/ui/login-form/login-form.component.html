@@ -7,9 +7,9 @@
     <h2>Prijava</h2>
     <hr>
     <h2>Login</h2>
-    <div>
-        <input type="text" name="korisnickoIme" placeholder="Korisnicko ime">
-        <input type="password" name="lozinka" placeholder="Lozinka">
-        <button>Prijava/Login</button>
-    </div>
+    <form [formGroup]="forma" (ngSubmit)="login()">
+        <input type="text" name="korisnickoIme" formControlName="korisnickoIme" placeholder="Korisnicko ime">
+        <input type="password" name="lozinka" formControlName="lozinka" placeholder="Lozinka">
+        <button type="submit">Prijava/Login</button>
+    </form>
 </section>
