@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import server.model.StudentskaSluzba;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,6 +17,7 @@ public class BibliotekaDTO {
 
 	private List<BibliotekaKnjigaDTO> bibliotekaKnjiga;
 
+	private StudentskaSluzbaDTO studentskaSluzba;
 
     private Boolean vidljiv = true;
 	}

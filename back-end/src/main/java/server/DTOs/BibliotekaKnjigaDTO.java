@@ -12,7 +12,7 @@ public class BibliotekaKnjigaDTO {
 
 
 
-
+		private Long id;
 
 		private BibliotekaDTO biblioteka;
 

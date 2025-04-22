@@ -45,9 +45,8 @@ public class FakultetService extends BaseService<Fakultet, FakultetDTO, Long>{
 		 }
 
 
-		return new FakultetDTO(entity.getId(),entity.getNaziv(),new UniverzitetDTO(entity.getUniverzitet().getId(),entity.getUniverzitet().getNaziv(), null , null, null, null),departmani, null);
 
-		return new FakultetDTO(entity.getId(),entity.getNaziv(),new UniverzitetDTO(entity.getUniverzitet().getId(),entity.getUniverzitet().getNaziv(), null , null, null, entity.getUniverzitet().getVidljiv()),departmani, entity.getVidljiv())
+		return new FakultetDTO(entity.getId(),entity.getNaziv(),new UniverzitetDTO(entity.getUniverzitet().getId(),entity.getUniverzitet().getNaziv(), null , null, null, entity.getUniverzitet().getVidljiv()),departmani, entity.getVidljiv());
 
 	}
 
@@ -62,9 +61,8 @@ public class FakultetService extends BaseService<Fakultet, FakultetDTO, Long>{
 			 departmani.add(e);
 		 }
 
-		return new Fakultet(dto.getId(),dto.getNaziv(), new Univerzitet (dto.getUniverzitet().getId(),dto.getUniverzitet().getNaziv(), null , null, null, null),departmani, null, null);
 
-		return new Fakultet(dto.getId(),dto.getNaziv(), new Univerzitet (dto.getUniverzitet().getId(),dto.getUniverzitet().getNaziv(), null , null, null, dto.getUniverzitet().getVidljiv()),departmani, dto.getVidljiv())
+		return new Fakultet(dto.getId(),dto.getNaziv(), new Univerzitet (dto.getUniverzitet().getId(),dto.getUniverzitet().getNaziv(), null , null, null, dto.getUniverzitet().getVidljiv()),departmani, dto.getVidljiv());
 
 		}
 

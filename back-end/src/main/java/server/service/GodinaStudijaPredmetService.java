@@ -30,7 +30,7 @@ public class GodinaStudijaPredmetService extends BaseService<GodinaStudijaPredme
 		PredmetDTO predmet = new PredmetDTO(entity.getPredmet().getId(), entity.getPredmet().getEsbp(),
 				entity.getPredmet().getObavezan(), entity.getPredmet().getBrojPredavanja(), entity.getPredmet().getBrojVezbi(),
 				entity.getPredmet().getIstrazivackiRad(), entity.getPredmet().getBrojSemestara(), entity.getPredmet().getOpis(),
-				entity.getPredmet().getCilj(), null, null, entity.getPredmet().getVidljiv());
+				entity.getPredmet().getCilj(), null, null,null,null, entity.getPredmet().getVidljiv());
 
 		return new GodinaStudijaPredmetDTO(entity.getId(),godinaStudija ,predmet,entity.getVidljiv());
 	}
@@ -42,7 +42,7 @@ public class GodinaStudijaPredmetService extends BaseService<GodinaStudijaPredme
 		Predmet predmet = new Predmet(dto.getPredmet().getId(), dto.getPredmet().getEsbp(),
 				dto.getPredmet().getObavezan(), dto.getPredmet().getBrojPredavanja(), dto.getPredmet().getBrojVezbi(),
 				dto.getPredmet().getIstrazivackiRad(), dto.getPredmet().getBrojSemestara(), dto.getPredmet().getOpis(),
-				dto.getPredmet().getCilj(), null, null, dto.getPredmet().getVidljiv());
+				dto.getPredmet().getCilj(), null, null,null,null, dto.getPredmet().getVidljiv());
 
 		return new GodinaStudijaPredmet(dto.getId(),godinaStudija, predmet,dto.getVidljiv());
 	}

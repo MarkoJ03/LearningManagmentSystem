@@ -25,12 +25,18 @@ public class RealizacijaPredmeta {
 	private Nastavnik nastavnik;
 	@ManyToOne
 	private TipNastave tipNastave;
+	
+	
 	@ManyToOne
 	private Predmet predmet;
+	
+	
 	@OneToMany(mappedBy = "realizacijaPredmeta")
 	private List<TerminNastave> terminiNastave;
-	@OneToMany(mappedBy = "realizacijaPredmeta")
-	private List<IshodPredmeta> ishodiPredmeta;
+	
+	
+	@ManyToOne
+	private IshodPredmeta ishodPredmeta;
 
     @Column(nullable = false)
     private Boolean vidljiv = true;

@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import server.model.IshodPredmeta;
 
 @Data
 @NoArgsConstructor
@@ -15,6 +16,6 @@ public class RealizacijaPredmetaDTO {
 	private TipNastaveDTO tipNastave;
 	private PredmetDTO predmet;
 	private List<TerminNastaveDTO> terminiNastave;
-	private List<IshodPredmetaDTO> ishodiPredmeta;
+	private IshodPredmetaDTO ishodPredmeta;
 	private Boolean vidljiv = true;
 }

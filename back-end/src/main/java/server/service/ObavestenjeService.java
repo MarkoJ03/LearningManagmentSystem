@@ -23,8 +23,8 @@ public class ObavestenjeService extends BaseService<Obavestenje, ObavestenjeDTO,
 
 	@Override
 	protected ObavestenjeDTO convertToDTO(Obavestenje entity) {
-		NastavnikDTO nastavnik = new NastavnikDTO(entity.getNastavnik().getId(), entity.getNastavnik().getIme(),
-				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null,null, null,entity.getNastavnik().getVidljiv());
+		NastavnikDTO nastavnik = new NastavnikDTO(entity.getNastavnik().getId(),null, entity.getNastavnik().getIme(),
+				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null,null, null,null,entity.getNastavnik().getVidljiv());
 
 		return new ObavestenjeDTO(entity.getId(), entity.getNaslov(), entity.getSadrzaj(), nastavnik, entity.getVidljiv());
 	}
@@ -32,7 +32,7 @@ public class ObavestenjeService extends BaseService<Obavestenje, ObavestenjeDTO,
 	@Override
 	protected Obavestenje convertToEntity(ObavestenjeDTO dto) {
 		Nastavnik nastavnik = new Nastavnik(dto.getNastavnik().getId(), null, dto.getNastavnik().getIme(),
-				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null,null, null, dto.getNastavnik().getVidljiv());
+				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null,null, null,null,null, dto.getNastavnik().getVidljiv());
 
 		return new Obavestenje(dto.getId(), dto.getNaslov(), dto.getSadrzaj(), nastavnik, dto.getVidljiv());
 	}

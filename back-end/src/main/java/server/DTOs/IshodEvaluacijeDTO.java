@@ -4,6 +4,7 @@ package server.DTOs;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import server.model.StudentNaGodini;
 
 
 @AllArgsConstructor
@@ -17,7 +18,7 @@ private Long id;
 
 	private Integer bodovi;
 
-	private StudentDTO student;
+	private StudentNaGodiniDTO studentNaGodini;
 
 	private EvaluacijaZnanjaDTO evaluacijaZnanja;
 

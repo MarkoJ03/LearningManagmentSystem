@@ -3,7 +3,6 @@ package server.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
-
 import server.DTOs.EvaluacijaZnanjaDTO;
 import server.model.EvaluacijaZnanja;
 import server.repository.EvaluacijaZnanjaRepository;
@@ -21,11 +20,31 @@ public class EvaluacijaZnanjaService extends BaseService<EvaluacijaZnanja, Evalu
 
     @Override
     protected EvaluacijaZnanjaDTO convertToDTO(EvaluacijaZnanja entity) {
-        return null;
+        return new EvaluacijaZnanjaDTO(
+            entity.getId(),
+            entity.getVremePocetka(),
+            entity.getVremeZavrsetka(),
+            null,
+            null,
+            null,
+            null,
+            null,
+            entity.getVidljiv()
+        );
     }
 
     @Override
     protected EvaluacijaZnanja convertToEntity(EvaluacijaZnanjaDTO dto) {
-        return null;
+        return new EvaluacijaZnanja(
+            dto.getId(),
+            dto.getVremePocetka(),
+            dto.getVremeZavrsetka(),
+            null,
+            null,
+            null,
+            null,
+            null,
+            dto.getVidljiv()
+        );
     }
 }

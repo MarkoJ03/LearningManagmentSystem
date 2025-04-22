@@ -36,11 +36,6 @@ public class Fakultet {
 	private List<Departman> departmani;
 
 
-	@OneToOne
-    @JoinColumn(name = "id")
-    private Fakultet fakultet;
-
-
     @Column(nullable = false)
     private Boolean vidljiv = true;
 }

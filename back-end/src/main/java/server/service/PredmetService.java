@@ -43,7 +43,7 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 
 		return new PredmetDTO(entity.getId(), entity.getEsbp(), entity.getObavezan(),
 				entity.getBrojPredavanja(), entity.getBrojVezbi(), entity.getIstrazivackiRad(),
-				entity.getBrojSemestara(), entity.getOpis(), entity.getCilj(), dokumentiPredmeta, realizacijePredmeta,entity.getVidljiv());
+				entity.getBrojSemestara(), entity.getOpis(), entity.getCilj(), dokumentiPredmeta,null,null, realizacijePredmeta,entity.getVidljiv());
 	}
 
 	@Override
@@ -52,14 +52,14 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 				dto.getDokumentiPredmeta().getSilabus(), dto.getDokumentiPredmeta().getAkreditacija(), null, dto.getDokumentiPredmeta().getVidljiv());
 
 		ArrayList<RealizacijaPredmeta> realizacijePredmeta = new ArrayList<>();
-		for(RealizacijaPredmetaDTO rpDTO : dto.getRealizacijaPredmeta()) {
+		for(RealizacijaPredmetaDTO rpDTO : dto.getRealizacijePredmeta()) {
 			RealizacijaPredmeta rp = realizacijaPredmetaService.convertToEntity(rpDTO);
 			realizacijePredmeta.add(rp);
 		}
 
 		return new Predmet(dto.getId(), dto.getEsbp(), dto.getObavezan(), dto.getBrojPredavanja(),
 				dto.getBrojVezbi(), dto.getIstrazivackiRad(), dto.getBrojSemestara(), dto.getOpis(),
-				dto.getCilj(), dokumentiPredmeta, realizacijePredmeta,dto.getVidljiv());
+				dto.getCilj(), dokumentiPredmeta,null,null, realizacijePredmeta,dto.getVidljiv());
 	}
 
 }

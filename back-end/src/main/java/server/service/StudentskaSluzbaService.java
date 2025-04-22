@@ -21,13 +21,32 @@ public class StudentskaSluzbaService extends BaseService<StudentskaSluzba, Stude
 
     @Override
     protected StudentskaSluzbaDTO convertToDTO(StudentskaSluzba entity) {
-
-        return null;
+        return new StudentskaSluzbaDTO(
+            entity.getId(),
+            null,  
+            null,  
+            null,  
+            null,  
+            null,  
+            null,  
+            null,   
+            entity.getVidljiv()
+        );
     }
 
     @Override
     protected StudentskaSluzba convertToEntity(StudentskaSluzbaDTO dto) {
-
-        return null;
+        return new StudentskaSluzba(
+            dto.getId(),
+            null,  
+            null,  
+            null,  
+            null,  
+            null,  
+            null,  
+            null,  
+            dto.getVidljiv()
+        );
     }
 }
+

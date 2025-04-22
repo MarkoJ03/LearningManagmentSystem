@@ -31,8 +31,8 @@ public class ZvanjeService extends BaseService<Zvanje, ZvanjeDTO, Long> {
 				null, entity.getTipZvanja().getVidljiv());
 		NaucnaOblastDTO naucnaOblast = new NaucnaOblastDTO(entity.getNaucnaOblast().getId(),
 				entity.getNaucnaOblast().getNaziv(), null, entity.getNaucnaOblast().getVidljiv());
-		NastavnikDTO nastavnik = new NastavnikDTO(entity.getNastavnik().getId(), entity.getNastavnik().getIme(),
-				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null, null,null, entity.getNastavnik().getVidljiv());
+		NastavnikDTO nastavnik = new NastavnikDTO(entity.getNastavnik().getId(),null, entity.getNastavnik().getIme(),
+				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null, null,null,null, entity.getNastavnik().getVidljiv());
 
 		return new ZvanjeDTO(entity.getId(), entity.getDatumIzbora(), entity.getDatumPrestanka(), tipZvanja,
 				naucnaOblast, nastavnik, entity.getVidljiv());
@@ -45,7 +45,7 @@ public class ZvanjeService extends BaseService<Zvanje, ZvanjeDTO, Long> {
 		NaucnaOblast naucnaOblast = new NaucnaOblast(dto.getNaucnaOblast().getId(),
 				dto.getNaucnaOblast().getNaziv(), null, dto.getNaucnaOblast().getVidljiv());
 		Nastavnik nastavnik = new Nastavnik(dto.getNastavnik().getId(), null,dto.getNastavnik().getIme(),
-				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null, null,null, dto.getNastavnik().getVidljiv());
+				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null, null,null,null,null, dto.getNastavnik().getVidljiv());
 
 		return new Zvanje(dto.getId(), dto.getDatumIzbora(), dto.getDatumPrestanka(), tipZvanja, naucnaOblast, nastavnik,dto.getVidljiv());
 	}

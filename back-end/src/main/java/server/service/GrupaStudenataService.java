@@ -3,7 +3,6 @@ package server.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
-
 import server.DTOs.GrupaStudenataDTO;
 import server.model.GrupaStudenata;
 import server.repository.GrupaStudenataRepository;
@@ -21,11 +20,23 @@ public class GrupaStudenataService extends BaseService<GrupaStudenata, GrupaStud
 
     @Override
     protected GrupaStudenataDTO convertToDTO(GrupaStudenata entity) {
-        return null;
+        return new GrupaStudenataDTO(
+            entity.getId(),
+            null,
+            null,
+            null,
+            entity.getVidljiv()
+        );
     }
 
     @Override
     protected GrupaStudenata convertToEntity(GrupaStudenataDTO dto) {
-        return null;
+        return new GrupaStudenata(
+            dto.getId(),
+            null,
+            null,
+            null,
+            dto.getVidljiv()
+        );
     }
 }

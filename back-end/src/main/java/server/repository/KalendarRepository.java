@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import server.model.Kalendar;
 
-public interface KalendarRespository extends CrudRepository<Kalendar, Long>{
+public interface KalendarRepository extends CrudRepository<Kalendar, Long>{
 
 }

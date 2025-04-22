@@ -22,12 +22,24 @@ public class ObjavaService extends BaseService<Objava, ObjavaDTO, Long> {
     @Override
     protected ObjavaDTO convertToDTO(Objava entity) {
 
-        return null;
+        return new ObjavaDTO(
+        		entity.getId(),
+        		entity.getNaslov(),
+        		entity.getSadrzaj(),
+        		null,
+        		entity.getVidljiv()
+            );
     }
 
     @Override
     protected Objava convertToEntity(ObjavaDTO dto) {
-
-        return null;
+        return new Objava(
+        		dto.getId(),
+        		dto.getNaslov(),
+        		dto.getSadrzaj(),
+        		null,
+        		dto.getVidljiv()
+            );
     }
+
 }

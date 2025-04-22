@@ -3,6 +3,7 @@ package server.DTOs;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import server.model.StudentskaSluzba;
 
 @Data
 @NoArgsConstructor
@@ -24,6 +25,8 @@ public class StudentDTO {
     private String jmbg;
 
     private AdresaDTO adresa;
+    
+	private StudentskaSluzbaDTO studentskaSluzba;
 
     private Boolean vidljiv = true;
 }

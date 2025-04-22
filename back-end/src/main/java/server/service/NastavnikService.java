@@ -89,8 +89,8 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 			obavestenja.add(oDTO);
 		}
 
-		return new NastavnikDTO(entity.getId(), entity.getIme(), entity.getPrezime(), entity.getJmbg(), zvanja,
-				korisnik, departmaniNastavnici, katedreNastavnici, realizacijePredmeta, obavestenja, entity.getVidljiv());
+		return new NastavnikDTO(entity.getId(), korisnik,entity.getIme(), entity.getPrezime(), entity.getJmbg(), zvanja,
+				 departmaniNastavnici, katedreNastavnici, null,realizacijePredmeta, obavestenja,null, entity.getVidljiv());
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 		}
 
 		return new Nastavnik(dto.getId(), korisnik, dto.getIme(), dto.getPrezime(), dto.getJmbg(),
-				zvanja, departmaniNastavnici, katedreNastavnici, realizacijePredmeta, obavestenja, dto.getVidljiv());
+				zvanja, departmaniNastavnici, katedreNastavnici,null, realizacijePredmeta, obavestenja,null, dto.getVidljiv());
 	}
 
 }

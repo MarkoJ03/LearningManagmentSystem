@@ -48,8 +48,6 @@ public class Student {
     @ManyToOne(optional = false)
 	private StudentskaSluzba studentskaSluzba;
 
-    @OneToMany (fetch= FetchType.LAZY, mappedBy = "student")
-	private List<IshodEvaluacije> ishodEvaluacije;
 
     @Column(nullable = false)
     private Boolean vidljiv = true;

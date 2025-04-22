@@ -3,10 +3,10 @@ package server.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
-
 import server.DTOs.KnjigaDTO;
 import server.model.Knjiga;
 import server.repository.KnjigaRepository;
+
 
 @Service
 public class KnjigaService extends BaseService<Knjiga, KnjigaDTO, Long> {
@@ -21,13 +21,23 @@ public class KnjigaService extends BaseService<Knjiga, KnjigaDTO, Long> {
 
     @Override
     protected KnjigaDTO convertToDTO(Knjiga entity) {
-        // TODO: Implement mapping from entity to DTO
-        return null;
+        return new KnjigaDTO(
+                entity.getId(),
+                entity.getNaziv(),
+                entity.getISBN(),
+                null,  
+                entity.getVidljiv()
+        );
     }
 
     @Override
     protected Knjiga convertToEntity(KnjigaDTO dto) {
-        // TODO: Implement mapping from DTO to entity
-        return null;
+        return new Knjiga(
+                dto.getId(),
+                dto.getNaziv(),
+                dto.getISBN(),
+                null,  
+                dto.getVidljiv()
+        );
     }
 }

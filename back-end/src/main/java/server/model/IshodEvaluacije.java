@@ -27,13 +27,15 @@ public class IshodEvaluacije {
 	private Integer bodovi;
 
 	@ManyToOne(optional = false)
-	private Student student;
-
+	private StudentNaGodini studentNaGodini;
 
 
 	@ManyToOne(optional = false)
 	private EvaluacijaZnanja evaluacijaZnanja;
 
+	@ManyToOne(optional = false)
+	private IshodPredmeta ishodPredmeta;
+	
 	@Column(nullable = false)
     private Boolean vidljiv = true;
 }

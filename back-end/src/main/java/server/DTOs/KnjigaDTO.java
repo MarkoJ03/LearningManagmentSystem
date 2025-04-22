@@ -16,6 +16,8 @@ public class KnjigaDTO {
 	    private Long id;
 
 		private String naziv;
+		
+		private String ISBN;
 
 		private List<BibliotekaKnjigaDTO> bibliotekaKnjiga;
 

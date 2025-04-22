@@ -25,9 +25,13 @@ public class Knjiga {
 
 	@Column(nullable = false, unique = true)
 	private String naziv;
+	
+	@Column(nullable = false, unique = true)
+	private String ISBN;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "knjiga")
 	private List<BibliotekaKnjiga> bibliotekaKnjiga;
+	
 
 	@Column(nullable = false)
     private Boolean vidljiv = true;

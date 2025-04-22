@@ -42,6 +42,7 @@ public class Predmet {
 	private String opis;
 	@Column(nullable = false)
 	private String cilj;
+	
     @OneToOne
     @JoinColumn(name = "dokumenti_id", nullable = false)
     private DokumentiPredmeta dokumentiPredmeta;
