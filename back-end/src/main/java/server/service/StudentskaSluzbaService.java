@@ -29,7 +29,8 @@ public class StudentskaSluzbaService extends BaseService<StudentskaSluzba, Stude
             null,  
             null,  
             null,  
-            null,   
+            null,
+            null,
             entity.getVidljiv()
         );
     }
@@ -45,6 +46,7 @@ public class StudentskaSluzbaService extends BaseService<StudentskaSluzba, Stude
             null,  
             null,  
             null,  
+            null,
             dto.getVidljiv()
         );
     }

@@ -45,6 +45,9 @@ public class StudentskaSluzba {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
 	private List<Student> studenti;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
+	private List<SvObrazac> obrasci;
 
 	@Column(nullable = false)
     private Boolean vidljiv = true;

@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,6 +45,9 @@ public class StudentNaGodini {
 	
     @OneToMany (fetch= FetchType.LAZY, mappedBy = "studentNaGodini")
 	private List<IshodEvaluacije> ishodEvaluacije;
+    
+    @OneToOne(mappedBy = "studentNaGodini")
+    private SvObrazac svObrazac;
 
 	@Column(nullable = false)
     private Boolean vidljiv = true;

@@ -29,6 +29,8 @@ public class StudentskaSluzbaDTO {
 		private List<KalendarDTO> kalendari;
 
 		private List<StudentDTO> studenti;
+		
+		private List<SvObrazacDTO> obrasci;
 
 	    private Boolean vidljiv = true;
 

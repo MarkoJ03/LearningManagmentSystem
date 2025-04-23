@@ -21,25 +21,25 @@ import lombok.NoArgsConstructor;
 public class Kalendar {
 
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-
-	@ManyToOne(optional = false)
-	private StudentskaSluzba studentskaSluzba;
-
-	@OneToMany (fetch= FetchType.LAZY, mappedBy = "kalendar")
-	private List<EvaluacijaZnanja> evaluacijaZnanja;
-
-	@OneToMany (fetch= FetchType.LAZY, mappedBy = "kalendar")
-	private List<GrupaStudenata> grupaStudenata;
-
-
-
-	@OneToMany(mappedBy = "kalendar")
-	private List<TerminNastave> terminiNastave;
-
-    @Column(nullable = false)
-    private Boolean vidljiv = true;
-}
+		@Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long id;
+	
+	
+		@ManyToOne(optional = false)
+		private StudentskaSluzba studentskaSluzba;
+	
+		@OneToMany (fetch= FetchType.LAZY, mappedBy = "kalendar")
+		private List<EvaluacijaZnanja> evaluacijaZnanja;
+	
+		@OneToMany (fetch= FetchType.LAZY, mappedBy = "kalendar")
+		private List<GrupaStudenata> grupaStudenata;
+	
+	
+	
+		@OneToMany(mappedBy = "kalendar")
+		private List<TerminNastave> terminiNastave;
+	
+	    @Column(nullable = false)
+	    private Boolean vidljiv = true;
+	}

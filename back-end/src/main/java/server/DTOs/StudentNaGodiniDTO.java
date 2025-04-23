@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import server.model.GrupaStudenata;
 import server.model.IshodEvaluacije;
+import server.model.SvObrazac;
 
 
 @Data
@@ -25,6 +26,8 @@ public class StudentNaGodiniDTO {
 	private GrupaStudenataDTO grupaStudenata;
 	
 	private List<IshodEvaluacijeDTO> ishodEvaluacije;
+	
+	private SvObrazacDTO svObrazac;
 
 	private Boolean vidljiv = true;
 }
