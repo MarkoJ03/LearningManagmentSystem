@@ -11,7 +11,7 @@ public class KorisnikDTO {
 
 	private Long id;
 	private String email;
-	private String korisnickoIme;
+
 	private String lozinka;
 
 
