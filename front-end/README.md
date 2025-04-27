@@ -1,0 +1,1 @@
+Nemamo jos http requestove tako da interceptori nisu testirani ali realno sto ne bi radili

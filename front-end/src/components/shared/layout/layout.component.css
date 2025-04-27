@@ -1,0 +1,9 @@
+div {
+    margin: 0 10%;
+
+    #objave {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr; /* ovo govori koliko objava ima u jednom redu, svi su iste velicine */
+        margin: 0;
+    }
+}
