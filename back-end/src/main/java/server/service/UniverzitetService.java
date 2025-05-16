@@ -21,17 +21,17 @@ public class UniverzitetService extends BaseService<Univerzitet, UniverzitetDTO,
 
 	@Autowired
 	private UniverzitetRepository univerzitetRepository;
-	
+
 	@Autowired
 	@Lazy
 	private FakultetService fakultetService;
-	
+
 	@Autowired
 	@Lazy
 	private AdresaService adresaService;
-	
-	
-	
+
+
+
   @Override
  protected CrudRepository<Univerzitet, Long> getRepository() {
       return univerzitetRepository;
@@ -40,28 +40,33 @@ public class UniverzitetService extends BaseService<Univerzitet, UniverzitetDTO,
 	@Override
 	protected UniverzitetDTO convertToDTO(Univerzitet entity) {
 
-		ArrayList<FakultetDTO> fakulteti = new ArrayList<FakultetDTO>();
-		
+		ArrayList<FakultetDTO> fakulteti = new ArrayList<>();
+
 		 for (Fakultet s : entity.getFakulteti()) {
-			 FakultetDTO e = fakultetService.convertToDTO(s); 
+			 FakultetDTO e = fakultetService.convertToDTO(s);
 			 fakulteti.add(e);
 		 }
-		
-		return new UniverzitetDTO(entity.getId(),entity.getNaziv(),entity.getDatumOsnivanja(),adresaService.convertToDTO(entity.getAdresa()),fakulteti);
+
+
+		return new UniverzitetDTO(entity.getId(),entity.getNaziv(),entity.getDatumOsnivanja(),adresaService.convertToDTO(entity.getAdresa()),fakulteti, null);
+
+
 	}
 
 	@Override
 	protected Univerzitet convertToEntity(UniverzitetDTO dto) {
-		
-		
-		ArrayList<Fakultet> fakulteti = new ArrayList<Fakultet>();
-		
+
+
+		ArrayList<Fakultet> fakulteti = new ArrayList<>();
+
 		 for (FakultetDTO s : dto.getFakulteti()) {
-			 Fakultet e = fakultetService.convertToEntity(s); 
+			 Fakultet e = fakultetService.convertToEntity(s);
 			 fakulteti.add(e);
 		 }
 
-		return new Univerzitet(dto.getId(),dto.getNaziv(),dto.getDatumOsnivanja(),adresaService.convertToEntity(dto.getAdresa()),fakulteti);
+
+		return new Univerzitet(dto.getId(),dto.getNaziv(),dto.getDatumOsnivanja(),adresaService.convertToEntity(dto.getAdresa()),fakulteti, null);
+
 		}
 
 

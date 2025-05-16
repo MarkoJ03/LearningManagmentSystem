@@ -15,7 +15,7 @@ public class ObavestenjeController extends BaseController<Obavestenje, Obavesten
 
 	@Autowired
 	private ObavestenjeService obavestenjeService;
-	
+
 	@Override
 	protected BaseService<Obavestenje, ObavestenjeDTO, Long> getService() {
 		return obavestenjeService;

@@ -24,11 +24,11 @@ public class FakultetService extends BaseService<Fakultet, FakultetDTO, Long>{
 
 	@Autowired
 	private FakultetRepository fakultetRepository;
-	
+
 	@Autowired
 	@Lazy
 	private DepartmanService departmanService;
-	
+
   @Override
  protected CrudRepository<Fakultet, Long> getRepository() {
       return fakultetRepository;
@@ -37,28 +37,33 @@ public class FakultetService extends BaseService<Fakultet, FakultetDTO, Long>{
 	@Override
 	protected FakultetDTO convertToDTO(Fakultet entity) {
 
-		ArrayList<DepartmanDTO> departmani = new ArrayList<DepartmanDTO>();
-		
+		ArrayList<DepartmanDTO> departmani = new ArrayList<>();
+
 		 for (Departman s : entity.getDepartmani()) {
-			 DepartmanDTO e = departmanService.convertToDTO(s); 
+			 DepartmanDTO e = departmanService.convertToDTO(s);
 			 departmani.add(e);
 		 }
-		
-		return new FakultetDTO(entity.getId(),entity.getNaziv(),new UniverzitetDTO(entity.getUniverzitet().getId(),entity.getUniverzitet().getNaziv(), null , null, null),departmani);
+
+
+
+		return new FakultetDTO(entity.getId(),entity.getNaziv(),new UniverzitetDTO(entity.getUniverzitet().getId(),entity.getUniverzitet().getNaziv(), null , null, null, entity.getUniverzitet().getVidljiv()),departmani, entity.getVidljiv());
+
 	}
 
 	@Override
 	protected Fakultet convertToEntity(FakultetDTO dto) {
-		
-		
-		ArrayList<Departman> departmani = new ArrayList<Departman>();
-		
+
+
+		ArrayList<Departman> departmani = new ArrayList<>();
+
 		 for (DepartmanDTO s : dto.getDepartmani()) {
-			 Departman e = departmanService.convertToEntity(s); 
+			 Departman e = departmanService.convertToEntity(s);
 			 departmani.add(e);
 		 }
 
-		return new Fakultet(dto.getId(),dto.getNaziv(), new Univerzitet (dto.getUniverzitet().getId(),dto.getUniverzitet().getNaziv(), null , null, null),departmani);
+
+		return new Fakultet(dto.getId(),dto.getNaziv(), new Univerzitet (dto.getUniverzitet().getId(),dto.getUniverzitet().getNaziv(), null , null, null, dto.getUniverzitet().getVidljiv()),departmani, dto.getVidljiv());
+
 		}
 
 

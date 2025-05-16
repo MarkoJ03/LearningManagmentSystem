@@ -15,7 +15,7 @@ public class TipProgramaController extends BaseController<TipPrograma, TipProgra
 
 	@Autowired
 	private TipProgramaService tipProgramaService;
-	
+
 	@Override
 	protected BaseService<TipPrograma, TipProgramaDTO, Long> getService() {
 		return tipProgramaService;

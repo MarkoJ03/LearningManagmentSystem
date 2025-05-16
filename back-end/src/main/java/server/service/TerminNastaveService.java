@@ -17,7 +17,7 @@ public class TerminNastaveService extends BaseService<TerminNastave, TerminNasta
 
 	@Autowired
 	private TerminNastaveRepository terminNastaveRepository;
-	
+
 	@Override
 	protected CrudRepository<TerminNastave, Long> getRepository() {
 		return terminNastaveRepository;
@@ -26,19 +26,23 @@ public class TerminNastaveService extends BaseService<TerminNastave, TerminNasta
 	@Override
 	protected TerminNastaveDTO convertToDTO(TerminNastave entity) {
 		RealizacijaPredmetaDTO realizacijaPredmeta = new RealizacijaPredmetaDTO(entity.getRealizacijaPredmeta().getId(),
-				null, null, null, null ,null);
-		KalendarDTO kalendar = new KalendarDTO(entity.getKalendar().getId(), null);
-		
-		return new TerminNastaveDTO(entity.getId(), entity.getVremePocetka(), entity.getVremeKraja(), entity.getBrojCasova(), realizacijaPredmeta, kalendar);
+
+				null, null, null, null ,null, entity.getRealizacijaPredmeta().getVidljiv());
+		KalendarDTO kalendar = new KalendarDTO(entity.getKalendar().getId(), null,null,null,null, entity.getKalendar().getVidljiv());
+
+		return new TerminNastaveDTO(entity.getId(), entity.getVremePocetka(), entity.getVremeKraja(), entity.getBrojCasova(), realizacijaPredmeta, kalendar, entity.getVidljiv());
+
 	}
 
 	@Override
 	protected TerminNastave convertToEntity(TerminNastaveDTO dto) {
 		RealizacijaPredmeta realizacijaPredmeta = new RealizacijaPredmeta(dto.getRealizacijaPredmeta().getId(),
-				null, null, null, null ,null);
-		Kalendar kalendar = new Kalendar(dto.getKalendar().getId(), null);
-		
-		return new TerminNastave(dto.getId(), dto.getVremePocetka(), dto.getVremeKraja(), dto.getBrojCasova(), realizacijaPredmeta, kalendar);
+
+				null, null, null, null ,null, dto.getRealizacijaPredmeta().getVidljiv());
+		Kalendar kalendar = new Kalendar(dto.getKalendar().getId(), null,null,null,null, dto.getKalendar().getVidljiv());
+
+		return new TerminNastave(dto.getId(), dto.getVremePocetka(), dto.getVremeKraja(), dto.getBrojCasova(), realizacijaPredmeta, kalendar, dto.getVidljiv());
+
 	}
 
 }

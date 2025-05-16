@@ -15,7 +15,7 @@ public class RealizacijaPredmetaController extends BaseController<RealizacijaPre
 
 	@Autowired
 	private RealizacijaPredmetaService realizacijaPredmetaService;
-	
+
 	@Override
 	protected BaseService<RealizacijaPredmeta, RealizacijaPredmetaDTO, Long> getService() {
 		return realizacijaPredmetaService;

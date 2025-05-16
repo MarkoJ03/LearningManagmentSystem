@@ -15,7 +15,7 @@ public class GodinaStudijaPredmetController extends BaseController<GodinaStudija
 
 	@Autowired
 	private GodinaStudijaPredmetService godinaStudijaPredmetService;
-	
+
 	@Override
 	protected BaseService<GodinaStudijaPredmet, GodinaStudijaPredmetDTO, Long> getService() {
 		return godinaStudijaPredmetService;

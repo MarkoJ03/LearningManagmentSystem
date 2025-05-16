@@ -22,11 +22,13 @@ public class StudijskiProgramService extends BaseService<StudijskiProgram, Studi
 
 	@Autowired
 	private StudijskiProgramRepository studijskiProgramRepository;
-	
+
+
 	@Autowired
 	@Lazy
 	private GodinaStudijaService godinaStudijaService;
-	
+
+
 	@Override
 	protected CrudRepository<StudijskiProgram, Long> getRepository() {
 		return studijskiProgramRepository;
@@ -35,35 +37,43 @@ public class StudijskiProgramService extends BaseService<StudijskiProgram, Studi
 	@Override
 	protected StudijskiProgramDTO convertToDTO(StudijskiProgram entity) {
 		TipProgramaDTO tipPrograma = new TipProgramaDTO(entity.getTipPrograma().getId(), entity.getTipPrograma().getNaziv(),
-				null);
-		
+
+				null, entity.getTipPrograma().getVidljiv());
+
 		KatedraDTO katedra = new KatedraDTO(entity.getKatedra().getId(), entity.getKatedra().getNaziv(),
-				null, null, null, null);
-		
-		ArrayList<GodinaStudijaDTO> godineStudija = new ArrayList<GodinaStudijaDTO>();
+				null, null, null, null, entity.getKatedra().getVidljiv());
+
+		ArrayList<GodinaStudijaDTO> godineStudija = new ArrayList<>();
+
 		for(GodinaStudija gs : entity.getGodineStudija()) {
 			GodinaStudijaDTO gsDTO = godinaStudijaService.convertToDTO(gs);
 			godineStudija.add(gsDTO);
 		}
-		
-		return new StudijskiProgramDTO(entity.getId(), entity.getNaziv(), tipPrograma, katedra, godineStudija);
+
+
+		return new StudijskiProgramDTO(entity.getId(), entity.getNaziv(), tipPrograma, katedra, godineStudija, entity.getVidljiv());
+
 	}
 
 	@Override
 	protected StudijskiProgram convertToEntity(StudijskiProgramDTO dto) {
 		TipPrograma tipPrograma = new TipPrograma(dto.getTipPrograma().getId(), dto.getTipPrograma().getNaziv(),
-				null);
-		
+
+				null, dto.getTipPrograma().getVidljiv());
+
 		Katedra katedra = new Katedra(dto.getKatedra().getId(), dto.getKatedra().getNaziv(),
-				null, null, null, null);
-		
-		ArrayList<GodinaStudija> godineStudija = new ArrayList<GodinaStudija>();
+				null, null, null, null, dto.getKatedra().getVidljiv());
+
+		ArrayList<GodinaStudija> godineStudija = new ArrayList<>();
+
 		for(GodinaStudijaDTO gsDTO : dto.getGodineStudija()) {
 			GodinaStudija gs = godinaStudijaService.convertToEntity(gsDTO);
 			godineStudija.add(gs);
 		}
-		
-		return new StudijskiProgram(dto.getId(), dto.getNaziv(), tipPrograma, katedra, godineStudija);
+
+
+		return new StudijskiProgram(dto.getId(), dto.getNaziv(), tipPrograma, katedra, godineStudija, dto.getVidljiv());
+
 	}
 
 }

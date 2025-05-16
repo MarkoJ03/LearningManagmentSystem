@@ -13,4 +13,5 @@ public class TipNastaveDTO {
 	private Long id;
 	private String naziv;
 	private List<RealizacijaPredmetaDTO> realizacijaPredmeta;
+	private Boolean vidljiv = true;
 }

@@ -15,7 +15,7 @@ public class PredmetController extends BaseController<Predmet, PredmetDTO, Long>
 
 	@Autowired
 	private PredmetService predmetService;
-	
+
 	@Override
 	protected BaseService<Predmet, PredmetDTO, Long> getService() {
 		return predmetService;

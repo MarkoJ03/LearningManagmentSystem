@@ -3,20 +3,21 @@ package server.DTOs;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import server.model.StudentskaSluzba;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentDTO {
 
-    private Long id; 
+    private Long id;
 
 
     private KorisnikDTO korisnik;
 
 
     private String ime;
-    
+
 
     private String prezime;
 
@@ -24,4 +25,8 @@ public class StudentDTO {
     private String jmbg;
 
     private AdresaDTO adresa;
+    
+	private StudentskaSluzbaDTO studentskaSluzba;
+
+    private Boolean vidljiv = true;
 }

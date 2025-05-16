@@ -15,7 +15,7 @@ public class ZvanjeController extends BaseController<Zvanje, ZvanjeDTO, Long>{
 
 	@Autowired
 	private ZvanjeService zvanjeService;
-	
+
 	@Override
 	protected BaseService<Zvanje, ZvanjeDTO, Long> getService() {
 		return zvanjeService;

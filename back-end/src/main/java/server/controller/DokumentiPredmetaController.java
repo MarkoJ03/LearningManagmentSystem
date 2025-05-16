@@ -15,7 +15,7 @@ public class DokumentiPredmetaController extends BaseController<DokumentiPredmet
 
 	@Autowired
 	private DokumentiPredmetaService dokumentiPredmetaService;
-	
+
 	@Override
 	protected BaseService<DokumentiPredmeta, DokumentiPredmetaDTO, Long> getService() {
 		return dokumentiPredmetaService;

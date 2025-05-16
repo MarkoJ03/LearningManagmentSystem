@@ -24,4 +24,8 @@ public class TipNastave {
 	private String naziv;
 	@OneToMany(mappedBy = "tipNastave")
 	private List<RealizacijaPredmeta> realizacijePredmeta;
+
+
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
 }

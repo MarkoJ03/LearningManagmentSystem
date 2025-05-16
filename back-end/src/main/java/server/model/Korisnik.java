@@ -21,12 +21,16 @@ public class Korisnik {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String korisnickoIme;
+    private String email;
 
     @Column(nullable = false)
     private String lozinka;
 
-    @Column(nullable = false, unique = true)
-    private String email;
-	
+
+
+
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
+
+
 }

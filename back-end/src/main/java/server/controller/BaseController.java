@@ -23,6 +23,13 @@ public abstract class BaseController<T, DTO, ID> {
         return new ResponseEntity<>(getService().findAll(), HttpStatus.OK);
     }
 
+
+    @GetMapping("/all")
+    public ResponseEntity<List<DTO>> findAllIncludeDeleted() {
+        return new ResponseEntity<>(getService().findAllIncludeDeleted(), HttpStatus.OK);
+    }
+
+
     @GetMapping("/{id}")
     public ResponseEntity<DTO> getOne(@PathVariable ID id) {
         Optional<DTO> entity = getService().findById(id);

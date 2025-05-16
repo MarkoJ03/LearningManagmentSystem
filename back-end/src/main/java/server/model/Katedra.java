@@ -23,21 +23,24 @@ public class Katedra {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String naziv;
-	
+
 	@ManyToOne(optional = false)
 	private Departman departman;
-	
+
 	@ManyToOne
     @JoinColumn(name = "sekretarKatedre_id", nullable = false)
 	private Nastavnik sekretarKatedre;
-	
+
 	@ManyToOne
     @JoinColumn(name = "sefKatedre_id", nullable = false)
 	private Nastavnik sefKatedre;
-	
+
 	@OneToMany(mappedBy = "katedra")
 	private List<KatedraNastavnik> nastavnici;
+
+	@Column(nullable = false)
+    private Boolean vidljiv = true;
 }

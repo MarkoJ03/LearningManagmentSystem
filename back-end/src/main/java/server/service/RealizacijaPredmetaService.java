@@ -42,54 +42,54 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 
 	@Override
 	protected RealizacijaPredmetaDTO convertToDTO(RealizacijaPredmeta entity) {
-		NastavnikDTO nastavnik = new NastavnikDTO(entity.getNastavnik().getId(), entity.getNastavnik().getIme(),
-				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null, null);
+
+		NastavnikDTO nastavnik = new NastavnikDTO(entity.getNastavnik().getId(),null, entity.getNastavnik().getIme(),
+				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null, null,null,null, entity.getNastavnik().getVidljiv());
 		TipNastaveDTO tipNastave = new TipNastaveDTO(entity.getTipNastave().getId(), entity.getTipNastave().getNaziv(),
-				null);
+				null, entity.getTipNastave().getVidljiv());
 		PredmetDTO predmet = new PredmetDTO(entity.getPredmet().getId(), entity.getPredmet().getEsbp(),
 				entity.getPredmet().getObavezan(), entity.getPredmet().getBrojPredavanja(), entity.getPredmet().getBrojVezbi(),
 				entity.getPredmet().getIstrazivackiRad(), entity.getPredmet().getBrojSemestara(), entity.getPredmet().getOpis(),
-				entity.getPredmet().getCilj(), null, null);
-		
-		ArrayList<TerminNastaveDTO> terminiNastave = new ArrayList<TerminNastaveDTO>();
+				entity.getPredmet().getCilj(), null, null,null,null, entity.getPredmet().getVidljiv());
+
+		ArrayList<TerminNastaveDTO> terminiNastave = new ArrayList<>();
+
 		for(TerminNastave tn : entity.getTerminiNastave()) {
 			TerminNastaveDTO tnDTO = terminNastaveService.convertToDTO(tn);
 			terminiNastave.add(tnDTO);
 		}
-		
-		ArrayList<IshodPredmetaDTO> ishodiPredmeta = new ArrayList<IshodPredmetaDTO>();
-		for(IshodPredmeta ip : entity.getIshodiPredmeta()) {
-			IshodPredmetaDTO ipDTO = ishodPredmetaService.convertToDTO(ip);
-			ishodiPredmeta.add(ipDTO);
-		}
 
-		return new RealizacijaPredmetaDTO(entity.getId(), nastavnik, tipNastave, predmet, terminiNastave, ishodiPredmeta);
+
+		IshodPredmetaDTO ip = ishodPredmetaService.convertToDTO(entity.getIshodPredmeta());
+
+		return new RealizacijaPredmetaDTO(entity.getId(), nastavnik, tipNastave, predmet, terminiNastave, ip, entity.getVidljiv());
+
 	}
 
 	@Override
 	protected RealizacijaPredmeta convertToEntity(RealizacijaPredmetaDTO dto) {
 		Nastavnik nastavnik = new Nastavnik(dto.getNastavnik().getId(), null, dto.getNastavnik().getIme(),
-				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null, null);
+
+				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null, null,null,null,null, dto.getNastavnik().getVidljiv());
 		TipNastave tipNastave = new TipNastave(dto.getTipNastave().getId(), dto.getTipNastave().getNaziv(),
-				null);
+				null, dto.getTipNastave().getVidljiv());
 		Predmet predmet = new Predmet(dto.getPredmet().getId(), dto.getPredmet().getEsbp(),
 				dto.getPredmet().getObavezan(), dto.getPredmet().getBrojPredavanja(), dto.getPredmet().getBrojVezbi(),
 				dto.getPredmet().getIstrazivackiRad(), dto.getPredmet().getBrojSemestara(), dto.getPredmet().getOpis(),
-				dto.getPredmet().getCilj(), null, null);
-		
-		ArrayList<TerminNastave> terminiNastave = new ArrayList<TerminNastave>();
+				dto.getPredmet().getCilj(), null, null,null,null,dto.getPredmet().getVidljiv());
+
+		ArrayList<TerminNastave> terminiNastave = new ArrayList<>();
+
 		for(TerminNastaveDTO tnDTO : dto.getTerminiNastave()) {
 			TerminNastave tn = terminNastaveService.convertToEntity(tnDTO);
 			terminiNastave.add(tn);
 		}
-		
-		ArrayList<IshodPredmeta> ishodiPredmeta = new ArrayList<IshodPredmeta>();
-		for(IshodPredmetaDTO ipDTO : dto.getIshodiPredmeta()) {
-			IshodPredmeta ip = ishodPredmetaService.convertToEntity(ipDTO);
-			ishodiPredmeta.add(ip);
-		}
-		
-		return new RealizacijaPredmeta(dto.getId(), nastavnik, tipNastave, predmet, terminiNastave, ishodiPredmeta);
+
+
+		IshodPredmeta ip = ishodPredmetaService.convertToEntity(dto.getIshodPredmeta());
+
+		return new RealizacijaPredmeta(dto.getId(), nastavnik, tipNastave, predmet, terminiNastave, ip, dto.getVidljiv());
+
 	}
 
 }

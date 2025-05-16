@@ -15,7 +15,7 @@ public class TipZvanjaController extends BaseController<TipZvanja, TipZvanjaDTO,
 
 	@Autowired
 	private TipZvanjaService tipZvanjaService;
-	
+
 	@Override
 	protected BaseService<TipZvanja, TipZvanjaDTO, Long> getService() {
 		return tipZvanjaService;

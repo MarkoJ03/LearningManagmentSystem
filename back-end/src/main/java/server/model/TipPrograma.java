@@ -21,10 +21,14 @@ public class TipPrograma {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	
+
 	@Column(nullable = false)
 	private String naziv;
-	
+
 	@OneToMany(mappedBy = "tipPrograma")
 	private List<StudijskiProgram> programi;
+
+
+	@Column(nullable = false)
+    private Boolean vidljiv = true;
 }

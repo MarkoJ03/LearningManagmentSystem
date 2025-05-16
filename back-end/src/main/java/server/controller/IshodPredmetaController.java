@@ -15,7 +15,7 @@ public class IshodPredmetaController extends BaseController<IshodPredmeta, Ishod
 
 	@Autowired
 	private IshodPredmetaService ishodPredmetaService;
-	
+
 	@Override
 	protected BaseService<IshodPredmeta, IshodPredmetaDTO, Long> getService() {
 		return ishodPredmetaService;

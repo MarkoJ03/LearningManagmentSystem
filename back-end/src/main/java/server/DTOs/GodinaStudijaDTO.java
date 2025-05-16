@@ -13,10 +13,12 @@ import lombok.NoArgsConstructor;
 public class GodinaStudijaDTO {
 
 	private Long id;
-	
+
 	private String godina;
-	
+
 	private List<StudentNaGodiniDTO> studentiNaGodini;
-	
+
 	private StudijskiProgramDTO studijskiProgram;
+
+	private Boolean vidljiv = true;
 }

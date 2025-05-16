@@ -15,7 +15,7 @@ public class NaucnaOblastController extends BaseController<NaucnaOblast, NaucnaO
 
 	@Autowired
 	private NaucnaOblastService naucnaOblastService;
-	
+
 	@Override
 	protected BaseService<NaucnaOblast, NaucnaOblastDTO, Long> getService() {
 		return naucnaOblastService;

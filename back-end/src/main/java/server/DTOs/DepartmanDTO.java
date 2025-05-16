@@ -13,17 +13,19 @@ import lombok.NoArgsConstructor;
 public class DepartmanDTO {
 
 	private Long id;
-	
+
 	private String naziv;
 
 	private FakultetDTO fakultet;
-	
+
 
 	private NastavnikDTO sekretarDepartmana;
-	
-	
+
+
 	private NastavnikDTO direktorDepartmana;
-	
-	
+
+
 	private List<DepartmanNastavnikDTO> nastavnici;
+
+	private Boolean vidljiv = true;
 }

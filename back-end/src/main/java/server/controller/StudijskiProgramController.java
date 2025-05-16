@@ -15,7 +15,7 @@ public class StudijskiProgramController extends BaseController<StudijskiProgram,
 
 	@Autowired
 	private StudijskiProgramService studijskiProgramService;
-	
+
 	@Override
 	protected BaseService<StudijskiProgram, StudijskiProgramDTO, Long> getService() {
 		return studijskiProgramService;

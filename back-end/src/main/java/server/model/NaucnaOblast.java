@@ -23,8 +23,12 @@ public class NaucnaOblast {
 	private Long id;
 	@Column(nullable=false)
 	private String naziv;
-	
+
 	@OneToMany (fetch= FetchType.LAZY, mappedBy = "naucnaOblast")
 	private List<Zvanje> zvanja;
+
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
+
 
 }

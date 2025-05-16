@@ -15,7 +15,7 @@ public class NastavnikController extends BaseController<Nastavnik, NastavnikDTO,
 
 	@Autowired
 	private NastavnikService nastavnikService;
-	
+
 	@Override
 	protected BaseService<Nastavnik, NastavnikDTO, Long> getService() {
 		return nastavnikService;

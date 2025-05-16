@@ -15,7 +15,7 @@ public class TerminNastaveController extends BaseController<TerminNastave, Termi
 
 	@Autowired
 	private TerminNastaveService terminNastaveService;
-	
+
 	@Override
 	protected BaseService<TerminNastave, TerminNastaveDTO, Long> getService() {
 		return terminNastaveService;

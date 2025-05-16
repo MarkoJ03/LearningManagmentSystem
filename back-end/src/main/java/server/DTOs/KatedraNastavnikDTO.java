@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KatedraNastavnikDTO {
-	
+
 	    private Long id;
 
 
@@ -18,4 +18,6 @@ public class KatedraNastavnikDTO {
 
 
 	    private NastavnikDTO nastavnik;
+
+	    private Boolean vidljiv = true;
 }

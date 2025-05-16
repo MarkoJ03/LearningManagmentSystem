@@ -15,7 +15,7 @@ public class TipNastaveController extends BaseController<TipNastave, TipNastaveD
 
 	@Autowired
 	private TipNastaveService tipNastaveService;
-	
+
 	@Override
 	protected BaseService<TipNastave, TipNastaveDTO, Long> getService() {
 		return tipNastaveService;
