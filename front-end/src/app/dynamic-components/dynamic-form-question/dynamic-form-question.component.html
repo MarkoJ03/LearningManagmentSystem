@@ -1,0 +1,17 @@
+<div [formGroup]="form">
+  <label [attr.for]="question.key">{{ question.label }}</label>
+  <div>
+    @switch (question.controlType) {
+      @case ('textbox') {
+        <input [formControlName]="question.key"  [id]="question.key" [type]="question.type">
+      } @case ('dropdown') {
+        <select [id]="question.key" [formControlName]="question.key">
+        @for (opt of question.options; track opt) {
+          <option [ngValue]="opt.id">{{ opt.naziv }}</option>
+        }
+        </select>
+      }
+    }
+  </div>
+  @if (hasErrors && isTouched) { <div class="errorMessage">Error: {{ errorMessage }} </div>}
+</div>
