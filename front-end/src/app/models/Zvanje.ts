@@ -1,11 +1,14 @@
+import { Nastavnik } from "./Nastavnik";
+import { NaucnaOblast } from "./NaucnaOblast";
+import { TipZvanja } from "./TipZvanja";
 
 
 export interface Zvanje {
   id: number;
   datumIzbora: Date;
   datumPrestanka: Date;
-  tip_zvanja_id: number;
-  naucna_oblast_id: number;
-  nastavnik_id: number;
+  tipZvanja: TipZvanja;
+  naucnaOblast: NaucnaOblast;
+  nastavnik: Nastavnik;
   vidljiv: boolean;
 }

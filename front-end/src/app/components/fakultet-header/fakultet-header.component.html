@@ -1,0 +1,47 @@
+<header *ngIf="fakultet as f">
+  <section>
+    <img src="harvard.png" alt="slika-fakulteta" />
+    <div>
+      <h1>{{ f.naziv }}</h1>
+      <h2>Univerzitet ID: {{ f.univerzitet_id }}</h2>
+    </div>
+  </section>
+
+  <hr />
+
+  <nav>
+    <ul>
+      <li appOnHoverDisplay>
+        O Fakultetu
+        <div class="padajuce-opcije">
+          <p>ID: {{ f.id }}</p>
+          <p>Vidljiv: {{ f.vidljiv ? 'Da' : 'Ne' }}</p>
+        </div>
+      </li>
+
+      <li appOnHoverDisplay>
+        Departmani
+        <div class="padajuce-opcije">
+          <p *ngFor="let dep of f.departmani">{{ dep.naziv }}</p>
+        </div>
+      </li>
+
+      <li appOnHoverDisplay>
+        Studije
+        <div class="padajuce-opcije">
+          <p>Osnovne studije</p>
+          <p>Master studije</p>
+          <p>Doktorske studije</p>
+        </div>
+      </li>
+
+      <li appOnHoverDisplay>
+        Kontakt
+        <div class="padajuce-opcije">
+          <p>Email: fakultetprimer.com</p>
+          <p>Telefon: 021/123-456</p>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>

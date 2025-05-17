@@ -3,6 +3,9 @@ import { LoginFormComponent } from '../components/ui/login-form/login-form.compo
 import { LayoutComponent } from '../components/shared/layout/layout.component';
 import { UserHeaderComponent } from '../components/shared/user-header/user-header.component';
 import { authGuard } from './authGuard';
+import { FakultetHeaderComponent } from './components/fakultet-header/fakultet-header.component';
+import { FakultetLayoutComponent } from './components/fakultet-layout/fakultet-layout.component';
+// import {  FakultetComponentComponent } from './components/fakultet-component/fakultet-component.component';
 
 export const routes: Routes = [
     {
@@ -19,5 +22,7 @@ export const routes: Routes = [
         component: UserHeaderComponent,
         data: {requiredRoles: ["ROLE_ADMIN"]},
         canActivate: [authGuard]
-    }
+    },
+
+     { path: 'fakultet/:id', component: FakultetLayoutComponent }
 ];

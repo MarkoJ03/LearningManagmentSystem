@@ -1,12 +1,14 @@
 
+import { Departman } from './Departaman';
 import { KatedraNastavnik } from './KatedraNastavnik';
+import { Nastavnik } from './Nastavnik';
 
 export interface Katedra {
   id: number;
   naziv: string;
   vidljiv: boolean;
-  departman_id: number;              
-  sekretarKatedre_id: number;        
-  sefKatedre_id: number;             
+  departman: Departman;              
+  sekretarKatedre: Nastavnik;        
+  sefKatedre: Nastavnik;             
   nastavnici?: KatedraNastavnik[];  
 }

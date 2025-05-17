@@ -1,9 +1,10 @@
 import { StudentNaGodini } from './StudentNaGodini';
+import { StudijskiProgram } from './StudijskiProgram';
 
 export interface GodinaStudija {
   id: number;
   godina: string;
   vidljiv: boolean;
-  studijskiProgram_id: number;
+  studijskiProgram: StudijskiProgram;
   studentiNaGodini?: StudentNaGodini[]; 
 }

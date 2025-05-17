@@ -24,6 +24,10 @@ public class Predmet {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column
+	private String naziv;
+	
 	@Column(nullable = false)
 	private Integer esbp;
 	@Column(nullable = false)

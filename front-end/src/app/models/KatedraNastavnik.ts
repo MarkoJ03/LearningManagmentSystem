@@ -1,8 +1,10 @@
+import { Katedra } from "./Katedra";
+import { Nastavnik } from "./Nastavnik";
 
 
 export interface KatedraNastavnik {
   id: number;
   vidljiv: boolean;
-  katedra_id: number;      
-  nastavnik_id: number;  
+  katedra: Katedra;      
+  nastavnik: Nastavnik;  
 }

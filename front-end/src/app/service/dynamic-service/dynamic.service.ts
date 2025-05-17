@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DynamicService {
-  private baseUrl = "http://localhost:3000";
+  private baseUrl = "http://localhost:8080";
 
   constructor(private http: HttpClient) { }
 

@@ -1,0 +1,39 @@
+@if (fakultet) {
+  <div>
+    <app-univerzitet-header></app-univerzitet-header>
+
+    <div class="departmani-section">
+      <h2>Departmani</h2>
+
+      @for (dep of fakultet.departmani; track dep.id) {
+        <div class="departman-kartica">
+          <h3>{{ dep.naziv }}</h3>
+
+          <div class="podaci">
+            <strong>Sekretar Departmana:</strong>
+            <p>{{ dep.sekretarDepartmana.ime }} {{ dep.sekretarDepartmana.prezime }}</p>
+
+            <div *ngIf="sekretariZvanja[dep.sekretarDepartmana.id]?.length">
+              <strong>Zvanja sekretara:</strong>
+              @for (zvanje of sekretariZvanja[dep.sekretarDepartmana.id]; track zvanje.tipZvanja.id) {
+                <p>- {{ zvanje.tipZvanja.naziv }}</p> <p> {{zvanje.naucnaOblast.naziv}}</p>
+              }
+            </div>
+
+            <strong>Direktor Departmana:</strong>
+            <p>{{ dep.direktorDepartmana.ime }} {{ dep.direktorDepartmana.prezime }}</p>
+
+            <div *ngIf="direktoriZvanja[dep.direktorDepartmana.id]?.length">
+              <strong>Zvanja direktora:</strong>
+              @for (zvanje of direktoriZvanja[dep.direktorDepartmana.id]; track zvanje.tipZvanja.id) {
+                <p>- {{ zvanje.tipZvanja.naziv }}</p> <p> {{zvanje.naucnaOblast.naziv}}</p>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <app-univerzitet-footer></app-univerzitet-footer>
+  </div>
+}
