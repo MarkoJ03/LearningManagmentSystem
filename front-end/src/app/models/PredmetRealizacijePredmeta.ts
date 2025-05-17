@@ -1,4 +1,7 @@
+import { Predmet } from "./Predmet";
+import { RealizacijaPredmeta } from "./RealizacijaPredmeta";
+
 export interface PredmetRealizacijePredmeta {
-  predmet_id: number;
-  realizacijaPredmeta_id: number;
+  predmet: Predmet;
+  realizacijaPredmeta: RealizacijaPredmeta;
 }

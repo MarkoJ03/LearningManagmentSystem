@@ -1,3 +1,6 @@
+import { EvaluacijaZnanja } from "./EvaluacijaZnanja";
+import { IshodPredmeta } from "./IshodPredmeta";
+import { StudentNaGodini } from "./StudentNaGodini";
 
 
 export interface IshodEvaluacije {
@@ -5,7 +8,7 @@ export interface IshodEvaluacije {
   vidljiv: boolean;
   bodovi: number;
   napomena: string;
-  studentNaGodini_id: number;      
-  evaluacijaZnanja_id: number;    
-  ishodPredmeta_id: number;          
+  studentNaGodini: StudentNaGodini;      
+  evaluacijaZnanja: EvaluacijaZnanja;    
+  ishodPredmeta: IshodPredmeta;          
 }

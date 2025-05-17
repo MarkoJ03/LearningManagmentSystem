@@ -1,12 +1,15 @@
+import { Adresa } from "./Adresa";
+import { Korisnik } from "./Korisnik";
+import { StudentskaSluzba } from "./StudentskaSluzba";
 
 
 export interface Student {
   id: number;
-  korisnik_id: number;
+  korisnik: Korisnik;
   ime: string;
   prezime: string;
   jmbg: string;
-  adresa_id: number;
-  studentska_sluzba_id: number;
+  adresa: Adresa;
+  studentska_sluzba: StudentskaSluzba;
   vidljiv: boolean;
 }

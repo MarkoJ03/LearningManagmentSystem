@@ -1,0 +1,31 @@
+<table>
+    <thead>
+      <tr>
+        @for (col of displayedColumns; track col) {
+          <th>{{ col | titlecase }}</th>
+        }
+        <th>Akcije</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of data; track item['id']) {
+        <tr>
+          @for (col of displayedColumns; track col) {
+            <td>
+              @if (isObject(item[col])) {
+                {{ extractDisplayValue(item[col]) }}
+              } @else {
+                {{ item[col] }}
+              }
+            </td>
+          }
+          <td>
+            <button (click)="edit.emit(item)">Izmeni</button>
+            <button (click)="delete.emit(item['id'])">Obriši</button>
+            <button (click)="details.emit(item['id'])">Detalji</button>            
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  

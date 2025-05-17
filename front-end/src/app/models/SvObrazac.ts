@@ -1,3 +1,5 @@
+import { StudentNaGodini } from "./StudentNaGodini";
+import { StudentskaSluzba } from "./StudentskaSluzba";
 
 
 export interface SvObrazac {
@@ -9,7 +11,7 @@ export interface SvObrazac {
   kontakt: string;
   zaposlen: boolean;
   nacinFinansiranja: boolean;
-  studentNaGodini_id: number;
-  studentska_sluzba_id: number;
+  studentNaGodini: StudentNaGodini;
+  studentska_sluzba: StudentskaSluzba;
   vidljiv: boolean;
 }

@@ -1,12 +1,16 @@
 
+import { IshodPredmeta } from './IshodPredmeta';
+import { Nastavnik } from './Nastavnik';
+import { Predmet } from './Predmet';
 import { TerminNastave } from './TerminNastave';
+import { TipNastave } from './TipNastave';
 
 export interface RealizacijaPredmeta {
   id: number;
-  nastavnik_id: number;
-  tipNastave_id: number;
-  predmet_id: number;
-  ishodPredmeta_id: number;
+  nastavnik: Nastavnik;
+  tipNastave: TipNastave;
+  predmet: Predmet;
+  ishodPredmeta: IshodPredmeta;
   terminiNastave?: TerminNastave[];
   vidljiv: boolean;
 }

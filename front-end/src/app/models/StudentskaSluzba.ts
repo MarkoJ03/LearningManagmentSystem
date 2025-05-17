@@ -10,9 +10,9 @@ import { SvObrazac } from './SvObrazac';
 export interface StudentskaSluzba {
   id: number;
   vidljiv: boolean;
-  objave_id: Objava[];
+  objave: Objava[];
   inventari?: Inventar[];
-  biblioteka_id: Biblioteka;
+  biblioteka: Biblioteka;
   osoblje?: Osoblje[];
   nastavnici?: Nastavnik[];
   kalendari?: Kalendar[];

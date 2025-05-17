@@ -1,15 +1,19 @@
 
+import { GodinaStudija } from './GodinaStudija';
+import { GrupaStudenata } from './GrupaStudenata';
 import { IshodEvaluacije } from './IshodEvaluacije';
+import { Student } from './Student';
+import { SvObrazac } from './SvObrazac';
 
 
 export interface StudentNaGodini {
   id: number;
   brojIndeksa: string;
   datumUpisa: Date;
-  student_id: number;
-  godinaStudija_id: number;
-  grupaStudenata_id: number;
+  student: Student;
+  godinaStudija: GodinaStudija;
+  grupaStudenata: GrupaStudenata;
   ishodEvaluacije?: IshodEvaluacije[];
-  svObrazac_id: number;
+  svObrazac: SvObrazac;
   vidljiv: boolean;
 }

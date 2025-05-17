@@ -1,0 +1,38 @@
+<h2>{{ formaModel?.naziv }}</h2>
+
+<form [formGroup]="forma">
+  @for (p of formaModel?.polja; track $index) {
+    @if (p.tip === 'select') {
+      <div>
+        <label>
+          {{ p.labela }}:
+          <select 
+            [formControlName]="p.naziv" 
+            [compareWith]="compareFn"
+            id="">
+
+            <option [ngValue]="null" disabled selected>-- Izaberi --</option>
+
+            @for (opcija of p.opcije; track $index) {
+              <option [ngValue]="opcija">
+                {{ p.displayFn ? p.displayFn(opcija) : opcija }}
+              </option>
+            }
+          </select>
+        </label>
+      </div>
+    } @else {
+      <div>
+        <label>
+          {{ p.labela }}:
+          <input type= {{p.tip}} [formControlName]="p.naziv" />
+        </label>
+      </div>
+    }
+  }
+
+  <div>
+    <button type="submit" (click)="onSubmit()">Submit</button>
+    <button type="button" (click)="onCancel()">Otkaži</button>
+  </div>
+</form>

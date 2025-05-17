@@ -1,3 +1,5 @@
+import { Kalendar } from "./Kalendar";
+import { RealizacijaPredmeta } from "./RealizacijaPredmeta";
 
 
 export interface TerminNastave {
@@ -5,7 +7,7 @@ export interface TerminNastave {
   vremePocetka: Date;
   vremeKraja: Date;
   brojCasova: number;
-  realizacijaPredmeta_id: number;
-  kalendar_id: number;
+  realizacijaPredmeta: RealizacijaPredmeta;
+  kalendar: Kalendar;
   vidljiv: boolean;
 }

@@ -1,9 +1,11 @@
+import { Biblioteka } from "./Biblioteka";
+import { Knjiga } from "./Knjiga";
 
 
 export interface BibliotekaKnjiga {
   id: number;
   vidljiv: boolean;
-  biblioteka_id: number;
-  knjiga_id: number;
+  biblioteka: Biblioteka;
+  knjiga: Knjiga;
   
 }

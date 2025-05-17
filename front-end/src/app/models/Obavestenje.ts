@@ -1,9 +1,10 @@
+import { Nastavnik } from "./Nastavnik";
 
 
 export interface Obavestenje {
   id: number;
   vidljiv: boolean;
-  nastavnik_id: number;
+  nastavnik: Nastavnik;
   naslov: string;
   sadrzaj: string;
 }
