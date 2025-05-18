@@ -14,7 +14,7 @@ export interface Predmet {
   brojSemestara: number;
   opis: string;
   cilj: string;
-  dokumenti: DokumentiPredmeta;
+  dokumentiPredmeta: DokumentiPredmeta;
   evaluacijaZnanja?: EvaluacijaZnanja[];
   grupaStudenataPredmet?: GrupaStudenataPredmet[];
   realizacijePredmeta?: RealizacijaPredmeta[];

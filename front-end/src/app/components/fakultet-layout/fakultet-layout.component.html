@@ -19,7 +19,7 @@
             <div *ngIf="sekretariZvanja[dep.sekretarDepartmana.id]?.length">
               <strong>Zvanja sekretara:</strong>
               @for (zvanje of sekretariZvanja[dep.sekretarDepartmana.id]; track zvanje.tipZvanja.id) {
-                <p>- {{ zvanje.tipZvanja.naziv }}</p>
+                <p> {{ zvanje.tipZvanja.naziv }}</p>
               }
             </div>
 
@@ -29,7 +29,7 @@
             <div *ngIf="direktoriZvanja[dep.direktorDepartmana.id]?.length">
               <strong>Zvanja direktora:</strong>
               @for (zvanje of direktoriZvanja[dep.direktorDepartmana.id]; track zvanje.tipZvanja.id) {
-                <p>- {{ zvanje.tipZvanja.naziv }}</p>
+                <p> {{ zvanje.tipZvanja.naziv }}</p>
               }
             </div>
           </div>

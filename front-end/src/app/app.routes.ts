@@ -8,6 +8,7 @@ import { FakultetLayoutComponent } from './components/fakultet-layout/fakultet-l
 import { DepartmanLayoutComponent } from './components/departman-layout/departman-layout.component';
 import { KatedraLayoutComponent } from './components/katedra-layout/katedra-layout.component';
 import { StudijskiProgramLayoutComponent } from './components/studijski-program-layout/studijski-program-layout.component';
+import { PredmetLayoutComponent } from './components/predmet-layout/predmet-layout.component';
 // import {  FakultetComponentComponent } from './components/fakultet-component/fakultet-component.component';
 
 export const routes: Routes = [
@@ -33,5 +34,7 @@ export const routes: Routes = [
 
      { path: 'katedra/:id', component: KatedraLayoutComponent },
 
-    { path: 'studijskiProgram/:id', component: StudijskiProgramLayoutComponent }
+    { path: 'studijskiProgram/:id', component: StudijskiProgramLayoutComponent },
+
+    { path: 'predmet/:id', component: PredmetLayoutComponent }
 ];

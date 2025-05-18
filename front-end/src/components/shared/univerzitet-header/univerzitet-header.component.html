@@ -32,9 +32,9 @@
       <li appOnHoverDisplay>
         Studijski Programi
         <div class="padajuce-opcije">
-          <p>Softverski i informacioni inženjering</p>
-          <p>Informacione tehnologije</p>
-          <p>Ekonomija</p>
+          <p *ngFor="let p of studijskiProgrami">
+            <a [routerLink]="['/studijskiProgram', p.id]">{{ p.naziv }}</a>
+          </p>
         </div>
       </li>
 
