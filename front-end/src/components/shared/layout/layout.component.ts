@@ -6,7 +6,7 @@ import { UserHeaderComponent } from '../user-header/user-header.component';
 
 @Component({
   selector: 'app-layout',
-  imports: [UniverzitetHeaderComponent, UniverzitetFooterComponent, ObjavaCardComponent, UserHeaderComponent],
+  imports: [UniverzitetHeaderComponent, UniverzitetFooterComponent, ObjavaCardComponent],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css'
 })
