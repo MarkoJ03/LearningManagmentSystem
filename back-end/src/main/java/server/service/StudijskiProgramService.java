@@ -38,7 +38,7 @@ public class StudijskiProgramService extends BaseService<StudijskiProgram, Studi
 				null, entity.getTipPrograma().getVidljiv());
 
 		KatedraDTO katedra = new KatedraDTO(entity.getKatedra().getId(), entity.getKatedra().getNaziv(),
-				null, null, null, null, entity.getKatedra().getVidljiv());
+				null, null, null, null,null, entity.getKatedra().getVidljiv());
 
 		ArrayList<GodinaStudijaDTO> godineStudija = new ArrayList<>();
 		for(GodinaStudija gs : entity.getGodineStudija()) {
@@ -55,7 +55,7 @@ public class StudijskiProgramService extends BaseService<StudijskiProgram, Studi
 				null, dto.getTipPrograma().getVidljiv());
 
 		Katedra katedra = new Katedra(dto.getKatedra().getId(), dto.getKatedra().getNaziv(),
-				null, null, null, null, dto.getKatedra().getVidljiv());
+				null, null, null, null, null, dto.getKatedra().getVidljiv());
 
 		ArrayList<GodinaStudija> godineStudija = new ArrayList<>();
 		for(GodinaStudijaDTO gsDTO : dto.getGodineStudija()) {

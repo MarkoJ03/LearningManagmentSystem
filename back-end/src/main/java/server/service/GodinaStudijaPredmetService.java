@@ -1,5 +1,8 @@
 package server.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -47,4 +50,10 @@ public class GodinaStudijaPredmetService extends BaseService<GodinaStudijaPredme
 		return new GodinaStudijaPredmet(dto.getId(),godinaStudija, predmet,dto.getVidljiv());
 	}
 
+	public List<GodinaStudijaPredmetDTO> findByGodinaStudijaId(Long godinaId) {
+	    return godinaStudijaPredmetRepository.findByGodinaStudijaIdAndVidljivTrue(godinaId)
+	            .stream()
+	            .map(this::convertToDTO)
+	            .collect(Collectors.toList());
+	}
 }

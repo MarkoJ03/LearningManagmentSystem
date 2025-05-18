@@ -1,6 +1,7 @@
 
 import { DepartmanNastavnik } from './DepartmanNastavnik';
 import { Fakultet } from './Fakultet';
+import { Katedra } from './Katedra';
 import { Nastavnik } from './Nastavnik';
 
 export interface Departman {
@@ -10,5 +11,6 @@ export interface Departman {
   fakultet: Fakultet;
   sekretarDepartmana: Nastavnik;
   direktorDepartmana: Nastavnik;
+  katedre?: Katedra[],
   nastavnici?: DepartmanNastavnik[];
 }

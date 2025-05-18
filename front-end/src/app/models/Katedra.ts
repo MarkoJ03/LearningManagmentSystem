@@ -2,6 +2,7 @@
 import { Departman } from './Departaman';
 import { KatedraNastavnik } from './KatedraNastavnik';
 import { Nastavnik } from './Nastavnik';
+import { StudijskiProgram } from './StudijskiProgram';
 
 export interface Katedra {
   id: number;
@@ -10,5 +11,6 @@ export interface Katedra {
   departman: Departman;              
   sekretarKatedre: Nastavnik;        
   sefKatedre: Nastavnik;             
+  studijskiProgrami?: StudijskiProgram[];
   nastavnici?: KatedraNastavnik[];  
 }

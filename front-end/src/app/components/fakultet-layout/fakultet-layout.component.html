@@ -2,11 +2,14 @@
   <div>
     <app-univerzitet-header></app-univerzitet-header>
 
+        <div class="naslov">
+    <h1>{{fakultet.naziv}}</h1>
+    </div>
     <div class="departmani-section">
       <h2>Departmani</h2>
 
       @for (dep of fakultet.departmani; track dep.id) {
-        <div class="departman-kartica">
+        <a class="departman-kartica" [routerLink]="['/departman', dep.id]">
           <h3>{{ dep.naziv }}</h3>
 
           <div class="podaci">
@@ -16,7 +19,7 @@
             <div *ngIf="sekretariZvanja[dep.sekretarDepartmana.id]?.length">
               <strong>Zvanja sekretara:</strong>
               @for (zvanje of sekretariZvanja[dep.sekretarDepartmana.id]; track zvanje.tipZvanja.id) {
-                <p>- {{ zvanje.tipZvanja.naziv }}</p> <p> {{zvanje.naucnaOblast.naziv}}</p>
+                <p>- {{ zvanje.tipZvanja.naziv }}</p>
               }
             </div>
 
@@ -26,11 +29,11 @@
             <div *ngIf="direktoriZvanja[dep.direktorDepartmana.id]?.length">
               <strong>Zvanja direktora:</strong>
               @for (zvanje of direktoriZvanja[dep.direktorDepartmana.id]; track zvanje.tipZvanja.id) {
-                <p>- {{ zvanje.tipZvanja.naziv }}</p> <p> {{zvanje.naucnaOblast.naziv}}</p>
+                <p>- {{ zvanje.tipZvanja.naziv }}</p>
               }
             </div>
           </div>
-        </div>
+        </a>
       }
     </div>
 

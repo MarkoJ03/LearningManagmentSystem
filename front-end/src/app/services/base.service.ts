@@ -5,7 +5,7 @@ export class BaseService<T> {
   
   private baseUrl: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(protected  http: HttpClient) {}
 
   setUrl(url: string) {
     this.baseUrl = url;

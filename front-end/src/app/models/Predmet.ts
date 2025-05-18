@@ -5,6 +5,7 @@ import { RealizacijaPredmeta } from './RealizacijaPredmeta';
 
 export interface Predmet {
   id: number;
+  naziv: string;
   esbp: number;
   obavezan: boolean;
   brojPredavanja: number;

@@ -1,6 +1,8 @@
 package server.service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -63,7 +65,12 @@ public class GodinaStudijaService extends BaseService<GodinaStudija, GodinaStudi
 
 		 return new GodinaStudija(dto.getId(),dto.getGodina(),studenti, new StudijskiProgram(dto.getStudijskiProgram().getId(),dto.getStudijskiProgram().getNaziv(),null,null,null, null), null);		}
 
-
+	public List<GodinaStudijaDTO> findByStudijskiProgramId(Long programId) {
+	    return godinaStudijaRepository.findByStudijskiProgramIdAndVidljivTrue(programId)
+	        .stream()
+	        .map(this::convertToDTO)
+	        .collect(Collectors.toList());
+	}
 
 
 }

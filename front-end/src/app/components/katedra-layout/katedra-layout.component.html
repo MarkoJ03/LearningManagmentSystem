@@ -1,0 +1,19 @@
+@if (katedra) {
+  <div>
+    <app-univerzitet-header></app-univerzitet-header>
+
+    <div class="programi-section">
+      <h2>Studijski programi</h2>
+
+      @for (prog of katedra.studijskiProgrami; track prog.id) {
+        <a class="program-kartica" [routerLink]="['/studijskiProgram', prog.id]">
+          <h3>{{ prog.naziv }}</h3>
+          <p><strong>Tip programa:</strong> {{ prog.tipPrograma.naziv }}</p>
+          <p><strong>Broj godina:</strong> {{ prog.godineStudija?.length ?? 0 }}</p>
+        </a>
+      }
+    </div>
+
+    <app-univerzitet-footer></app-univerzitet-footer>
+  </div>
+}

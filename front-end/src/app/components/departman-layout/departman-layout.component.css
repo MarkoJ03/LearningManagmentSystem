@@ -1,10 +1,9 @@
-.departmani-section {
+.katedre-section {
   padding: 2rem;
   background-color: #f4f6f8;
 }
 
-
-.departman-kartica {
+.katedra-kartica {
   display: block;
   text-decoration: none;
   color: inherit;
@@ -14,16 +13,16 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
   margin-bottom: 2rem;
-  transition: transform 0.2s ease-in-out;
   border-left: 6px solid brown;
+  transition: transform 0.2s ease-in-out;
 }
 
-.departman-kartica:hover {
+.katedra-kartica:hover {
   transform: scale(1.02);
   background-color: #fff3eb;
 }
 
-.departman-kartica h3 {
+.katedra-kartica h3 {
   margin-top: 0;
   color: brown;
   font-size: 1.5rem;

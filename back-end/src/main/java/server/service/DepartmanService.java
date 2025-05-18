@@ -1,5 +1,7 @@
 package server.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
@@ -7,14 +9,15 @@ import org.springframework.stereotype.Service;
 
 
 import server.DTOs.NastavnikDTO;
-
+import server.DTOs.ZvanjeDTO;
 import server.DTOs.DepartmanDTO;
 import server.DTOs.FakultetDTO;
-
+import server.DTOs.KatedraDTO;
 import server.model.Nastavnik;
-
+import server.model.Zvanje;
 import server.model.Departman;
 import server.model.Fakultet;
+import server.model.Katedra;
 import server.repository.DepartmanRepository;
 
 
@@ -27,7 +30,7 @@ public class DepartmanService extends BaseService<Departman, DepartmanDTO, Long>
 
 	@Autowired
 	@Lazy
-	private StudentService studentService;
+	private KatedraService KatedraService;
 
   @Override
  protected CrudRepository<Departman, Long> getRepository() {
@@ -37,25 +40,38 @@ public class DepartmanService extends BaseService<Departman, DepartmanDTO, Long>
 	@Override
 	protected DepartmanDTO convertToDTO(Departman entity) {
 
+		
+		ArrayList<KatedraDTO> katedre = new ArrayList<>();
+		for (Katedra k : entity.getKatedre()) {
+			KatedraDTO kDTO = KatedraService.convertToDTO(k);
+			katedre.add(kDTO);
+		}
+		
+		
 		return new DepartmanDTO(entity.getId(),entity.getNaziv()
 
 				,new FakultetDTO(entity.getFakultet().getId(),entity.getFakultet().getNaziv(), null,null, entity.getFakultet().getVidljiv()),
 				new NastavnikDTO(entity.getSekretarDepartmana().getId(),null, entity.getSekretarDepartmana().getIme(),entity.getSekretarDepartmana().getPrezime(),entity.getSekretarDepartmana().getJmbg(),null,null,null, null,null,null,null, entity.getSekretarDepartmana().getVidljiv()),
 				new NastavnikDTO(entity.getDirektorDepartmana().getId(),null, entity.getDirektorDepartmana().getIme(),entity.getDirektorDepartmana().getPrezime(),entity.getDirektorDepartmana().getJmbg(),null,null,null, null,null,null,null, entity.getDirektorDepartmana().getVidljiv()),
-						null, entity.getVidljiv());
+						null,katedre, entity.getVidljiv());
 
 	}
 
 	@Override
 	protected Departman convertToEntity(DepartmanDTO dto) {
 
+		ArrayList<Katedra> katedre = new ArrayList<>();
+		for (KatedraDTO dto1 : dto.getKatedre()) {
+			Katedra k = KatedraService.convertToEntity(dto1);
+			katedre.add(k);
+		}
 
 
 		return new Departman(dto.getId(),dto.getNaziv()
 				,new Fakultet(dto.getFakultet().getId(),dto.getFakultet().getNaziv(),null, null, dto.getFakultet().getVidljiv()),
 				new Nastavnik(dto.getSekretarDepartmana().getId(),null, dto.getSekretarDepartmana().getIme(),dto.getSekretarDepartmana().getPrezime(),dto.getSekretarDepartmana().getJmbg(),null,null,null, null, null, null,null, dto.getSekretarDepartmana().getVidljiv()),
 				new Nastavnik(dto.getDirektorDepartmana().getId(),null, dto.getDirektorDepartmana().getIme(),dto.getDirektorDepartmana().getPrezime(),dto.getDirektorDepartmana().getJmbg(),null,null,null, null, null, null,null, dto.getDirektorDepartmana().getVidljiv()),
-						null, dto.getVidljiv());
+						null,katedre, dto.getVidljiv());
 		}
 
 

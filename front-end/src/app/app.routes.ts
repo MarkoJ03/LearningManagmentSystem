@@ -5,6 +5,9 @@ import { UserHeaderComponent } from '../components/shared/user-header/user-heade
 import { authGuard } from './authGuard';
 import { FakultetHeaderComponent } from './components/fakultet-header/fakultet-header.component';
 import { FakultetLayoutComponent } from './components/fakultet-layout/fakultet-layout.component';
+import { DepartmanLayoutComponent } from './components/departman-layout/departman-layout.component';
+import { KatedraLayoutComponent } from './components/katedra-layout/katedra-layout.component';
+import { StudijskiProgramLayoutComponent } from './components/studijski-program-layout/studijski-program-layout.component';
 // import {  FakultetComponentComponent } from './components/fakultet-component/fakultet-component.component';
 
 export const routes: Routes = [
@@ -24,5 +27,11 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
 
-     { path: 'fakultet/:id', component: FakultetLayoutComponent }
+     { path: 'fakultet/:id', component: FakultetLayoutComponent },
+
+    { path: 'departman/:id', component: DepartmanLayoutComponent },
+
+     { path: 'katedra/:id', component: KatedraLayoutComponent },
+
+    { path: 'studijskiProgram/:id', component: StudijskiProgramLayoutComponent }
 ];

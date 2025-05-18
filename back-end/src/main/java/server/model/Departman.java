@@ -39,6 +39,9 @@ public class Departman {
 
 	@OneToMany(mappedBy = "departman")
 	private List<DepartmanNastavnik> nastavnici;
+	
+	@OneToMany(mappedBy= "departman")
+	private List<Katedra> katedre;
 
 
 

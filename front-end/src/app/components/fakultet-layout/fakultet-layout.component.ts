@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { UniverzitetHeaderComponent } from '../../../components/shared/univerzitet-header/univerzitet-header.component';
 import { UniverzitetFooterComponent } from '../../../components/shared/univerzitet-footer/univerzitet-footer.component';
@@ -14,7 +14,7 @@ import { Zvanje } from '../../models/Zvanje';
 @Component({
   selector: 'app-fakultet-layout',
   standalone: true,
-  imports: [CommonModule, UniverzitetHeaderComponent, UniverzitetFooterComponent],
+  imports: [CommonModule, UniverzitetHeaderComponent, UniverzitetFooterComponent,RouterLink],
   templateUrl: './fakultet-layout.component.html',
   styleUrls: ['./fakultet-layout.component.css']
 })
