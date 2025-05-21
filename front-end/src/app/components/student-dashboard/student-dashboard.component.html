@@ -1,0 +1,18 @@
+<div class="dashboard" *ngIf="studentNaGodini">
+  <h2>Добродошао!</h2>
+
+  <div class="info">
+    <p><strong>Индекс:</strong> {{ studentNaGodini.brojIndeksa }}</p>
+    <p><strong>Име:</strong> {{ studentNaGodini.student?.ime }} {{ studentNaGodini.student?.prezime }}</p>
+    <p><strong>Година студија:</strong> {{ studentNaGodini.godinaStudija?.naziv }}</p>
+    <p><strong>Програм:</strong> {{ studentNaGodini.grupaStudenata?.studijskiProgram?.naziv }}</p>
+  </div>
+
+  <div class="navigacija">
+    <button routerLink="/obavestenja">Обавештења</button>
+    <button routerLink="/predmeti">Моји предмети</button>
+    <button routerLink="/prijava-ispita">Пријава испита</button>
+    <button routerLink="/ocene">Оцене</button>
+    <!-- Dodaj još po potrebi -->
+  </div>
+</div>

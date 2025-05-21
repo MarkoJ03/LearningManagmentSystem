@@ -1,9 +1,13 @@
 package server.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import server.DTOs.BibliotekaKnjigaDTO;
+import server.DTOs.GodinaStudijaPredmetDTO;
 import server.model.BibliotekaKnjiga;
 import server.repository.BibliotekaKnjigaRepository;
 
@@ -37,4 +41,11 @@ public class BibliotekaKnjigaService extends BaseService<BibliotekaKnjiga, Bibli
             dto.getVidljiv()
         );
     }
+    
+	public List<BibliotekaKnjigaDTO> findByBibliotekaId(Long bibliotekaId) {
+	    return bibliotekaKnjigaRepository.findByBibliotekaIdAndVidljivTrue(bibliotekaId)
+	            .stream()
+	            .map(this::convertToDTO)
+	            .collect(Collectors.toList());
+	}
 }

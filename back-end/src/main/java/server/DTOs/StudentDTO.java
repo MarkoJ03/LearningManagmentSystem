@@ -1,8 +1,11 @@
 package server.DTOs;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import server.model.StudentNaGodini;
 import server.model.StudentskaSluzba;
 
 @Data
@@ -27,6 +30,8 @@ public class StudentDTO {
     private AdresaDTO adresa;
     
 	private StudentskaSluzbaDTO studentskaSluzba;
+	
+	 private List<StudentNaGodiniDTO> studentiNaGodini;
 
     private Boolean vidljiv = true;
 }

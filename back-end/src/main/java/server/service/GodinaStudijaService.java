@@ -14,11 +14,12 @@ import server.DTOs.GodinaStudijaDTO;
 
 import server.DTOs.StudentNaGodiniDTO;
 import server.DTOs.StudijskiProgramDTO;
-
+import server.DTOs.TipProgramaDTO;
 import server.model.GodinaStudija;
 
 import server.model.StudentNaGodini;
 import server.model.StudijskiProgram;
+import server.model.TipPrograma;
 import server.repository.GodinaStudijaRepository;
 
 @Service
@@ -40,14 +41,14 @@ public class GodinaStudijaService extends BaseService<GodinaStudija, GodinaStudi
 	@Override
 	protected GodinaStudijaDTO convertToDTO(GodinaStudija entity) {
 
-		ArrayList<StudentNaGodiniDTO> studenti = new ArrayList<>();
+//		ArrayList<StudentNaGodiniDTO> studenti = new ArrayList<>();
+//
+//		 for (StudentNaGodini s : entity.getStudentiNaGodini()) {
+//			 StudentNaGodiniDTO e = studentNaGodiniService.convertToDTO(s);
+//			 studenti.add(e);
+//		 }
 
-		 for (StudentNaGodini s : entity.getStudentiNaGodini()) {
-			 StudentNaGodiniDTO e = studentNaGodiniService.convertToDTO(s);
-			 studenti.add(e);
-		 }
-
-		return new GodinaStudijaDTO(entity.getId(),entity.getGodina(),studenti, new StudijskiProgramDTO(entity.getStudijskiProgram().getId(),entity.getStudijskiProgram().getNaziv(),null,null,null, null), null);
+		return new GodinaStudijaDTO(entity.getId(),entity.getGodina(),null, new StudijskiProgramDTO(entity.getStudijskiProgram().getId(),entity.getStudijskiProgram().getNaziv(),new TipProgramaDTO(null,entity.getStudijskiProgram().getTipPrograma().getNaziv(),null,entity.getStudijskiProgram().getTipPrograma().getVidljiv()),null,null, null), null);
 
 
 	}
@@ -55,15 +56,15 @@ public class GodinaStudijaService extends BaseService<GodinaStudija, GodinaStudi
 	@Override
 	protected GodinaStudija convertToEntity(GodinaStudijaDTO dto) {
 
-		ArrayList<StudentNaGodini> studenti = new ArrayList<>();
+//		ArrayList<StudentNaGodini> studenti = new ArrayList<>();
+//
+//		 for (StudentNaGodiniDTO s : dto.getStudentiNaGodini()) {
+//			 StudentNaGodini e = studentNaGodiniService.convertToEntity(s);
+//			 studenti.add(e);
+//		 }
 
-		 for (StudentNaGodiniDTO s : dto.getStudentiNaGodini()) {
-			 StudentNaGodini e = studentNaGodiniService.convertToEntity(s);
-			 studenti.add(e);
-		 }
 
-
-		 return new GodinaStudija(dto.getId(),dto.getGodina(),studenti, new StudijskiProgram(dto.getStudijskiProgram().getId(),dto.getStudijskiProgram().getNaziv(),null,null,null, null), null);		}
+		 return new GodinaStudija(dto.getId(),dto.getGodina(),null, new StudijskiProgram(dto.getStudijskiProgram().getId(),dto.getStudijskiProgram().getNaziv(),new TipPrograma(null,dto.getStudijskiProgram().getTipPrograma().getNaziv(),null,dto.getStudijskiProgram().getTipPrograma().getVidljiv()),null,null, null), null);		}
 
 	public List<GodinaStudijaDTO> findByStudijskiProgramId(Long programId) {
 	    return godinaStudijaRepository.findByStudijskiProgramIdAndVidljivTrue(programId)
