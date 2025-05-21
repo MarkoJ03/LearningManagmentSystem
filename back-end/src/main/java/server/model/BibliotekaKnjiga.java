@@ -24,10 +24,10 @@ public class BibliotekaKnjiga {
 	private Long id;
 
 	@ManyToOne(optional = false)
-	private Biblioteka biblioteka;
-
+	private Biblioteka biblioteka;  
+	
 	@ManyToOne(optional = false)
-	private Knjiga knjiga;
+	private Knjiga knjiga; 
 
 	@Column(nullable = false)
     private Boolean vidljiv = true;

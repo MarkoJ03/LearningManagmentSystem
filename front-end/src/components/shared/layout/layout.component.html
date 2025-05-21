@@ -1,15 +1,16 @@
 <div>
-    <app-univerzitet-header></app-univerzitet-header>
-     <!-- ovde ide router outlet a ne objave -->
-    <div id="objave">
-        <app-objava-card></app-objava-card>
-        <app-objava-card></app-objava-card>
-        <app-objava-card></app-objava-card>
-        <app-objava-card></app-objava-card>
-    </div>
+  <app-univerzitet-header></app-univerzitet-header>
 
+<div class="container">
+  <div id="objave">
+    @for (objava of objave; track objava.id) {
+      <app-objava-card
+        [naslov]="objava.naslov"
+        [sadrzaj]="objava.sadrzaj">
+      </app-objava-card>
+    }
+  </div>
+  </div>
 
-    
-    <app-univerzitet-footer></app-univerzitet-footer>
-    <!-- <app-user-header></app-user-header> -->
+  <app-univerzitet-footer></app-univerzitet-footer>
 </div>

@@ -49,6 +49,9 @@ public class Student {
 	private StudentskaSluzba studentskaSluzba;
 
 
+    @OneToMany(mappedBy = "student")
+    private List<StudentNaGodini> studentiNaGodini;
+    
     @Column(nullable = false)
     private Boolean vidljiv = true;
 

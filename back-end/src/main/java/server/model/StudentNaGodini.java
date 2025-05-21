@@ -49,6 +49,8 @@ public class StudentNaGodini {
     @OneToOne(mappedBy = "studentNaGodini")
     private SvObrazac svObrazac;
 
+    
+    
 	@Column(nullable = false)
     private Boolean vidljiv = true;
 

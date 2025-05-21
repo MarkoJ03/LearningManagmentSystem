@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-objava-card',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './objava-card.component.html',
-  styleUrl: './objava-card.component.css'
+  styleUrls: ['./objava-card.component.css']
 })
 export class ObjavaCardComponent {
-
+  @Input() naslov!: string;
+  @Input() sadrzaj!: string;
 }
