@@ -56,21 +56,23 @@ export class BibliotekaFormaComponent implements OnInit {
     this.router.navigate(['/biblioteke']);
   }
 
-   public sacuvajBiblioteku(vrednosti: any): void {
-    if (this.idBiblioteka) {
-
-      this.bibliotekaService.update(this.idBiblioteka, vrednosti).subscribe({
-        next: () => this.router.navigate(['/biblioteke']),
-        error: err => console.error('Greška pri izmeni biblioteke:', err)
-      });
-    } else {
-
-      this.bibliotekaService.create(vrednosti).subscribe({
-        next: () => this.router.navigate(['/biblioteke']),
-        error: err => console.error('Greška pri čuvanju biblioteke:', err)
-      });
-    }
+public sacuvajBiblioteku(vrednosti: any): void {
+  if (this.idBiblioteka) {
+    this.bibliotekaService.update(this.idBiblioteka, vrednosti).subscribe({
+      next: () => this.router.navigate(['/biblioteke']),
+      error: err => console.error('Greška pri izmeni biblioteke:', err)
+    });
+  } else {
+    this.bibliotekaService.create(vrednosti).subscribe({
+      next: (biblioteka) => {
+        console.log('Kreirana biblioteka:', biblioteka);
+        console.log('Sve knjige (log posle kreiranja):', this.sveKnjige);
+        this.router.navigate(['/biblioteke']);
+      },
+      error: err => console.error('Greška pri čuvanju biblioteke:', err)
+    });
   }
+}
 
 
   private kreirajModel(podaci?: any): FormaModel {
