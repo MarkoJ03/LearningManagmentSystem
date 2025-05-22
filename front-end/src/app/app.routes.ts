@@ -13,6 +13,7 @@ import { EstudentObjaveComponent } from './components/estudent-objave/estudent-o
 import { StudentSelectionComponent } from './components/student-selection/student-selection.component';
 import { StudentDashboardComponent } from './components/student-dashboard/student-dashboard.component';
 import { EstudentLayoutComponent } from './components/estudent/estudent-layout/estudent-layout.component';
+import { BibliotekaFormaComponent } from './components/biblioteka-forma/biblioteka-forma.component';
 // import {  FakultetComponentComponent } from './components/fakultet-component/fakultet-component.component';
 
 export const routes: Routes = [
@@ -42,6 +43,9 @@ export const routes: Routes = [
 
     { path: 'predmet/:id', component: PredmetLayoutComponent },
 
+    { path: 'biblioteka/:id', component: BibliotekaFormaComponent },
+
+    { path: 'biblioteke/izmeni/:id', component: BibliotekaFormaComponent },
     // { path: 'estudent/objave', component: EstudentObjaveComponent },
 
       { path: 'student/:id', component: StudentSelectionComponent },

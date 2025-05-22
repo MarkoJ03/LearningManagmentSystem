@@ -1,1 +1,11 @@
-<p>adresa works!</p>
+<h2>Detalji o adresi</h2>
+
+<p *ngIf="adresa">
+  {{ adresa.broj }}
+  {{ adresa.ulica }}
+  {{ adresa.grad }}
+  {{ adresa.drzava }}
+  {{ adresa.vidljiv }}
+</p>
+
+<a routerLink="/adrese">← Nazad na listu adresa</a>

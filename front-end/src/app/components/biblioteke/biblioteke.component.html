@@ -1,0 +1,11 @@
+<app-base-table 
+  [data]="biblioteke" 
+  [displayedColumns]="kolone" 
+  (edit)="izmeni($event)" 
+  (delete)="obrisi($event)"
+  (details)="detalji($event)"
+  (cancelEvent)="otkazi()">
+</app-base-table>
+
+
+<a routerLink="/bibliotekaForma">Dodaj biblioteku</a>
