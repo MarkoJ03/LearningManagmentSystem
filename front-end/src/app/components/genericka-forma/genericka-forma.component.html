@@ -2,17 +2,13 @@
 
 <form [formGroup]="forma">
   @for (p of formaModel?.polja; track $index) {
+    
     @if (p.tip === 'select') {
       <div>
         <label>
           {{ p.labela }}:
-          <select 
-            [formControlName]="p.naziv" 
-            [compareWith]="compareFn"
-            id="">
-
+          <select [formControlName]="p.naziv" [compareWith]="compareFn">
             <option [ngValue]="null" disabled selected>-- Izaberi --</option>
-
             @for (opcija of p.opcije; track $index) {
               <option [ngValue]="opcija">
                 {{ p.displayFn ? p.displayFn(opcija) : opcija }}
@@ -21,18 +17,33 @@
           </select>
         </label>
       </div>
+    } @else if (p.tip === 'checkbox-list') {
+      <div>
+        <label>{{ p.labela }}:</label>
+        @for (opcija of p.opcije; track $index) {
+          <div>
+            <input
+              type="checkbox"
+              [value]="opcija"
+              [checked]="jeOpcijaSelektovana(p.naziv, opcija)"
+              (change)="onCheckboxChange(p.naziv, $event, opcija)">
+            {{ p.displayFn ? p.displayFn(opcija) : opcija }}
+          </div>
+        }
+      </div>
     } @else {
       <div>
         <label>
           {{ p.labela }}:
-          <input type= {{p.tip}} [formControlName]="p.naziv" />
+          <input type="{{ p.tip }}" [formControlName]="p.naziv" />
         </label>
       </div>
     }
+
   }
 
   <div>
-    <button type="submit" (click)="onSubmit()">Submit</button>
+    <button type="button" (click)="onSubmit()">Submit</button>
     <button type="button" (click)="onCancel()">Otkaži</button>
   </div>
 </form>

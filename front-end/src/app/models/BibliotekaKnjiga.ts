@@ -3,7 +3,7 @@ import { Knjiga } from "./Knjiga";
 
 
 export interface BibliotekaKnjiga {
-  id: number;
+  id?: number;
   vidljiv: boolean;
   biblioteka: Biblioteka;
   knjiga: Knjiga;

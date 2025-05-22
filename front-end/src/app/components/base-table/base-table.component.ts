@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-
 @Component({
   selector: 'app-base-table',
   imports: [CommonModule],
@@ -11,7 +10,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class BaseTableComponent<T extends { [key: string]: any }> {
   @Input() data: T[] = [];
   @Input() displayedColumns: string[] = [];
-
 
   @Output() edit = new EventEmitter<T>();
   @Output() delete = new EventEmitter<number>();
@@ -24,14 +22,16 @@ export class BaseTableComponent<T extends { [key: string]: any }> {
   onDelete(id: number) {
     this.delete.emit(id);
   }
-  
 
   isObject(value: any): boolean {
     return typeof value === 'object' && value !== null;
   }
-  
+
   extractDisplayValue(value: any): string {
     if (!value) return '-';
+    if (Array.isArray(value)) {
+      return value.map(v => v.naziv || v.id).join(', ');
+    }
     return value.ime || value.naziv || value.brojRacuna || value.id || '[objekat]';
   }
 }
