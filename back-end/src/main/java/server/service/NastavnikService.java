@@ -1,6 +1,8 @@
 package server.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -8,7 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import server.DTOs.DepartmanNastavnikDTO;
-
+import server.DTOs.DodeljenoPravoPristupaDTO;
 import server.DTOs.KatedraNastavnikDTO;
 
 import server.DTOs.KorisnikDTO;
@@ -17,7 +19,7 @@ import server.DTOs.ObavestenjeDTO;
 import server.DTOs.RealizacijaPredmetaDTO;
 import server.DTOs.ZvanjeDTO;
 import server.model.DepartmanNastavnik;
-
+import server.model.DodeljenoPravoPristupa;
 import server.model.KatedraNastavnik;
 
 import server.model.Korisnik;
@@ -36,6 +38,10 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 	@Autowired
 	@Lazy
 	private ZvanjeService zvanjeService;
+	
+	@Autowired
+	@Lazy
+	private DodeljenoPravoPristupaService dodeljenoPravoPrisupaService;
 
 	@Autowired
 	@Lazy
@@ -43,12 +49,10 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 
 	@Autowired
 	@Lazy
-
 	private KatedraNastavnikService katedraNastavnikService;
 
 	@Autowired
 	@Lazy
-
 	private RealizacijaPredmetaService realizacijaPredmetaService;
 
 	@Autowired
@@ -62,8 +66,14 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 
 	@Override
 	protected NastavnikDTO convertToDTO(Nastavnik entity) {
+		Set<DodeljenoPravoPristupaDTO> dodeljenaPravaPristupa = new HashSet<>();
+		
+		for(DodeljenoPravoPristupa dpp: entity.getKorisnik().getDodeljenaPravaPristupa()) {
+			DodeljenoPravoPristupaDTO dppDTO = dodeljenoPravoPrisupaService.convertToDTO(dpp);
+			dodeljenaPravaPristupa.add(dppDTO);
+		}
 
-		KorisnikDTO korisnik = new KorisnikDTO(entity.getKorisnik().getId(), entity.getKorisnik().getEmail(), entity.getKorisnik().getLozinka(), entity.getKorisnik().getVidljiv());
+		KorisnikDTO korisnik = new KorisnikDTO(entity.getKorisnik().getId(), entity.getKorisnik().getEmail(), entity.getKorisnik().getLozinka(), dodeljenaPravaPristupa,entity.getKorisnik().getVidljiv());
 
 		ArrayList<ZvanjeDTO> zvanja = new ArrayList<>();
 
@@ -110,8 +120,15 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 
 	@Override
 	protected Nastavnik convertToEntity(NastavnikDTO dto) {
+		Set<DodeljenoPravoPristupa> dodeljenaPravaPristupa = new HashSet<>();
+		
+		for(DodeljenoPravoPristupaDTO dppDTO: dto.getKorisnik().getDodeljenaPravaPristupa()) {
+			DodeljenoPravoPristupa dpp = dodeljenoPravoPrisupaService.convertToEntity(dppDTO);
+			dodeljenaPravaPristupa.add(dpp);
+		}
+		
 
-		Korisnik korisnik = new Korisnik(dto.getKorisnik().getId(), dto.getKorisnik().getEmail(), dto.getKorisnik().getLozinka(), dto.getKorisnik().getVidljiv());
+		Korisnik korisnik = new Korisnik(dto.getKorisnik().getId(), dto.getKorisnik().getEmail(), dto.getKorisnik().getLozinka(), dto.getKorisnik().getVidljiv(), dodeljenaPravaPristupa);
 
 		ArrayList<Zvanje> zvanja = new ArrayList<>();
 

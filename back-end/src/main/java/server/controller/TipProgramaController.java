@@ -10,7 +10,7 @@ import server.service.BaseService;
 import server.service.TipProgramaService;
 
 @Controller
-@RequestMapping("/api/tip-programa")
+@RequestMapping("/api/tipovi-programa")
 public class TipProgramaController extends BaseController<TipPrograma, TipProgramaDTO, Long>{
 
 	@Autowired
@@ -21,4 +21,5 @@ public class TipProgramaController extends BaseController<TipPrograma, TipProgra
 		return tipProgramaService;
 	}
 
+/////////////////  getAll, getById svi @PermitAll
 }

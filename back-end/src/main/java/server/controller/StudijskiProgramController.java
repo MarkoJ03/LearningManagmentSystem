@@ -10,7 +10,7 @@ import server.service.BaseService;
 import server.service.StudijskiProgramService;
 
 @Controller
-@RequestMapping("/api/studijski-program")
+@RequestMapping("/api/studijski-programi")
 public class StudijskiProgramController extends BaseController<StudijskiProgram, StudijskiProgramDTO, Long>{
 
 	@Autowired

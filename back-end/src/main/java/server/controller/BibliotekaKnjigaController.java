@@ -9,7 +9,7 @@ import server.model.BibliotekaKnjiga;
 import server.service.BibliotekaKnjigaService;
 
 @Controller
-@RequestMapping("/api/BibliotekaKnjiga")
+@RequestMapping("/api/biblioteka-knjiga")
 public class BibliotekaKnjigaController extends BaseController<BibliotekaKnjiga, BibliotekaKnjigaDTO, Long> {
 
     @Autowired

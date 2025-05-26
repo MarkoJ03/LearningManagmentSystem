@@ -10,7 +10,7 @@ import server.service.KorisnikService;
 
 
 @Controller
-@RequestMapping("/api/Korisnik")
+@RequestMapping("/api/korisnici")
 public class KorisnikController extends BaseController<Korisnik, KorisnikDTO, Long> {
 
     @Autowired

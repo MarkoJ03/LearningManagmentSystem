@@ -10,7 +10,7 @@ import server.service.KatedraNastavnikService;
 
 
 @Controller
-@RequestMapping("/api/KatedraNastavnik")
+@RequestMapping("/api/katedra-nastavnik")
 public class KatedraNastavnikController extends BaseController<KatedraNastavnik, KatedraNastavnikDTO, Long> {
 
     @Autowired

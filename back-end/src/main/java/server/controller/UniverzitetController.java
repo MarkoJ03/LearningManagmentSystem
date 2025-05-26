@@ -10,7 +10,7 @@ import server.service.UniverzitetService;
 
 
 @Controller
-@RequestMapping("/api/Univerzitet")
+@RequestMapping("/api/univerziteti")
 public class UniverzitetController extends BaseController<Univerzitet, UniverzitetDTO, Long> {
 
     @Autowired
@@ -20,4 +20,6 @@ public class UniverzitetController extends BaseController<Univerzitet, Univerzit
     protected UniverzitetService getService() {
         return univerzitetService;
     }
+    
+/////////////////  getAll, getById svi @PermitAll
 }

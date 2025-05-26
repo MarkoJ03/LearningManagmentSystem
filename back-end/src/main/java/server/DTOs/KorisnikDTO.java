@@ -1,5 +1,7 @@
 package server.DTOs;
 
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +15,7 @@ public class KorisnikDTO {
 	private String email;
 
 	private String lozinka;
-
+	private Set<DodeljenoPravoPristupaDTO> dodeljenaPravaPristupa;
 
 	private Boolean vidljiv = true;
 

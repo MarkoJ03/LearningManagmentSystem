@@ -10,7 +10,7 @@ import server.service.BaseService;
 import server.service.NaucnaOblastService;
 
 @Controller
-@RequestMapping("/api/naucna-oblast")
+@RequestMapping("/api/naucne-oblasti")
 public class NaucnaOblastController extends BaseController<NaucnaOblast, NaucnaOblastDTO, Long>{
 
 	@Autowired

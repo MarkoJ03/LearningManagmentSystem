@@ -10,7 +10,7 @@ import server.service.DepartmanService;
 
 
 @Controller
-@RequestMapping("/api/Departman")
+@RequestMapping("/api/departmani")
 public class DepartmanController extends BaseController<Departman, DepartmanDTO, Long> {
 
     @Autowired

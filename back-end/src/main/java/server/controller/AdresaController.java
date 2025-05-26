@@ -10,7 +10,7 @@ import server.service.AdresaService;
 
 
 @Controller
-@RequestMapping("/api/Adresa")
+@RequestMapping("/api/adrese")
 public class AdresaController extends BaseController<Adresa, AdresaDTO, Long> {
 
     @Autowired

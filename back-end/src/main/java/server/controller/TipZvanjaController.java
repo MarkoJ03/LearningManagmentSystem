@@ -10,7 +10,7 @@ import server.service.BaseService;
 import server.service.TipZvanjaService;
 
 @Controller
-@RequestMapping("/api/tip-zvanja")
+@RequestMapping("/api/tipovi-zvanja")
 public class TipZvanjaController extends BaseController<TipZvanja, TipZvanjaDTO, Long>{
 
 	@Autowired

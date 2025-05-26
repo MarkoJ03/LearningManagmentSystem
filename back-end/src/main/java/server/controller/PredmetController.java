@@ -10,7 +10,7 @@ import server.service.BaseService;
 import server.service.PredmetService;
 
 @Controller
-@RequestMapping("/api/predmet")
+@RequestMapping("/api/predmeti")
 public class PredmetController extends BaseController<Predmet, PredmetDTO, Long>{
 
 	@Autowired
