@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import server.model.StudijskiProgram;
 
 
 @AllArgsConstructor
@@ -28,6 +29,8 @@ public class KatedraDTO {
 
 
 	private List<KatedraNastavnikDTO> nastavnici;
+	
+	private List<StudijskiProgramDTO> studijskiProgrami;
 
 	private Boolean vidljiv = true;
 }

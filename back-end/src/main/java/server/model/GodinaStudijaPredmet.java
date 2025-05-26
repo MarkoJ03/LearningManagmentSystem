@@ -24,10 +24,10 @@ public class GodinaStudijaPredmet {
 
 
     @ManyToOne(optional = false)
-	private GodinaStudija godinaStudija;
+	private GodinaStudija godinaStudija; 
 
     @ManyToOne(optional = false)
-	private Predmet predmet;
+	private Predmet predmet;   
 
     @Column(nullable = false)
     private Boolean vidljiv = true;

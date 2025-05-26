@@ -40,6 +40,9 @@ public class Katedra {
 
 	@OneToMany(mappedBy = "katedra")
 	private List<KatedraNastavnik> nastavnici;
+	
+	@OneToMany(mappedBy = "katedra")
+	private List<StudijskiProgram> studijskiProgrami;
 
 	@Column(nullable = false)
     private Boolean vidljiv = true;

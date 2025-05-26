@@ -1,10 +1,18 @@
 package server.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import server.DTOs.BibliotekaKnjigaDTO;
+import server.DTOs.GodinaStudijaPredmetDTO;
+import server.DTOs.StudentNaGodiniDTO;
 import server.model.BibliotekaKnjiga;
+import server.model.StudentNaGodini;
 import server.repository.BibliotekaKnjigaRepository;
 
 @Service
@@ -13,6 +21,17 @@ public class BibliotekaKnjigaService extends BaseService<BibliotekaKnjiga, Bibli
     @Autowired
     private BibliotekaKnjigaRepository bibliotekaKnjigaRepository;
 
+    
+    @Autowired
+    @Lazy
+    private BibliotekaService bService;
+    
+    @Autowired
+    @Lazy
+    private KnjigaService kService;
+    
+    
+    
     @Override
     protected CrudRepository<BibliotekaKnjiga, Long> getRepository() {
         return bibliotekaKnjigaRepository;
@@ -20,10 +39,13 @@ public class BibliotekaKnjigaService extends BaseService<BibliotekaKnjiga, Bibli
 
     @Override
     protected BibliotekaKnjigaDTO convertToDTO(BibliotekaKnjiga entity) {
+    	
+
+    	
         return new BibliotekaKnjigaDTO(
             entity.getId(),
-            null,
-            null,
+            bService.convertToDTO(entity.getBiblioteka()),
+            kService.convertToDTO(entity.getKnjiga()),
             entity.getVidljiv()
         );
     }
@@ -32,9 +54,16 @@ public class BibliotekaKnjigaService extends BaseService<BibliotekaKnjiga, Bibli
     protected BibliotekaKnjiga convertToEntity(BibliotekaKnjigaDTO dto) {
         return new BibliotekaKnjiga(
             dto.getId(),
-            null,
-            null,
+            bService.convertToEntity(dto.getBiblioteka()),
+            kService.convertToEntity(dto.getKnjiga()),
             dto.getVidljiv()
         );
     }
+    
+	public List<BibliotekaKnjigaDTO> findByBibliotekaId(Long bibliotekaId) {
+	    return bibliotekaKnjigaRepository.findByBibliotekaIdAndVidljivTrue(bibliotekaId)
+	            .stream()
+	            .map(this::convertToDTO)
+	            .collect(Collectors.toList());
+	}
 }

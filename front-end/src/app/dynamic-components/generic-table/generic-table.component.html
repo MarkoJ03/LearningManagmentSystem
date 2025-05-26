@@ -1,0 +1,23 @@
+<table>
+    <thead>
+        <tr>
+            @for (column of columns; track $index){
+                <td>{{column}}</td>
+            }
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        @for (row of data; track row.id){
+            <tr>
+                @for (column of columns; track $index){
+                    <td>{{getValue(row, column)}}</td>
+                }
+                <td>
+                    <button (click)="remove(row.id)">Ukloni</button>
+                    <button (click)="update(row)">Izmeni</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

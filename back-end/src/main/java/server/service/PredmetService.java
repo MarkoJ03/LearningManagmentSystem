@@ -43,8 +43,7 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 			realizacijePredmeta.add(rpDTO);
 		}
 
-
-		return new PredmetDTO(entity.getId(), entity.getEsbp(), entity.getObavezan(),
+		return new PredmetDTO(entity.getId(),entity.getNaziv(), entity.getEsbp(), entity.getObavezan(),
 				entity.getBrojPredavanja(), entity.getBrojVezbi(), entity.getIstrazivackiRad(),
 				entity.getBrojSemestara(), entity.getOpis(), entity.getCilj(), dokumentiPredmeta,null,null, realizacijePredmeta,entity.getVidljiv());
 
@@ -62,7 +61,7 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 			realizacijePredmeta.add(rp);
 		}
 
-		return new Predmet(dto.getId(), dto.getEsbp(), dto.getObavezan(), dto.getBrojPredavanja(),
+		return new Predmet(dto.getId(),dto.getNaziv(), dto.getEsbp(), dto.getObavezan(), dto.getBrojPredavanja(),
 				dto.getBrojVezbi(), dto.getIstrazivackiRad(), dto.getBrojSemestara(), dto.getOpis(),
 				dto.getCilj(), dokumentiPredmeta,null,null, realizacijePredmeta,dto.getVidljiv());
 

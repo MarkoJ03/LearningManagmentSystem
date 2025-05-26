@@ -19,6 +19,7 @@ public class PredmetDTO {
 
 	private Long id;
 
+	private String naziv;
 
 	private Integer esbp;
 

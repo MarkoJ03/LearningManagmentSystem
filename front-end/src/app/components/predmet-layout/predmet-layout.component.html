@@ -1,0 +1,34 @@
+@if (predmet) {
+  <div>
+    <app-univerzitet-header></app-univerzitet-header>
+
+    <div class="predmet-detalji">
+      <h1>{{ predmet.naziv }}</h1>
+
+      <div class="detalji-kartica">
+        <p><strong>ESBP:</strong> {{ predmet.esbp }}</p>
+        <p><strong>Obavezan:</strong> {{ predmet.obavezan ? 'Da' : 'Ne' }}</p>
+        <p><strong>Broj predavanja:</strong> {{ predmet.brojPredavanja }}</p>
+        <p><strong>Broj vežbi:</strong> {{ predmet.brojVezbi }}</p>
+        <p><strong>Broj semestara:</strong> {{ predmet.brojSemestara }}</p>
+        <p><strong>Istraživački rad:</strong> {{ predmet.istrazivackiRad ? 'Uključen' : 'Ne' }}</p>
+        <p><strong>Opis:</strong> {{ predmet.opis }}</p>
+        <p><strong>Cilj:</strong> {{ predmet.cilj }}</p>
+      </div>
+
+      @if (predmet.dokumentiPredmeta?.silabus || predmet.dokumentiPredmeta?.akreditacija) {
+        <div class="dokumenta">
+          <h3>Dokumenti</h3>
+          @if (predmet.dokumentiPredmeta?.silabus) {
+            <p><a [href]="'/assets/pdf/' + predmet.dokumentiPredmeta.silabus" target="_blank">Silabus</a></p>
+          }
+          @if (predmet.dokumentiPredmeta?.akreditacija) {
+            <p><a [href]="'/assets/pdf/' + predmet.dokumentiPredmeta.akreditacija" target="_blank">Akreditacija</a></p>
+          }
+        </div>
+      }
+    </div>
+
+    <app-univerzitet-footer></app-univerzitet-footer>
+  </div>
+}

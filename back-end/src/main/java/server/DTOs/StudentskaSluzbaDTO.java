@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import server.model.Biblioteka;
 
 
 @Data
@@ -20,7 +21,7 @@ public class StudentskaSluzbaDTO {
 
 		private List<InventarDTO> inventari;
 
-	    private BibliotekaDTO biblioteka;
+		private List<BibliotekaDTO> biblioteke;
 
 		private List<OsobljeDTO> Osoblje;
 

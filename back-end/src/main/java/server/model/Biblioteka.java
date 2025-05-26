@@ -8,6 +8,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -24,10 +25,10 @@ public class Biblioteka {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "biblioteka")
-	private List<BibliotekaKnjiga> bibliotekaKnjiga;
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "biblioteka")
+//	private List<BibliotekaKnjiga> bibliotekaKnjiga;
 
-	@OneToOne
+	@ManyToOne
 	private StudentskaSluzba studentskaSluzba;
 
 	@Column(nullable = false)

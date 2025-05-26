@@ -1,0 +1,34 @@
+@if (godineStudija.length > 0) {
+  <div>
+    <app-univerzitet-header></app-univerzitet-header>
+
+    <div class="godine-section">
+      <h2 class="naslov-programa">{{ studijskiProgram?.naziv }}</h2>
+
+      @for (g of godineStudija; track g.id) {
+        <div class="godina-kartica">
+          <h3>{{ g.godina }} godina</h3>
+
+          <div *ngIf="predmetiPoGodini[g.id]?.length">
+            <h4 class="podnaslov">Predmeti:</h4>
+
+            @for (p of predmetiPoGodini[g.id]; track p.id) {
+              <a class="predmet-kartica-link" [routerLink]="['/predmet', p.id]">
+                <div class="predmet-kartica">
+                  <strong>{{ p.naziv }}</strong>
+                  <p><strong>Opis:</strong> {{ p.opis }}</p>
+                </div>
+              </a>
+            }
+          </div>
+
+          <div *ngIf="!predmetiPoGodini[g.id]?.length" class="bez-predmeta">
+            <p>Nema predmeta za ovu godinu.</p>
+          </div>
+        </div>
+      }
+    </div>
+
+    <app-univerzitet-footer></app-univerzitet-footer>
+  </div>
+}

@@ -31,8 +31,8 @@ public class StudentskaSluzba {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
 	private List<Inventar> inventari;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
-    private Biblioteka biblioteka;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
+    private List<Biblioteka> biblioteke;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
 	private List<Osoblje> Osoblje;

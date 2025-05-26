@@ -1,0 +1,55 @@
+.katedre-section {
+  padding: 2rem;
+  background-color: #f4f6f8;
+}
+
+.katedra-kartica {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-left: 6px solid brown;
+  transition: transform 0.2s ease-in-out;
+}
+
+.katedra-kartica:hover {
+  transform: scale(1.02);
+  background-color: #fff3eb;
+}
+
+.katedra-kartica h3 {
+  margin-top: 0;
+  color: brown;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.podaci {
+  padding-left: 1rem;
+  color: #333;
+}
+
+.podaci strong {
+  display: block;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.podaci p {
+  margin: 0.25rem 0 0.25rem 1rem;
+  font-size: 0.95rem;
+}
+
+.naslov {
+      max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}

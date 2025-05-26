@@ -15,7 +15,7 @@ public class BibliotekaDTO {
 
     private Long id;
 
-	private List<BibliotekaKnjigaDTO> bibliotekaKnjiga;
+//	private List<BibliotekaKnjigaDTO> bibliotekaKnjiga;
 
 	private StudentskaSluzbaDTO studentskaSluzba;
 

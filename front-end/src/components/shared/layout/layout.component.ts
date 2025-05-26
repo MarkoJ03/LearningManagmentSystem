@@ -1,15 +1,31 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { UniverzitetHeaderComponent } from '../univerzitet-header/univerzitet-header.component';
 import { UniverzitetFooterComponent } from '../univerzitet-footer/univerzitet-footer.component';
 import { ObjavaCardComponent } from '../../ui/objava-card/objava-card.component';
-import { UserHeaderComponent } from '../user-header/user-header.component';
+import { ObjavaService } from '../../../app/services/objava.service';
+
 
 @Component({
   selector: 'app-layout',
-  imports: [UniverzitetHeaderComponent, UniverzitetFooterComponent, ObjavaCardComponent, UserHeaderComponent],
+  standalone: true,
+  imports: [
+    CommonModule,
+    UniverzitetHeaderComponent,
+    UniverzitetFooterComponent,
+    ObjavaCardComponent
+  ],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.css'
+  styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent {
+  objave: any[] = [];
 
+  constructor(private objavaService: ObjavaService) {}
+
+  ngOnInit(): void {
+    this.objavaService.getAll().subscribe(data => {
+      this.objave = data;
+    });
+  }
 }
