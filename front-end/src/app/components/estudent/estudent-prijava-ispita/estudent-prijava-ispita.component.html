@@ -1,0 +1,26 @@
+<h2>Prijava ispita</h2>
+
+@if (prijavljiviPredmeti.length === 0) {
+  <p>Svi predmeti su polozeni. Nema predmeta za prijavu.</p>
+} @else {
+  <table class="prijava-tabela">
+    <thead>
+      <tr>
+        <th>Naziv</th>
+        <th>ESPB</th>
+        <th>Akcija</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (predmet of prijavljiviPredmeti; track predmet.id) {
+        <tr>
+          <td><strong>{{ predmet.naziv }}</strong></td>
+          <td>{{ predmet.esbp }}</td>
+          <td>
+            <button (click)="prijavi(predmet.id)">Пријави</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}

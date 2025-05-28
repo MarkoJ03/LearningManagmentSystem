@@ -1,0 +1,44 @@
+<h2>Aktivnosti po predmetima</h2>
+
+@if (sviPredmeti.length === 0) {
+  <p>Нема доступних предмета.</p>
+} @else {
+  <div class="predmeti-lista">
+    @for (predmet of sviPredmeti; track predmet.id) {
+      <button (click)="izaberiPredmet(predmet.id)">
+        {{ predmet.naziv }}
+      </button>
+    }
+  </div>
+
+  @if (odabraniPredmetId !== null) {
+    <h3>Evaluacije za predmet: {{ getNazivPredmeta(odabraniPredmetId!) }}</h3>
+
+    @if (!(evaluacijePoPredmetu.has(odabraniPredmetId!))) {
+      <p>Nema evaluacija za ovaj predmet.</p>
+    } @else {
+      <table class="aktivnosti-tabela">
+        <thead>
+          <tr>
+            <th>Tip</th>
+            <th>Bodovi</th>
+            <th>Napomena</th>
+            <th>Nastavnik</th>
+            <th>Vreme</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ev of evaluacijePoPredmetu.get(odabraniPredmetId!) ?? []; track ev.vreme) {
+            <tr>
+              <td><strong>{{ ev.tip }}</strong></td>
+              <td>{{ ev.bodovi }}</td>
+              <td>{{ ev.napomena }}</td>
+              <td>{{ ev.nastavnik }}</td>
+              <td>{{ ev.vreme | date: 'short' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  }
+}

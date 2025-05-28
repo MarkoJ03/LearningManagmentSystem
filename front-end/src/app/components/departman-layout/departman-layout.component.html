@@ -1,10 +1,11 @@
 @if (departman) {
-  <div>
-    <app-univerzitet-header></app-univerzitet-header>
+  <div class="sve">
 
     <div class="naslov">
     <h1>{{departman.naziv}}</h1>
+  
     </div>
+    <hr>
     <div class="katedre-section">
       <h2>Katedre</h2>
 
@@ -39,6 +40,5 @@
 
     <a [routerLink]="['/fakultet', departman.fakultet.id]" class="nazad-link">← Nazad na fakultet</a>
 
-    <app-univerzitet-footer></app-univerzitet-footer>
   </div>
 }

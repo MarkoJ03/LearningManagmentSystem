@@ -1,3 +1,9 @@
+.sve{
+  background-color: #f4f6f8;
+  font-family: sans-serif;
+}
+
+
 .programi-section {
   padding: 2rem;
   background-color: #f4f6f8;
@@ -18,6 +24,7 @@
 
 .program-kartica:hover {
   transform: scale(1.02);
+  background-color: #fff3eb;
 }
 
 .program-kartica h3 {
@@ -27,4 +34,8 @@
   border-bottom: 1px solid #ddd;
   padding-bottom: 0.5rem;
   margin-bottom: 1rem;
+}
+
+h1{
+  text-align: center;
 }

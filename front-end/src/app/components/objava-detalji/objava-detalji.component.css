@@ -1,0 +1,24 @@
+.objava-detalji {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+  text-align: left;
+}
+
+.objava-detalji h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #a41c1c;
+  text-align: center;
+}
+
+.objava-detalji p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  white-space: pre-line; 
+}

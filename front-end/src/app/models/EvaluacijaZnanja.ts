@@ -10,8 +10,8 @@ export interface EvaluacijaZnanja {
   kalendar: Kalendar;
   nastavnik: Nastavnik;
   predmet: Predmet;
-  tip_evaluacije: TipEvaluacije;
-  vreme_pocetka: Date;
-  vreme_zavrsetka: Date;
+  tipEvaluacije: TipEvaluacije;
+  vremePocetka: Date;
+  vremeZavrsetka: Date;
   ishodEvaluacije?: IshodEvaluacije[];
 }

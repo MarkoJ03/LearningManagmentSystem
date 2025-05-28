@@ -40,6 +40,7 @@
 
 .predmet-kartica-link:hover .predmet-kartica {
   transform: scale(1.02);
+  background-color: #fff3eb;
 }
 
 .predmet-kartica {
@@ -59,4 +60,9 @@
   font-style: italic;
   color: #666;
   margin-top: 1rem;
+}
+
+.sve{
+  background-color: #f4f6f8;
+  font-family: sans-serif;
 }

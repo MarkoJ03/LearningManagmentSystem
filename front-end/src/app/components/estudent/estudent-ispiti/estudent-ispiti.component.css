@@ -1,0 +1,34 @@
+.ispiti-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: sans-serif;
+}
+
+.ispiti-tabela th,
+.ispiti-tabela td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.ispiti-tabela thead {
+  background-color: brown;
+  color: white;
+}
+
+.ispiti-tabela tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.rezime {
+  background-color: #efefef;
+  font-weight: bold;
+}
+
+h2 {
+  font-family: sans-serif;
+}
+
+
+

@@ -9,60 +9,83 @@ import { DepartmanLayoutComponent } from './components/departman-layout/departma
 import { KatedraLayoutComponent } from './components/katedra-layout/katedra-layout.component';
 import { StudijskiProgramLayoutComponent } from './components/studijski-program-layout/studijski-program-layout.component';
 import { PredmetLayoutComponent } from './components/predmet-layout/predmet-layout.component';
-import { EstudentObjaveComponent } from './components/estudent-objave/estudent-objave.component';
-import { StudentSelectionComponent } from './components/student-selection/student-selection.component';
-import { StudentDashboardComponent } from './components/student-dashboard/student-dashboard.component';
+import { EstudentObjaveComponent } from './components/estudent/estudent-objave/estudent-objave.component';
 import { EstudentLayoutComponent } from './components/estudent/estudent-layout/estudent-layout.component';
+import { StudentSelectionComponent } from './components/estudent/student-selection/student-selection.component';
+import { StudentDashboardComponent } from './components/student-dashboard/student-dashboard.component';
 import { BibliotekaFormaComponent } from './components/biblioteka-forma/biblioteka-forma.component';
 import { BibliotekeComponent } from './components/biblioteke/biblioteke.component';
-// import {  FakultetComponentComponent } from './components/fakultet-component/fakultet-component.component';
+import { EstudentPredmetiComponent } from './components/estudent/estudent-predmeti/estudent-predmeti.component';
+import { EstudentIspitiComponent } from './components/estudent/estudent-ispiti/estudent-ispiti.component';
+import { EstudentPrijavaIspitaComponent } from './components/estudent/estudent-prijava-ispita/estudent-prijava-ispita.component';
+import { EstudentAktivnostiComponent } from './components/estudent/estudent-aktivnosti/estudent-aktivnosti.component';
+import { SvObrazacComponent } from './components/estudent/estudent-sv-obrazac/estudent-sv-obrazac.component';
+import { EstudentPodaciOStudentuComponent } from './components/estudent/estudent-podaci-o-studentu/estudent-podaci-o-studentu.component';
+import { ObjavaDetaljiComponent } from './components/objava-detalji/objava-detalji.component';
+import { PocetnaComponent } from './components/pocetna/pocetna.component';
+
+
 
 export const routes: Routes = [
+
+
     {
-        path: 'login',
-        component: LoginFormComponent
-    }, 
-    {
-        path: '',
-        component: LayoutComponent
-    },
-    {
-        //ne treba imati role admin menjacemo nasim role
         path: 'es',
         component: UserHeaderComponent,
         data: {requiredRoles: ["ROLE_ADMIN"]},
         canActivate: [authGuard]
     },
 
-     { path: 'fakultet/:id', component: FakultetLayoutComponent },
 
-    { path: 'departman/:id', component: DepartmanLayoutComponent },
-
-     { path: 'katedra/:id', component: KatedraLayoutComponent },
-
-    { path: 'studijskiProgram/:id', component: StudijskiProgramLayoutComponent },
-
-    { path: 'predmet/:id', component: PredmetLayoutComponent },
 
     { path: 'bibliotekaForma', component: BibliotekaFormaComponent },
 
-        { path: 'biblioteke', component: BibliotekeComponent },
+    { path: 'biblioteke', component: BibliotekeComponent },
 
     { path: 'biblioteke/izmeni/:id', component: BibliotekaFormaComponent },
-    // { path: 'estudent/objave', component: EstudentObjaveComponent },
 
-      { path: 'student/:id', component: StudentSelectionComponent },
-    //   { path: 'studentNaGodini/:id', component: StudentDashboardComponent }
+    { path: 'student/:id', component: StudentSelectionComponent },
+
+
+
+      {
+        path:'',
+        component: LayoutComponent,
+        children: [
+     { path: '', component: PocetnaComponent },
+     { path: 'fakultet/:id', component: FakultetLayoutComponent },
+     { path: 'departman/:id', component: DepartmanLayoutComponent },
+     { path: 'katedra/:id', component: KatedraLayoutComponent },
+     { path: 'studijskiProgram/:id', component: StudijskiProgramLayoutComponent },
+     { path: 'predmet/:id', component: PredmetLayoutComponent },
+     { path: 'objava/:id', component: ObjavaDetaljiComponent },
+         {
+        path: 'login',
+        component: LoginFormComponent
+    }, 
+        ]
+      },
+
 
 {
     path: 'studentNaGodini/:id/estudent',
     component: EstudentLayoutComponent,
     children: [
       { path: 'objave', component: EstudentObjaveComponent },
-      // Dodaj dalje:
-      // { path: 'predmeti', component: EstudentPredmetiComponent },
-      // { path: 'prijava-ispita', component: EstudentPrijavaIspitaComponent },
+
+      { path: 'predmeti', component: EstudentPredmetiComponent },
+
+      { path: 'ispiti', component: EstudentIspitiComponent },
+
+      { path: 'prijava-ispita', component: EstudentPrijavaIspitaComponent },
+      { path: 'aktivnosti', component: EstudentAktivnostiComponent }
+,
+      { path: 'sv-obrazac', component: SvObrazacComponent },
+
+      { path: 'podaci-o-studentu', component: EstudentPodaciOStudentuComponent },
+
       { path: '', redirectTo: 'objave', pathMatch: 'full' }
+
     ]
   }
   

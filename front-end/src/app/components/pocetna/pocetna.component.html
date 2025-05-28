@@ -1,0 +1,14 @@
+
+
+  
+  <div id="objave"> 
+    @for (objava of objave; track objava.id) {
+      <app-objava-card
+        [naslov]="objava.naslov"
+        [sadrzaj]="objava.sadrzaj"
+        [id]="objava.id">
+      </app-objava-card>
+    }
+  </div>
+
+

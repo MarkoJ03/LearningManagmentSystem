@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EstudentHeaderComponent } from '../estudent-header/estudent-header.component';
-import { EstudentSidebarComponent } from '../estudent-sidebar/estudent-sidebar.component';
-import { ObjavaService } from '../../services/objava.service';
-import { ObjavaCardComponent } from '../../../components/ui/objava-card/objava-card.component';
+
+import { ObjavaService } from '../../../services/objava.service';
+import { ObjavaCardComponent } from '../../../../components/ui/objava-card/objava-card.component';
 import { ActivatedRoute } from '@angular/router';
+import { EstudentSidebarComponent } from '../estudent-sidebar/estudent-sidebar.component';
 
 @Component({
   selector: 'app-estudent-objave',
   standalone: true,
   imports: [
     CommonModule,
-    EstudentHeaderComponent,
-    EstudentSidebarComponent,
     ObjavaCardComponent
   ],
   templateUrl: './estudent-objave.component.html',
