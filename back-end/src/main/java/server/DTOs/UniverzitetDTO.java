@@ -17,6 +17,9 @@ public class UniverzitetDTO {
 	private Date datumOsnivanja;
 	private AdresaDTO adresa;
 	private List<FakultetDTO> fakulteti;
+	
+	private String email;
+	private String kontakt;
 
 	private Boolean vidljiv = true;
 }

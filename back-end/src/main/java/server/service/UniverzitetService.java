@@ -48,7 +48,7 @@ public class UniverzitetService extends BaseService<Univerzitet, UniverzitetDTO,
 		 }
 
 
-		return new UniverzitetDTO(entity.getId(),entity.getNaziv(),entity.getDatumOsnivanja(),adresaService.convertToDTO(entity.getAdresa()),fakulteti, null);
+		return new UniverzitetDTO(entity.getId(),entity.getNaziv(),entity.getDatumOsnivanja(),adresaService.convertToDTO(entity.getAdresa()),fakulteti, entity.getEmail(), entity.getKontakt(), null);
 
 
 	}
@@ -65,7 +65,7 @@ public class UniverzitetService extends BaseService<Univerzitet, UniverzitetDTO,
 		 }
 
 
-		return new Univerzitet(dto.getId(),dto.getNaziv(),dto.getDatumOsnivanja(),adresaService.convertToEntity(dto.getAdresa()),fakulteti, null);
+		return new Univerzitet(dto.getId(),dto.getNaziv(),dto.getDatumOsnivanja(),adresaService.convertToEntity(dto.getAdresa()),fakulteti, dto.getEmail(),dto.getKontakt(), null);
 
 		}
 
