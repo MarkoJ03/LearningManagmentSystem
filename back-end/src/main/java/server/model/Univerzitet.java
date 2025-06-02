@@ -38,8 +38,15 @@ public class Univerzitet {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "univerzitet")
 	private List<Fakultet> fakulteti;
-
+	
+	@Column(nullable = false)
+	private String email;
+	
+	@Column(nullable = false)
+	private String kontakt;
 
 	@Column(nullable = false)
     private Boolean vidljiv = true;
+	
+
 }
