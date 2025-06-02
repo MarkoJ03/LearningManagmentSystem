@@ -1,0 +1,10 @@
+<app-base-table 
+  [data]="predmeti" 
+  [displayedColumns]="kolone" 
+  (edit)="izmeni($event)" 
+  (delete)="obrisi($event)"
+  (details)="detalji($event)"
+  (cancelEvent)="otkazi()">
+</app-base-table>
+
+<a routerLink="/predmeti/forma" >Dodaj predmet</a>

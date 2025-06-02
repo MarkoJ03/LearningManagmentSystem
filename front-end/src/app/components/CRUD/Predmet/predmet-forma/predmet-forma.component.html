@@ -1,1 +1,5 @@
-<p>predmet-forma works!</p>
+<app-genericka-forma
+  [formaModel]="formaModel"
+  (submitEvent)="sacuvajPredmet($event)"
+  (cancelEvent)="otkazi()">
+</app-genericka-forma>

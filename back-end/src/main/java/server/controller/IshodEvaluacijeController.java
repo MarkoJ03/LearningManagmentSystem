@@ -12,7 +12,7 @@ import server.service.BibliotekaService;
 import server.service.IshodEvaluacijeService;
 
 @Controller
-@RequestMapping("/api/IshodEvaluacije")
+@RequestMapping("/api/ishodi-evaluacije")
 public class IshodEvaluacijeController extends BaseController<IshodEvaluacije, IshodEvaluacijeDTO, Long> {
 
     @Autowired

@@ -3,7 +3,7 @@ import { Predmet } from "./Predmet";
 
 
 export interface GrupaStudenataPredmet {
-  id: number;
+  id?: number;
   vidljiv: boolean;
   grupaStudenata: GrupaStudenata;  
   predmet: Predmet;                 

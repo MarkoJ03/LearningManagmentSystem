@@ -3,7 +3,7 @@
 <p *ngIf="biblioteka">
 {{biblioteka.studentska_sluzba}}
 <li *ngFor="let knjiga of knjige; index as i; first as isFirst">
-  {{i}}/{{biblioteka.bibliotekaKnjiga.length}}. {{knjiga}} <span *ngIf="isFirst">default</span>
+  {{i}}/{{biblioteka.knjige?.length}}. {{knjiga}} <span *ngIf="isFirst">default</span>
 </li>
 
 </p>

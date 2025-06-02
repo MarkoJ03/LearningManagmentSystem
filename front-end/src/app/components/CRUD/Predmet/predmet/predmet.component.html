@@ -1,0 +1,36 @@
+<h2>Detalji o predmetu</h2>
+
+<p *ngIf="predmet">
+    {{ predmet.naziv }}
+    {{ predmet.esbp }}
+    {{ predmet.obavezan }}
+    {{ predmet.brojPredavanja }}
+    {{ predmet.brojVezbi }}
+    {{ predmet. istrazivackiRad }}
+    {{ predmet.brojSemestara }}
+    {{ predmet.opis }}
+    {{ predmet.cilj }}
+    {{ predmet.dokumentiPredmeta.silabus }}
+    {{ predmet.dokumentiPredmeta.akreditacija }}
+
+    <li *ngFor="let evaluacijaZnanja of evaluacijeZnanja; index as i;">
+        {{i}}/{{predmet.evaluacijeZnanja?.length}}. {{evaluacijaZnanja}}
+    </li>
+
+        <li *ngFor="let grupaStudenata of grupeStudenata; index as i;">
+        {{i}}/{{predmet.grupaStudenataPredmet?.length}}. {{grupaStudenata}}
+    </li>
+
+    <li *ngFor="let realizacijaPredmeta of realizacijePredmeta; index as i;">
+        {{i}}/{{predmet.realizacijePredmeta?.length}}. {{realizacijaPredmeta}}
+    </li>
+
+    <li *ngFor="let obavestenje of obavestenja; index as i;">
+        {{i}}/{{predmet.obavestenja?.length}}. {{obavestenje}}
+    </li>
+
+    {{ predmet.vidljiv }}
+</p>
+
+<a routerLink="/predmeti">← Nazad na listu svih predmeta</a>
+

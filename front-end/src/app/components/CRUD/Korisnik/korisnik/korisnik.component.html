@@ -1,0 +1,8 @@
+<h2>Detalji o korisniku</h2>
+
+<p *ngIf="korisnik">
+  {{ korisnik.email }}
+  {{ korisnik.vidljiv }}
+</p>
+
+<a routerLink="/korisnici">← Nazad na listu korisnika</a>

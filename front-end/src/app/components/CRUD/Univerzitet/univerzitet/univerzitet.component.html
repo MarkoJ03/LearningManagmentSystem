@@ -1,0 +1,15 @@
+<h2>Detalji o univerzitetu</h2>
+
+<p *ngIf="univerzitet">
+    {{ univerzitet.naziv }}
+    {{ univerzitet.adresa }}
+    {{ univerzitet.datumOsnivanja}}
+
+    <li *ngFor="let fakultet of fakulteti; index as i;">
+        {{i}}/{{univerzitet.fakulteti?.length}}. {{fakultet}}
+    </li>
+
+    {{ univerzitet.vidljiv }}
+</p>
+
+<a routerLink="/univerziteti">← Nazad na listu svih univerziteta</a>

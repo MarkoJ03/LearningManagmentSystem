@@ -21,5 +21,4 @@ public class UniverzitetController extends BaseController<Univerzitet, Univerzit
         return univerzitetService;
     }
     
-/////////////////  getAll, getById svi @PermitAll
 }

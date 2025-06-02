@@ -1,0 +1,15 @@
+<h2>Detalji o realizaciji predmeta</h2>
+
+<p *ngIf="realizacijaPredmeta">
+    {{ realizacijaPredmeta.nastavnik.ime && realizacijaPredmeta.nastavnik.prezime }}
+    {{ realizacijaPredmeta.tipNastave.naziv }}
+    {{ realizacijaPredmeta.predmet.naziv }}
+
+    <li *ngFor="let terminNastave of terminiNastave; index as i; first as isFirst">
+        {{i}}/{{realizacijaPredmeta.terminiNastave?.length}}. {{terminNastave}} 
+    </li>
+
+    {{ realizacijaPredmeta.vidljiv }}
+</p>
+
+<a routerLink="/realizacije-predmeta">← Nazad na listu realizacija predmeta</a>

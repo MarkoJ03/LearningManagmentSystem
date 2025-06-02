@@ -1,0 +1,13 @@
+<h2>Detalji o naucnoj oblasti</h2>
+
+<p *ngIf="naucnaOblast">
+    {{ naucnaOblast.naziv }}
+
+    <li *ngFor="let zvanje of zvanja; index as i; first as isFirst">
+        {{i}}/{{naucnaOblast.zvanja?.length}}. {{zvanje}} 
+    </li>
+
+    {{ naucnaOblast.vidljiv }}
+</p>
+
+<a routerLink="/naucne-oblasti">← Nazad na listu naucnih oblasti</a>

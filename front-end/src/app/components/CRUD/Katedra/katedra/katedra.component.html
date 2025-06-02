@@ -1,0 +1,21 @@
+<h2>Detalji o katedri</h2>
+
+<p *ngIf="katedra">
+    {{ katedra.naziv }}
+    {{ katedra.departman.naziv }}
+    {{ katedra.sefKatedre.ime && katedra.sefKatedre.prezime }}
+    {{ katedra.sekretarKatedre.ime && katedra.sekretarKatedre.prezime }}
+
+    <li *ngFor="let studijskiProgram of studijskiProgrami; index as i;">
+        {{i}}/{{katedra.studijskiProgrami?.length}}. {{studijskiProgram}}
+    </li>
+
+    <li *ngFor="let nastavnik of nastavnici; index as i;">
+        {{i}}/{{katedra.nastavnici?.length}}. {{nastavnik}}
+    </li>
+
+    {{ katedra.vidljiv }}
+</p>
+
+<a routerLink="/katedre">← Nazad na listu svih katedri</a>
+

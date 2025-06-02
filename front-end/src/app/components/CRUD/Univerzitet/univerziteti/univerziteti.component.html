@@ -1,0 +1,10 @@
+<app-base-table 
+  [data]="univerziteti" 
+  [displayedColumns]="kolone" 
+  (edit)="izmeni($event)" 
+  (delete)="obrisi($event)"
+  (details)="detalji($event)"
+  (cancelEvent)="otkazi()">
+</app-base-table>
+
+<a routerLink="/univerziteti/forma" >Dodaj univerzitet</a>

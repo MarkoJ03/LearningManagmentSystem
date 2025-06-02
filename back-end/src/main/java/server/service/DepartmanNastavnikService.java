@@ -1,9 +1,13 @@
 package server.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import server.DTOs.BibliotekaKnjigaDTO;
 import server.DTOs.DepartmanDTO;
 import server.DTOs.DepartmanNastavnikDTO;
 import server.DTOs.NastavnikDTO;
@@ -39,6 +43,11 @@ public class DepartmanNastavnikService extends BaseService<DepartmanNastavnik, D
 				dto.getVidljiv());
 		}
 
-
+	public List<DepartmanNastavnikDTO> findByDepartmanId(Long departmanId) {
+	    return departmanNastavnikRepository.findByDepartmanIdAndVidljivTrue(departmanId)
+	            .stream()
+	            .map(this::convertToDTO)
+	            .collect(Collectors.toList());
+	}
 
 }

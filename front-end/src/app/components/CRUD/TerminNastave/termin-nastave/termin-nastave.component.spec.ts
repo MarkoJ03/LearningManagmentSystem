@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PredmetTabelaComponent } from './predmet-tabela.component';
+import { TerminNastaveComponent } from './termin-nastave.component';
 
-describe('PredmetTabelaComponent', () => {
-  let component: PredmetTabelaComponent;
-  let fixture: ComponentFixture<PredmetTabelaComponent>;
+describe('TerminNastaveComponent', () => {
+  let component: TerminNastaveComponent;
+  let fixture: ComponentFixture<TerminNastaveComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PredmetTabelaComponent]
+      imports: [TerminNastaveComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PredmetTabelaComponent);
+    fixture = TestBed.createComponent(TerminNastaveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

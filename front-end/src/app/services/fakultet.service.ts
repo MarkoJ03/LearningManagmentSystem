@@ -9,7 +9,7 @@ import { BaseService } from './base.service';
 export class FakultetService extends BaseService<Fakultet> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/Fakultet');
+    this.setUrl('http://localhost:8080/api/fakulteti');
   }
 }
 

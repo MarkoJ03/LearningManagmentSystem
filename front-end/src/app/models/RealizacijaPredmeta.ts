@@ -10,7 +10,6 @@ export interface RealizacijaPredmeta {
   nastavnik: Nastavnik;
   tipNastave: TipNastave;
   predmet: Predmet;
-  ishodPredmeta: IshodPredmeta;
   terminiNastave?: TerminNastave[];
   vidljiv: boolean;
 }

@@ -1,0 +1,37 @@
+<h2>Detalji o nastavniku</h2>
+
+<p *ngIf="nastavnik">
+    {{ nastavnik.korisnik.email }}
+    {{ nastavnik.ime }}
+    {{ nastavnik.prezime }}
+    {{ nastavnik.jmbg }}
+
+    <li *ngFor="let zvanje of zvanja; index as i;">
+        {{i}}/{{nastavnik.zvanja?.length}}. {{zvanje}}
+    </li>
+
+    <li *ngFor="let departman of departmani; index as i;">
+        {{i}}/{{nastavnik.departmani?.length}}. {{departman}}
+    </li>
+
+    <li *ngFor="let katedra of katedre; index as i;">
+        {{i}}/{{nastavnik.katedre?.length}}. {{katedra}}
+    </li>
+
+    <li *ngFor="let realizacijaPredmeta of realizacijePredmeta; index as i;">
+        {{i}}/{{nastavnik.realizacijePredmeta?.length}}. {{realizacijaPredmeta}}
+    </li>
+
+    <li *ngFor="let obavestenje of obavestenja; index as i;">
+        {{i}}/{{nastavnik.obavestenja?.length}}. {{obavestenje}}
+    </li>
+
+    <li *ngFor="let evaluacijaZnanja of evaluacijeZnanja; index as i;">
+        {{i}}/{{nastavnik.evaluacijeZnanja?.length}}. {{evaluacijaZnanja}}
+    </li>
+
+    {{ nastavnik.vidljiv }}
+</p>
+
+<a routerLink="/nastavnici">← Nazad na listu svih nastavnika</a>
+

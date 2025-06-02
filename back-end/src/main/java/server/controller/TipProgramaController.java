@@ -21,5 +21,4 @@ public class TipProgramaController extends BaseController<TipPrograma, TipProgra
 		return tipProgramaService;
 	}
 
-/////////////////  getAll, getById svi @PermitAll
 }

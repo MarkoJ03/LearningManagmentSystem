@@ -26,9 +26,6 @@ export class BibliotekaFormaComponent implements OnInit {
   selektovaneKnjige: Knjiga[] = [];
   kreiranaBiblioteka: Biblioteka | null = null;
 
-
-  
-
   constructor(
     private bibliotekaService: BibliotekaService,
     private studentskaSluzbaService: StudentskaSluzbaService,

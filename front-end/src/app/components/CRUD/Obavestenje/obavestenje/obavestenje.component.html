@@ -1,0 +1,11 @@
+<h2>Detalji o obavestenju</h2>
+
+<p *ngIf="obavestenje">
+    {{ obavestenje.nastavnik.ime && obavestenje.nastavnik.prezime}}
+    {{ obavestenje.naslov }}
+    {{ obavestenje.sadrzaj }}
+    {{ obavestenje.predmet.naziv }}
+    {{ obavestenje.vidljiv }}
+</p>
+
+<a routerLink="/obavestenja">← Nazad na listu svih obavestenja</a>
