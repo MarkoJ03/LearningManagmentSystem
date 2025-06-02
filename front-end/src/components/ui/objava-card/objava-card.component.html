@@ -1,5 +1,7 @@
-<section>
-  <img src="harvard.png" alt="slika-objave" />
-  <h3>{{ naslov }}</h3>
-  <p>{{ sadrzaj }}</p>
-</section>
+<a [routerLink]="['/objava', id]">
+  <section>
+    <img src="harvard.png" alt="slika-objave" />
+    <h3>{{ naslov }}</h3>
+    <p>{{ sadrzaj }}</p>
+  </section>
+</a>

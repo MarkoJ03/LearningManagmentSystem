@@ -20,7 +20,10 @@ public class DokumentiPredmeta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String silabus;
+    @OneToOne
+    private Silabus silabus;
+    
+    
     private String akreditacija;
 
     @OneToOne(mappedBy = "dokumentiPredmeta")

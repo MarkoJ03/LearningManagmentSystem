@@ -1,15 +1,9 @@
 <header>
-  <section>
-    <img src="harvard.png" alt="slika-univerziteta" />
-    <div>
-      <h1>Početna strana univerziteta</h1>
-      <h2>Tim 3</h2>
-    </div>
-  </section>
-
-  <hr />
-
   <nav>
+    <section>
+    <a [routerLink]="['/']"> <h1>Univerzitet</h1></a> 
+      <a [routerLink]="['/']"><img src="harvard.png" alt="slika-univerziteta" /></a>
+    </section>
     <ul>
       <li appOnHoverDisplay>
         O Univerzitetu
@@ -19,7 +13,6 @@
           <p>Krajnje žalosno ali guramo jbg</p>
         </div>
       </li>
-
       <li appOnHoverDisplay>
         Fakulteti
         <div class="padajuce-opcije">
@@ -28,7 +21,6 @@
           </p>
         </div>
       </li>
-
       <li appOnHoverDisplay>
         Studijski Programi
         <div class="padajuce-opcije">
@@ -37,7 +29,6 @@
           </p>
         </div>
       </li>
-
       <li appOnHoverDisplay>
         Studije
         <div class="padajuce-opcije">
@@ -46,7 +37,6 @@
           <p>Biblioteka</p>
         </div>
       </li>
-
       <li appOnHoverDisplay>
         Kontakt
         <div class="padajuce-opcije">

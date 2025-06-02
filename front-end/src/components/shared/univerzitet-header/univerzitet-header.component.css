@@ -1,50 +1,77 @@
 header {
-    margin: 2% 0;
-    font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 
-    section {
-        display: flex;
-        justify-content: space-around;
+  nav {
+    background-color: brown;
+    color: white;
+    padding: 10px 0;
+  }
 
-        img {
-            height: 100px;
-            width: 100px;
-        }
+  section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
 
-        h1,
-        h2 {
-            font-weight: normal;
-        }
-
+    h1 {
+      font-weight: bold;
+      color: white;
+      text-align: center;
     }
 
-    hr {
-        padding: 2px;
-        background-color: brown;
+    img {
+      height: 50px;
+      width: 50px;
     }
+  }
 
-    nav {
-        background-color: brown;
-        color: white;
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 
-        ul {
-            display: flex;
-            justify-content: space-evenly;
-            list-style-type: none;
+    li {
+      padding: 10px;
+      cursor: pointer;
+      position: relative;
+      border-radius: 4px;
 
-            li {
-                padding: 10px;
+      .padajuce-opcije {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgb(242, 242, 242);
+        color: black;
+        padding: 10px;
+        border-radius: 4px;
+        z-index: 100;
+      }
 
-                div.padajuce-opcije {
-                    display: none;
-                }
-            }
+      a {
+  text-decoration: none; 
+  color: inherit;
+    transition: transform 0.2s ease-in-out; 
+}
 
-            li:hover {
-                background-color: white;
-                color: black;
-            }
+a:hover {
+  color: black;
+  text-decoration: underline; 
+  transform: scale(1.1); 
+}
 
+      &:hover {
+        background-color: white;
+        color: black;
+
+        .padajuce-opcije {
+          display: block;
         }
+      }
     }
+  }
 }

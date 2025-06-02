@@ -13,7 +13,7 @@ public class DokumentiPredmetaDTO {
 
     private Long id;
 
-    private String silabus;
+    private SilabusDTO silabus;
 
     private String akreditacija;
 

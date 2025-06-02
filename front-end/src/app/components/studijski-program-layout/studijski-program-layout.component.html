@@ -1,13 +1,14 @@
 @if (godineStudija.length > 0) {
-  <div>
-    <app-univerzitet-header></app-univerzitet-header>
+  <div class="sve">
+
 
     <div class="godine-section">
       <h2 class="naslov-programa">{{ studijskiProgram?.naziv }}</h2>
-
+<hr>
       @for (g of godineStudija; track g.id) {
         <div class="godina-kartica">
           <h3>{{ g.godina }} godina</h3>
+          <hr>
 
           <div *ngIf="predmetiPoGodini[g.id]?.length">
             <h4 class="podnaslov">Predmeti:</h4>
@@ -29,6 +30,6 @@
       }
     </div>
 
-    <app-univerzitet-footer></app-univerzitet-footer>
+
   </div>
 }

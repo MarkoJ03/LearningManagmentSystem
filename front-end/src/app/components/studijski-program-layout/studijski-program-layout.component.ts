@@ -12,7 +12,7 @@ import { StudijskiProgram } from '../../models/StudijskiProgram';
 
 @Component({
   selector: 'app-studijski-program-layout',
-  imports: [CommonModule, UniverzitetHeaderComponent, UniverzitetFooterComponent,RouterLink],
+  imports: [CommonModule,RouterLink],
   templateUrl: './studijski-program-layout.component.html',
   styleUrl: './studijski-program-layout.component.css'
 })

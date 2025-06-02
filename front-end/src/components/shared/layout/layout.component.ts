@@ -4,6 +4,7 @@ import { UniverzitetHeaderComponent } from '../univerzitet-header/univerzitet-he
 import { UniverzitetFooterComponent } from '../univerzitet-footer/univerzitet-footer.component';
 import { ObjavaCardComponent } from '../../ui/objava-card/objava-card.component';
 import { ObjavaService } from '../../../app/services/objava.service';
+import { RouterOutlet } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { ObjavaService } from '../../../app/services/objava.service';
     CommonModule,
     UniverzitetHeaderComponent,
     UniverzitetFooterComponent,
-    ObjavaCardComponent
+    RouterOutlet
   ],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css']

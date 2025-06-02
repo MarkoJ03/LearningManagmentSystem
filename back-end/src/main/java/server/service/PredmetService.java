@@ -24,6 +24,10 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 	@Autowired
 	@Lazy
 	private RealizacijaPredmetaService realizacijaPredmetaService;
+	
+	@Autowired
+	@Lazy
+	private SilabusService silabusService;
 
 	@Override
 	protected CrudRepository<Predmet, Long> getRepository() {
@@ -34,7 +38,8 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 	protected PredmetDTO convertToDTO(Predmet entity) {
 		DokumentiPredmetaDTO dokumentiPredmeta = new DokumentiPredmetaDTO(entity.getDokumentiPredmeta().getId(),
 
-				entity.getDokumentiPredmeta().getSilabus(), entity.getDokumentiPredmeta().getAkreditacija(), null, entity.getDokumentiPredmeta().getVidljiv());
+				silabusService.convertToDTO(entity.getDokumentiPredmeta().getSilabus()), entity.getDokumentiPredmeta().getAkreditacija(), null, entity.getDokumentiPredmeta().getVidljiv());
+
 
 		ArrayList<RealizacijaPredmetaDTO> realizacijePredmeta = new ArrayList<>();
 
@@ -53,7 +58,8 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 	protected Predmet convertToEntity(PredmetDTO dto) {
 		DokumentiPredmeta dokumentiPredmeta = new DokumentiPredmeta(dto.getDokumentiPredmeta().getId(),
 
-				dto.getDokumentiPredmeta().getSilabus(), dto.getDokumentiPredmeta().getAkreditacija(), null, dto.getDokumentiPredmeta().getVidljiv());
+				silabusService.convertToEntity(dto.getDokumentiPredmeta().getSilabus()), dto.getDokumentiPredmeta().getAkreditacija(), null, dto.getDokumentiPredmeta().getVidljiv());
+
 
 		ArrayList<RealizacijaPredmeta> realizacijePredmeta = new ArrayList<>();
 		for(RealizacijaPredmetaDTO rpDTO : dto.getRealizacijePredmeta()) {

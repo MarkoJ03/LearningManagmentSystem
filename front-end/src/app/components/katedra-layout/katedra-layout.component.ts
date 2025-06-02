@@ -8,7 +8,7 @@ import { UniverzitetHeaderComponent } from '../../../components/shared/univerzit
 
 @Component({
   selector: 'app-katedra-layout',
-  imports: [CommonModule, UniverzitetHeaderComponent, UniverzitetFooterComponent,RouterLink],
+  imports: [CommonModule,RouterLink],
   templateUrl: './katedra-layout.component.html',
   styleUrl: './katedra-layout.component.css'
 })

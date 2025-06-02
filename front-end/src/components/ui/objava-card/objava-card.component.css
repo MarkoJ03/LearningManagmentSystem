@@ -6,6 +6,8 @@ section {
     padding: 15px;
     margin: 15px;
     text-align: center;
+      transition: transform 0.2s ease-in-out;
+    border-radius: 3px;
 
     img {
         height: 70px;
@@ -19,4 +21,13 @@ section {
     p {
         width: 80%;
     }
+}
+
+section:hover{    transform: scale(1.02);
+  background-color: #fff3eb;
+}
+
+a{
+  text-decoration: none;
+  color: black
 }

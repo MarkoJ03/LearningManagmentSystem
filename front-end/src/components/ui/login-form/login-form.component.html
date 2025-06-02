@@ -1,15 +1,12 @@
-<header>
-    <h1>Tim 3 Univerzitet</h1>
-    <hr>
-    <h1>Team 3 University</h1>
-</header>
-<section>
+<div class="main-content">
+  <section>
     <h2>Prijava</h2>
-    <hr>
+    <hr />
     <h2>Login</h2>
     <form [formGroup]="forma" (ngSubmit)="login()">
-        <input type="text" name="korisnickoIme" formControlName="korisnickoIme" placeholder="Korisnicko ime">
-        <input type="password" name="lozinka" formControlName="lozinka" placeholder="Lozinka">
-        <button type="submit">Prijava/Login</button>
+      <input type="text" name="korisnickoIme" formControlName="korisnickoIme" placeholder="Korisničko ime" />
+      <input type="password" name="lozinka" formControlName="lozinka" placeholder="Lozinka" />
+      <button type="submit">Prijava / Login</button>
     </form>
-</section>
+  </section>
+</div>

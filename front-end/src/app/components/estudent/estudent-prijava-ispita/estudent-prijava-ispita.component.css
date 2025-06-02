@@ -1,0 +1,35 @@
+.prijava-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: sans-serif;
+}
+
+.prijava-tabela th,
+.prijava-tabela td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.prijava-tabela thead {
+  background-color: brown;
+  color: white;
+}
+
+button {
+  background-color: rgb(209, 206, 206);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: brown;
+}
+
+h2 {
+  font-family: sans-serif;
+}

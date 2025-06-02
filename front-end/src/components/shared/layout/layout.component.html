@@ -1,16 +1,9 @@
-<div>
-  <app-univerzitet-header></app-univerzitet-header>
+<app-univerzitet-header></app-univerzitet-header>
 
-<div class="container">
-  <div id="objave">
-    @for (objava of objave; track objava.id) {
-      <app-objava-card
-        [naslov]="objava.naslov"
-        [sadrzaj]="objava.sadrzaj">
-      </app-objava-card>
-    }
-  </div>
-  </div>
+<main class="main-wrapper">
+  <router-outlet></router-outlet>
+</main>
 
-  <app-univerzitet-footer></app-univerzitet-footer>
-</div>
+<app-univerzitet-footer></app-univerzitet-footer>
+
+<!-- EE -->

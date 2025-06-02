@@ -1,6 +1,7 @@
 package server.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,10 @@ public class DokumentiPredmetaService extends BaseService<DokumentiPredmeta, Dok
 
 	@Autowired
 	private DokumentiPredmetaRepository dokumentiPredmetaRepository;
+	
+	@Autowired
+	@Lazy
+	private SilabusService silabusService;
 
 	@Override
 	protected CrudRepository<DokumentiPredmeta, Long> getRepository() {
@@ -29,7 +34,8 @@ public class DokumentiPredmetaService extends BaseService<DokumentiPredmeta, Dok
 
 				entity.getPredmet().getCilj(), null, null,null,null,entity.getPredmet().getVidljiv());
 
-		return new DokumentiPredmetaDTO(entity.getId(), entity.getSilabus(), entity.getAkreditacija(), predmet,entity.getVidljiv());
+
+		return new DokumentiPredmetaDTO(entity.getId(), silabusService.convertToDTO(entity.getSilabus()), entity.getAkreditacija(), predmet,entity.getVidljiv());
 
 	}
 
@@ -41,7 +47,7 @@ public class DokumentiPredmetaService extends BaseService<DokumentiPredmeta, Dok
 
 				dto.getPredmet().getCilj(), null, null,null,null, dto.getPredmet().getVidljiv());
 
-		return new DokumentiPredmeta(dto.getId(), dto.getSilabus(), dto.getAkreditacija(), predmet,dto.getVidljiv());
+		return new DokumentiPredmeta(dto.getId(), silabusService.convertToEntity(dto.getSilabus()), dto.getAkreditacija(), predmet,dto.getVidljiv());
 
 	}
 

@@ -11,7 +11,7 @@ import { Zvanje } from '../../models/Zvanje';
 
 @Component({
   selector: 'app-departman-layout',
-  imports: [CommonModule, UniverzitetHeaderComponent, UniverzitetFooterComponent,RouterLink],
+  imports: [CommonModule,RouterLink],
   templateUrl: './departman-layout.component.html',
   styleUrls: ['./departman-layout.component.css']
 })
