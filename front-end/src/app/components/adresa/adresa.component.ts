@@ -22,12 +22,23 @@ export class AdresaComponent {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const id = +params['id'];
-      this.adresaService.getById(id).subscribe(a => {
-        this.adresa = a;
-        console.log('Adresa:', a);
+  this.route.params.subscribe(params => {
+    const id = +params['id'];
+    if (!isNaN(id)) {
+      this.adresaService.getById(id).subscribe({
+        next: (a) => {
+          this.adresa = a;
+          console.log('Adresa:', a);
+        },
+        error: (err) => {
+          console.error('Greška sa servera:', err);
+          this.adresa = null;
+        }
       });
-    });
-  }
+    } else {
+      console.error('ID nije validan.');
+    }
+  });
+}
+
 }

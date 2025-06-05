@@ -1,0 +1,9 @@
+<app-base-table 
+  [data]="objave" 
+  [displayedColumns]="kolone" 
+  (edit)="izmeni($event)" 
+  (delete)="obrisi($event)"
+  (details)="detalji($event)">
+</app-base-table>
+
+<a routerLink="/objave/dodaj">Dodaj objavu</a>

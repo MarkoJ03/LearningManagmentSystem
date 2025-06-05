@@ -18,10 +18,15 @@ public class EvaluacijaZnanjaService extends BaseService<EvaluacijaZnanja, Evalu
 
     @Autowired
     private EvaluacijaZnanjaRepository evaluacijaZnanjaRepository;
-    
+    @Autowired
+    private KalendarService kalendarService;
+
     @Autowired
     @Lazy
     private PredmetService predmetService;
+    @Autowired
+    @Lazy
+    private IshodEvaluacijeService ishodEvaluacijeService;
 
     @Override
     protected CrudRepository<EvaluacijaZnanja, Long> getRepository() {
@@ -34,7 +39,7 @@ public class EvaluacijaZnanjaService extends BaseService<EvaluacijaZnanja, Evalu
             entity.getId(),
             entity.getVremePocetka(),
             entity.getVremeZavrsetka(),
-            null,
+            entity.getKalendar() != null ? kalendarService.convertToDTO(entity.getKalendar()) : null,  
             predmetService.convertToDTO(entity.getPredmet()),
             new NastavnikDTO(entity.getNastavnik().getId(),null,entity.getNastavnik().getPrezime(),entity.getNastavnik().getIme(),null,null,null,null,null,null,null,null,null),
             new TipEvaluacijeDTO(entity.getTipEvaluacije().getId(),entity.getTipEvaluacije().getNaziv(),null,null),
@@ -45,16 +50,16 @@ public class EvaluacijaZnanjaService extends BaseService<EvaluacijaZnanja, Evalu
 
     @Override
     protected EvaluacijaZnanja convertToEntity(EvaluacijaZnanjaDTO dto) {
-        return new EvaluacijaZnanja(
-            dto.getId(),
-            dto.getVremePocetka(),
-            dto.getVremeZavrsetka(),
-            null,
-            predmetService.convertToEntity(dto.getPredmet()),
-            new Nastavnik(dto.getNastavnik().getId(),null,dto.getNastavnik().getPrezime(),dto.getNastavnik().getIme(),null,null,null,null,null,null,null,null,null),
-            new TipEvaluacije(dto.getTipEvaluacije().getId(),dto.getTipEvaluacije().getNaziv(),null,null),
-            null,
-            dto.getVidljiv()
-        );
+        var entity = new EvaluacijaZnanja();
+        entity.setId(dto.getId());
+        entity.setVremePocetka(dto.getVremePocetka());
+        entity.setVremeZavrsetka(dto.getVremeZavrsetka());
+        entity.setKalendar(dto.getKalendar() != null && dto.getKalendar().getId() != null ? kalendarService.getById(dto.getKalendar().getId()) : null);
+        entity.setPredmet(dto.getPredmet() != null && dto.getPredmet().getId() != null ? predmetService.getById(dto.getPredmet().getId()) : null);
+        entity.setNastavnik(dto.getNastavnik() != null && dto.getNastavnik().getId() != null ? new Nastavnik(dto.getNastavnik().getId(), null, dto.getNastavnik().getPrezime(), dto.getNastavnik().getIme(), null, null, null, null, null, null, null, null, null) : null);
+        entity.setTipEvaluacije(dto.getTipEvaluacije() != null && dto.getTipEvaluacije().getId() != null ? new TipEvaluacije(dto.getTipEvaluacije().getId(), dto.getTipEvaluacije().getNaziv(), null, null) : null);
+        entity.setVidljiv(dto.getVidljiv());
+        
+        return entity;
     }
-}
+    }

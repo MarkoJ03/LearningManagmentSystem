@@ -26,10 +26,10 @@ export class BibliotekeComponent {
       next: (res) => {
         this.biblioteke = res;
 
-        // Dohvati knjige za svaku biblioteku
+       
         for (let biblioteka of this.biblioteke) {
           this.bibliotekaKnjigaService.getByBibliotekaId(biblioteka.id).subscribe(veze => {
-            biblioteka.knjige = veze.map(v => v.knjiga); // samo lista knjiga
+            biblioteka.knjige = veze.map(v => v.knjiga); 
           });
         }
       },

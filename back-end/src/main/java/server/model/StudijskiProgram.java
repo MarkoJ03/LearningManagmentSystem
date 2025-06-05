@@ -27,10 +27,10 @@ public class StudijskiProgram {
 	@Column(nullable = false)
 	private String naziv;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private TipPrograma tipPrograma;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private Katedra katedra;
 
 	@OneToMany(mappedBy = "studijskiProgram")

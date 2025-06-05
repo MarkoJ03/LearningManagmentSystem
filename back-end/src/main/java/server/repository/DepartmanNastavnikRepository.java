@@ -10,4 +10,7 @@ import server.model.DepartmanNastavnik;
 @Repository
 public interface DepartmanNastavnikRepository extends CrudRepository<DepartmanNastavnik, Long>, PagingAndSortingRepository<DepartmanNastavnik, Long> {
 	List<DepartmanNastavnik> findByDepartmanIdAndVidljivTrue(Long departmanId);
+
+
+
 }

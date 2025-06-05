@@ -1,0 +1,21 @@
+<p *ngIf="grupa">
+  ID grupe: {{ grupa.id }}<br>
+  Vidljiv: {{ grupa.vidljiv ? 'Da' : 'Ne' }}<br>
+  Kalendar ID: {{ grupa.kalendar?.id }}<br>
+
+  Studenti na godini:<br>
+  <ul>
+    <li *ngFor="let student of grupa?.studentNaGodini; index as i">
+      {{ i + 1 }}/{{ grupa?.studentNaGodini?.length }}: {{ student.student.ime }} {{ student.student.prezime }} (Indeks: {{ student.brojIndeksa }})
+    </li>
+  </ul>
+
+  Predmeti za grupu:<br>
+  <ul>
+    <li *ngFor="let predmet of grupa?.grupaStudenataPredmet; index as i">
+      {{ i + 1 }}/{{ grupa?.grupaStudenataPredmet?.length }}: Predmet ID: {{ predmet.predmet.id }}
+    </li>
+  </ul>
+</p>
+
+<a routerLink="/grupeStudenata">← Nazad na listu grupa studenata</a>

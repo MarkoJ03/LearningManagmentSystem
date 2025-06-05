@@ -9,7 +9,12 @@ import { DepartmanLayoutComponent } from './components/departman-layout/departma
 import { KatedraLayoutComponent } from './components/katedra-layout/katedra-layout.component';
 import { StudijskiProgramLayoutComponent } from './components/studijski-program-layout/studijski-program-layout.component';
 import { PredmetLayoutComponent } from './components/predmet-layout/predmet-layout.component';
+
 import { EstudentObjaveComponent } from './components/estudent/estudent-objave/estudent-objave.component';
+
+//import { EstudentObjaveComponent } from './components/estudent-objave/estudent-objave.component';
+
+//import { StudentDashboardComponent } from './components/student-dashboard/student-dashboard.component';
 import { EstudentLayoutComponent } from './components/estudent/estudent-layout/estudent-layout.component';
 import { StudentSelectionComponent } from './components/estudent/student-selection/student-selection.component';
 import { StudentDashboardComponent } from './components/student-dashboard/student-dashboard.component';
@@ -54,9 +59,9 @@ import { RealizacijaPredmetaFormaComponent } from './components/CRUD/Realizacija
 import { IshodiEvaluacijaComponent } from './components/CRUD/IshodEvaluacije/ishodi-evaluacija/ishodi-evaluacija.component';
 import { IshodEvaluacijeComponent } from './components/CRUD/IshodEvaluacije/ishod-evaluacije/ishod-evaluacije.component';
 import { IshodEvaluacijeFormaComponent } from './components/CRUD/IshodEvaluacije/ishod-evaluacije-forma/ishod-evaluacije-forma.component';
-import { EvaluacijeZnanjaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacije-znanja/evaluacije-znanja.component';
-import { EvaluacijaZnanjaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacija-znanja/evaluacija-znanja.component';
-import { EvaluacijaZnanjaFormaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacija-znanja-forma/evaluacija-znanja-forma.component';
+//import { EvaluacijeZnanjaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacije-znanja/evaluacije-znanja.component';
+//import { EvaluacijaZnanjaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacija-znanja/evaluacija-znanja.component';
+//import { EvaluacijaZnanjaFormaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacija-znanja-forma/evaluacija-znanja-forma.component';
 import { NastavniciComponent } from './components/CRUD/Nastavnik/nastavnici/nastavnici.component';
 import { NastavnikComponent } from './components/CRUD/Nastavnik/nastavnik/nastavnik.component';
 import { NastavnikFormaComponent } from './components/CRUD/Nastavnik/nastavnik-forma/nastavnik-forma.component';
@@ -64,10 +69,61 @@ import { EstudentPredmetiComponent } from './components/estudent/estudent-predme
 import { EstudentIspitiComponent } from './components/estudent/estudent-ispiti/estudent-ispiti.component';
 import { EstudentPrijavaIspitaComponent } from './components/estudent/estudent-prijava-ispita/estudent-prijava-ispita.component';
 import { EstudentAktivnostiComponent } from './components/estudent/estudent-aktivnosti/estudent-aktivnosti.component';
-import { SvObrazacComponent } from './components/estudent/estudent-sv-obrazac/estudent-sv-obrazac.component';
+//import { SvObrazacComponent } from './components/estudent/estudent-sv-obrazac/estudent-sv-obrazac.component';
 import { EstudentPodaciOStudentuComponent } from './components/estudent/estudent-podaci-o-studentu/estudent-podaci-o-studentu.component';
 import { PocetnaComponent } from './components/pocetna/pocetna.component';
 import { ObjavaDetaljiComponent } from './components/objava-detalji/objava-detalji.component';
+
+import { AdresaComponent } from './components/adresa/adresa.component';
+import { DepartmanFormaComponent } from './components/departman/departman-forma/departman-forma.component';
+import { DepartmanComponent } from './components/departman/departman/departman.component';
+import { DepartmaniComponent } from './components/departman/departmani/departmani.component';
+import { EvaluacijaZnanjaComponent } from './components/evaluacijaZnanja/evaluacija-znanja/evaluacija-znanja.component';
+import { EvaluacijaZnanjaFormaComponent } from './components/evaluacijaZnanja/evaluacija-znanja-forma/evaluacija-znanja-forma.component';
+import { AdresaFormaComponent } from './components/adresa-forma/adresa-forma.component';
+import { EvaluacijeZnanjaComponent } from './components/evaluacijaZnanja/evaluacije-znanja/evaluacije-znanja.component';
+import { GrupeStudenataComponent } from './components/grupaStudenata/grupe-studenata/grupe-studenata.component';
+import { IshodiPredmetaComponent } from './components/ishodPredmeta/ishodi-predmeta/ishodi-predmeta.component';
+import { IshodPredmetaFormaComponent } from './components/ishodPredmeta/ishod-predmeta-forma/ishod-predmeta-forma.component';
+import { IshodPredmetaComponent } from './components/ishod-predmeta/ishod-predmeta.component';
+import { KnjigeComponent } from './components/knjiga/knjige/knjige.component';
+import { KnjigaFormaComponent } from './components/knjiga/knjiga-forma/knjiga-forma.component';
+import { ObjaveComponent } from './components/objava/objave/objave.component';
+import { ObjavaFormaComponent } from './components/objava/objava-forma/objava-forma.component';
+import { OsobljaComponent } from './components/osoblje/osoblja/osoblja.component';
+import { OsobljeFormaComponent } from './components/osoblje/osoblje-forma/osoblje-forma.component';
+import { OsobljeComponent } from './components/osoblje/osoblje/osoblje.component';
+import { StudentiComponent } from './components/student/studenti/studenti.component';
+import { StudentFormaComponent } from './components/student/student-forma/student-forma.component';
+import { StudentComponent } from './components/student/student/student.component';
+import { StudentiNaGodiniComponent } from './components/studentNaGodini/studenti-na-godini/studenti-na-godini.component';
+import { StudentNaGodiniFormaComponent } from './components/studentNaGodini/student-na-godini-forma/student-na-godini-forma.component';
+import { StudijskiProgramiComponent } from './components/studijaskiProgram/studijski-programi/studijski-programi.component';
+import { StudijskiProgramFormaComponent } from './components/studijaskiProgram/studijski-program-forma/studijski-program-forma.component';
+import { StudijskiProgramComponent } from './components/studijaskiProgram/studijski-program/studijski-program.component';
+import { SvObrazacFormaComponent } from './components/svObrazac/sv-obrazac-forma/sv-obrazac-forma.component';
+import { SvObrazacComponent } from './components/sv-obrazac/sv-obrazac.component';
+import { SvObrasciComponent } from './components/svObrazac/sv-obrasci/sv-obrasci.component';
+import { TipProgramaComponent } from './components/tip-programa/tip-programa.component';
+import { TipProgramaFormaComponent } from './components/tipPrograma/tip-programa-forma/tip-programa-forma.component';
+import { KalendarFormaComponent } from './components/kalendar/kalendar-forma/kalendar-forma.component';
+import { KalendariComponent } from './components/kalendar/kalendari/kalendari.component';
+import { KalendarComponent } from './components/kalendar/kalendar/kalendar.component';
+import { StudentskeSluzbeComponent } from './components/studentskaSluzba/studentske-sluzbe/studentske-sluzbe.component';
+import { StudentskaSluzbaFormaComponent } from './components/studentskaSluzba/studentska-sluzba-forma/studentska-sluzba-forma.component';
+import { StudentskaSluzbaComponent } from './components/studentska-sluzba/studentska-sluzba.component';
+import { InventarFormaComponent } from './components/inventar/inventar-forma/inventar-forma.component';
+import { InventariComponent } from './components/inventar/inventari/inventari.component';
+import { InventarComponent } from './components/inventar/inventar/inventar.component';
+import { GodineStudijaComponent } from './components/godinaStudija/godine-studija/godine-studija.component';
+import { GodinaStudijaFormaComponent } from './components/godinaStudija/godina-studija-forma/godina-studija-forma.component';
+import { GodinaStudijaComponent } from './components/godina-studija/godina-studija.component';
+import { GrupaStudenataFormaComponent } from './components/grupaStudenata/grupa-studenata-forma/grupa-studenata-forma.component';
+import { AdreseComponent } from './components/adrese/adrese.component';
+import { TipoviProgramaComponent } from './components/tipPrograma/tipovi-programa/tipovi-programa.component';
+
+// import {  FakultetComponentComponent } from './components/fakultet-component/fakultet-component.component';
+
 
 export const routes: Routes = [
     {
@@ -76,6 +132,21 @@ export const routes: Routes = [
         data: {requiredRoles: ["ROLE_ADMIN"]},
         canActivate: [authGuard]
     },
+    { path: 'ishod-predmeta', component: IshodiPredmetaComponent },
+  { path: 'ishod-predmeta/dodaj', component: IshodPredmetaFormaComponent }, 
+  { path: 'ishod-predmeta/izmeni/:id', component: IshodPredmetaFormaComponent }, 
+  { path: 'ishod-predmeta/:id', component: IshodPredmetaComponent },
+
+{ path: 'studenti', component: StudentiComponent },
+  { path: 'studenti/dodaj', component: StudentFormaComponent },
+  { path: 'studenti/:id', component: StudentComponent },
+  { path: 'studenti/izmeni/:id', component: StudentFormaComponent },
+
+
+{ path: 'osoblje', component: OsobljaComponent },
+  { path: 'osoblje/dodaj', component: OsobljeFormaComponent },
+  { path: 'osoblje/izmeni/:id', component: OsobljeFormaComponent },
+  { path: 'osoblje/:id', component: OsobljeComponent },
 
     { path: 'bibliotekaForma', component: BibliotekaFormaComponent },
 
@@ -178,6 +249,103 @@ export const routes: Routes = [
     { path: 'nastavnici/:id', component: NastavnikComponent},
     { path: 'nastavnici/forma', component: NastavnikFormaComponent},    
     { path: 'nastavnici/forma/:id', component: NastavnikFormaComponent},    
+
+     { path: 'fakultet/:id', component: FakultetLayoutComponent },
+
+    { path: 'departman/:id', component: DepartmanLayoutComponent },
+
+     { path: 'katedra/:id', component: KatedraLayoutComponent },
+
+    { path: 'studijskiProgram/:id', component: StudijskiProgramLayoutComponent },
+
+    { path: 'predmet/:id', component: PredmetLayoutComponent },
+    { path: 'knjige', component: KnjigeComponent },
+  { path: 'knjige/dodaj', component: KnjigaFormaComponent },
+  { path: 'knjige/izmeni/:id', component: KnjigaFormaComponent },
+
+   { path: 'objave', component: ObjaveComponent },
+  { path: 'objave/dodaj', component: ObjavaFormaComponent },
+  { path: 'objave/izmeni/:id', component: ObjavaFormaComponent },
+
+  
+  { path: 'student-na-godini', component: StudentiNaGodiniComponent },
+{ path: 'student-na-godini/dodaj', component: StudentNaGodiniFormaComponent },
+{ path: 'student-na-godini/izmeni/:id', component: StudentNaGodiniFormaComponent },
+{
+  path: 'studijski-programi',
+  component: StudijskiProgramiComponent
+},
+{
+  path: 'studijski-programi/dodaj',
+  component: StudijskiProgramFormaComponent
+},
+{
+  path: 'studijski-programi/izmeni/:id',
+  component: StudijskiProgramFormaComponent
+},
+{
+  path: 'studijski-programi/:id',
+  component: StudijskiProgramComponent
+},{ path: 'tip-programa', component: TipoviProgramaComponent },
+{ path: 'tip-programa/dodaj', component: TipProgramaFormaComponent },
+{ path: 'tip-programa/izmeni/:id', component: TipProgramaFormaComponent },
+
+{ path: 'studentske-sluzbe', component: StudentskeSluzbeComponent },
+{ path: 'studentske-sluzbe/dodaj', component: StudentskaSluzbaFormaComponent },
+{ path: 'studentske-sluzbe/izmeni/:id', component: StudentskaSluzbaFormaComponent },
+{ path: 'studentske-sluzbe/:id', component: StudentskaSluzbaComponent },
+
+
+{ path: 'inventari', component: InventariComponent },
+{ path: 'inventari/dodaj', component: InventarFormaComponent },
+{ path: 'inventari/izmeni/:id', component: InventarFormaComponent },
+{ path: 'inventari/:id', component: InventarComponent },
+
+
+{ path: 'godine-studija', component: GodineStudijaComponent },
+{ path: 'godine-studija/dodaj', component: GodinaStudijaFormaComponent },
+{ path: 'godine-studija/izmeni/:id', component: GodinaStudijaFormaComponent },
+{ path: 'godine-studija/:id', component: GodinaStudijaComponent },
+
+
+
+{ path: 'kalendar', component: KalendariComponent },
+{ path: 'kalendar/dodaj', component: KalendarFormaComponent },
+{ path: 'kalendar/izmeni/:id', component: KalendarFormaComponent },
+{ path: 'kalendar/:id', component: KalendarComponent },
+
+
+{ path: 'sv-obrasci', component: SvObrasciComponent },
+  { path: 'sv-obrazac/dodaj', component: SvObrazacFormaComponent },
+  { path: 'sv-obrazac/izmeni/:id', component: SvObrazacFormaComponent },
+  { path: 'sv-obrazac/:id', component: SvObrazacComponent },
+
+        { path: 'biblioteke', component: BibliotekeComponent },
+        { path: 'biblioteke/dodaj', component: BibliotekaFormaComponent },
+
+      { path: 'EvaluacijaZnanja', component: EvaluacijeZnanjaComponent },         
+{ path: 'EvaluacijaZnanja/dodaj', component: EvaluacijaZnanjaFormaComponent },
+{ path: 'EvaluacijaZnanja/:id', component: EvaluacijaZnanjaComponent },     
+{ path: 'EvaluacijaZnanja/izmeni/:id', component: EvaluacijaZnanjaFormaComponent },     
+
+{path: 'grupeStudenata' , component: GrupeStudenataComponent},
+      { path: 'grupeStudenata/dodaj', component: GrupaStudenataFormaComponent },
+{ path: 'grupeStudenata/izmeni/:id', component: GrupaStudenataFormaComponent },
+
+    { path: 'departmaniForma', component: DepartmanFormaComponent },
+    
+
+        { path: 'departmani', component: DepartmaniComponent},
+
+        { path: 'departmani/izmeni/:id', component: DepartmanFormaComponent },
+ { path: 'adrese', component: AdreseComponent },
+ { path: 'adrese/:id', component: AdresaComponent },
+ { path: 'adrese/izmeni/:id', component: AdresaFormaComponent },
+ { path: 'adreseForma', component: AdresaFormaComponent },
+
+    { path: 'biblioteke/izmeni/:id', component: BibliotekaFormaComponent },
+
+      { path: 'student/:id', component: StudentiComponent },
 
 {
     path: 'studentNaGodini/:id/estudent',

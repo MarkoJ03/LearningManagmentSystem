@@ -1,0 +1,14 @@
+<p *ngIf="ishodPredmeta">
+  Ocena: {{ ishod-predemta.ocena }}
+  Vidljiv: {{ ishod-predemta.vidljiv }}
+
+  <li *ngFor="let r of ishod-predemta.realizacijePredmeta; index as i; first as isFirst">
+    {{ i + 1 }}/{{ ishod-predemta.realizacijePredmeta.length }}. Realizacija ID: {{ r.id }} <span *ngIf="isFirst">default</span>
+  </li>
+
+  <li *ngFor="let i of ishod-predemta.ishodiEvaluacije; index as i; first as isFirst">
+    {{ i + 1 }}/{{ ishod-predemta.ishodiEvaluacije.length }}. Ishod evaluacije ID: {{ i.id }} <span *ngIf="isFirst">default</span>
+  </li>
+</p>
+
+<a routerLink="/ishod-predmeta">← Nazad na listu ishoda predmeta</a>

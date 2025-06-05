@@ -20,19 +20,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GrupaStudenata {
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	 @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long id;
 
-	@OneToMany (fetch= FetchType.LAZY, mappedBy = "grupaStudenata")
-	private List<StudentNaGodini> studentNaGodini;
+	    @OneToMany(fetch = FetchType.EAGER, mappedBy = "grupaStudenata")
+	    private List<StudentNaGodini> studentNaGodini;
 
-	@OneToMany (fetch= FetchType.LAZY, mappedBy = "grupaStudenata")
-	private List<GrupaStudenataPredmet> grupaStudenataPredmet;
+	    @OneToMany(fetch = FetchType.EAGER, mappedBy = "grupaStudenata")
+	    private List<GrupaStudenataPredmet> grupaStudenataPredmet;
 
-	@ManyToOne(optional = false)
-	private Kalendar kalendar;
+	    @ManyToOne(optional = false)
+	    private Kalendar kalendar;
 
-	@Column(nullable = false)
-    private Boolean vidljiv = true;
+	    @Column(nullable = false)
+	    private Boolean vidljiv = true;
 }

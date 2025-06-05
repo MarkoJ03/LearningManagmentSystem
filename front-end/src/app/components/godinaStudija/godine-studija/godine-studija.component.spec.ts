@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PredmetFormaComponent } from './predmet-forma.component';
+import { GodineStudijaComponent } from './godine-studija.component';
 
-describe('PredmetFormaComponent', () => {
-  let component: PredmetFormaComponent;
-  let fixture: ComponentFixture<PredmetFormaComponent>;
+describe('GodineStudijaComponent', () => {
+  let component: GodineStudijaComponent;
+  let fixture: ComponentFixture<GodineStudijaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PredmetFormaComponent]
+      imports: [GodineStudijaComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PredmetFormaComponent);
+    fixture = TestBed.createComponent(GodineStudijaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

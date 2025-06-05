@@ -43,7 +43,7 @@ public class EvaluacijaZnanja {
 	@ManyToOne(optional = false)
 	private TipEvaluacije tipEvaluacije;
 
-	@OneToMany (fetch= FetchType.LAZY, mappedBy = "evaluacijaZnanja")
+	@OneToMany (fetch= FetchType.EAGER, mappedBy = "evaluacijaZnanja")
 	private List<IshodEvaluacije> ishodEvaluacije;
 
 	@Column(nullable = false)

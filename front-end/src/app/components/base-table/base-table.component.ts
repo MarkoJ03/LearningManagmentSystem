@@ -28,10 +28,14 @@ export class BaseTableComponent<T extends { [key: string]: any }> {
   }
 
   extractDisplayValue(value: any): string {
-    if (!value) return '-';
-    if (Array.isArray(value)) {
-      return value.map(v => v.naziv || v.id).join(', ');
-    }
-    return value.ime || value.naziv || value.brojRacuna || value.id || '[objekat]';
+  if (!value) return '-';
+  if (Array.isArray(value)) {
+    return value.map(v => this.extractDisplayValue(v)).join(', ');
   }
+  if (typeof value === 'object') {
+    return value.naziv || value.ime || value.prezime || value.brojRacuna || value.id || '[objekat]';
+  }
+  return value;
+}
+
 }

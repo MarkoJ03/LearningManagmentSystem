@@ -11,6 +11,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.annotation.security.PermitAll;
@@ -50,4 +51,6 @@ public class GodinaStudijaController extends BaseController<GodinaStudija, Godin
     public ResponseEntity<List<GodinaStudijaDTO>> getByProgramId(@PathVariable Long id) {
         return ResponseEntity.ok(godinaStudijaService.findByStudijskiProgramId(id));
     }
+    
+
 }

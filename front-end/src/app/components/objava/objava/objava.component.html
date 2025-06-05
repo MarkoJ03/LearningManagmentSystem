@@ -1,0 +1,8 @@
+<p *ngIf="objava">
+  Naslov: {{ objava.naslov }}  
+  Sadržaj: {{ objava.sadrzaj }}  
+  Vidljiv: {{ objava.vidljiv }}  
+  Studentska služba: {{ objava.studentska_sluzba?.id }}
+</p>
+
+<a routerLink="/objave">← Nazad na listu objava</a>

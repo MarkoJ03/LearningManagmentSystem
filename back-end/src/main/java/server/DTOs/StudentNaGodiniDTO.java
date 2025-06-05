@@ -13,7 +13,7 @@ import server.model.SvObrazac;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class StudentNaGodiniDTO {
 
 	private Long id;
@@ -30,4 +30,20 @@ public class StudentNaGodiniDTO {
 	private SvObrazacDTO svObrazac;
 
 	private Boolean vidljiv = true;
+	
+	public StudentNaGodiniDTO(Long id, String brojIndeksa, Date datumUpisa, StudentDTO student,
+            GodinaStudijaDTO godinaStudija, GrupaStudenataDTO grupaStudenata,
+            List<IshodEvaluacijeDTO> ishodEvaluacije, SvObrazacDTO svObrazac,
+            Boolean vidljiv) {
+					    this.id = id;
+						this.brojIndeksa = brojIndeksa;
+						this.datumUpisa = datumUpisa;
+						this.student = student;
+						this.godinaStudija = godinaStudija;
+						this.grupaStudenata = grupaStudenata;
+						this.ishodEvaluacije = ishodEvaluacije;
+						this.svObrazac = svObrazac;
+						this.vidljiv = vidljiv;
+}
+
 }

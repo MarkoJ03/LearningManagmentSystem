@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Data
 public class InventarDTO {
@@ -15,10 +15,17 @@ public class InventarDTO {
 		private Long id;
 
 
-		private StudentskaSluzbaDTO studentsaSluzba;
+		private StudentskaSluzbaDTO studentskaSluzba;
 
 
 	    private Boolean vidljiv = true;
+	    
+	    
+	    public InventarDTO(Long id, StudentskaSluzbaDTO studentsaSluzba, Boolean vidljiv) {
+	        this.id = id;
+	        this.studentskaSluzba = studentsaSluzba;
+	        this.vidljiv = vidljiv;
+	    }
 	}
 
 
