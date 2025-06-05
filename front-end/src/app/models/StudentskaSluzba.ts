@@ -8,6 +8,7 @@ import { Student } from './Student';
 import { SvObrazac } from './SvObrazac';
 
 export interface StudentskaSluzba {
+  naziv: string;
   id: number;
   vidljiv: boolean;
   objave: Objava[];

@@ -17,6 +17,11 @@ import server.repository.PredmetRepository;
 
 @Service
 public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
+	
+	public Predmet getById(Long id) {
+	    return predmetRepository.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Predmet sa id " + id + " nije pronađen."));
+	}
 
 	@Autowired
 	private PredmetRepository predmetRepository;

@@ -53,46 +53,53 @@ export class AdresaFormaComponent {
     }
   }
 
-  private kreirajModel(podaci?: any): FormaModel {
-    return {
-      naziv: podaci ? 'Izmena adrese' : 'Dodavanje adrese',
-      polja: [
-        {
-          naziv: 'broj',
-          labela: 'Broj',
-          tip: 'text',
-          podrazumevanaVrednost: podaci?.broj ?? '',
-          validatori: [Validators.required]
-        },
-        {
-          naziv: 'drzava',
-          labela: 'Država',
-          tip: 'text',
-          podrazumevanaVrednost: podaci?.drzava ?? '',
-          validatori: [Validators.required]
-        },
-        {
-          naziv: 'grad',
-          labela: 'Grad',
-          tip: 'text',
-          podrazumevanaVrednost: podaci?.grad ?? '',
-          validatori: [Validators.required]
-        },
-        {
-          naziv: 'ulica',
-          labela: 'Ulica',
-          tip: 'text',
-          podrazumevanaVrednost: podaci?.ulica ?? '',
-          validatori: [Validators.required]
-        },
-        {
-          naziv: 'vidljiv',
-          labela: 'Vidljiv',
-          tip: 'checkbox',
-          podrazumevanaVrednost: podaci?.vidljiv ?? true,
-          validatori: []
-        }
-      ]
-    };
-  }
+ private kreirajModel(podaci?: any): FormaModel {
+  return {
+    naziv: podaci ? 'Izmena adrese' : 'Dodavanje adrese',
+    polja: [
+      ...(podaci ? [{
+        naziv: 'id',
+        labela: '',
+        tip: 'hidden',
+        podrazumevanaVrednost: podaci.id
+      }] : []),
+      {
+        naziv: 'broj',
+        labela: 'Broj',
+        tip: 'text',
+        podrazumevanaVrednost: podaci?.broj ?? '',
+        validatori: [Validators.required]
+      },
+      {
+        naziv: 'drzava',
+        labela: 'Država',
+        tip: 'text',
+        podrazumevanaVrednost: podaci?.drzava ?? '',
+        validatori: [Validators.required]
+      },
+      {
+        naziv: 'grad',
+        labela: 'Grad',
+        tip: 'text',
+        podrazumevanaVrednost: podaci?.grad ?? '',
+        validatori: [Validators.required]
+      },
+      {
+        naziv: 'ulica',
+        labela: 'Ulica',
+        tip: 'text',
+        podrazumevanaVrednost: podaci?.ulica ?? '',
+        validatori: [Validators.required]
+      },
+      {
+        naziv: 'vidljiv',
+        labela: 'Vidljiv',
+        tip: 'checkbox',
+        podrazumevanaVrednost: podaci?.vidljiv ?? true,
+        validatori: []
+      }
+    ]
+  };
+}
+
 }

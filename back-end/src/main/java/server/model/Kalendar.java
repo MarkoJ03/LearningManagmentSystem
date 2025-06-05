@@ -27,7 +27,7 @@ public class Kalendar {
 	    private Long id;
 	
 	
-		@ManyToOne(optional = false)
+		@ManyToOne(optional = true)
 		private StudentskaSluzba studentskaSluzba;
 	
 		@OneToMany (fetch= FetchType.LAZY, mappedBy = "kalendar")

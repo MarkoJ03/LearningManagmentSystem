@@ -30,7 +30,7 @@ public class DepartmanNastavnikService extends BaseService<DepartmanNastavnik, D
 
 	@Override
 	protected DepartmanNastavnikDTO convertToDTO(DepartmanNastavnik entity) {
-		return new DepartmanNastavnikDTO(entity.getId(),new DepartmanDTO(entity.getDepartman().getId(),entity.getDepartman().getNaziv(),null,null,null,null,null,entity.getDepartman().getVidljiv())
+		return new DepartmanNastavnikDTO(entity.getId(),new DepartmanDTO(entity.getDepartman().getId(),entity.getDepartman().getNaziv(),null,null,null,null,null, null)
 				,new NastavnikDTO(entity.getNastavnik().getId(),null,entity.getNastavnik().getIme(),entity.getNastavnik().getPrezime(),entity.getNastavnik().getJmbg(),null,null,null,null,null,null,null, entity.getNastavnik().getVidljiv()),
 				entity.getVidljiv());
 	}
@@ -49,5 +49,10 @@ public class DepartmanNastavnikService extends BaseService<DepartmanNastavnik, D
 	            .map(this::convertToDTO)
 	            .collect(Collectors.toList());
 	}
+
+
+
+	
+	
 
 }

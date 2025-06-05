@@ -1,0 +1,7 @@
+<div *ngIf="student">
+  <h2>{{ student.ime }} {{ student.prezime }}</h2>
+  <p><strong>JMBG:</strong> {{ student.jmbg }}</p>
+  <p><strong>Adresa:</strong> {{ student.adresa?.ulica }} {{ student.adresa?.broj }}</p>
+  <p><strong>Studentska služba:</strong> {{ student.studentska_sluzba?.naziv }}</p>
+  <p><strong>Vidljiv:</strong> {{ student.vidljiv ? 'Da' : 'Ne' }}</p>
+</div>

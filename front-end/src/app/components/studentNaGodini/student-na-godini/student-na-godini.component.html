@@ -1,0 +1,13 @@
+<div *ngIf="studentNaGodini; else nemaPodataka">
+  <h2>Detalji studenta na godini</h2>
+  <p><strong>ID:</strong> {{ studentNaGodini.id }}</p>
+  <p><strong>Broj indeksa:</strong> {{ studentNaGodini.brojIndeksa }}</p>
+  <p><strong>Datum upisa:</strong> {{ studentNaGodini.datumUpisa | date }}</p>
+  <p><strong>Vidljiv:</strong> {{ studentNaGodini.vidljiv ? 'Da' : 'Ne' }}</p>
+
+ 
+</div>
+
+<ng-template #nemaPodataka>
+  <p>Nema podataka za prikaz.</p>
+</ng-template>

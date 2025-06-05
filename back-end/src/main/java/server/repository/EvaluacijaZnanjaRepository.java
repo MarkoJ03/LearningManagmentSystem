@@ -8,4 +8,5 @@ import server.model.EvaluacijaZnanja;
 
 public interface EvaluacijaZnanjaRepository extends CrudRepository<EvaluacijaZnanja, Long>, PagingAndSortingRepository<EvaluacijaZnanja, Long>{
 
+	
 }

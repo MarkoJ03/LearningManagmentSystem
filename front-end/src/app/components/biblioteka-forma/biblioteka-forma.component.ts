@@ -62,40 +62,41 @@ export class BibliotekaFormaComponent implements OnInit {
   }
 
 public sacuvajBiblioteku(vrednosti: any): void {
+  
+  const bibliotekaDTO: any = {
+    studentskaSluzba: vrednosti.studentskaSluzba,  
+    vidljiv: true,
+    bibliotekaKnjiga: vrednosti.knjige.map((k: Knjiga) => ({
+      knjiga: { id: k.id },
+      vidljiv: true
+    }))
+  };
+
+  console.log('Telo koje se šalje backendu:', bibliotekaDTO);
+
+  
   if (this.idBiblioteka) {
-    this.bibliotekaService.update(this.idBiblioteka, vrednosti).subscribe({
-      next: () => this.router.navigate(['/biblioteke']),
-      error: err => console.error('Greška pri izmeni biblioteke:', err)
-    });
-  } else {
-        console.log( vrednosti);
-    this.bibliotekaService.create(vrednosti).subscribe({
-      next: (biblioteka) => {
-        console.log('Kreirana biblioteka:', biblioteka);
-        console.log(vrednosti.knjige);
-        this.kreiranaBiblioteka = biblioteka;
-
-      
-        for (let knjiga of vrednosti.knjige) {
-          const veza = {
-            biblioteka: biblioteka, 
-            knjiga: knjiga,         
-            vidljiv: true
-          };
-
-          this.bibliotekaKnjigaService.create(veza).subscribe({
-            next: () => console.log(`Povezana knjiga ${knjiga.id} sa bibliotekom ${biblioteka.id}`),
-            error: err => console.error('Greška pri vezivanju knjige:', err)
-          });
-        }
-
+    this.bibliotekaService.update(this.idBiblioteka, bibliotekaDTO).subscribe({
+      next: () => {
+        console.log('Biblioteka uspešno izmenjena!');
         this.router.navigate(['/biblioteke']);
       },
-
-      error: err => console.error('Greška pri čuvanju biblioteke:', err)
+      error: err => console.error('Greška pri izmeni biblioteke:', err)
+    });
+  } 
+  
+  else {
+    this.bibliotekaService.create(bibliotekaDTO).subscribe({
+      next: (biblioteka) => {
+        console.log('Kreirana biblioteka:', biblioteka);
+        this.kreiranaBiblioteka = biblioteka;
+        this.router.navigate(['/biblioteke']);
+      },
+      error: err => console.error('Greška pri kreiranju biblioteke:', err)
     });
   }
 }
+
 
 
   private kreirajModel(podaci?: any): FormaModel {

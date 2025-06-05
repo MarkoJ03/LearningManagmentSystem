@@ -1,0 +1,6 @@
+<div *ngIf="program as p">
+  <h2>{{ p.naziv }}</h2>
+  <p>Tip: {{ p.tipPrograma?.naziv }}</p>
+  <p>Katedra: {{ p.katedra?.naziv }}</p>
+  <p>Vidljiv: {{ p.vidljiv ? 'Da' : 'Ne' }}</p>
+</div>

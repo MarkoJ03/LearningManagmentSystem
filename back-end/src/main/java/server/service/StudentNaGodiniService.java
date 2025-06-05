@@ -13,7 +13,9 @@ import server.DTOs.StudentNaGodiniDTO;
 import server.DTOs.SvObrazacDTO;
 import server.DTOs.ZvanjeDTO;
 import server.model.GodinaStudija;
+import server.model.GrupaStudenata;
 import server.model.IshodEvaluacije;
+import server.model.Student;
 import server.model.StudentNaGodini;
 import server.model.SvObrazac;
 import server.model.Zvanje;
@@ -70,18 +72,40 @@ public class StudentNaGodiniService extends BaseService<StudentNaGodini, Student
 
 	@Override
 	protected StudentNaGodini convertToEntity(StudentNaGodiniDTO dto) {
-		
-		ArrayList<IshodEvaluacije> ishodi = new ArrayList<>();
-		for (IshodEvaluacijeDTO z : dto.getIshodEvaluacije()) {
-			IshodEvaluacije zDTO = ishodService.convertToEntity(z);
-			ishodi.add(zDTO);
-		}
-		
-		SvObrazac sv = obrazacService.convertToEntity(dto.getSvObrazac());
-		
-		GodinaStudija godinaStudija = godinaStudijaService.convertToEntity(dto.getGodinaStudija());
-		return new StudentNaGodini(dto.getId(),dto.getBrojIndeksa(),dto.getDatumUpisa(),studentService.convertToEntity(dto.getStudent()), godinaStudija,grupaService.convertToEntity(dto.getGrupaStudenata()),ishodi,sv,dto.getVidljiv());
-		}
+	    Student student = new Student();
+	    student.setId(dto.getStudent().getId());
+
+	    GodinaStudija godinaStudija = new GodinaStudija();
+	    godinaStudija.setId(dto.getGodinaStudija().getId());
+
+	    GrupaStudenata grupa = new GrupaStudenata();
+	    grupa.setId(dto.getGrupaStudenata().getId());
+
+	    SvObrazac svObrazac = new SvObrazac();
+	    svObrazac.setId(dto.getSvObrazac().getId());
+
+	    ArrayList<IshodEvaluacije> ishodi = new ArrayList<>();
+	    if (dto.getIshodEvaluacije() != null) {
+	        for (IshodEvaluacijeDTO z : dto.getIshodEvaluacije()) {
+	            IshodEvaluacije entitet = new IshodEvaluacije();
+	            entitet.setId(z.getId());
+	            ishodi.add(entitet);
+	        }
+	    }
+
+	    return new StudentNaGodini(
+	        dto.getId(),
+	        dto.getBrojIndeksa(),
+	        dto.getDatumUpisa(),
+	        student,
+	        godinaStudija,
+	        grupa,
+	        ishodi,
+	        svObrazac,
+	        dto.getVidljiv()
+	    );
+	}
+
 
 
 

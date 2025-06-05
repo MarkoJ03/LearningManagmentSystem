@@ -21,4 +21,4 @@ public class GodinaStudijaDTO {
 	private StudijskiProgramDTO studijskiProgram;
 
 	private Boolean vidljiv = true;
-}
+	}

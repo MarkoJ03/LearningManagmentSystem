@@ -1,6 +1,7 @@
 package server.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -61,8 +62,11 @@ public class StudijskiProgramService extends BaseService<StudijskiProgram, Studi
 
 				null, dto.getTipPrograma().getVidljiv());
 
-		Katedra katedra = new Katedra(dto.getKatedra().getId(), dto.getKatedra().getNaziv(),
-				null, null, null, null, null, dto.getKatedra().getVidljiv());
+	    Katedra katedra = null;
+	    if (dto.getKatedra() != null && dto.getKatedra().getId() != null) {
+	        katedra = new Katedra();
+	        katedra.setId(dto.getKatedra().getId());
+	    }
 
 		ArrayList<GodinaStudija> godineStudija = new ArrayList<>();
 
@@ -74,6 +78,6 @@ public class StudijskiProgramService extends BaseService<StudijskiProgram, Studi
 
 		return new StudijskiProgram(dto.getId(), dto.getNaziv(), tipPrograma, katedra, godineStudija, dto.getVidljiv());
 
-	}
 
+	}
 }

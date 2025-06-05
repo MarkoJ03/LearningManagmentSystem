@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class Inventar {
 
 	@Id
@@ -25,4 +25,10 @@ public class Inventar {
 
 	@Column(nullable = false)
     private Boolean vidljiv = true;
+
+	public Inventar(Long id, StudentskaSluzba studentskaSluzba, Boolean vidljiv) {
+        this.id = id;
+        this.studentskaSluzba = studentskaSluzba;
+        this.vidljiv = vidljiv;
+    }
 }

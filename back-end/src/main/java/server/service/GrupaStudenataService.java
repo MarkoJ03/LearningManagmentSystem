@@ -4,8 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import server.DTOs.GrupaStudenataDTO;
+import server.DTOs.KalendarDTO;
+import server.DTOs.StudentNaGodiniDTO;
 import server.model.GrupaStudenata;
 import server.repository.GrupaStudenataRepository;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GrupaStudenataService extends BaseService<GrupaStudenata, GrupaStudenataDTO, Long> {
@@ -20,23 +24,44 @@ public class GrupaStudenataService extends BaseService<GrupaStudenata, GrupaStud
 
     @Override
     protected GrupaStudenataDTO convertToDTO(GrupaStudenata entity) {
-        return new GrupaStudenataDTO(
-            entity.getId(),
-            null,
-            null,
-            null,
-            entity.getVidljiv()
-        );
+        List<StudentNaGodiniDTO> studenti = null;
+        if (entity.getStudentNaGodini() != null && !entity.getStudentNaGodini().isEmpty()) {
+            studenti = entity.getStudentNaGodini().stream()
+                    .map(studentNaGodini -> {
+                        StudentNaGodiniDTO dto = new StudentNaGodiniDTO();
+                        dto.setId(studentNaGodini.getId());
+                        dto.setBrojIndeksa(studentNaGodini.getBrojIndeksa());
+                        dto.setVidljiv(studentNaGodini.getVidljiv());
+                        return dto;
+                    })
+                    .collect(Collectors.toList());
+        }
+
+        KalendarDTO kalendar = null;
+        if (entity.getKalendar() != null) {
+            kalendar = new KalendarDTO();
+            kalendar.setId(entity.getKalendar().getId());
+            kalendar.setVidljiv(entity.getKalendar().getVidljiv());
+        }
+
+        GrupaStudenataDTO dto = new GrupaStudenataDTO();
+        dto.setId(entity.getId());
+        dto.setStudentNaGodini(studenti);
+        dto.setKalendar(kalendar);
+        dto.setVidljiv(entity.getVidljiv());
+        
+
+        return dto;
     }
+    
 
     @Override
     protected GrupaStudenata convertToEntity(GrupaStudenataDTO dto) {
-        return new GrupaStudenata(
-            dto.getId(),
-            null,
-            null,
-            null,
-            dto.getVidljiv()
-        );
+       
+        GrupaStudenata entity = new GrupaStudenata();
+        entity.setId(dto.getId());
+        entity.setVidljiv(dto.getVidljiv());
+       
+        return entity;
     }
 }

@@ -1,0 +1,9 @@
+<app-base-table
+  [data]="inventari"
+  [displayedColumns]="kolone"
+  (edit)="izmeni($event)"
+  (delete)="obrisi($event)"
+  (details)="detalji($event)">
+</app-base-table>
+
+<a routerLink="/inventari/dodaj">Dodaj inventar</a>

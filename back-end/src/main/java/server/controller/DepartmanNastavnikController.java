@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import server.DTOs.BibliotekaKnjigaDTO;
 import server.DTOs.DepartmanNastavnikDTO;
 import server.model.DepartmanNastavnik;
 import server.service.DepartmanNastavnikService;
@@ -26,6 +27,7 @@ public class DepartmanNastavnikController extends BaseController<DepartmanNastav
         return departmanNastavnikService;
     }
     
+
     @GetMapping("/departman/{id}")
 	public ResponseEntity<List<DepartmanNastavnikDTO>> getByDepartmanId(@PathVariable Long id) {
 	    return ResponseEntity.ok(departmanNastavnikService.findByDepartmanId(id));

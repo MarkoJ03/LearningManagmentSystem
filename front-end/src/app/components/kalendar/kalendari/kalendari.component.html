@@ -1,0 +1,11 @@
+<h1>Kalendari</h1>
+
+<app-base-table
+  [data]="kalendari"
+  [displayedColumns]="kolone"
+  (edit)="izmeni($event)"
+  (delete)="obrisi($event)"
+  (details)="detalji($event)">
+</app-base-table>
+
+<a routerLink="/kalendar/dodaj">Dodaj kalendar</a>

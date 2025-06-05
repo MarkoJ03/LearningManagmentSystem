@@ -1,0 +1,9 @@
+<div *ngIf="godinaStudija">
+  <h2>Godina studija: {{ godinaStudija.godina }}</h2>
+  <p><strong>Vidljiv:</strong> {{ godinaStudija.vidljiv ? 'Da' : 'Ne' }}</p>
+  <p><strong>Studijski program:</strong> {{ godinaStudija.studijskiProgram.naziv }}</p>
+</div>
+
+<div *ngIf="!godinaStudija">
+  <p>Godina studija nije pronađena.</p>
+</div>
