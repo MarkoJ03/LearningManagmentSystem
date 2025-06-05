@@ -23,6 +23,7 @@ import { SvObrazacComponent } from './components/estudent/estudent-sv-obrazac/es
 import { EstudentPodaciOStudentuComponent } from './components/estudent/estudent-podaci-o-studentu/estudent-podaci-o-studentu.component';
 import { ObjavaDetaljiComponent } from './components/objava-detalji/objava-detalji.component';
 import { PocetnaComponent } from './components/pocetna/pocetna.component';
+import { SilabusLayoutComponent } from './components/silabus-layout/silabus-layout.component';
 
 
 
@@ -59,6 +60,7 @@ export const routes: Routes = [
      { path: 'studijskiProgram/:id', component: StudijskiProgramLayoutComponent },
      { path: 'predmet/:id', component: PredmetLayoutComponent },
      { path: 'objava/:id', component: ObjavaDetaljiComponent },
+     { path: 'predmet/:id/silabus', component: SilabusLayoutComponent },
          {
         path: 'login',
         component: LoginFormComponent

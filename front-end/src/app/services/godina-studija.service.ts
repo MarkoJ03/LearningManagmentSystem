@@ -10,10 +10,10 @@ import { Observable } from 'rxjs/internal/Observable';
 export class GodinaStudijaService extends BaseService<GodinaStudija> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/GodinaStudija');
+    this.setUrl('http://localhost:8080/api/godine-studija');
   }
 
   getByProgramId(id: number): Observable<GodinaStudija[]> {
-  return this.http.get<GodinaStudija[]>(`http://localhost:8080/api/GodinaStudija/program/${id}`);
+  return this.http.get<GodinaStudija[]>(`http://localhost:8080/api/godine-studija/program/${id}`);
 }
 }

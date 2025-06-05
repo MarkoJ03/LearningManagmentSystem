@@ -9,6 +9,6 @@ import { HttpClient } from '@angular/common/http';
 export class DepartmanService extends BaseService<Departman> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/Departman');
+    this.setUrl('http://localhost:8080/api/departmani');
   }
 }
