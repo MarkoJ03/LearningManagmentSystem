@@ -1,6 +1,7 @@
 package server.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -61,10 +62,12 @@ public class StudentNaGodiniService extends BaseService<StudentNaGodini, Student
 		
 		
 		ArrayList<IshodEvaluacijeDTO> ishodi = new ArrayList<>();
-		for (IshodEvaluacije z : entity.getIshodEvaluacije()) {
-			IshodEvaluacijeDTO zDTO = ishodService.convertToDTO(z);
-			ishodi.add(zDTO);
+		List<IshodEvaluacije> kopija = new ArrayList<>(entity.getIshodEvaluacije());
+		for (IshodEvaluacije z : kopija) {
+		    IshodEvaluacijeDTO zDTO = ishodService.convertToDTO(z);
+		    ishodi.add(zDTO);
 		}
+
 		
 		GodinaStudijaDTO godinaStudija = godinaStudijaService.convertToDTO(entity.getGodinaStudija());
 		return new StudentNaGodiniDTO(entity.getId(),entity.getBrojIndeksa(),entity.getDatumUpisa(),studentService.convertToDTO(entity.getStudent()),godinaStudija,grupaService.convertToDTO(entity.getGrupaStudenata()),ishodi,sv, entity.getVidljiv());
