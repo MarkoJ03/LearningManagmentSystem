@@ -51,5 +51,9 @@ public class StudentskaSluzba {
 
 	@Column(nullable = false)
     private Boolean vidljiv = true;
-
+	
+    public StudentskaSluzba(Long id, Boolean vidljiv) {
+        this.id = id;
+        this.vidljiv = vidljiv;
+    }
 }

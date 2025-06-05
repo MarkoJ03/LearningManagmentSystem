@@ -17,6 +17,11 @@ import server.repository.PredmetRepository;
 
 @Service
 public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
+	
+	public Predmet getById(Long id) {
+	    return predmetRepository.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Predmet sa id " + id + " nije pronađen."));
+	}
 
 	@Autowired
 	private PredmetRepository predmetRepository;
@@ -37,9 +42,12 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 	@Override
 	protected PredmetDTO convertToDTO(Predmet entity) {
 		DokumentiPredmetaDTO dokumentiPredmeta = new DokumentiPredmetaDTO(entity.getDokumentiPredmeta().getId(),
+
 				silabusService.convertToDTO(entity.getDokumentiPredmeta().getSilabus()), entity.getDokumentiPredmeta().getAkreditacija(), null, entity.getDokumentiPredmeta().getVidljiv());
 
+
 		ArrayList<RealizacijaPredmetaDTO> realizacijePredmeta = new ArrayList<>();
+
 		for(RealizacijaPredmeta rp : entity.getRealizacijePredmeta()) {
 			RealizacijaPredmetaDTO rpDTO = realizacijaPredmetaService.convertToDTO(rp);
 			realizacijePredmeta.add(rpDTO);
@@ -48,12 +56,15 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 		return new PredmetDTO(entity.getId(),entity.getNaziv(), entity.getEsbp(), entity.getObavezan(),
 				entity.getBrojPredavanja(), entity.getBrojVezbi(), entity.getIstrazivackiRad(),
 				entity.getBrojSemestara(), entity.getOpis(), entity.getCilj(), dokumentiPredmeta,null,null, realizacijePredmeta,entity.getVidljiv());
+
 	}
 
 	@Override
 	protected Predmet convertToEntity(PredmetDTO dto) {
 		DokumentiPredmeta dokumentiPredmeta = new DokumentiPredmeta(dto.getDokumentiPredmeta().getId(),
+
 				silabusService.convertToEntity(dto.getDokumentiPredmeta().getSilabus()), dto.getDokumentiPredmeta().getAkreditacija(), null, dto.getDokumentiPredmeta().getVidljiv());
+
 
 		ArrayList<RealizacijaPredmeta> realizacijePredmeta = new ArrayList<>();
 		for(RealizacijaPredmetaDTO rpDTO : dto.getRealizacijePredmeta()) {
@@ -64,6 +75,7 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 		return new Predmet(dto.getId(),dto.getNaziv(), dto.getEsbp(), dto.getObavezan(), dto.getBrojPredavanja(),
 				dto.getBrojVezbi(), dto.getIstrazivackiRad(), dto.getBrojSemestara(), dto.getOpis(),
 				dto.getCilj(), dokumentiPredmeta,null,null, realizacijePredmeta,dto.getVidljiv());
+
 	}
 
 }

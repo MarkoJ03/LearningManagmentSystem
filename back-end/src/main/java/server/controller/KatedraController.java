@@ -10,7 +10,7 @@ import server.service.KatedraService;
 
 
 @Controller
-@RequestMapping("/api/Katedra")
+@RequestMapping("/api/katedre")
 public class KatedraController extends BaseController<Katedra, KatedraDTO, Long> {
 
     @Autowired

@@ -9,7 +9,7 @@ import server.model.StudentskaSluzba;
 import server.service.StudentskaSluzbaService;
 
 @Controller
-@RequestMapping("/api/StudentskaSluzba")
+@RequestMapping("/api/studentske-sluzbe")
 public class StudentskaSluzbaController extends BaseController<StudentskaSluzba, StudentskaSluzbaDTO, Long> {
 
     @Autowired

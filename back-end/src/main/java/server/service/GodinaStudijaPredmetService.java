@@ -28,6 +28,7 @@ public class GodinaStudijaPredmetService extends BaseService<GodinaStudijaPredme
 
 	@Override
 	protected GodinaStudijaPredmetDTO convertToDTO(GodinaStudijaPredmet entity) {
+
 		GodinaStudijaDTO godinaStudija = new GodinaStudijaDTO(entity.getGodinaStudija().getId(),
 				entity.getGodinaStudija().getGodina(), null, null, entity.getGodinaStudija().getVidljiv());
 		PredmetDTO predmet = new PredmetDTO(entity.getPredmet().getId(),entity.getPredmet().getNaziv(), entity.getPredmet().getEsbp(),
@@ -36,10 +37,12 @@ public class GodinaStudijaPredmetService extends BaseService<GodinaStudijaPredme
 				entity.getPredmet().getCilj(), null, null,null,null, entity.getPredmet().getVidljiv());
 
 		return new GodinaStudijaPredmetDTO(entity.getId(),godinaStudija ,predmet,entity.getVidljiv());
+
 	}
 
 	@Override
 	protected GodinaStudijaPredmet convertToEntity(GodinaStudijaPredmetDTO dto) {
+
 		GodinaStudija godinaStudija = new GodinaStudija(dto.getGodinaStudija().getId(),
 				dto.getGodinaStudija().getGodina(), null, null,dto.getGodinaStudija().getVidljiv());
 		Predmet predmet = new Predmet(dto.getPredmet().getId(),dto.getPredmet().getNaziv(), dto.getPredmet().getEsbp(),
@@ -48,6 +51,7 @@ public class GodinaStudijaPredmetService extends BaseService<GodinaStudijaPredme
 				dto.getPredmet().getCilj(), null, null,null,null, dto.getPredmet().getVidljiv());
 
 		return new GodinaStudijaPredmet(dto.getId(),godinaStudija, predmet,dto.getVidljiv());
+
 	}
 
 	public List<GodinaStudijaPredmetDTO> findByGodinaStudijaId(Long godinaId) {

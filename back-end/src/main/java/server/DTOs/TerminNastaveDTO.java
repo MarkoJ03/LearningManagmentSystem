@@ -16,6 +16,6 @@ public class TerminNastaveDTO {
 	private Integer brojCasova;
 	private RealizacijaPredmetaDTO realizacijaPredmeta;
 	private KalendarDTO kalendar;
-
 	private Boolean vidljiv = true;
+
 }

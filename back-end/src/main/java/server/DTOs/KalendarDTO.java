@@ -26,7 +26,13 @@ public class KalendarDTO {
 		private List<TerminNastaveDTO> terminiNastave;
 
 	    private Boolean vidljiv = true;
+	    public KalendarDTO(Long id, Boolean vidljiv) {
+	        this.id = id;
+	        this.vidljiv = vidljiv;
+	    }
+
 	}
+
 
 
 

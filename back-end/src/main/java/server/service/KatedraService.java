@@ -50,7 +50,7 @@ public class KatedraService extends BaseService<Katedra, KatedraDTO, Long>{
 		
 		return new KatedraDTO(entity.getId(),entity.getNaziv()
 
-				,new DepartmanDTO(entity.getDepartman().getId(),entity.getDepartman().getNaziv(), null,null,null,null, null,null),
+				,new DepartmanDTO(entity.getDepartman().getId(),entity.getDepartman().getNaziv(), null,null,null,null, null, null),
 				new NastavnikDTO(entity.getSekretarKatedre().getId(),null, entity.getSekretarKatedre().getIme(),entity.getSekretarKatedre().getPrezime(),entity.getSekretarKatedre().getJmbg(),null,null,null, null,null,null,null, entity.getSekretarKatedre().getVidljiv()),
 				new NastavnikDTO(entity.getSefKatedre().getId(),null, entity.getSefKatedre().getIme(),entity.getSefKatedre().getPrezime(),entity.getSefKatedre().getJmbg(),null,null,null, null,null,null,null, entity.getSefKatedre().getVidljiv()),
 						null,programi, null);

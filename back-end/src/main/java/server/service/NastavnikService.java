@@ -1,6 +1,8 @@
 package server.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -8,14 +10,18 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import server.DTOs.DepartmanNastavnikDTO;
+import server.DTOs.DodeljenoPravoPristupaDTO;
 import server.DTOs.KatedraNastavnikDTO;
+
 import server.DTOs.KorisnikDTO;
 import server.DTOs.NastavnikDTO;
 import server.DTOs.ObavestenjeDTO;
 import server.DTOs.RealizacijaPredmetaDTO;
 import server.DTOs.ZvanjeDTO;
 import server.model.DepartmanNastavnik;
+import server.model.DodeljenoPravoPristupa;
 import server.model.KatedraNastavnik;
+
 import server.model.Korisnik;
 import server.model.Nastavnik;
 import server.model.Obavestenje;
@@ -32,6 +38,10 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 	@Autowired
 	@Lazy
 	private ZvanjeService zvanjeService;
+	
+	@Autowired
+	@Lazy
+	private DodeljenoPravoPristupaService dodeljenoPravoPrisupaService;
 
 	@Autowired
 	@Lazy
@@ -56,19 +66,30 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 
 	@Override
 	protected NastavnikDTO convertToDTO(Nastavnik entity) {
-		KorisnikDTO korisnik = new KorisnikDTO(entity.getKorisnik().getId(), entity.getKorisnik().getEmail(), entity.getKorisnik().getLozinka(), entity.getKorisnik().getVidljiv());
+		Set<DodeljenoPravoPristupaDTO> dodeljenaPravaPristupa = new HashSet<>();
+		
+		for(DodeljenoPravoPristupa dpp: entity.getKorisnik().getDodeljenaPravaPristupa()) {
+			DodeljenoPravoPristupaDTO dppDTO = dodeljenoPravoPrisupaService.convertToDTO(dpp);
+			dodeljenaPravaPristupa.add(dppDTO);
+		}
+
+		KorisnikDTO korisnik = new KorisnikDTO(entity.getKorisnik().getId(), entity.getKorisnik().getEmail(), entity.getKorisnik().getLozinka(), dodeljenaPravaPristupa,entity.getKorisnik().getVidljiv());
 
 		ArrayList<ZvanjeDTO> zvanja = new ArrayList<>();
+
 		for (Zvanje z : entity.getZvanja()) {
 			ZvanjeDTO zDTO = zvanjeService.convertToDTO(z);
 			zvanja.add(zDTO);
 		}
 
+
 		ArrayList<DepartmanNastavnikDTO> departmaniNastavnici = new ArrayList<>();
+
 		for (DepartmanNastavnik dn : entity.getDepartmani()) {
 			DepartmanNastavnikDTO dnDTO = departmanNastavnikService.convertToDTO(dn);
 			departmaniNastavnici.add(dnDTO);
 		}
+
 
 		ArrayList<KatedraNastavnikDTO> katedreNastavnici = new ArrayList<>();
 		for (KatedraNastavnik dn : entity.getKatedre()) {
@@ -77,36 +98,53 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 		}
 
 		ArrayList<RealizacijaPredmetaDTO> realizacijePredmeta = new ArrayList<>();
+
 		for (RealizacijaPredmeta rp : entity.getRealizacijePredmeta()) {
 			RealizacijaPredmetaDTO rpDTO = realizacijaPredmetaService.convertToDTO(rp);
 			realizacijePredmeta.add(rpDTO);
 		}
 
+
 		ArrayList<ObavestenjeDTO> obavestenja = new ArrayList<>();
+
 		for (Obavestenje o : entity.getObavestenja()) {
 			ObavestenjeDTO oDTO = obavestenjeService.convertToDTO(o);
 			obavestenja.add(oDTO);
 		}
 
+
 		return new NastavnikDTO(entity.getId(), korisnik,entity.getIme(), entity.getPrezime(), entity.getJmbg(), zvanja,
 				 departmaniNastavnici, katedreNastavnici, null,realizacijePredmeta, obavestenja,null, entity.getVidljiv());
+
 	}
 
 	@Override
 	protected Nastavnik convertToEntity(NastavnikDTO dto) {
-		Korisnik korisnik = new Korisnik(dto.getKorisnik().getId(), dto.getKorisnik().getEmail(), dto.getKorisnik().getLozinka(), dto.getKorisnik().getVidljiv());
+		Set<DodeljenoPravoPristupa> dodeljenaPravaPristupa = new HashSet<>();
+		
+		for(DodeljenoPravoPristupaDTO dppDTO: dto.getKorisnik().getDodeljenaPravaPristupa()) {
+			DodeljenoPravoPristupa dpp = dodeljenoPravoPrisupaService.convertToEntity(dppDTO);
+			dodeljenaPravaPristupa.add(dpp);
+		}
+		
+
+		Korisnik korisnik = new Korisnik(dto.getKorisnik().getId(), dto.getKorisnik().getEmail(), dto.getKorisnik().getLozinka(), dto.getKorisnik().getVidljiv(), dodeljenaPravaPristupa);
 
 		ArrayList<Zvanje> zvanja = new ArrayList<>();
+
 		for (ZvanjeDTO zDTO : dto.getZvanja()) {
 			Zvanje z = zvanjeService.convertToEntity(zDTO);
 			zvanja.add(z);
 		}
 
+
 		ArrayList<DepartmanNastavnik> departmaniNastavnici = new ArrayList<>();
+
 		for (DepartmanNastavnikDTO dnDTO : dto.getDepartmani()) {
 			DepartmanNastavnik dn = departmanNastavnikService.convertToEntity(dnDTO);
 			departmaniNastavnici.add(dn);
 		}
+
 
 		ArrayList<KatedraNastavnik> katedreNastavnici = new ArrayList<>();
 		for (KatedraNastavnikDTO dn : dto.getKatedre()) {
@@ -115,19 +153,23 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 		}
 
 		ArrayList<RealizacijaPredmeta> realizacijePredmeta = new ArrayList<>();
+
 		for (RealizacijaPredmetaDTO rpDTO : dto.getRealizacijaPredmeta()) {
 			RealizacijaPredmeta rp = realizacijaPredmetaService.convertToEntity(rpDTO);
 			realizacijePredmeta.add(rp);
 		}
 
 		ArrayList<Obavestenje> obavestenja = new ArrayList<>();
+
 		for (ObavestenjeDTO oDTO : dto.getObavestenja()) {
 			Obavestenje o = obavestenjeService.convertToEntity(oDTO);
 			obavestenja.add(o);
 		}
 
+
 		return new Nastavnik(dto.getId(), korisnik, dto.getIme(), dto.getPrezime(), dto.getJmbg(),
 				zvanja, departmaniNastavnici, katedreNastavnici,null, realizacijePredmeta, obavestenja,null, dto.getVidljiv());
+
 	}
 
 }

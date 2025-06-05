@@ -1,12 +1,12 @@
 package server.DTOs;
 
+
 import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import server.model.IshodEvaluacije;
-import server.model.RealizacijaPredmeta;
+
 
 @Data
 @NoArgsConstructor
@@ -17,4 +17,6 @@ public class IshodPredmetaDTO {
 	private List<RealizacijaPredmetaDTO> realizacijePredmeta;
 	private List<IshodEvaluacijeDTO> ishodiEvaluacije;
 	private Boolean vidljiv = true;
+
+
 }

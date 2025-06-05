@@ -42,6 +42,7 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 
 	@Override
 	protected RealizacijaPredmetaDTO convertToDTO(RealizacijaPredmeta entity) {
+
 		NastavnikDTO nastavnik = new NastavnikDTO(entity.getNastavnik().getId(),null, entity.getNastavnik().getIme(),
 				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null, null,null,null, entity.getNastavnik().getVidljiv());
 		TipNastaveDTO tipNastave = new TipNastaveDTO(entity.getTipNastave().getId(), entity.getTipNastave().getNaziv(),
@@ -52,19 +53,23 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 				entity.getPredmet().getCilj(), null, null,null,null, entity.getPredmet().getVidljiv());
 
 		ArrayList<TerminNastaveDTO> terminiNastave = new ArrayList<>();
+
 		for(TerminNastave tn : entity.getTerminiNastave()) {
 			TerminNastaveDTO tnDTO = terminNastaveService.convertToDTO(tn);
 			terminiNastave.add(tnDTO);
 		}
 
+
 		IshodPredmetaDTO ip = ishodPredmetaService.convertToDTO(entity.getIshodPredmeta());
 
 		return new RealizacijaPredmetaDTO(entity.getId(), nastavnik, tipNastave, predmet, terminiNastave, ip, entity.getVidljiv());
+
 	}
 
 	@Override
 	protected RealizacijaPredmeta convertToEntity(RealizacijaPredmetaDTO dto) {
 		Nastavnik nastavnik = new Nastavnik(dto.getNastavnik().getId(), null, dto.getNastavnik().getIme(),
+
 				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null, null,null,null,null, dto.getNastavnik().getVidljiv());
 		TipNastave tipNastave = new TipNastave(dto.getTipNastave().getId(), dto.getTipNastave().getNaziv(),
 				null, dto.getTipNastave().getVidljiv());
@@ -74,14 +79,17 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 				dto.getPredmet().getCilj(), null, null,null,null,dto.getPredmet().getVidljiv());
 
 		ArrayList<TerminNastave> terminiNastave = new ArrayList<>();
+
 		for(TerminNastaveDTO tnDTO : dto.getTerminiNastave()) {
 			TerminNastave tn = terminNastaveService.convertToEntity(tnDTO);
 			terminiNastave.add(tn);
 		}
 
+
 		IshodPredmeta ip = ishodPredmetaService.convertToEntity(dto.getIshodPredmeta());
 
 		return new RealizacijaPredmeta(dto.getId(), nastavnik, tipNastave, predmet, terminiNastave, ip, dto.getVidljiv());
+
 	}
 
 }

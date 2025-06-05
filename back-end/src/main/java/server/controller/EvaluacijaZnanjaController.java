@@ -1,6 +1,7 @@
 package server.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,7 +10,8 @@ import server.model.EvaluacijaZnanja;
 import server.service.EvaluacijaZnanjaService;
 
 @Controller
-@RequestMapping("/api/EvaluacijaZnanja")
+@RequestMapping("/api/evaluacije-znanja")
+@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA"})
 public class EvaluacijaZnanjaController extends BaseController<EvaluacijaZnanja, EvaluacijaZnanjaDTO, Long> {
 
     @Autowired

@@ -19,9 +19,11 @@ public class TipProgramaService extends BaseService<TipPrograma, TipProgramaDTO,
 	@Autowired
 	private TipProgramaRepository tipProgramaRepository;
 
+
 	@Autowired
 	@Lazy
 	private StudijskiProgramService studijskiProgramService;
+
 
 	@Override
 	protected CrudRepository<TipPrograma, Long> getRepository() {
@@ -30,24 +32,32 @@ public class TipProgramaService extends BaseService<TipPrograma, TipProgramaDTO,
 
 	@Override
 	protected TipProgramaDTO convertToDTO(TipPrograma entity) {
+
 		ArrayList<StudijskiProgramDTO> studijskiProgrami = new ArrayList<>();
+
 		for(StudijskiProgram sp : entity.getProgrami()) {
 			StudijskiProgramDTO spDTO = studijskiProgramService.convertToDTO(sp);
 			studijskiProgrami.add(spDTO);
 		}
 
+
 		return new TipProgramaDTO(entity.getId(), entity.getNaziv(), studijskiProgrami, entity.getVidljiv());
+
 	}
 
 	@Override
 	protected TipPrograma convertToEntity(TipProgramaDTO dto) {
+
 		ArrayList<StudijskiProgram> studijskiProgrami = new ArrayList<>();
+
 		for(StudijskiProgramDTO spDTO : dto.getProgrami()) {
 			StudijskiProgram sp = studijskiProgramService.convertToEntity(spDTO);
 			studijskiProgrami.add(sp);
 		}
 
+
 		return new TipPrograma(dto.getId(), dto.getNaziv(), studijskiProgrami, dto.getVidljiv());
+
 	}
 
 }

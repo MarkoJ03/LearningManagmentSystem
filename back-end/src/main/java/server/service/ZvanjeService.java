@@ -28,6 +28,7 @@ public class ZvanjeService extends BaseService<Zvanje, ZvanjeDTO, Long> {
 	@Override
 	protected ZvanjeDTO convertToDTO(Zvanje entity) {
 		TipZvanjaDTO tipZvanja = new TipZvanjaDTO(entity.getTipZvanja().getId(), entity.getTipZvanja().getNaziv(),
+
 				null, entity.getTipZvanja().getVidljiv());
 		NaucnaOblastDTO naucnaOblast = new NaucnaOblastDTO(entity.getNaucnaOblast().getId(),
 				entity.getNaucnaOblast().getNaziv(), null, entity.getNaucnaOblast().getVidljiv());
@@ -36,11 +37,13 @@ public class ZvanjeService extends BaseService<Zvanje, ZvanjeDTO, Long> {
 
 		return new ZvanjeDTO(entity.getId(), entity.getDatumIzbora(), entity.getDatumPrestanka(), tipZvanja,
 				naucnaOblast, nastavnik, entity.getVidljiv());
+
 	}
 
 	@Override
 	protected Zvanje convertToEntity(ZvanjeDTO dto) {
 		TipZvanja tipZvanja = new TipZvanja(dto.getTipZvanja().getId(), dto.getTipZvanja().getNaziv(),
+
 				null, dto.getTipZvanja().getVidljiv());
 		NaucnaOblast naucnaOblast = new NaucnaOblast(dto.getNaucnaOblast().getId(),
 				dto.getNaucnaOblast().getNaziv(), null, dto.getNaucnaOblast().getVidljiv());
@@ -48,6 +51,7 @@ public class ZvanjeService extends BaseService<Zvanje, ZvanjeDTO, Long> {
 				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null, null,null,null,null, dto.getNastavnik().getVidljiv());
 
 		return new Zvanje(dto.getId(), dto.getDatumIzbora(), dto.getDatumPrestanka(), tipZvanja, naucnaOblast, nastavnik,dto.getVidljiv());
+
 	}
 
 }

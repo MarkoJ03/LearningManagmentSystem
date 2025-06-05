@@ -1,6 +1,5 @@
 package server.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,10 +8,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import server.DTOs.BibliotekaKnjigaDTO;
-import server.DTOs.GodinaStudijaPredmetDTO;
-import server.DTOs.StudentNaGodiniDTO;
 import server.model.BibliotekaKnjiga;
-import server.model.StudentNaGodini;
 import server.repository.BibliotekaKnjigaRepository;
 
 @Service

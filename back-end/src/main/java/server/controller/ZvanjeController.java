@@ -10,7 +10,7 @@ import server.service.BaseService;
 import server.service.ZvanjeService;
 
 @Controller
-@RequestMapping("/api/zvanje")
+@RequestMapping("/api/zvanja")
 public class ZvanjeController extends BaseController<Zvanje, ZvanjeDTO, Long>{
 
 	@Autowired

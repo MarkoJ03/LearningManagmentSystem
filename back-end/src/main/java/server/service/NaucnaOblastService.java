@@ -23,6 +23,7 @@ public class NaucnaOblastService extends BaseService<NaucnaOblast, NaucnaOblastD
 	@Lazy
 	private ZvanjeService zvanjeService;
 
+
 	@Override
 	protected CrudRepository<NaucnaOblast, Long> getRepository() {
 		return naucnaOblastRepository;
@@ -30,24 +31,32 @@ public class NaucnaOblastService extends BaseService<NaucnaOblast, NaucnaOblastD
 
 	@Override
 	protected NaucnaOblastDTO convertToDTO(NaucnaOblast entity) {
+
 		ArrayList<ZvanjeDTO> zvanja = new ArrayList<>();
+
 		for(Zvanje z : entity.getZvanja()) {
 			ZvanjeDTO zDTO = zvanjeService.convertToDTO(z);
 			zvanja.add(zDTO);
 		}
 
+
 		return new NaucnaOblastDTO(entity.getId(), entity.getNaziv(), zvanja, entity.getVidljiv());
+
 	}
 
 	@Override
 	protected NaucnaOblast convertToEntity(NaucnaOblastDTO dto) {
+
 		ArrayList<Zvanje> zvanja = new ArrayList<>();
+
 		for(ZvanjeDTO zDTO : dto.getZvanja()) {
 			Zvanje z = zvanjeService.convertToEntity(zDTO);
 			zvanja.add(z);
 		}
 
+
 		return new NaucnaOblast(dto.getId(), dto.getNaziv(), zvanja, dto.getVidljiv());
+
 	}
 
 }

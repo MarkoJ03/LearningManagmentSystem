@@ -24,7 +24,6 @@ public class Obavestenje {
 	private String sadrzaj;
 	@ManyToOne
 	private Nastavnik nastavnik;
-
     @Column(nullable = false)
     private Boolean vidljiv = true;
 }

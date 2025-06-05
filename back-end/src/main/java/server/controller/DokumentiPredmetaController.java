@@ -1,6 +1,7 @@
 package server.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,6 +12,7 @@ import server.service.DokumentiPredmetaService;
 
 @Controller
 @RequestMapping("/api/dokumenti-predmeta")
+@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA"})
 public class DokumentiPredmetaController extends BaseController<DokumentiPredmeta, DokumentiPredmetaDTO, Long>{
 
 	@Autowired

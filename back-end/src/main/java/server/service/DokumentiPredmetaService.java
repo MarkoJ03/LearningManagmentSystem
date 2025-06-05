@@ -31,9 +31,12 @@ public class DokumentiPredmetaService extends BaseService<DokumentiPredmeta, Dok
 		PredmetDTO predmet = new PredmetDTO(entity.getPredmet().getId(),entity.getPredmet().getNaziv(), entity.getPredmet().getEsbp(),
 				entity.getPredmet().getObavezan(), entity.getPredmet().getBrojPredavanja(), entity.getPredmet().getBrojVezbi(),
 				entity.getPredmet().getIstrazivackiRad(), entity.getPredmet().getBrojSemestara(), entity.getPredmet().getOpis(),
+
 				entity.getPredmet().getCilj(), null, null,null,null,entity.getPredmet().getVidljiv());
 
+
 		return new DokumentiPredmetaDTO(entity.getId(), silabusService.convertToDTO(entity.getSilabus()), entity.getAkreditacija(), predmet,entity.getVidljiv());
+
 	}
 
 	@Override
@@ -41,9 +44,11 @@ public class DokumentiPredmetaService extends BaseService<DokumentiPredmeta, Dok
 		Predmet predmet = new Predmet(dto.getPredmet().getId(),dto.getPredmet().getNaziv(), dto.getPredmet().getEsbp(),
 				dto.getPredmet().getObavezan(), dto.getPredmet().getBrojPredavanja(), dto.getPredmet().getBrojVezbi(),
 				dto.getPredmet().getIstrazivackiRad(), dto.getPredmet().getBrojSemestara(), dto.getPredmet().getOpis(),
+
 				dto.getPredmet().getCilj(), null, null,null,null, dto.getPredmet().getVidljiv());
 
 		return new DokumentiPredmeta(dto.getId(), silabusService.convertToEntity(dto.getSilabus()), dto.getAkreditacija(), predmet,dto.getVidljiv());
+
 	}
 
 }

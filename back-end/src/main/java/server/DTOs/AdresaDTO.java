@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 public class AdresaDTO {
 
 	private Long id;
-	private String drzava;
-	private String grad;
+	private GradDTO grad;
 	private String ulica;
 	private String broj;
 	private Boolean vidljiv = true;
