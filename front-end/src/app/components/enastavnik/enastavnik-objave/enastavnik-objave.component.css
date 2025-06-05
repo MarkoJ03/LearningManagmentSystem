@@ -1,0 +1,10 @@
+.main-container {
+  display: flex;
+
+}
+
+.content {
+  padding: 20px;
+  flex: 1;
+    font-family: sans-serif;
+}

@@ -32,7 +32,7 @@ public class Korisnik {
     @Column(nullable = false)
     private Boolean vidljiv = true;
 
-    @OneToMany(mappedBy = "korisnic")
+    @OneToMany(mappedBy = "korisnik")
     private Set<DodeljenoPravoPristupa> dodeljenaPravaPristupa;
     
 }

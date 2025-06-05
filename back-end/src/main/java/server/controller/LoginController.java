@@ -31,7 +31,7 @@ public class LoginController {
 	
 	@PostMapping("login")
 	public ResponseEntity<String> login(@RequestBody UserLoginDTO user) {
-		Korisnik korisnik = korisnikService.findByEmailAndPassword(user.getUsername(), user.getPassword());
+		Korisnik korisnik = korisnikService.findByEmailAndLozinka(user.getEmail(), user.getLozinka());
 		
 		if(korisnik !=null) {
 			UserDetails userDetails = userDetailsService.loadUserByUsername(korisnik.getEmail());

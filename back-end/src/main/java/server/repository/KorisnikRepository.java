@@ -10,6 +10,6 @@ import server.model.Korisnik;
 
 @Repository
 public interface KorisnikRepository extends CrudRepository<Korisnik, Long>, PagingAndSortingRepository<Korisnik, Long> {
-	Optional<Korisnik> findByEmailAndPassword(String email, String lozinka);
+	Optional<Korisnik> findByEmailAndLozinka(String email, String lozinka);
 	Optional<Korisnik> findByEmail(String email);
 }

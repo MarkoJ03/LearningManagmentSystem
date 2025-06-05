@@ -1,0 +1,26 @@
+<h2>Moji Predmeti</h2>
+
+@if (predmeti.length === 0) {
+  <p>Nema predmeta za prikaz.</p>
+} @else {
+  <div class="predmeti-container">
+    @for (predmet of predmeti; track predmet.id) {
+      <div class="predmet-kartica">
+        <h3>{{ predmet.naziv }}</h3>
+        <p><strong>ESPB:</strong> {{ predmet.esbp }}</p>
+        <p>{{ predmet.opis }}</p>
+
+        <div class="linkovi">
+          <a *ngIf="predmet.dokumentiPredmeta?.silabus" target="_blank"
+             [href]="'/uploads/' + predmet.dokumentiPredmeta.silabus">
+             Silabus
+          </a>
+          <a *ngIf="predmet.dokumentiPredmeta?.akreditacija" target="_blank"
+             [href]="'/uploads/' + predmet.dokumentiPredmeta.akreditacija">
+             Akreditacija
+          </a>
+        </div>
+      </div>
+    }
+  </div>
+}

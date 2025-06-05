@@ -68,6 +68,11 @@ import { SvObrazacComponent } from './components/estudent/estudent-sv-obrazac/es
 import { EstudentPodaciOStudentuComponent } from './components/estudent/estudent-podaci-o-studentu/estudent-podaci-o-studentu.component';
 import { PocetnaComponent } from './components/pocetna/pocetna.component';
 import { ObjavaDetaljiComponent } from './components/objava-detalji/objava-detalji.component';
+import { EnastavnikLayoutComponent } from './components/enastavnik/enastavnik-layout/enastavnik-layout.component';
+import { EnastavnikObjaveComponent } from './components/enastavnik/enastavnik-objave/enastavnik-objave.component';
+import { EnastavnikPredmetiComponent } from './components/enastavnik/enastavnik-predmeti/enastavnik-predmeti.component';
+import { EnastavnikKalendarComponent } from './components/enastavnik/enastavnik-kalendar/enastavnik-kalendar.component';
+import { EnastavnikStudentiComponent } from './components/enastavnik/enastavnik-studenti/enastavnik-studenti.component';
 
 export const routes: Routes = [
     {
@@ -195,6 +200,23 @@ export const routes: Routes = [
       { path: 'sv-obrazac', component: SvObrazacComponent },
 
       { path: 'podaci-o-studentu', component: EstudentPodaciOStudentuComponent },
+
+      { path: '', redirectTo: 'objave', pathMatch: 'full' }
+
+    ]
+  },
+
+  {
+    path: 'nastavnik/:id/enastavnik',
+    component: EnastavnikLayoutComponent,
+    children: [
+      { path: 'objave', component: EnastavnikObjaveComponent },
+
+      { path: 'predmeti', component: EnastavnikPredmetiComponent },
+
+      { path: 'kalendar', component: EnastavnikKalendarComponent },
+
+      { path: 'studenti', component: EnastavnikStudentiComponent },
 
       { path: '', redirectTo: 'objave', pathMatch: 'full' }
 

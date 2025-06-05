@@ -57,8 +57,8 @@ public class KorisnikService extends BaseService<Korisnik, KorisnikDTO, Long>{
 		
 	}
 	
-	public Korisnik findByEmailAndPassword(String email, String lozinka) {
-		return this.korisnikRepository.findByEmailAndPassword(email, lozinka).orElse(null);
+	public Korisnik findByEmailAndLozinka(String email, String lozinka) {
+		return this.korisnikRepository.findByEmailAndLozinka(email, lozinka).orElse(null);
 	}
 	
 	public Korisnik findByEmail(String email) {
