@@ -1,0 +1,18 @@
+.kalendari-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.kalendar-kartica {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #f9f9f9;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}

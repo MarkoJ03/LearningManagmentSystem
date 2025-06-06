@@ -1,22 +1,22 @@
 <nav class="sidebar">
   <ul>
-    <!-- Da li dodati / pre svakog -->
-    <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'objave']">Pocetna</a></li>
+    <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'objave']">Početna</a></li>
     <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'predmeti']">Predmeti</a></li>
-    <!--  -->
     <li><a [routerLink]="['/realizacije-predmeta']">Realizacija predmeta</a></li>
     <li><a [routerLink]="['/termini-nastave']">Termin nastave</a></li>
-    <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'aktivnosti']">Tip nastave</a></li>
-    <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'ispiti']">Evaluacija znanja</a></li>
-    <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'predmeti']">Ishod evaluacije</a></li>
-    <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'podaci-o-studentu']">Ishod predmeta</a></li>
-    <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'predmeti', 'studenti']">Studenti</a></li>
-    <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'predmeti', 'obavestenja predmeta']">Obavestenja predmeta</a></li>
-    <!--  -->
     <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'kalendar']">Kalendar</a></li>
     <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'studenti']">Studenti</a></li>
-    <!-- Link CRUD za obavestenja -->
-    <li><a [routerLink]="['/obavestenja']">Obavestenja</a></li>
+    <li><a [routerLink]="['/obavestenja']">Obaveštenja</a></li>
+
+    <ng-container *ngIf="uKontekstuPredmeta && predmetId">
+      <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'predmeti', predmetId, 'aktivnosti']">Tip nastave</a></li>
+      <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'predmeti', predmetId, 'ispiti']">Evaluacija znanja</a></li>
+      <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'predmeti', predmetId, 'ishod-eval']">Ishod evaluacije</a></li>
+      <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'predmeti', predmetId, 'ishod-predmeta']">Ishod predmeta</a></li>
+      <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'predmeti', predmetId, 'studenti']">Studenti</a></li>
+      <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'predmeti', predmetId, 'obavestenja']">Obaveštenja predmeta</a></li>
+    </ng-container>
+
     <li><a href="#">Kraj rada</a></li>
   </ul>
 </nav>

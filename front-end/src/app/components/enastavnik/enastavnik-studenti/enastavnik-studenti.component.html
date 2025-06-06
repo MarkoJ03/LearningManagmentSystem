@@ -1,1 +1,27 @@
-<p>enastavnik-studenti works!</p>
+<h2>Svi studenti</h2>
+
+<div *ngIf="studenti.length === 0">
+  <p>Nema studenata za prikaz.</p>
+</div>
+
+<ul *ngIf="studenti.length > 0">
+  <li 
+    *ngFor="let student of studenti" 
+    (click)="prikaziDetalje(student)" 
+    [class.selected]="izabraniStudent === student"
+    class="student-item"
+  >
+    {{ student.student.ime }} {{ student.student.prezime }} - {{ student.brojIndeksa }}
+  </li>
+</ul>
+
+<hr />
+
+<div *ngIf="izabraniStudent">
+  <h3>Detalji studenta</h3>
+  <p><strong>Ime:</strong> {{ izabraniStudent.student.ime }}</p>
+  <p><strong>Prezime:</strong> {{ izabraniStudent.student.prezime }}</p>
+  <p><strong>JMBG:</strong> {{ izabraniStudent.student.jmbg }}</p>
+  <p><strong>Broj indeksa:</strong> {{ izabraniStudent.brojIndeksa }}</p>
+  <p><strong>Godina studija:</strong> {{ izabraniStudent.godinaStudija.godina }}</p>
+</div>

@@ -33,4 +33,15 @@ public class KalendarController extends BaseController<Kalendar, KalendarDTO, Lo
         return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
                      .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    
+    @GetMapping("/nastavnik/{nastavnikId}")
+    @Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA, ROLE_NASTAVNIK"})
+    public ResponseEntity<KalendarDTO> getKalendarByNastavnikId(@PathVariable Long nastavnikId) {
+        try {
+            KalendarDTO dto = kalendarService.findByNastavnikId(nastavnikId);
+            return ResponseEntity.ok(dto);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

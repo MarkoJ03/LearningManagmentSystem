@@ -1,1 +1,18 @@
-<p>enastavnik-kalendar works!</p>
+<h2>Moj kalendar</h2>
+
+<div *ngIf="error" class="error">
+  {{ error }}
+</div>
+
+<div *ngIf="termini.length === 0 && !error">
+  <p>Nema termina za prikaz.</p>
+</div>
+
+<div *ngIf="termini.length > 0" class="kalendari-container">
+  <div *ngFor="let termin of termini" class="kalendar-kartica">
+    <p><strong>Predmet:</strong> {{ termin.predmet }}</p>
+    <p><strong>Grupa:</strong> {{ termin.grupa }}</p>
+    <p><strong>Tip:</strong> {{ termin.tip }}</p>
+    <p><strong>Vreme:</strong> {{ termin.vremePocetka | date:'short' }} - {{ termin.vremeZavrsetka | date:'short' }}</p>
+  </div>
+</div>

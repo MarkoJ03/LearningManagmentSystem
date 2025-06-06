@@ -126,6 +126,12 @@ import { GodinaStudijaComponent } from './components/godina-studija/godina-studi
 import { GrupaStudenataFormaComponent } from './components/grupaStudenata/grupa-studenata-forma/grupa-studenata-forma.component';
 import { AdreseComponent } from './components/adrese/adrese.component';
 import { TipoviProgramaComponent } from './components/tipPrograma/tipovi-programa/tipovi-programa.component';
+import { EnastavnikObavestenjaPredmetComponent } from './components/enastavnik/enastavnik-obavestenja-predmet/enastavnik-obavestenja-predmet.component';
+import { EnastavnikStudentiPredmetComponent } from './components/enastavnik/enastavnik-studenti-predmet/enastavnik-studenti-predmet.component';
+import { EnastavnikIshodPredmetaComponent } from './components/enastavnik/enastavnik-ishod-predmeta/enastavnik-ishod-predmeta.component';
+import { EnastavnikIshodEvaluacijeComponent } from './components/enastavnik/enastavnik-ishod-evaluacije/enastavnik-ishod-evaluacije.component';
+import { EnastavnikEvaluacijaZnanjaComponent } from './components/enastavnik/enastavnik-evaluacija-znanja/enastavnik-evaluacija-znanja.component';
+import { EnastavnikTipNastaveComponent } from './components/enastavnik/enastavnik-tip-nastave/enastavnik-tip-nastave.component';
 
 // import {  FakultetComponentComponent } from './components/fakultet-component/fakultet-component.component';
 
@@ -375,20 +381,30 @@ export const routes: Routes = [
   },
 
   {
-    path: 'nastavnik/:id/enastavnik',
-    component: EnastavnikLayoutComponent,
-    children: [
-      { path: 'objave', component: EnastavnikObjaveComponent },
+  path: 'nastavnik/:id/enastavnik',
+  component: EnastavnikLayoutComponent,
+  children: [
+    { path: 'objave', component: EnastavnikObjaveComponent },
+    { path: 'predmeti', component: EnastavnikPredmetiComponent },
 
-      { path: 'predmeti', component: EnastavnikPredmetiComponent },
+    {
+      path: 'predmeti/:id',
+      children: [
+        { path: 'tip-nastave', component: EnastavnikTipNastaveComponent },
+        { path: 'evaluacija-znanja', component: EnastavnikEvaluacijaZnanjaComponent },
+        { path: 'ishod-evaluacije', component: EnastavnikIshodEvaluacijeComponent },
+        { path: 'ishod-predmeta', component: EnastavnikIshodPredmetaComponent },
+        { path: 'studenti', component: EnastavnikStudentiPredmetComponent },
+        { path: 'obavestenja', component: EnastavnikObavestenjaPredmetComponent },
+        { path: '', redirectTo: 'aktivnosti', pathMatch: 'full' }
+      ]
+    },
 
-      { path: 'kalendar', component: EnastavnikKalendarComponent },
+    { path: 'kalendar', component: EnastavnikKalendarComponent },
+    { path: 'studenti', component: EnastavnikStudentiComponent },
 
-      { path: 'studenti', component: EnastavnikStudentiComponent },
-
-      { path: '', redirectTo: 'objave', pathMatch: 'full' }
-
-    ]
-  }
+    { path: '', redirectTo: 'objave', pathMatch: 'full' }
+  ]
+}
   
 ];

@@ -17,8 +17,7 @@ export class LoginService {
   token: any = null;
 
   login(user: any) {
-    //kada uvedemo model korisnika trebalo bi umesto any
-    //valjda
+    //korisnik??
     return this.http.post<any>("http://localhost:3000/login", user).pipe(
       tap(x => {
         this.token = x["token"];

@@ -46,4 +46,22 @@ public class KalendarService extends BaseService<Kalendar, KalendarDTO, Long> {
         return kalendarRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Kalendar sa id " + id + " nije pronađen."));
     }
+    
+    public KalendarDTO findByNastavnikId(Long nastavnikId) {
+        Kalendar kalendar = kalendarRepository.findKalendarByNastavnikId(nastavnikId);
+        return convertToDTO(kalendar);
+    }
+    //ako se implementira kako treba
+//    @Override
+//    protected KalendarDTO convertToDTO(Kalendar entity) {
+//        return new KalendarDTO(
+//            entity.getId(),
+//            null, // studentskaSluzba
+//            entity.getEvaluacijaZnanja().stream().map(ev -> /* mapiraj u DTO */ null).toList(),
+//            entity.getGrupaStudenata().stream().map(gs -> /* mapiraj u DTO */ null).toList(),
+//            entity.getTerminiNastave().stream().map(tn -> /* mapiraj u DTO */ null).toList(),
+//            entity.getVidljiv()
+//        );
+//    }
+
 }
