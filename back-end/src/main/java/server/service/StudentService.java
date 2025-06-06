@@ -35,6 +35,10 @@ public class StudentService extends BaseService<Student, StudentDTO, Long>{
 	@Autowired
 	@Lazy
 	private DodeljenoPravoPristupaService dodeljenoPravoPrisupaService;
+	
+	@Autowired
+	@Lazy
+	private GradService gService;
 
 	@Autowired
 	@Lazy
@@ -63,7 +67,7 @@ public class StudentService extends BaseService<Student, StudentDTO, Long>{
 		
 		KorisnikDTO korisnik= new KorisnikDTO(entity.getKorisnik().getId(), entity.getKorisnik().getEmail(), entity.getKorisnik().getLozinka(), dodeljenaPravaPristupa,entity.getKorisnik().getVidljiv());
 
-		AdresaDTO adresa = new AdresaDTO(entity.getAdresa().getId(),entity.getAdresa().getDrzava(),entity.getAdresa().getGrad(),entity.getAdresa().getUlica(), entity.getAdresa().getBroj(), entity.getAdresa().getVidljiv());
+		AdresaDTO adresa = new AdresaDTO(entity.getAdresa().getId(),gService.convertToDTO(entity.getAdresa().getGrad()),entity.getAdresa().getUlica(), entity.getAdresa().getBroj(), entity.getAdresa().getVidljiv());
 		return new StudentDTO(entity.getId(),korisnik,entity.getIme(),entity.getPrezime(),entity.getJmbg(), adresa,null,studenti,entity.getVidljiv()); 
 	}
 
@@ -85,7 +89,7 @@ public class StudentService extends BaseService<Student, StudentDTO, Long>{
 		
 		Korisnik korisnik= new Korisnik(dto.getKorisnik().getId(), dto.getKorisnik().getEmail(), dto.getKorisnik().getLozinka(),dto.getKorisnik().getVidljiv(), dodeljenaPravaPristupa);
 
-		Adresa adresa = new Adresa(dto.getAdresa().getId(),dto.getAdresa().getDrzava(),dto.getAdresa().getGrad(),dto.getAdresa().getUlica(), dto.getAdresa().getBroj(), dto.getAdresa().getVidljiv());
+		Adresa adresa = new Adresa(dto.getAdresa().getId(),gService.convertToEntity(dto.getAdresa().getGrad()),dto.getAdresa().getUlica(), dto.getAdresa().getBroj(), dto.getAdresa().getVidljiv());
 		return new Student(dto.getId(),korisnik,dto.getIme(),dto.getPrezime(),dto.getJmbg(), adresa, null,studenti, dto.getVidljiv()); 	
 		}
 

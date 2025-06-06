@@ -1,5 +1,6 @@
 package server.DTOs;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,11 +8,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdresaDTO {
+public class GradDTO {
 
 	private Long id;
-	private GradDTO grad;
-	private String ulica;
-	private String broj;
-	private Boolean vidljiv = true;
+	
+
+	private String naziv;
+	
+
+	private DrzavaDTO drzava;
+	
+	private Boolean vidljiv;
+
 }

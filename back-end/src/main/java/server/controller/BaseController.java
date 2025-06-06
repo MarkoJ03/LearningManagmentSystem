@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import jakarta.annotation.security.PermitAll;
 import server.service.BaseService;
 
 @Secured("ROLE_ADMIN")
+//@PermitAll
 public abstract class BaseController<T, DTO, ID> {
 
     protected abstract BaseService<T, DTO, ID> getService();
