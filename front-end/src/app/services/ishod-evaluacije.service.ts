@@ -9,10 +9,6 @@ import { BaseService } from './base.service';
 export class IshodEvaluacijeService extends BaseService<IshodEvaluacije> {
   constructor(http: HttpClient) {
     super(http);
-<<<<<<< Updated upstream
     this.setUrl('http://localhost:8080/api/ishodi-evaluacije');
-=======
-    this.setUrl('http://localhost:8080/api/IshodEvaluacije');
->>>>>>> Stashed changes
   }
 }

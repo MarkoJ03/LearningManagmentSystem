@@ -11,7 +11,7 @@ import server.service.InventarService;
 
 @Controller
 @RequestMapping("/api/inventari")
-@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA"})
+@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"})
 public class InventarController extends BaseController<Inventar, InventarDTO, Long> {
 
     @Autowired

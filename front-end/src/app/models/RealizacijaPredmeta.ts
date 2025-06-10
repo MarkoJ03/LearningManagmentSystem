@@ -1,5 +1,4 @@
 
-import { IshodPredmeta } from './IshodPredmeta';
 import { Nastavnik } from './Nastavnik';
 import { Predmet } from './Predmet';
 import { TerminNastave } from './TerminNastave';

@@ -9,6 +9,6 @@ import { BaseService } from './base.service';
 export class SvObrazacService extends BaseService<SvObrazac> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/SvObrazac');
+    this.setUrl('http://localhost:8080/api/sv-obrazac');
   }
 }

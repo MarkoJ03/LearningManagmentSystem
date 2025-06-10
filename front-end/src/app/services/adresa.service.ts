@@ -9,6 +9,6 @@ import { Adresa } from '../models/Adresa';
 export class AdresaService extends BaseService<Adresa> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/Adresa');
+    this.setUrl('http://localhost:8080/api/adreses');
   }
 }

@@ -12,7 +12,8 @@ import { NaucnaOblastService } from '../../../../services/naucna-oblast.service'
 })
 export class NaucneOblastiComponent {
   naucneOblasti: NaucnaOblast[] = [];
-  kolone: string[] = ['naziv', 'zvanja', 'vidljiv'];
+  kolone: string[] = ['naziv', 'zvanjaPrikaz', 'vidljiv']; 
+  naucneOblastiPrikaz: any[] = [];
 
   constructor(
     private naucnaOblastService: NaucnaOblastService,
@@ -21,7 +22,13 @@ export class NaucneOblastiComponent {
 
   ngOnInit(): void {
     this.naucnaOblastService.getAll().subscribe({
-      next: (res) => this.naucneOblasti = res,
+      next: (res) => {
+        this.naucneOblasti = res;
+        this.naucneOblastiPrikaz = this.naucneOblasti.map(no => ({
+          ...no,
+          zvanjaPrikaz: no.zvanja?.map(z => z.tipZvanja.naziv).join(', ')
+        }));
+      },
       error: (err) => console.error('Greška prilikom učitavanja naucnih oblasti:', err),
     });
   }
@@ -33,6 +40,10 @@ export class NaucneOblastiComponent {
   obrisi(id: number): void {
     this.naucnaOblastService.delete(id).subscribe(() => {
       this.naucneOblasti = this.naucneOblasti.filter(v => v.id !== id);
+      this.naucneOblastiPrikaz = this.naucneOblasti.map(no => ({
+        ...no,
+        zvanjaPrikaz: no.zvanja?.map(z => z.tipZvanja.naziv).join(', ')
+      }));
     });
   }
 

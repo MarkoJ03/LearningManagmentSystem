@@ -21,9 +21,18 @@ export class IshodiEvaluacijaComponent {
 
   ngOnInit(): void {
     this.ishodEvaluacijeService.getAll().subscribe({
-      next: (res) => this.ishodiEvaluacija = res,
-      error: (err) => console.error('Greška prilikom učitavanja ishoda evaluacija:', err),
-    });
+  next: (res) => {
+    this.ishodiEvaluacija = res.map(i => ({
+      ...i,
+      student: i.studentNaGodini?.brojIndeksa ?? '-',
+      tipEvaluacije: i.evaluacijaZnanja?.tipEvaluacije?.naziv ?? '-',
+      ocena: i.ishodPredmeta?.ocena ?? '-'
+    }));
+    this.kolone = ['bodovi', 'napomena', 'student', 'tipEvaluacije', 'ocena', 'vidljiv'];
+  },
+  error: (err) => console.error('Greška:', err),
+});
+
   }
 
   izmeni(ishodEvaluacije: IshodEvaluacije): void {

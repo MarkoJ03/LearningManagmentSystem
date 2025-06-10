@@ -28,13 +28,9 @@ export class PredmetFormaComponent {
   formaModel: FormaModel | null = null;
   idPredmeta: number | null = null;
   sveEvaluacijeZnanja: EvaluacijaZnanja[] = [];
-  selektovaneEvaluacijeZnanja: EvaluacijaZnanja[] = [];
   sveRealizacijePredmeta: RealizacijaPredmeta[] = [];
-  selektovaneRealizacijePredmeta: RealizacijaPredmeta[] = [];
   svaObavestenja: Obavestenje[] = [];
-  selektovanaObavestenja: Obavestenje[] = [];
   sviDokumentiPredmeta: DokumentiPredmeta[] = [];
-  selektovaniDokumentiPredmeta: DokumentiPredmeta | null = null;
   kreiraniPredmet: Predmet | null = null;
   sveGrupeStudenata: GrupaStudenata[] = [];
 
@@ -125,23 +121,22 @@ export class PredmetFormaComponent {
     }
   }
 
-
   private kreirajModel(podaci?: any): FormaModel {
-    // let selektovanaSluzba = null; 
-    // let selektovaneKnjige = null;
-
     let selektovaneEvaluacijeZnanja = podaci?.sluzba ?? [];
     let selektovaneRealizacijePredmeta = podaci?.knjiga ?? [];
     let selektovanaObavestenja = podaci?.knjiga ?? [];
     let selektovaniDokumentiPredmeta = podaci?.knjiga ?? null;
 
-    // if (podaci?.sluzba && podaci?.knjiga) {
-
-
-    // }
     return {
       naziv: podaci ? 'Izmena predmeta' : "Dodavanje predmeta",
-      polja: [{
+      polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
+        {
         naziv: 'naziv',
         labela: 'Naziv',
         tip: 'text',
@@ -210,7 +205,7 @@ export class PredmetFormaComponent {
         tip: 'select',
         podrazumevanaVrednost: selektovaniDokumentiPredmeta,
         opcije: this.sviDokumentiPredmeta,
-        displayFn: (d: DokumentiPredmeta) => d.silabus && d.akreditacija,
+        displayFn: (d: DokumentiPredmeta) => `${d.silabus} ${d.akreditacija}`,
         validatori: [Validators.required]
       },
       {
@@ -219,7 +214,7 @@ export class PredmetFormaComponent {
         tip: 'checkbox-list',
         podrazumevanaVrednost: selektovaneEvaluacijeZnanja,
         opcije: this.sveEvaluacijeZnanja,
-        displayFn: (e: EvaluacijaZnanja) => e.tip_evaluacije.naziv,
+        displayFn: (e: EvaluacijaZnanja) => e.tipEvaluacije.naziv,
         validatori: [Validators.required]
       },
       {
@@ -236,7 +231,7 @@ export class PredmetFormaComponent {
         tip: 'checkbox-list',
         podrazumevanaVrednost: selektovaneRealizacijePredmeta,
         opcije: this.sveRealizacijePredmeta,
-        displayFn: (r: RealizacijaPredmeta) => `${r.nastavnik.ime && r.nastavnik.prezime} ${r.tipNastave}`,
+        displayFn: (r: RealizacijaPredmeta) => `${r.nastavnik.ime}  ${r.nastavnik.prezime} ${r.tipNastave.naziv}`,
         validatori: [Validators.required]
       },
       {

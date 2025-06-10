@@ -11,7 +11,7 @@ import server.service.KnjigaService;
 
 @Controller
 @RequestMapping("/api/knjige")
-@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA"})
+@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"})
 public class KnjigaController extends BaseController<Knjiga, KnjigaDTO, Long> {
 
     @Autowired

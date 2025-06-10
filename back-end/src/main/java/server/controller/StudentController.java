@@ -12,7 +12,7 @@ import server.service.StudentService;
 
 @Controller
 @RequestMapping("/api/studenti")
-@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA"})
+@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"})
 public class StudentController extends BaseController<Student, StudentDTO, Long> {
 
     @Autowired

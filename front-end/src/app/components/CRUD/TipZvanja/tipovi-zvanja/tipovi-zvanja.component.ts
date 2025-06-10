@@ -12,7 +12,7 @@ import { TipZvanjaService } from '../../../../services/tip-zvanja.service';
 })
 export class TipoviZvanjaComponent {
   tipoviZvanja: TipZvanja[] = [];
-  kolone: string[] = ['naziv', 'vidljiv'];
+  kolone: string[] = ['naziv', 'zvanja','vidljiv'];
 
   constructor(
     private tipZvanjaService: TipZvanjaService,

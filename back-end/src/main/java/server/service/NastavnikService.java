@@ -154,7 +154,7 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 
 		ArrayList<RealizacijaPredmeta> realizacijePredmeta = new ArrayList<>();
 
-		for (RealizacijaPredmetaDTO rpDTO : dto.getRealizacijaPredmeta()) {
+		for (RealizacijaPredmetaDTO rpDTO : dto.getRealizacijePredmeta()) {
 			RealizacijaPredmeta rp = realizacijaPredmetaService.convertToEntity(rpDTO);
 			realizacijePredmeta.add(rp);
 		}

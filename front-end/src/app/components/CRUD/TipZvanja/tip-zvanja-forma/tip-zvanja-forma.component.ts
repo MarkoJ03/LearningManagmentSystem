@@ -4,6 +4,9 @@ import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormaModel } from '../../../genericka-forma/FormaModel';
 import { TipZvanjaService } from '../../../../services/tip-zvanja.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Zvanje } from '../../../../models/Zvanje';
+import { ZvanjeService } from '../../../../services/zvanje.service';
+import { TipZvanja } from '../../../../models/TipZvanja';
 
 @Component({
   selector: 'app-tip-zvanja-forma',
@@ -14,23 +17,31 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TipZvanjaFormaComponent {
   formaModel: FormaModel | null = null;
   idTipaZvanja: number | null = null;
+  svaZvanja: Zvanje[] = [];
 
   constructor(
     private tipZvanjaService: TipZvanjaService,
+    private zvanjaService: ZvanjeService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    const idParam = this.route.snapshot.paramMap.get('id');
-    if (idParam) {
-      this.idTipaZvanja = +idParam;
-      this.tipZvanjaService.getById(this.idTipaZvanja).subscribe(tipZvanja => {
-        this.formaModel = this.kreirajModel(tipZvanja);
-      });
-    } else {
-      this.formaModel = this.kreirajModel();
-    }
+    this.zvanjaService.getAll().subscribe(zvanja => {
+      this.svaZvanja = zvanja;
+
+      const idParam = this.route.snapshot.paramMap.get('id');
+      if (idParam) {
+        this.idTipaZvanja = +idParam;
+        this.tipZvanjaService.getById(this.idTipaZvanja).subscribe(tipZvanja => {
+          this.formaModel = this.kreirajModel(tipZvanja);
+        });
+      } else {
+        this.formaModel = this.kreirajModel();
+      }
+
+    })
+
   }
 
   otkazi(): void {
@@ -51,17 +62,35 @@ export class TipZvanjaFormaComponent {
     }
   }
 
-  private kreirajModel(podaci?: any): FormaModel {
+  private kreirajModel(podaci?: TipZvanja): FormaModel {
+    let selektovanaZvanja = podaci?.zvanja ?? [];
+
     return {
       naziv: podaci ? 'Izmena tipa zvanja' : 'Dodavanje tipa zvanja',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'naziv',
           labela: 'Naziv',
           tip: 'text',
           podrazumevanaVrednost: podaci?.naziv ?? '',
           validatori: [Validators.required]
-        },{
+        },
+        {
+          naziv: 'zvanja',
+          labela: 'Zvanja',
+          tip: 'select',
+          podrazumevanaVrednost: selektovanaZvanja,
+          opcije: this.svaZvanja,
+          displayFn: (z: Zvanje) => `${z.nastavnik.ime} ${z.nastavnik.prezime}`,
+          validatori: [Validators.required]
+        },
+        {
           naziv: 'vidljiv',
           labela: 'Vidljiv',
           tip: 'checkbox',

@@ -12,9 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@Entity
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class Korisnik {
@@ -23,7 +22,7 @@ public class Korisnik {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, name="email")
     private String email;
 
     @Column(nullable = false)
@@ -34,5 +33,6 @@ public class Korisnik {
 
     @OneToMany(mappedBy = "korisnik")
     private Set<DodeljenoPravoPristupa> dodeljenaPravaPristupa;
+    
     
 }

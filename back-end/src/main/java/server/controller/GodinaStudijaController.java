@@ -22,7 +22,7 @@ import server.service.GodinaStudijaService;
 
 @Controller
 @RequestMapping("/api/godine-studija")
-@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA"})
+@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"})
 public class GodinaStudijaController extends BaseController<GodinaStudija, GodinaStudijaDTO, Long> {
 
     @Autowired

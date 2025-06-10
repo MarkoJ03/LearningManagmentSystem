@@ -17,20 +17,42 @@ export class EnastavnikPredmetiComponent {
   constructor(
     private route: ActivatedRoute,
     private nastavnikService: NastavnikService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.nastavnikId = Number(this.route.snapshot.paramMap.get('id'));
+    this.route.parent?.paramMap.subscribe(params => {
+      const idParam = params.get('id');
 
-    this.nastavnikService.getById(this.nastavnikId).subscribe({
-      next: (nastavnik) => {
-        this.predmeti = (nastavnik.realizacijePredmeta || [])
-          .map(rp => rp.predmet)
-          .filter((predmet, index, self) =>
-            predmet && self.findIndex(p => p.id === predmet.id) === index
-          );
-      },
-      error: (err) => console.error('Greška pri dohvatu nastavnika:', err)
+      if (!idParam) {
+        console.warn('No nastavnik ID found in route parameters.');
+        return;
+      }
+
+      this.nastavnikId = Number(idParam);
+      console.log('Nastavnik ID:', this.nastavnikId);
+
+      if (isNaN(this.nastavnikId) || this.nastavnikId <= 0) {
+        console.warn('Invalid nastavnik ID:', this.nastavnikId);
+        return;
+      }
+
+      this.nastavnikService.getById(this.nastavnikId).subscribe({
+
+        next: (nastavnik) => {
+          console.log('Response from server:', nastavnik);
+          console.log('RealizacijePredmeta:', nastavnik.realizacijePredmeta);
+
+          this.predmeti = (nastavnik.realizacijePredmeta || [])
+            .map(rp => rp.predmet)
+            .filter((predmet, index, self) =>
+              predmet && self.findIndex(p => p.id === predmet.id) === index
+            );
+          console.log('Dohvaćeni predmeti:', this.predmeti);
+        },
+        error: (err) => {
+          console.error('Greška pri dohvatu nastavnika:', err);
+        }
+      });
     });
   }
 }

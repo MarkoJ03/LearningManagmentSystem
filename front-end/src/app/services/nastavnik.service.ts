@@ -9,6 +9,6 @@ import { BaseService } from './base.service';
 export class NastavnikService extends BaseService<Nastavnik> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/nastavnik');
+    this.setUrl('http://localhost:8080/api/nastavnici');
   }
 }

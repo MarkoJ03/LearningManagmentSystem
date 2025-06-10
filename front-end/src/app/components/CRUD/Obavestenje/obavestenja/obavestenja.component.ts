@@ -27,7 +27,7 @@ export class ObavestenjaComponent {
   }
 
   izmeni(obavestenje: Obavestenje): void {
-    this.router.navigate(['/obavestenje/forma', obavestenje.id]);
+    this.router.navigate(['/obavestenja/forma', obavestenje.id]);
   }
 
   obrisi(id: number): void {

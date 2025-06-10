@@ -6,8 +6,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import server.DTOs.IshodEvaluacijeDTO;
+import server.DTOs.StudentNaGodiniDTO;
 import server.model.EvaluacijaZnanja;
 import server.model.IshodEvaluacije;
+import server.model.StudentNaGodini;
 import server.repository.EvaluacijaZnanjaRepository;
 import server.repository.IshodEvaluacijeRepository;
 
@@ -24,6 +26,10 @@ public class IshodEvaluacijeService extends BaseService<IshodEvaluacije, IshodEv
 	@Autowired
 	@Lazy
 	private IshodPredmetaService iService;
+	
+	@Autowired
+	@Lazy
+	private StudentNaGodiniService sService;
 	
 	@Override
 	protected CrudRepository<IshodEvaluacije, Long> getRepository() {
@@ -44,6 +50,7 @@ public class IshodEvaluacijeService extends BaseService<IshodEvaluacije, IshodEv
 	protected IshodEvaluacije convertToEntity(IshodEvaluacijeDTO dto) {
 //		RealizacijaPredmeta realizacijaPredmeta = new RealizacijaPredmeta(dto.getRealizacijaPredmeta().getId(),
 //				null, null, null, null, null, dto.getRealizacijaPredmeta().getVidljiv());
+
 
 		return new IshodEvaluacije(dto.getId(), dto.getNapomena(), dto.getBodovi(),null,eService.convertToEntity(dto.getEvaluacijaZnanja()),iService.convertToEntity(dto.getIshodPredmeta()),dto.getVidljiv());
 	}

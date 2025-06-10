@@ -14,8 +14,8 @@ import { KatedraService } from '../../../../services/katedra.service';
 })
 export class KatedraComponent {
   katedra: Katedra | null = null;
-  studijskiProgrami: StudijskiProgram[] | null = null;
-  nastavnici: Nastavnik[] | null = null;
+  studijskiProgrami: StudijskiProgram[] = [];
+  nastavnici: Nastavnik[] = [];
   
     constructor(
       private route: ActivatedRoute,

@@ -10,7 +10,7 @@ import server.service.IshodEvaluacijeService;
 
 @Controller
 @RequestMapping("/api/ishodi-evaluacije")
-@Secured({"ROLE_ADMIN, ROLE_NASTAVNIK"})
+@Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK"})
 public class IshodEvaluacijeController extends BaseController<IshodEvaluacije, IshodEvaluacijeDTO, Long> {
 
     @Autowired

@@ -12,6 +12,9 @@ import { KalendarService } from '../../../../services/kalendar.service';
 import { TipEvaluacijeService } from '../../../../services/tip-evaluacije.service';
 import { IshodEvaluacijeService } from '../../../../services/ishod-evaluacije.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EvaluacijaZnanja } from '../../../../models/EvaluacijaZnanja';
+import { Predmet } from '../../../../models/Predmet';
+import { PredmetService } from '../../../../services/predmet.service';
 
 @Component({
   selector: 'app-evaluacija-znanja-forma',
@@ -23,14 +26,10 @@ export class EvaluacijaZnanjaFormaComponent {
   formaModel: FormaModel | null = null;
   idEvaluacijeZnanja: number | null = null;
   sviKalendari: Kalendar[] = [];
-  selektovaniKalendar: Kalendar | null = null;
   sviNastavnici: Nastavnik[] = [];
-  selektovaniNastavnik: Nastavnik | null = null;
   sviTipoviEvaluacije: TipEvaluacije[] = [];
-  selektovaniTipEvaluacije: TipEvaluacije | null = null;
   sviIshodiEvaluacije: IshodEvaluacije[] = [];
-  selektovaniIshodiEvaluacije: [] = [];
-
+  sviPredmeti: Predmet[] = [];
 
   constructor(
     private evaluacijaZnanjaService: EvaluacijaZnanjaService,
@@ -38,6 +37,7 @@ export class EvaluacijaZnanjaFormaComponent {
     private nastavnikService: NastavnikService,
     private tipEvaluacijeService: TipEvaluacijeService,
     private ishodEvaluacijeService: IshodEvaluacijeService,
+    private predemetService: PredmetService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -52,18 +52,25 @@ export class EvaluacijaZnanjaFormaComponent {
         this.tipEvaluacijeService.getAll().subscribe(tipoviEvaluacije => {
           this.sviTipoviEvaluacije = tipoviEvaluacije;
 
-          this.tipEvaluacijeService.getAll().subscribe(tipoviEvaluacije => {
-            this.sviTipoviEvaluacije = tipoviEvaluacije;
+          this.ishodEvaluacijeService.getAll().subscribe(ishodiEvaluacije => {
+            this.sviIshodiEvaluacije = ishodiEvaluacije;
 
-            const idParam = this.route.snapshot.paramMap.get('id');
-            if (idParam) {
-              this.idEvaluacijeZnanja = +idParam;
-              this.evaluacijaZnanjaService.getById(this.idEvaluacijeZnanja).subscribe(evaluacijaZnanja => {
-                this.formaModel = this.kreirajModel(evaluacijaZnanja);
-              });
-            } else {
-              this.formaModel = this.kreirajModel();
-            }
+            this.predemetService.getAll().subscribe(predmeti => {
+              this.sviPredmeti = predmeti;
+
+              const idParam = this.route.snapshot.paramMap.get('id');
+              if (idParam) {
+                this.idEvaluacijeZnanja = +idParam;
+                this.evaluacijaZnanjaService.getById(this.idEvaluacijeZnanja).subscribe(evaluacijaZnanja => {
+                  this.formaModel = this.kreirajModel(evaluacijaZnanja);
+                });
+              } else {
+                console.log("kreiran model");
+
+                this.formaModel = this.kreirajModel();
+              }
+            })
+
           })
         })
       })
@@ -88,25 +95,29 @@ export class EvaluacijaZnanjaFormaComponent {
     }
   }
 
-  private kreirajModel(podaci?: any): FormaModel {
-    //let selektovaniFakulteti = null;
-    //if (podaci?.fakultet) {
+  private kreirajModel(podaci?: EvaluacijaZnanja): FormaModel {
     let selektovaniNastavnik = podaci?.nastavnik ?? null;
     let selektovaniKalendar = podaci?.kalendar ?? null;
+    let selektovaniPredmet = podaci?.predmet ?? null;
     let selektovaniTipEvaluacije = podaci?.tipEvaluacije ?? null;
     let selektovaniIshodiEvaluacije = podaci?.ishodiEvaluacije ?? [];
-    //}
 
     return {
       naziv: podaci ? 'Izmena evaluacije znanja' : 'Dodavanje evaluacije znanja',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'kalendar',
           labela: 'Kalendar',
           tip: 'select',
           podrazumevanaVrednost: selektovaniKalendar,
           opcije: this.sviKalendari,
-          displayFn: (k: Kalendar) => `${k.grupaStudenata}`,
+          displayFn: (k: Kalendar) => `${k.id}`,
           validatori: [Validators.required]
         },
         {
@@ -115,7 +126,16 @@ export class EvaluacijaZnanjaFormaComponent {
           tip: 'select',
           podrazumevanaVrednost: selektovaniNastavnik,
           opcije: this.sviNastavnici,
-          displayFn: (n: Nastavnik) => n.ime && n.prezime,
+          displayFn: (n: Nastavnik) => `${n.ime}  ${n.prezime}`,
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'predmet',
+          labela: 'Predmet',
+          tip: 'select',
+          podrazumevanaVrednost: selektovaniPredmet,
+          opcije: this.sviPredmeti,
+          displayFn: (p: Predmet) => p.naziv,
           validatori: [Validators.required]
         },
         {
@@ -138,17 +158,15 @@ export class EvaluacijaZnanjaFormaComponent {
           naziv: 'vremeZavrsetka',
           labela: 'Vreme Zavrsetka',
           tip: 'date',
-          podrazumevanaVrednost: podaci?.vremePocetka ?? null,
+          podrazumevanaVrednost: podaci?.vremeZavrsetka ?? null,
           validatori: [Validators.required]
         },
         {
           naziv: 'ishodiEvaluacije',
-          labela: 'Ishodi Evaluacije',
-          tip: 'checkbox-list',
+          labela: 'Ishod Evaluacije',
+          tip: 'dropdown',
           podrazumevanaVrednost: selektovaniIshodiEvaluacije,
-          opcije: this.sviIshodiEvaluacije,
-          displayFn: (i: IshodEvaluacije) => `${i.ishodPredmeta}`,
-          validatori: [Validators.required]
+          opcije: this.sviIshodiEvaluacije
         },
         {
           naziv: 'vidljiv',

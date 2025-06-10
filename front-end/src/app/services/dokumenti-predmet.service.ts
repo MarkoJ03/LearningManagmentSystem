@@ -9,6 +9,6 @@ import { HttpClient } from '@angular/common/http';
 export class DokumentiPredmetService extends BaseService<DokumentiPredmeta> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/DokumentPredmeta');
+    this.setUrl('http://localhost:8080/api/dokumenti-predmeta');
   }
 }

@@ -14,6 +14,7 @@ import { IshodPredmetaService } from '../../../../services/ishod-predmeta.servic
 import { TerminNastaveService } from '../../../../services/termin-nastave.service';
 import { TipNastave } from '../../../../models/TipNastave';
 import { TipNastaveService } from '../../../../services/tip-nastave.service';
+import { RealizacijaPredmeta } from '../../../../models/RealizacijaPredmeta';
 
 @Component({
   selector: 'app-realizacija-predmeta-forma',
@@ -25,14 +26,9 @@ export class RealizacijaPredmetaFormaComponent {
   formaModel: FormaModel | null = null;
   idRealizacijePredmeta: number | null = null;
   sviNastavnici: Nastavnik[] = [];
-  selektovaniNastavnik: Nastavnik | null = null;
   sviTipoviNastave: TipNastave[] = [];
-  selektovaniTipNastave: TipNastave | null = null;
   sviPredmeti: Predmet[] = [];
-  selektovaniPredmet: Predmet | null = null;
   sviTerminiNastave: TerminNastave[] = [];
-  selektovaniTerminiNastave: TerminNastave[] = [];
-
 
   constructor(
     private realizacijaPredmetaService: RealizacijaPredmetaService,
@@ -91,7 +87,7 @@ export class RealizacijaPredmetaFormaComponent {
     }
   }
 
-  private kreirajModel(podaci?: any): FormaModel {
+  private kreirajModel(podaci?: RealizacijaPredmeta): FormaModel {
     let selektovaniNastavnik = podaci?.nastavnik ?? null;
     let selektovaniTipNastave = podaci?.tipNastave ?? null;
     let selektovaniPredmet = podaci?.predmet ?? null;
@@ -101,13 +97,19 @@ export class RealizacijaPredmetaFormaComponent {
     return {
       naziv: podaci ? 'Izmena realizacije predmeta' : 'Dodavanje realizacije predmeta',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'nastavnik',
           labela: 'Nastavnik',
           tip: 'select',
           podrazumevanaVrednost: selektovaniNastavnik,
           opcije: this.sviNastavnici,
-          displayFn: (n: Nastavnik) => n.ime && n.prezime,
+          displayFn: (n: Nastavnik) => `${n.ime} ${n.prezime}`,
           validatori: [Validators.required]
         },
         {
@@ -115,7 +117,7 @@ export class RealizacijaPredmetaFormaComponent {
           labela: 'Tip Nastave',
           tip: 'select',
           podrazumevanaVrednost: selektovaniTipNastave,
-          opcije: this.sviTerminiNastave,
+          opcije: this.sviTipoviNastave,
           displayFn: (t: TipNastave) => t.naziv,
           validatori: [Validators.required]
         },

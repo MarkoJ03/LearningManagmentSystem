@@ -64,7 +64,7 @@ export class StudentskaSluzbaFormaComponent implements OnInit {
       { naziv: 'inventari', labela: 'Inventari', tip: 'text', podrazumevanaVrednost: podaci?.inventari?.length ?? 0 },
       { naziv: 'biblioteka', labela: 'Biblioteka', tip: 'text', podrazumevanaVrednost: podaci?.biblioteka ? '1' : '0' },
       { naziv: 'osoblje', labela: 'Osoblje', tip: 'text', podrazumevanaVrednost: podaci?.osoblje?.length ?? 0 },
-      { naziv: 'nastavnici', labela: 'Nastavnici', tip: 'text', podrazumevanaVrednost: podaci?.nastavnici?.length ?? 0 },
+      // { naziv: 'nastavnici', labela: 'Nastavnici', tip: 'text', podrazumevanaVrednost: podaci?.nastavnici?.length ?? 0 },
       { naziv: 'kalendari', labela: 'Kalendari', tip: 'text', podrazumevanaVrednost: podaci?.kalendari?.length ?? 0 },
       { naziv: 'studenti', labela: 'Studenti', tip: 'text', podrazumevanaVrednost: podaci?.studenti?.length ?? 0 },
       { naziv: 'obrasci', labela: 'Obrasci', tip: 'text', podrazumevanaVrednost: podaci?.obrasci?.length ?? 0 }

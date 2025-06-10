@@ -9,6 +9,6 @@ import { BaseService } from './base.service';
 export class TipProgramaService extends BaseService<TipPrograma> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/tip-programa');
+    this.setUrl('http://localhost:8080/api/tipovi-programa');
   }
 }

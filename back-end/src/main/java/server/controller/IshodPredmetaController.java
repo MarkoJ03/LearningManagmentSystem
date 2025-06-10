@@ -12,7 +12,7 @@ import server.service.IshodPredmetaService;
 
 @Controller
 @RequestMapping("/api/ishod-predmeta")
-@Secured({"ROLE_ADMIN, ROLE_NASTAVNIK"})
+@Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK"})
 public class IshodPredmetaController extends BaseController<IshodPredmeta, IshodPredmetaDTO, Long>{
 
 	@Autowired

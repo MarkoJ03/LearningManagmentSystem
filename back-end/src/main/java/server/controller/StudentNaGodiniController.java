@@ -18,7 +18,7 @@ import server.service.StudentNaGodiniService;
 
 @Controller
 @RequestMapping("/api/studenti-na-godini")
-@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA"})
+@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"})
 public class StudentNaGodiniController extends BaseController<StudentNaGodini, StudentNaGodiniDTO, Long> {
 
     @Autowired

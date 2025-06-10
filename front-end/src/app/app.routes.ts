@@ -83,10 +83,7 @@ import { AdresaComponent } from './components/adresa/adresa.component';
 import { DepartmanFormaComponent } from './components/departman/departman-forma/departman-forma.component';
 import { DepartmanComponent } from './components/departman/departman/departman.component';
 import { DepartmaniComponent } from './components/departman/departmani/departmani.component';
-import { EvaluacijaZnanjaComponent } from './components/evaluacijaZnanja/evaluacija-znanja/evaluacija-znanja.component';
-import { EvaluacijaZnanjaFormaComponent } from './components/evaluacijaZnanja/evaluacija-znanja-forma/evaluacija-znanja-forma.component';
 import { AdresaFormaComponent } from './components/adresa-forma/adresa-forma.component';
-import { EvaluacijeZnanjaComponent } from './components/evaluacijaZnanja/evaluacije-znanja/evaluacije-znanja.component';
 import { GrupeStudenataComponent } from './components/grupaStudenata/grupe-studenata/grupe-studenata.component';
 import { IshodiPredmetaComponent } from './components/ishodPredmeta/ishodi-predmeta/ishodi-predmeta.component';
 import { IshodPredmetaFormaComponent } from './components/ishodPredmeta/ishod-predmeta-forma/ishod-predmeta-forma.component';
@@ -132,6 +129,10 @@ import { EnastavnikIshodPredmetaComponent } from './components/enastavnik/enasta
 import { EnastavnikIshodEvaluacijeComponent } from './components/enastavnik/enastavnik-ishod-evaluacije/enastavnik-ishod-evaluacije.component';
 import { EnastavnikEvaluacijaZnanjaComponent } from './components/enastavnik/enastavnik-evaluacija-znanja/enastavnik-evaluacija-znanja.component';
 import { EnastavnikTipNastaveComponent } from './components/enastavnik/enastavnik-tip-nastave/enastavnik-tip-nastave.component';
+import { EvaluacijeZnanjaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacije-znanja/evaluacije-znanja.component';
+import { EvaluacijaZnanjaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacija-znanja/evaluacija-znanja.component';
+import { EvaluacijaZnanjaFormaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacija-znanja-forma/evaluacija-znanja-forma.component';
+import { EnastavnikPredmetDetaljiComponent } from './components/enastavnik/enastavnik-predmet-detalji/enastavnik-predmet-detalji.component';
 
 // import {  FakultetComponentComponent } from './components/fakultet-component/fakultet-component.component';
 
@@ -187,79 +188,79 @@ export const routes: Routes = [
 
 
     { path: 'tipovi-zvanja', component: TipoviZvanjaComponent},
-    { path: 'tipovi-zvanja/:id', component: TipZvanjaComponent},
     { path: 'tipovi-zvanja/forma', component: TipZvanjaFormaComponent},
     { path: 'tipovi-zvanja/forma/:id', component: TipZvanjaFormaComponent},
+    { path: 'tipovi-zvanja/:id', component: TipZvanjaComponent},
 
     { path: 'tipovi-evaluacije', component: TipoviEvaluacijeComponent},
-    { path: 'tipovi-evaluacije/:id', component: TipEvaluacijeComponent},
     { path: 'tipovi-evaluacije/forma', component: TipEvaluacijeFormaComponent},
     { path: 'tipovi-evaluacije/forma/:id', component: TipEvaluacijeFormaComponent},
+    { path: 'tipovi-evaluacije/:id', component: TipEvaluacijeComponent},
 
     { path: 'univerziteti', component: UniverzitetiComponent},
-    { path: 'univerziteti/:id', component: UniverzitetComponent},
     { path: 'univerziteti/forma', component: UniverzitetFormaComponent},
     { path: 'univerziteti/forma/:id', component: UniverzitetFormaComponent},
+    { path: 'univerziteti/:id', component: UniverzitetComponent},
 
     { path: 'fakulteti', component: FakultetiComponent},
-    { path: 'fakulteti/:id', component: FakultetComponent},
     { path: 'fakulteti/forma', component: FakultetFormaComponent},
     { path: 'fakulteti/forma/:id', component: FakultetFormaComponent},
+    { path: 'fakulteti/:id', component: FakultetComponent},
 
     { path: 'katedre', component: KatedreComponent},
-    { path: 'katedre/:id', component: KatedraComponent},
     { path: 'katedre/forma', component: KatedraFormaComponent},
     { path: 'katedre/forma/:id', component: KatedraFormaComponent},
+    { path: 'katedre/:id', component: KatedraComponent},
 
     { path: 'predmeti', component: PredmetiComponent},
-    { path: 'predmeti/:id', component: PredmetComponent},
     { path: 'predmeti/forma', component: PredmetFormaComponent},
     { path: 'predmeti/forma/:id', component: PredmetFormaComponent},
+    { path: 'predmeti/:id', component: PredmetComponent},
 
     { path: 'obavestenja', component: ObavestenjaComponent},
-    { path: 'obavestenja/:id', component: ObavestenjeComponent},
     { path: 'obavestenja/forma', component: ObavestenjeFormaComponent},
     { path: 'obavestenja/forma/:id', component: ObavestenjeFormaComponent},
+    { path: 'obavestenja/:id', component: ObavestenjeComponent},
 
     { path: 'korisnici', component: KorisniciComponent},
-    { path: 'korisnici/:id', component: KorisnikComponent},
     { path: 'korisnici/forma', component: KorisnikFormaComponent},
     { path: 'korisnici/forma/:id', component: KorisnikFormaComponent},
+    { path: 'korisnici/:id', component: KorisnikComponent},
 
     { path: 'naucne-oblasti', component: NaucneOblastiComponent},
-    { path: 'naucne-oblasti/:id', component: NaucnaOblastComponent},
     { path: 'naucne-oblasti/forma', component: NaucnaOblastFormaComponent},
     { path: 'naucne-oblasti/forma/:id', component: NaucnaOblastFormaComponent},
+    { path: 'naucne-oblasti/:id', component: NaucnaOblastComponent},
 
     { path: 'termini-nastave', component: TerminiNastaveComponent},
-    { path: 'termini-nastave/:id', component: TerminNastaveComponent},
     { path: 'termini-nastave/forma', component: TerminNastaveFormaComponent},
     { path: 'termini-nastave/forma/:id', component: TerminNastaveFormaComponent},
+    { path: 'termini-nastave/:id', component: TerminNastaveComponent},
 
     { path: 'zvanja', component: ZvanjaComponent},
-    { path: 'zvanja/:id', component: ZvanjeComponent},
     { path: 'zvanja/forma', component: ZvanjeFormaComponent},
     { path: 'zvanja/forma/:id', component: ZvanjeFormaComponent},
+    { path: 'zvanja/:id', component: ZvanjeComponent},
 
     { path: 'realizacije-predmeta', component: RealizacijePredmetaComponent},
-    { path: 'realizacije-predmeta/:id', component: RealizacijaPredmetaComponent},
     { path: 'realizacije-predmeta/forma', component: RealizacijaPredmetaFormaComponent},
     { path: 'realizacije-predmeta/forma/:id', component: RealizacijaPredmetaFormaComponent},
+    { path: 'realizacije-predmeta/:id', component: RealizacijaPredmetaComponent},
 
     { path: 'ishodi-evaluacija', component: IshodiEvaluacijaComponent},
-    { path: 'ishodi-evaluacija/:id', component: IshodEvaluacijeComponent},
     { path: 'ishodi-evaluacija/forma', component: IshodEvaluacijeFormaComponent},
     { path: 'ishodi-evaluacija/forma/:id', component: IshodEvaluacijeFormaComponent},
+    { path: 'ishodi-evaluacija/:id', component: IshodEvaluacijeComponent},
 
     { path: 'evaluacije-znanja', component: EvaluacijeZnanjaComponent},
-    { path: 'evaluacije-znanja/:id', component: EvaluacijaZnanjaComponent},
     { path: 'evaluacije-znanja/forma', component: EvaluacijaZnanjaFormaComponent},
     { path: 'evaluacije-znanja/forma/:id', component: EvaluacijaZnanjaFormaComponent},
+    { path: 'evaluacije-znanja/:id', component: EvaluacijaZnanjaComponent},
 
     { path: 'nastavnici', component: NastavniciComponent},
-    { path: 'nastavnici/:id', component: NastavnikComponent},
     { path: 'nastavnici/forma', component: NastavnikFormaComponent},    
     { path: 'nastavnici/forma/:id', component: NastavnikFormaComponent},    
+    { path: 'nastavnici/:id', component: NastavnikComponent},
 
      { path: 'fakultet/:id', component: FakultetLayoutComponent },
 
@@ -334,10 +335,10 @@ export const routes: Routes = [
         { path: 'biblioteke', component: BibliotekeComponent },
         { path: 'biblioteke/dodaj', component: BibliotekaFormaComponent },
 
-      { path: 'EvaluacijaZnanja', component: EvaluacijeZnanjaComponent },         
-{ path: 'EvaluacijaZnanja/dodaj', component: EvaluacijaZnanjaFormaComponent },
-{ path: 'EvaluacijaZnanja/:id', component: EvaluacijaZnanjaComponent },     
-{ path: 'EvaluacijaZnanja/izmeni/:id', component: EvaluacijaZnanjaFormaComponent },     
+//       { path: 'EvaluacijaZnanja', component: EvaluacijeZnanjaComponent },         
+// { path: 'EvaluacijaZnanja/dodaj', component: EvaluacijaZnanjaFormaComponent },
+// { path: 'EvaluacijaZnanja/:id', component: EvaluacijaZnanjaComponent },     
+// { path: 'EvaluacijaZnanja/izmeni/:id', component: EvaluacijaZnanjaFormaComponent },     
 
 {path: 'grupeStudenata' , component: GrupeStudenataComponent},
       { path: 'grupeStudenata/dodaj', component: GrupaStudenataFormaComponent },
@@ -386,9 +387,10 @@ export const routes: Routes = [
   children: [
     { path: 'objave', component: EnastavnikObjaveComponent },
     { path: 'predmeti', component: EnastavnikPredmetiComponent },
-
+    
     {
-      path: 'predmeti/:id',
+      path: 'predmeti/:predmetId',
+      component: EnastavnikPredmetDetaljiComponent,
       children: [
         { path: 'tip-nastave', component: EnastavnikTipNastaveComponent },
         { path: 'evaluacija-znanja', component: EnastavnikEvaluacijaZnanjaComponent },
@@ -396,7 +398,7 @@ export const routes: Routes = [
         { path: 'ishod-predmeta', component: EnastavnikIshodPredmetaComponent },
         { path: 'studenti', component: EnastavnikStudentiPredmetComponent },
         { path: 'obavestenja', component: EnastavnikObavestenjaPredmetComponent },
-        { path: '', redirectTo: 'aktivnosti', pathMatch: 'full' }
+        // { path: '', redirectTo: 'aktivnosti', pathMatch: 'full' }
       ]
     },
 

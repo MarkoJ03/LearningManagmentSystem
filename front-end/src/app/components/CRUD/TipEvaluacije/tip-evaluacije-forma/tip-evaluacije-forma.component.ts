@@ -55,6 +55,12 @@ export class TipEvaluacijeFormaComponent {
     return {
       naziv: podaci ? 'Izmena tipa evaluacije' : 'Dodavanje tipa evaluacije',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'naziv',
           labela: 'Naziv',

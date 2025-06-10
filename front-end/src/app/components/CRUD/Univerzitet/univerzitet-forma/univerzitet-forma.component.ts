@@ -18,7 +18,6 @@ export class UniverzitetFormaComponent {
   formaModel: FormaModel | null = null;
   idUniverziteta: number | null = null;
   sviFakulteti: Fakultet[] = [];
-  selektovaniFakulteti: Fakultet[] = [];
   kreiraniUniverzitet: Univerzitet | null = null;
 
   constructor(
@@ -63,14 +62,17 @@ export class UniverzitetFormaComponent {
   }
 
   private kreirajModel(podaci?: any): FormaModel {
-    //let selektovaniFakulteti = null;
-    //if (podaci?.fakultet) {
     let selektovaniFakulteti = podaci?.fakultet ?? [];
-    //}
 
     return {
       naziv: podaci ? 'Izmena univerziteta' : 'Dodavanje univerziteta',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'naziv',
           labela: 'Naziv',
@@ -82,14 +84,14 @@ export class UniverzitetFormaComponent {
           naziv: 'adresa',
           labela: 'Adresa',
           tip: 'text',
-          podrazumevanaVrednost: podaci?.adresa ?? '',
+          podrazumevanaVrednost: podaci?.adresa ? `${podaci.adresa.ulica} ${podaci.adresa.broj}` : '',
           validatori: [Validators.required]
         },
         {
           naziv: 'datumOsnivanja',
           labela: 'Datum osnivanja',
           tip: 'date',
-          podrazumevanaVrednost: podaci?.datumOsnivanja ?? '',
+          podrazumevanaVrednost: podaci?.datumOsnivanja ?? null,
           validatori: [Validators.required]
         },
         {

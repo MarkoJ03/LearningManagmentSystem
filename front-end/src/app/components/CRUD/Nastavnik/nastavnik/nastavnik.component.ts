@@ -18,12 +18,12 @@ import { NastavnikService } from '../../../../services/nastavnik.service';
 })
 export class NastavnikComponent {
   nastavnik: Nastavnik | null = null;
-  zvanja: Zvanje[] | null = null;
-  departmani: Departman[] | null = null;
-  katedre: Katedra[] | null = null;
-  realizacijePredmeta: RealizacijaPredmeta[] | null = null;
-  obavestenja: Obavestenje[] | null = null;
-  evaluacijeZnanja: EvaluacijaZnanja[] | null = null; 
+  zvanja: Zvanje[] = [];
+  departmani: Departman[] = [];
+  katedre: Katedra[] = [];
+  realizacijePredmeta: RealizacijaPredmeta[] = [];
+  obavestenja: Obavestenje[] = [];
+  evaluacijeZnanja: EvaluacijaZnanja[] = []; 
   
     constructor(
       private route: ActivatedRoute,

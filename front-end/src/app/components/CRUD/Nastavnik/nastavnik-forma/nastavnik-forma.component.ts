@@ -33,19 +33,12 @@ export class NastavnikFormaComponent {
   formaModel: FormaModel | null = null;
   idNastavnika: number | null = null;
   sviKorisnici: Korisnik[] = [];
-  // selektovaniKorisnik: Korisnik | null = null;
   svaZvanja: Zvanje[] = [];
-  // selektovanaZvanja: Zvanje[] = [];
   sviDepartmani: Departman[] = [];
-  // selektovaniDepartmani: Departman[] = [];
   sveKatedre: Katedra[] = [];
-  // selektovaneKatedre: Katedra[] = [];
   sveRealizacijePredmeta: RealizacijaPredmeta[] = [];
-  // selektovaneRealizacijePredmeta: RealizacijaPredmeta[] = [];
   svaObavestenja: Obavestenje[] = [];
-  //selektovanaObavestenja: Obavestenje[] = [];
   sveEvaluacijeZnanja: EvaluacijaZnanja[] = [];
-  // selektovaneEvaluacijeZnanja: EvaluacijaZnanja[] = [];
   kreiraniNastavnik: Nastavnik | null = null;
 
   constructor(
@@ -73,14 +66,14 @@ export class NastavnikFormaComponent {
         this.katedreService.getAll().subscribe(katedre => {
           this.sveKatedre = katedre;
 
-          this.realizacijaPredmetaService.getAll().subscribe(realizacijePredmeta => {
-            this.sveRealizacijePredmeta = realizacijePredmeta;
+          // this.realizacijaPredmetaService.getAll().subscribe(realizacijePredmeta => {
+          //   this.sveRealizacijePredmeta = realizacijePredmeta;
 
-            this.obavestenjaService.getAll().subscribe(obavestenja => {
-              this.svaObavestenja = obavestenja;
+            // this.obavestenjaService.getAll().subscribe(obavestenja => {
+              // this.svaObavestenja = obavestenja;
 
-              this.evaluacijaZnanjaService.getAll().subscribe(evaluacijeZnanja => {
-                this.sveEvaluacijeZnanja = evaluacijeZnanja;
+              // this.evaluacijaZnanjaService.getAll().subscribe(evaluacijeZnanja => {
+              //   this.sveEvaluacijeZnanja = evaluacijeZnanja;
 
                 this.korisnikService.getAll().subscribe(korisnici => {
                   this.sviKorisnici = korisnici;
@@ -99,9 +92,9 @@ export class NastavnikFormaComponent {
               })
             })
           })
-        })
-      })
-    })
+        // })
+      // })
+    // })
   }
 
   otkazi(): void {
@@ -153,9 +146,7 @@ export class NastavnikFormaComponent {
     }
   }
 
-  private kreirajModel(podaci?: any): FormaModel {
-    //let selektovaniFakulteti = null;
-    //if (podaci?.fakultet) {
+  private kreirajModel(podaci?: Nastavnik): FormaModel {
     let selektovaniKorisnik = podaci?.korisnik ?? null;
     let selektovaniDepartmani = podaci?.departmani ?? [];
     let selektovanaZvanja = podaci?.zvanja ?? [];
@@ -163,11 +154,16 @@ export class NastavnikFormaComponent {
     let selektovaneRealizacijePredmeta = podaci?.realizacijePredmeta ?? [];
     let selektovanaObavestenja = podaci?.obavestenja ?? [];
     let selektovaneEvaluacijeZnanja = podaci?.evaluacijeZnanja ?? [];
-    //}
 
     return {
       naziv: podaci ? 'Izmena nastavnika' : 'Dodavanje nastavnika',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'korisnik',
           labela: 'Korisnik',
@@ -249,7 +245,7 @@ export class NastavnikFormaComponent {
           tip: 'checkbox-list',
           podrazumevanaVrednost: selektovaneEvaluacijeZnanja,
           opcije: this.sveEvaluacijeZnanja,
-          displayFn: (e: EvaluacijaZnanja) => e.predmet.naziv && e.tip_evaluacije.naziv,
+          displayFn: (e: EvaluacijaZnanja) => `${e.predmet.naziv} ${e.tipEvaluacije.naziv}`,
           validatori: [Validators.required]
         },
         {

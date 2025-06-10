@@ -13,8 +13,8 @@ import { NastavnikService } from '../../../../services/nastavnik.service';
 export class NastavniciComponent {
   nastavnici: Nastavnik[] = [];
   kolone: string[] = ['korisnik', 'ime', 'prezime', 'jmbg', 
-    'zvanja', 'departmani', 'katedre', 'realizacijePredmeta', 
-    'obavestenja', 'evaluacijeZnanja', 'vidljiv'];
+    'zvanjaNazivi', 'departmaniNazivi', 'katedreNazivi', 'realizacijePredmeta', 
+    'obavestenjaNaslovi', 'evaluacijeZnanja', 'vidljiv'];
 
   constructor(
     private nastavnikService: NastavnikService,
@@ -23,9 +23,18 @@ export class NastavniciComponent {
 
   ngOnInit(): void {
     this.nastavnikService.getAll().subscribe({
-      next: (res) => this.nastavnici = res,
-      error: (err) => console.error('Greška prilikom učitavanja nastavnika:', err),
-    });
+  next: (res) => {
+    this.nastavnici = res.map(n => ({
+      ...n,
+      zvanjaNazivi: n.zvanja?.map(z => z.tipZvanja.naziv).join(', '),
+      departmaniNazivi: n.departmani?.map(d => d.departman.naziv).join(', '),
+      katedreNazivi: n.katedre?.map(k => k.katedra.naziv).join(', '),
+      obavestenjaNaslovi: n.obavestenja?.map(o => o.naslov).join(', ')
+    }));
+  },
+  error: (err) => console.error('Greška prilikom učitavanja nastavnika:', err),
+});
+
   }
 
   izmeni(nastavnik: Nastavnik): void {

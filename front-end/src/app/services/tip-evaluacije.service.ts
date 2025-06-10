@@ -9,6 +9,6 @@ import { BaseService } from './base.service';
 export class TipEvaluacijeService extends BaseService<TipEvaluacije> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/TipEvaluacije');
+    this.setUrl('http://localhost:8080/api/tipovi-evaluacije');
   }
 }

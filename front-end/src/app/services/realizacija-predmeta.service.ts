@@ -9,10 +9,6 @@ import { BaseService } from './base.service';
 export class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta> {
   constructor(http: HttpClient) {
     super(http);
-<<<<<<< Updated upstream
     this.setUrl('http://localhost:8080/api/realizacije-predmeta');
-=======
-    this.setUrl('http://localhost:8080/api/realizacija-predmeta');
->>>>>>> Stashed changes
   }
 }

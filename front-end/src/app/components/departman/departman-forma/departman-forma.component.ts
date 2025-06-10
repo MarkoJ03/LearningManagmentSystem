@@ -23,7 +23,7 @@ export class DepartmanFormaComponent {
 
   formaModel: FormaModel | null = null;
 
-  
+
   sviSekretariDepartmana: Nastavnik[] = [];
   sviDirektoriDepartmana: Nastavnik[] = [];
   sviFakulteti: Fakultet[] = [];
@@ -44,7 +44,7 @@ export class DepartmanFormaComponent {
     private route: ActivatedRoute,
     private departmanNastavnikService: DepartmanNastavnikService,
     private katedraService: KatedraService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.katedraService.getAll().subscribe(katedre => {
@@ -80,7 +80,7 @@ export class DepartmanFormaComponent {
   }
 
   public sacuvajDepartman(vrednosti: any): void {
-    console.log("izmenjeno",vrednosti);
+    console.log("izmenjeno", vrednosti);
     vrednosti.katedre = [];
 
     if (this.idDepartman) {
@@ -96,7 +96,7 @@ export class DepartmanFormaComponent {
               nastavnik: nastavnik,
               vidljiv: true
             };
-             
+
             console.log(veza)
             this.departmanNastavnikService.create(veza).subscribe({
               next: () => console.log(`Povezan nastavnik ${nastavnik.id} sa departmanom ${vrednosti.id}`),
@@ -105,26 +105,26 @@ export class DepartmanFormaComponent {
 
           }
 
-             this.departmanNastavnikService.getByDepartmanId(this.idDepartman!).subscribe(povezani => {
-             let selektovaniNastavniciId = vrednosti.nastavnici.map((n: any) => n.id);
+          this.departmanNastavnikService.getByDepartmanId(this.idDepartman!).subscribe(povezani => {
+            let selektovaniNastavniciId = vrednosti.nastavnici.map((n: any) => n.id);
 
-             let izbaciti = povezani.filter(p => !selektovaniNastavniciId.includes(p.nastavnik.id));
+            let izbaciti = povezani.filter(p => !selektovaniNastavniciId.includes(p.nastavnik.id));
 
-  for (let nastavnikVeza of izbaciti) {
-    console.log("Izbaci nastavnika:", nastavnikVeza.nastavnik);
+            for (let nastavnikVeza of izbaciti) {
+              console.log("Izbaci nastavnika:", nastavnikVeza.nastavnik);
 
-    this.departmanNastavnikService.delete(nastavnikVeza.id!).subscribe({
-      next: () => console.log(`Veza obrisana: ${nastavnikVeza.id}`),
-      error: err => console.error('Greška pri brisanju veze:', err)
-    });
-  }
-});
+              this.departmanNastavnikService.delete(nastavnikVeza.id!).subscribe({
+                next: () => console.log(`Veza obrisana: ${nastavnikVeza.id}`),
+                error: err => console.error('Greška pri brisanju veze:', err)
+              });
+            }
+          });
 
 
         },
         error: err => console.error('Greška pri izmeni departmana:', err)
       }
-    );
+      );
     } else {
       this.departmanService.create(vrednosti).subscribe({
         next: (departman) => {
@@ -157,6 +157,7 @@ export class DepartmanFormaComponent {
     const selektovaniFakultet = podaci?.fakultet ?? null;
     const selektovaniSekretar = podaci?.sekretarDepartmana ?? null;
     const selektovaniDirektor = podaci?.direktorDepartmana ?? null;
+    const selektovaneKatedre = podaci?.katedre ?? [];
 
     return {
       naziv: podaci ? 'Izmena departmana' : 'Dodavanje departmana',
@@ -164,7 +165,7 @@ export class DepartmanFormaComponent {
         ...(podaci ? [{
           naziv: 'id',
           labela: '',
-          tip: 'hidden', 
+          tip: 'hidden',
           podrazumevanaVrednost: podaci.id
         }] : []),
 
@@ -201,6 +202,14 @@ export class DepartmanFormaComponent {
           opcije: this.sviDirektoriDepartmana,
           displayFn: (n: Nastavnik) => `${n.ime} ${n.prezime}`,
           validatori: [Validators.required]
+        },
+        {
+          naziv: 'katedre',
+          labela: 'Katedre',
+          tip: 'checkbox-list',
+          podrazumevanaVrednost: selektovaneKatedre,
+          opcije: this.sveKatedre,
+          displayFn: (k: Katedra) => k.naziv,
         },
         {
           naziv: 'nastavnici',

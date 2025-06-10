@@ -4,6 +4,7 @@ import { GenerickaFormaComponent } from '../../../genericka-forma/genericka-form
 import { FormaModel } from '../../../genericka-forma/FormaModel';
 import { KorisnikService } from '../../../../services/korisnik.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Korisnik } from '../../../../models/Korisnik';
 
 @Component({
   selector: 'app-korisnik-forma',
@@ -51,10 +52,16 @@ export class KorisnikFormaComponent {
     }
   }
 
-  private kreirajModel(podaci?: any): FormaModel {
+  private kreirajModel(podaci?: Korisnik): FormaModel {
     return {
       naziv: podaci ? 'Izmena korisnika' : 'Dodavanje korisnika',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'email',
           labela: 'Email',

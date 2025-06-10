@@ -1,36 +1,43 @@
 <h2>Detalji o predmetu</h2>
 
 <p *ngIf="predmet">
-    {{ predmet.naziv }}
-    {{ predmet.esbp }}
-    {{ predmet.obavezan }}
-    {{ predmet.brojPredavanja }}
-    {{ predmet.brojVezbi }}
-    {{ predmet. istrazivackiRad }}
-    {{ predmet.brojSemestara }}
-    {{ predmet.opis }}
-    {{ predmet.cilj }}
-    {{ predmet.dokumentiPredmeta.silabus }}
-    {{ predmet.dokumentiPredmeta.akreditacija }}
-
-    <li *ngFor="let evaluacijaZnanja of evaluacijeZnanja; index as i;">
-        {{i}}/{{predmet.evaluacijeZnanja?.length}}. {{evaluacijaZnanja}}
-    </li>
-
-        <li *ngFor="let grupaStudenata of grupeStudenata; index as i;">
-        {{i}}/{{predmet.grupaStudenataPredmet?.length}}. {{grupaStudenata}}
-    </li>
-
-    <li *ngFor="let realizacijaPredmeta of realizacijePredmeta; index as i;">
-        {{i}}/{{predmet.realizacijePredmeta?.length}}. {{realizacijaPredmeta}}
-    </li>
-
-    <li *ngFor="let obavestenje of obavestenja; index as i;">
-        {{i}}/{{predmet.obavestenja?.length}}. {{obavestenje}}
-    </li>
-
-    {{ predmet.vidljiv }}
+    Naziv: {{ predmet.naziv }} <br>
+    Espb: {{ predmet.esbp }}<br>
+    Obavezan: {{ predmet.obavezan }}<br>
+    Broj predavanja: {{ predmet.brojPredavanja }}<br>
+    Broj vezbi: {{ predmet.brojVezbi }}<br>
+    Istrazivacki rad:{{ predmet. istrazivackiRad }}<br>
+    Broj semestara: {{ predmet.brojSemestara }}<br>
+    Opis: {{ predmet.opis }}<br>
+    Cilj: {{ predmet.cilj }}<br>
+    Silabus: {{ predmet.dokumentiPredmeta.silabus }}<br>
+    Akreditacija: {{ predmet.dokumentiPredmeta.akreditacija }}<br>
+    Vidljiv: {{ predmet.vidljiv }}
 </p>
+Evaluacija znanja:
+<ul *ngIf="predmet?.evaluacijeZnanja?.length">
+    <ng-container *ngFor="let evaluacijaZnanja of predmet?.evaluacijeZnanja">
+        <li>{{ evaluacijaZnanja.tipEvaluacije.naziv }}</li>
+    </ng-container>
+</ul> <br>
+Grupa studenata:
+<ul *ngIf="predmet?.grupaStudenataPredmet?.length">
+    <ng-container *ngFor="let grupaStudenata of predmet?.grupaStudenataPredmet">
+        <li>{{ grupaStudenata.id }}</li>
+    </ng-container>
+</ul> <br>
+Realizacija predmeta:
+<ul *ngIf="predmet?.realizacijePredmeta?.length">
+    <ng-container *ngFor="let realizacijaPredmeta of predmet?.realizacijePredmeta">
+        <li>{{ realizacijaPredmeta.tipNastave.naziv }}</li>
+    </ng-container>
+</ul> <br>
+Obavestenja:
+<ul *ngIf="predmet?.obavestenja?.length">
+    <ng-container *ngFor="let obavestenje of predmet?.obavestenja">
+        <li>{{ obavestenje.naslov }}</li>
+    </ng-container>
+</ul> <br>
 
 <a routerLink="/predmeti">← Nazad na listu svih predmeta</a>
 

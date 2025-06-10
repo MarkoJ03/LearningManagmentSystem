@@ -21,12 +21,13 @@ public class TokenUtils {
 	public Claims getClaims(String token) {
 		Claims claims = null;
 		try {
-			claims = (Claims) Jwts.parser().setSigningKey(this.getKey()).build().parse(token).getPayload();			
+			claims = (Claims) Jwts.parser().setSigningKey(this.getKey()).build().parseClaimsJws(token).getBody();			
 		} catch (Exception e) {
 			System.out.println("Greska pri dobavljanju calims!");
 		}
 		return claims;
 	}
+	
 	
 	public boolean isExpired(String token) {
 		return this.getClaims(token).getExpiration().before(new Date(System.currentTimeMillis()));
@@ -53,6 +54,6 @@ public class TokenUtils {
 		payload.put("sub", userDetails.getUsername());
 		payload.put("authorities", userDetails.getAuthorities());
 		
-		return Jwts.builder().claims(payload).expiration(new Date(System.currentTimeMillis() + 100000)).signWith(this.getKey()).compact();
+		return Jwts.builder().claims(payload).expiration(new Date(System.currentTimeMillis() + 100000 * 60 * 60)).signWith(this.getKey()).compact();
 	}
 }

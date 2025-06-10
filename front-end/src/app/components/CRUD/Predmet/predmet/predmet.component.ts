@@ -7,6 +7,7 @@ import { GrupaStudenata } from '../../../../models/GrupaStudenata';
 import { RealizacijaPredmeta } from '../../../../models/RealizacijaPredmeta';
 import { PredmetService } from '../../../../services/predmet.service';
 import { Obavestenje } from '../../../../models/Obavestenje';
+import { GrupaStudenataPredmet } from '../../../../models/GrupaStudenataPredmet';
 
 @Component({
   selector: 'app-predmet',
@@ -16,10 +17,10 @@ import { Obavestenje } from '../../../../models/Obavestenje';
 })
 export class PredmetComponent {
   predmet: Predmet | null = null;
-  evaluacijeZnanja: EvaluacijaZnanja[] | null = null;
-  grupeStudenata: GrupaStudenata[] | null = null;
-  realizacijePredmeta: RealizacijaPredmeta[] | null = null;
-  obavestenja: Obavestenje[] | null = null;
+  evaluacijeZnanja: EvaluacijaZnanja[] = [];
+  grupeStudenataPredmet: GrupaStudenataPredmet[] = [];
+  realizacijePredmeta: RealizacijaPredmeta[] = [];
+  obavestenja: Obavestenje[] = [];
   
     constructor(
       private route: ActivatedRoute,

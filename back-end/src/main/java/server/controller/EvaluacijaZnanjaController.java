@@ -11,7 +11,7 @@ import server.service.EvaluacijaZnanjaService;
 
 @Controller
 @RequestMapping("/api/evaluacije-znanja")
-@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA"})
+@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"})
 public class EvaluacijaZnanjaController extends BaseController<EvaluacijaZnanja, EvaluacijaZnanjaDTO, Long> {
 
     @Autowired

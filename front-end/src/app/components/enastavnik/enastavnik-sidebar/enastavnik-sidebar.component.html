@@ -1,4 +1,4 @@
-<nav class="sidebar">
+<nav class="sidebar" *ngIf="nastavnik">
   <ul>
     <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'objave']">Početna</a></li>
     <li><a [routerLink]="['/nastavnik', nastavnik.id, 'enastavnik', 'predmeti']">Predmeti</a></li>

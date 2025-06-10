@@ -8,6 +8,7 @@ import { RealizacijaPredmeta } from '../../../../models/RealizacijaPredmeta';
 import { Kalendar } from '../../../../models/Kalendar';
 import { RealizacijaPredmetaService } from '../../../../services/realizacija-predmeta.service';
 import { KalendarService } from '../../../../services/kalendar.service';
+import { TerminNastave } from '../../../../models/TerminNastave';
 
 @Component({
   selector: 'app-termin-nastave-forma',
@@ -18,9 +19,7 @@ import { KalendarService } from '../../../../services/kalendar.service';
 export class TerminNastaveFormaComponent {
   formaModel: FormaModel | null = null;
   idTerminaNastave: number | null = null;
-  selektovanaRealizacijaPredmeta: RealizacijaPredmeta | null = null;
   sveRealizacijePredmeta: RealizacijaPredmeta[] = [];
-  selektovaniKalendar: Kalendar | null = null;
   sviKalendari: Kalendar[] = [];
 
   constructor(
@@ -71,13 +70,19 @@ export class TerminNastaveFormaComponent {
     }
   }
 
-  private kreirajModel(podaci?: any): FormaModel {
+  private kreirajModel(podaci?: TerminNastave): FormaModel {
     let selektovanaRealizacijaPredmeta = podaci?.realizacijaPredmeta ?? null;
     let selektovaniKalendar = podaci?.kalendar ?? null;
 
     return {
       naziv: podaci ? 'Izmena termina nastave' : 'Dodavanje termina nastave',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'vremePocetka',
           labela: 'Vreme Pocetka',
@@ -96,7 +101,7 @@ export class TerminNastaveFormaComponent {
           naziv: 'brojCasova',
           labela: 'Broj Casova',
           tip: 'number',
-          podrazumevanaVrednost: podaci?.brojCasova ?? '',
+          podrazumevanaVrednost: podaci?.brojCasova ?? 0,
           validatori: [Validators.required]
         },
         {
@@ -105,6 +110,7 @@ export class TerminNastaveFormaComponent {
           tip: 'select',
           podrazumevanaVrednost: selektovanaRealizacijaPredmeta,
           opcije: this.sveRealizacijePredmeta,
+          displayFn: (r: RealizacijaPredmeta) => `${r.predmet.naziv}`,
           validatori: [Validators.required]
         },
         {
@@ -113,6 +119,7 @@ export class TerminNastaveFormaComponent {
           tip: 'select',
           podrazumevanaVrednost: selektovaniKalendar,
           opcije: this.sviKalendari,
+          displayFn: (k: Kalendar) => `${k.id}`,
           validatori: [Validators.required]
         },
         {

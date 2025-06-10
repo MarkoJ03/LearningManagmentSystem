@@ -11,7 +11,7 @@ import server.service.SvObrazacService;
 
 @Controller
 @RequestMapping("/api/sv-obrazac")
-@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA, ROLE_STUDENT"})
+@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_STUDENT"})
 public class SvObrazacController extends BaseController<SvObrazac, SvObrazacDTO, Long> {
 
     @Autowired

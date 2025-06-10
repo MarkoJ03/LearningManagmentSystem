@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IshodEvaluacije } from '../../../../models/IshodEvaluacije';
 import { EvaluacijaZnanja } from '../../../../models/EvaluacijaZnanja';
 import { EvaluacijaZnanjaService } from '../../../../services/evaluacija-znanja.service';
+import { GrupaStudenata } from '../../../../models/GrupaStudenata';
 
 @Component({
   selector: 'app-evaluacija-znanja',
@@ -13,7 +14,8 @@ import { EvaluacijaZnanjaService } from '../../../../services/evaluacija-znanja.
 })
 export class EvaluacijaZnanjaComponent {
   evaluacijaZnanja: EvaluacijaZnanja | null = null;
-  ishodiEvaluacije: IshodEvaluacije[] | null = null;
+  ishodiEvaluacije: IshodEvaluacije[] = [];
+  grupaStudenata: GrupaStudenata[] = [];
   
     constructor(
       private route: ActivatedRoute,

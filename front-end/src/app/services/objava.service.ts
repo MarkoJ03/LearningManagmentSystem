@@ -9,6 +9,6 @@ import { BaseService } from './base.service';
 export class ObjavaService extends BaseService<Objava> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/Objava');
+    this.setUrl('http://localhost:8080/api/objave');
   }
 }

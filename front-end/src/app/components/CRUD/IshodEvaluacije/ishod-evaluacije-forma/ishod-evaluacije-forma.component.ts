@@ -10,6 +10,7 @@ import { StudentNaGodiniService } from '../../../../services/student-na-godini.s
 import { EvaluacijaZnanjaService } from '../../../../services/evaluacija-znanja.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IshodPredmetaService } from '../../../../services/ishod-predmeta.service';
+import { IshodEvaluacije } from '../../../../models/IshodEvaluacije';
 
 @Component({
   selector: 'app-ishod-evaluacije-forma',
@@ -21,10 +22,7 @@ export class IshodEvaluacijeFormaComponent {
   formaModel: FormaModel | null = null;
   idIshodaEvaluacije: number | null = null;
   sviStudentiNaGodini: StudentNaGodini[] = [];
-  selektovanStudentNaGodini: StudentNaGodini | null = null;
-  selektovanaEvaluacijaZnanja: EvaluacijaZnanja | null = null;;
   sveEvaluacijeZnanja: EvaluacijaZnanja[] = [];
-  selektovanIshodPredmeta: IshodPredmeta | null = null;
   sviIshodiPredmeta: IshodPredmeta[] = [];
 
   constructor(
@@ -37,8 +35,8 @@ export class IshodEvaluacijeFormaComponent {
   ) { }
 
   ngOnInit(): void {
-    this.studentNaGodiniService.getAll().subscribe(studentiNaGodini => {
-      this.sviStudentiNaGodini = studentiNaGodini;
+    // this.studentNaGodiniService.getAll().subscribe(studentiNaGodini => {
+    //   this.sviStudentiNaGodini = studentiNaGodini;
 
       this.evaluacijaZnanjaService.getAll().subscribe(evaluacijeZnanja => {
         this.sveEvaluacijeZnanja = evaluacijeZnanja;
@@ -57,7 +55,7 @@ export class IshodEvaluacijeFormaComponent {
           }
         })
       })
-    })
+  //  })
   }
 
   otkazi(): void {
@@ -78,17 +76,20 @@ export class IshodEvaluacijeFormaComponent {
     }
   }
 
-  private kreirajModel(podaci?: any): FormaModel {
-    //let selektovaniFakulteti = null;
-    //if (podaci?.fakultet) {
-    let selektovanStudentNaGodini = podaci?.studentiNaGodini ?? null;
-    let selektovanaEvaluacijaZnanja = podaci?.evaluacijaZnanja ?? null;
+  private kreirajModel(podaci?: IshodEvaluacije): FormaModel {
+    let selektovanStudentNaGodini = podaci?.studentNaGodini ?? null;
+    let selektovanaEvaluacijaZnanja = podaci?.evaluacijaZnanja.tipEvaluacije ?? null;
     let selektovanIshodPredmeta = podaci?.ishodPredmeta ?? null;
-    //}
 
     return {
       naziv: podaci ? 'Izmena ishoda evaluacije' : 'Dodavanje ishoda evaluacije',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'bodovi',
           labela: 'Bodovi',
@@ -118,7 +119,7 @@ export class IshodEvaluacijeFormaComponent {
           tip: 'select',
           podrazumevanaVrednost: selektovanaEvaluacijaZnanja,
           opcije: this.sveEvaluacijeZnanja,
-          displayFn: (e: EvaluacijaZnanja) => e.tip_evaluacije.naziv,
+          displayFn: (e: EvaluacijaZnanja) => e.tipEvaluacije.naziv,
           validatori: [Validators.required]
         },
         {

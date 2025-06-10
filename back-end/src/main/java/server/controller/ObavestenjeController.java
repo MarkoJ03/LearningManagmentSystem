@@ -18,7 +18,7 @@ import server.service.ObavestenjeService;
 
 @Controller
 @RequestMapping("/api/obavestenja")
-@Secured({"ROLE_ADMIN, ROLE_NASTAVNIK"})
+@Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK"})
 public class ObavestenjeController extends BaseController<Obavestenje, ObavestenjeDTO, Long>{
 
 	@Autowired

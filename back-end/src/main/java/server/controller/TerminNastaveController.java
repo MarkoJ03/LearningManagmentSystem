@@ -12,7 +12,7 @@ import server.service.TerminNastaveService;
 
 @Controller
 @RequestMapping("/api/termini-nastave")
-@Secured({"ROLE_ADMIN, ROLE_NASTAVNIK"})
+@Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK"})
 public class TerminNastaveController extends BaseController<TerminNastave, TerminNastaveDTO, Long>{
 
 	@Autowired

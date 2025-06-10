@@ -20,11 +20,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ZvanjeFormaComponent {
   formaModel: FormaModel | null = null;
   idZvanja: number | null = null;
-  selektovanTipZvanja: TipZvanja | null = null;
   sviTipoviZvanja: TipZvanja[] = [];
-  selektovanaNaucnaOblast: NaucnaOblast | null = null;
   sveNaucneOblasti: NaucnaOblast[] = [];
-  selektovaniNastavnik: Nastavnik | null = null;
   sviNastavnici: Nastavnik[] = [];
 
   constructor(
@@ -87,6 +84,12 @@ export class ZvanjeFormaComponent {
     return {
       naziv: podaci ? 'Izmena zvanja' : 'Dodavanje zvanja',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'datumIzbora',
           labela: 'Datum Izbora',

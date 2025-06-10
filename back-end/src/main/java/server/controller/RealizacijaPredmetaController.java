@@ -18,7 +18,7 @@ import server.service.RealizacijaPredmetaService;
 
 @Controller
 @RequestMapping("/api/realizacije-predmeta")
-@Secured({"ROLE_ADMIN, ROLE_NASTAVNIK"})
+@Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK"})
 public class RealizacijaPredmetaController extends BaseController<RealizacijaPredmeta, RealizacijaPredmetaDTO, Long>{
 
 	@Autowired

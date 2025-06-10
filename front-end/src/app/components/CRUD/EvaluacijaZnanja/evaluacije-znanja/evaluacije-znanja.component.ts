@@ -12,16 +12,21 @@ import { EvaluacijaZnanjaService } from '../../../../services/evaluacija-znanja.
 })
 export class EvaluacijeZnanjaComponent {
   evaluacijeZnanja: EvaluacijaZnanja[] = [];
-  kolone: string[] = ['kalendar', 'nastavnik', 'predmet', 'tipEvaluacije', 'vremePocetka', 'vremeZavrsetka', 'ishodiEvaluacije', 'vidljiv'];
+  kolone: string[] = ['kalendar', 'nastavnikImePrezime', 'predmet', 'tipEvaluacije', 'vremePocetka', 'vremeZavrsetka', 'vidljiv'];
 
   constructor(
     private evaluacijaZnanjaService: EvaluacijaZnanjaService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.evaluacijaZnanjaService.getAll().subscribe({
-      next: (res) => this.evaluacijeZnanja = res,
+      next: (res) => {
+        this.evaluacijeZnanja = res;
+        this.evaluacijeZnanja.forEach(e => {
+          (e as any).nastavnikImePrezime = `${e.nastavnik.ime} ${e.nastavnik.prezime}`;
+        });
+      },
       error: (err) => console.error('Greška prilikom učitavanja evaluacija znanja:', err),
     });
   }

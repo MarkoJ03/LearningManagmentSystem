@@ -6,6 +6,7 @@ import { Zvanje } from '../../../../models/Zvanje';
 import { NaucnaOblastService } from '../../../../services/naucna-oblast.service';
 import { ZvanjeService } from '../../../../services/zvanje.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NaucnaOblast } from '../../../../models/NaucnaOblast';
 
 @Component({
   selector: 'app-naucna-oblast-forma',
@@ -17,8 +18,6 @@ export class NaucnaOblastFormaComponent {
   formaModel: FormaModel | null = null;
   idNaucneOblasti: number | null = null;
   svaZvanja: Zvanje[] = [];
-  selektovanoZvanje: Zvanje[] = [];
-
 
   constructor(
     private naucnaOblastService: NaucnaOblastService,
@@ -62,13 +61,17 @@ export class NaucnaOblastFormaComponent {
     }
   }
 
-  private kreirajModel(podaci?: any): FormaModel {
-    let selektovanoZvanje = podaci?.zvanje ?? null;
-
-
+  private kreirajModel(podaci?: NaucnaOblast): FormaModel {
+    let selektovanaZvanja = podaci?.zvanja ?? [];
     return {
       naziv: podaci ? 'Izmena naucne oblasti' : 'Dodavanje naucne oblasti',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'naziv',
           labela: 'Naziv',
@@ -80,9 +83,9 @@ export class NaucnaOblastFormaComponent {
           naziv: 'zvanja',
           labela: 'Zvanja',
           tip: 'checkbox-list',
-          podrazumevanaVrednost: selektovanoZvanje,
+          podrazumevanaVrednost: selektovanaZvanja,
           opcije: this.svaZvanja,
-          displayFn: (z: Zvanje) => `${z.tipZvanja}`,
+          displayFn: (z: Zvanje) => `${z.tipZvanja.naziv}`,
           validatori: [Validators.required]
         },
         {

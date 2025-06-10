@@ -25,12 +25,7 @@ export class KatedraFormaComponent {
   kreiranaKatedra: Katedra | null = null;
   sviStudijskiProgrami: StudijskiProgram[] = [];
   sviDepartmani: Departman[] = [];
-  selektovaniStudijskiProgrami: StudijskiProgram[] = [];
   sviNastavnici: Nastavnik[] = [];
-  selektovaniNastavnici: Nastavnik[] = [];
-  selektovaniSefKatedre: Nastavnik | null = null;
-  selektovaniSekretarKatedre: Nastavnik | null = null;
-  selektovaniDepartman: Departman | null = null;
 
   constructor(
     private katedraService: KatedraService,
@@ -104,19 +99,23 @@ export class KatedraFormaComponent {
     }
   }
 
-  private kreirajModel(podaci?: any): FormaModel {
-    //let selektovaniFakulteti = null;
-    //if (podaci?.fakultet) {
-    let selektovaniSefKatedre = podaci?.nastavnik ?? null;
-    let selektovaniSekretarKatedre = podaci?.nastavnik ?? null;
-    let selektovaniNastavnici = podaci?.nastavnik ?? [];
-    let selektovaniStudijskiProgrami = podaci?.studijskiProgram ?? [];
+  private kreirajModel(podaci?: Katedra): FormaModel {
+    let selektovaniSefKatedre = podaci?.sefKatedre ?? null;
+    let selektovaniSekretarKatedre = podaci?.sekretarKatedre ?? null;
+    let selektovaniNastavnici = podaci?.nastavnici ?? [];
+    let selektovaniStudijskiProgrami = podaci?.studijskiProgrami ?? [];
     let selektovaniDepartman = podaci?.departman ?? null;
-    //}
+  
 
     return {
       naziv: podaci ? 'Izmena katedre' : 'Dodavanje katedre',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'naziv',
           labela: 'Naziv',
@@ -139,7 +138,7 @@ export class KatedraFormaComponent {
           tip: 'select',
           podrazumevanaVrednost: selektovaniSefKatedre,
           opcije: this.sviNastavnici,
-          displayFn: (n: Nastavnik) => n.ime && n.prezime,
+          displayFn: (n: Nastavnik) => `${n.ime} ${n.prezime}`,
           validatori: [Validators.required]
         },
         {
@@ -148,7 +147,7 @@ export class KatedraFormaComponent {
           tip: 'select',
           podrazumevanaVrednost: selektovaniSekretarKatedre,
           opcije: this.sviNastavnici,
-          displayFn: (n: Nastavnik) => n.ime && n.prezime,
+          displayFn: (n: Nastavnik) => `${n.ime} ${n.prezime}`,
           validatori: [Validators.required]
         },
         {
@@ -166,7 +165,7 @@ export class KatedraFormaComponent {
           tip: 'checkbox-list',
           podrazumevanaVrednost: selektovaniNastavnici,
           opcije: this.sviNastavnici,
-          displayFn: (n: Nastavnik) => n.ime && n.prezime,
+          displayFn: (n: Nastavnik) => `${n.ime} ${n.prezime}`,
           validatori: [Validators.required]
         },
         {

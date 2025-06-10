@@ -1,18 +1,20 @@
-<h2>Detalji o evaluaciji znanja</h2>
+<div *ngIf="evaluacijaZnanja; else loading">
+  <h2>Detalji o evaluaciji znanja</h2>
 
-<p *ngIf="evaluacijaZnanja">
-    {{ evaluacijaZnanja.kalendar.grupaStudenata }}
-    {{ evaluacijaZnanja.nastavnik.ime && evaluacijaZnanja.nastavnik.prezime }}
-    {{ evaluacijaZnanja.predmet.naziv }}
-    {{ evaluacijaZnanja.tip_evaluacije.naziv }}
-    {{ evaluacijaZnanja.vreme_pocetka }}
-    {{ evaluacijaZnanja.vreme_zavrsetka }}
+  <p>
+    Nastavnik: {{ evaluacijaZnanja.nastavnik?.ime }} {{ evaluacijaZnanja.nastavnik?.prezime }}<br>
+    Predmet: {{ evaluacijaZnanja.predmet?.naziv }}<br>
+    Tip evaluacije: {{ evaluacijaZnanja.tipEvaluacije?.naziv || 'Nije definisano' }}<br>
+    Početak: {{ evaluacijaZnanja.vremePocetka ? (evaluacijaZnanja.vremePocetka | date:'short') : 'Nije definisano'
+    }}<br>
+    Završetak: {{ evaluacijaZnanja.vremeZavrsetka ? (evaluacijaZnanja.vremeZavrsetka | date:'short') : 'Nije definisano'
+    }}<br>
+    Vidljiv: {{ evaluacijaZnanja.vidljiv ? 'Da' : 'Ne' }}
+  </p>
 
-    <li *ngFor="let ishodEvaluacije of ishodiEvaluacije; index as i;">
-        {{i}}/{{evaluacijaZnanja.ishodiEvaluacije?.length}}. {{ishodEvaluacije}}
-    </li>
+  <a routerLink="/evaluacije-znanja">← Nazad na listu svih evaluacija znanja</a>
+</div>
 
-    {{ evaluacijaZnanja.vidljiv }}
-</p>
-
-<a routerLink="/evaluacije-znanja">← Nazad na listu svih evaluacija znanja</a>
+<ng-template #loading>
+  <p>Učitavanje detalja...</p>
+</ng-template>

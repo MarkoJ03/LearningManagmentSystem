@@ -1,21 +1,23 @@
-<h2>Detalji o katedri</h2>
+<div *ngIf="katedra">
+    <h2>Detalji o katedri</h2>
 
-<p *ngIf="katedra">
-    {{ katedra.naziv }}
-    {{ katedra.departman.naziv }}
-    {{ katedra.sefKatedre.ime && katedra.sefKatedre.prezime }}
-    {{ katedra.sekretarKatedre.ime && katedra.sekretarKatedre.prezime }}
+    <p *ngIf="katedra">
+        Naziv: {{ katedra.naziv }} <br>
+        Departman: {{ katedra.departman.naziv }}<br>
+        Sef katedre: <span> {{ katedra.sefKatedre.ime }} {{ katedra.sefKatedre.prezime }}</span><br>
+        Sekretar katedre: <span> {{ katedra.sekretarKatedre.ime }} {{ katedra.sekretarKatedre.prezime }} </span><br>
+        {{ katedra.vidljiv }} <br>
+    </p>
+    Studijski programi: <ul *ngIf="katedra?.studijskiProgrami?.length">
+        <ng-container *ngFor="let studijskiProgram of katedra?.studijskiProgrami">
+            <li>{{ studijskiProgram.naziv }}</li>
+        </ng-container>
+    </ul><br>
 
-    <li *ngFor="let studijskiProgram of studijskiProgrami; index as i;">
-        {{i}}/{{katedra.studijskiProgrami?.length}}. {{studijskiProgram}}
-    </li>
-
-    <li *ngFor="let nastavnik of nastavnici; index as i;">
-        {{i}}/{{katedra.nastavnici?.length}}. {{nastavnik}}
-    </li>
-
-    {{ katedra.vidljiv }}
-</p>
-
+    <ul *ngIf="katedra?.nastavnici?.length">
+        <ng-container *ngFor="let nastavnik of katedra?.nastavnici">
+            <li>{{ nastavnik.nastavnik.ime }} {{ nastavnik.nastavnik.prezime }}</li>
+        </ng-container>
+    </ul>
+</div>
 <a routerLink="/katedre">← Nazad na listu svih katedri</a>
-

@@ -13,7 +13,7 @@ import { FakultetService } from '../../../../services/fakultet.service';
 })
 export class FakultetComponent {
   fakultet: Fakultet | null = null;
-  departmani: Departman[] | null = null;
+  departmani: Departman[] = [];
   
     constructor(
       private route: ActivatedRoute,

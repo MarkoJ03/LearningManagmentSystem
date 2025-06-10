@@ -36,7 +36,7 @@ public class NastavnikDTO {
 	
 	private StudentskaSluzbaDTO studentskaSluzba;
 
-	private List<RealizacijaPredmetaDTO> realizacijaPredmeta;
+	private List<RealizacijaPredmetaDTO> realizacijePredmeta;
 
 	private List<ObavestenjeDTO> obavestenja;
 	

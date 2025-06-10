@@ -21,7 +21,7 @@ import server.service.ObjavaService;
 
 @Controller
 @RequestMapping("/api/objave")
-@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA"})
+@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"})
 
 public class ObjavaController extends BaseController<Objava, ObjavaDTO, Long> {
 

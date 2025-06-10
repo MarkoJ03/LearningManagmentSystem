@@ -12,16 +12,23 @@ import { UniverzitetService } from '../../../../services/univerzitet.service';
 })
 export class UniverzitetiComponent {
   univerziteti: Univerzitet[] = [];
-  kolone: string[] = ['naziv', 'datumOsnivanja', 'adresa', 'fakulteti','vidljiv'];
+  tabelaPodaci: any[] = [];
+  kolone: string[] = ['naziv', 'datumOsnivanja', 'adresa', 'fakulteti', 'vidljiv'];
 
   constructor(
     private univerzitetService: UniverzitetService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.univerzitetService.getAll().subscribe({
-      next: (res) => this.univerziteti = res,
+      next: (res) => {
+        this.univerziteti = res;
+        this.tabelaPodaci = res.map(u => ({
+          ...u,
+          adresa: `${u.adresa.ulica} ${u.adresa.broj}`
+        }));
+      },
       error: (err) => console.error('Greška prilikom učitavanja univerziteta:', err),
     });
   }
@@ -31,10 +38,15 @@ export class UniverzitetiComponent {
   }
 
   obrisi(id: number): void {
-    this.univerzitetService.delete(id).subscribe(() => {
-      this.univerziteti = this.univerziteti.filter(a => a.id !== id);
-    });
-  }
+  this.univerzitetService.delete(id).subscribe(() => {
+    this.univerziteti = this.univerziteti.filter(u => u.id !== id);
+    this.tabelaPodaci = this.univerziteti.map(u => ({
+      ...u,
+      adresa: `${u.adresa.ulica} ${u.adresa.broj}`
+    }));
+  });
+}
+
 
   detalji(id: number): void {
     this.router.navigate(['/univerziteti', id]);

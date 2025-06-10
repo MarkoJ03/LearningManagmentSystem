@@ -15,7 +15,7 @@ import server.service.KalendarService;
 
 @Controller
 @RequestMapping("/api/kalendari")
-@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA"})
+@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"})
 public class KalendarController extends BaseController<Kalendar, KalendarDTO, Long> {
 
     @Autowired

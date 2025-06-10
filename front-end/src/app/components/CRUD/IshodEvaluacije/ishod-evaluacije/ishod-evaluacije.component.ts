@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IshodEvaluacije } from '../../../../models/IshodEvaluacije';
 import { IshodEvaluacijeService } from '../../../../services/ishod-evaluacije.service';
+import { StudentNaGodini } from '../../../../models/StudentNaGodini';
+import { EvaluacijaZnanja } from '../../../../models/EvaluacijaZnanja';
+import { TipEvaluacije } from '../../../../models/TipEvaluacije';
 
 @Component({
   selector: 'app-ishod-evaluacije',

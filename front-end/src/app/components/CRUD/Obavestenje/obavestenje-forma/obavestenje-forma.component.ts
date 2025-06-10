@@ -8,6 +8,7 @@ import { ObavestenjeService } from '../../../../services/obavestenje.service';
 import { PredmetService } from '../../../../services/predmet.service';
 import { NastavnikService } from '../../../../services/nastavnik.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Obavestenje } from '../../../../models/Obavestenje';
 
 @Component({
   selector: 'app-obavestenje-forma',
@@ -18,9 +19,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ObavestenjeFormaComponent {
   formaModel: FormaModel | null = null;
   idObavestenja: number | null = null;
-  selektovaniNastavnik: Nastavnik | null = null;
   sviNastavnici: Nastavnik[] = [];
-  selektovaniPredmet: Predmet | null = null;
   sviPredmeti: Predmet[] = [];
 
   constructor(
@@ -69,23 +68,26 @@ export class ObavestenjeFormaComponent {
     }
   }
 
-  private kreirajModel(podaci?: any): FormaModel {
-    //let selektovaniFakulteti = null;
-    //if (podaci?.fakultet) {
+  private kreirajModel(podaci?: Obavestenje): FormaModel {
     let selektovaniNastavnik = podaci?.nastavnik ?? null;
     let selektovaniPredmet = podaci?.predmet ?? null;
-    //}
 
     return {
       naziv: podaci ? 'Izmena obavestenja' : 'Dodavanje obavestenja',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'nastavnik',
           labela: 'Nastavnik',
           tip: 'select',
           podrazumevanaVrednost: selektovaniNastavnik,
           opcije: this.sviNastavnici,
-          displayFn: (n: Nastavnik) => n.ime && n.prezime,
+          displayFn: (n: Nastavnik) => `${n.ime} ${n.prezime}`,
           validatori: [Validators.required]
         },
         {

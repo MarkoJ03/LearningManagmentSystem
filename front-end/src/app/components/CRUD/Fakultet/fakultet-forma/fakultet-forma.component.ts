@@ -8,6 +8,7 @@ import { FakultetService } from '../../../../services/fakultet.service';
 import { DepartmanService } from '../../../../services/departman.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UniverzitetService } from '../../../../services/univerzitet.service';
+import { Fakultet } from '../../../../models/Fakultet';
 
 @Component({
   selector: 'app-fakultet-forma',
@@ -19,8 +20,6 @@ export class FakultetFormaComponent {
   formaModel: FormaModel | null = null;
   idFakulteta: number | null = null;
   sviDepartmani: Departman[] = [];
-  selektovaniDepartmani: Departman[] = [];
-  selektovaniUniverzitet: Univerzitet | null = null;;
   sviUniverziteti: Univerzitet[] = [];
 
   constructor(
@@ -43,6 +42,9 @@ export class FakultetFormaComponent {
           this.idFakulteta = +idParam;
           this.fakultetService.getById(this.idFakulteta).subscribe(fakultet => {
             this.formaModel = this.kreirajModel(fakultet);
+
+            const departmaniZaFakultet = this.sviDepartmani.filter(d => d.fakultet?.id === fakultet.id);
+            console.log('Katedre za ovaj departman:', departmaniZaFakultet);
           });
         } else {
           this.formaModel = this.kreirajModel();
@@ -55,30 +57,59 @@ export class FakultetFormaComponent {
     this.router.navigate(['/fakulteti']);
   }
 
-  public sacuvajFakultet(vrednosti: any): void {
-    if (this.idFakulteta) {
-      this.fakultetService.update(this.idFakulteta, vrednosti).subscribe({
-        next: () => this.router.navigate(['/fakulteti']),
-        error: err => console.error('Greška pri izmeni fakulteta:', err)
-      });
-    } else {
-      this.fakultetService.create(vrednosti).subscribe({
-        next: () => this.router.navigate(['/fakulteti']),
-        error: err => console.error('Greška pri čuvanju fakulteta:', err)
-      });
-    }
-  }
+  // public sacuvajFakultet(vrednosti: any): void {
+  //   if (this.idFakulteta) {
+  //     this.fakultetService.update(this.idFakulteta, vrednosti).subscribe({
+  //       next: () => this.router.navigate(['/fakulteti']),
+  //       error: err => console.error('Greška pri izmeni fakulteta:', err)
+  //     });
+  //   } else {
+  //     this.fakultetService.create(vrednosti).subscribe({
+  //       next: () => {this.router.navigate(['/fakulteti'])
+  //         console.log('Podaci koji se šalju u backend:', vrednosti);
 
-  private kreirajModel(podaci?: any): FormaModel {
-    //let selektovaniFakulteti = null;
-    //if (podaci?.fakultet) {
-    let selektovaniDepartmani = podaci?.departman ?? [];
+  //       },
+  //       error: err => console.error('Greška pri čuvanju fakulteta:', err)
+  //     });
+  //   }
+  // }
+
+  public sacuvajFakultet(vrednosti: any): void {
+
+  vrednosti.departmani = vrednosti.departmani.map((d: any) => ({ id: d.id }));
+  vrednosti.univerzitet = { id: vrednosti.univerzitet.id };
+  vrednosti.vidljiv = vrednosti.vidljiv === 'true' || vrednosti.vidljiv === true;
+
+  if (this.idFakulteta) {
+    this.fakultetService.update(this.idFakulteta, vrednosti).subscribe({
+      next: () => this.router.navigate(['/fakulteti']),
+      error: err => console.error('Greška pri izmeni fakulteta:', err)
+    });
+  } else {
+    this.fakultetService.create(vrednosti).subscribe({
+      next: () => {
+        this.router.navigate(['/fakulteti']);
+        console.log("departmani", vrednosti.departmani);
+      },
+      error: err => console.error('Greška pri čuvanju fakulteta:', err)
+    });
+  }
+}
+
+
+  private kreirajModel(podaci?: Fakultet): FormaModel {
+    let selektovaniDepartmani = podaci?.departmani ?? [];
     let selektovaniUniverzitet = podaci?.univerzitet ?? null;
-    //}
 
     return {
       naziv: podaci ? 'Izmena fakulteta' : 'Dodavanje fakulteta',
       polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
         {
           naziv: 'naziv',
           labela: 'Naziv',

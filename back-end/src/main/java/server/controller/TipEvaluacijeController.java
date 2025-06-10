@@ -8,7 +8,7 @@ import server.model.TipEvaluacije;
 import server.service.TipEvaluacijeService;
 
 @Controller
-@RequestMapping("/api/TipEvaluacije")
+@RequestMapping("/api/tipovi-evaluacije")
 public class TipEvaluacijeController extends BaseController<TipEvaluacije, TipEvaluacijeDTO, Long>{
 	@Autowired
     private TipEvaluacijeService tipEvaluacijeService;

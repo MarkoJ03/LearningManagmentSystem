@@ -28,13 +28,13 @@ public class GrupaStudenataController extends BaseController<GrupaStudenata, Gru
     }
     
     @GetMapping
-    @Secured({"ROLE_ADMIN, ROLE_NASTAVNIK"})
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK"})
     public ResponseEntity<List<GrupaStudenataDTO>> findAll() {
         return new ResponseEntity<>(grupaStudenataService.findAll(), HttpStatus.OK);
     }
     
     @GetMapping("/{id}")
-    @Secured({"ROLE_ADMIN, ROLE_NASTAVNIK, ROLE_STUDENT"})
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_STUDENT"})
     public ResponseEntity<GrupaStudenataDTO> getOne(@PathVariable Long id) {
         Optional<GrupaStudenataDTO> entity = grupaStudenataService.findById(id);
         return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
