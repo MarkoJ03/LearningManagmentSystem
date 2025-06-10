@@ -7,5 +7,7 @@ export interface Univerzitet {
   datumOsnivanja: Date;
   adresa: Adresa;
   fakulteti?: Fakultet[];
+  kontakt: string;
+  email:string;
   vidljiv: boolean;
 }

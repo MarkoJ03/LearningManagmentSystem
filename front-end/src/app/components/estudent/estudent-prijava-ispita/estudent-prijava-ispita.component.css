@@ -33,3 +33,31 @@ button:hover {
 h2 {
   font-family: sans-serif;
 }
+.rok-blok {
+  margin-bottom: 32px;
+  padding: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.rok-blok h3 {
+  margin-bottom: 10px;
+  color: brown;
+}
+
+.klikabilni-rok {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.klikabilni-rok:hover {
+  color: #a52a2a;
+}
+
+.strelica {
+  font-size: 0.9em;
+  margin-left: 8px;
+  color: gray;
+}

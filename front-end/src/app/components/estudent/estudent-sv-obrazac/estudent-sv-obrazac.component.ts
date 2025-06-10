@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { StudentNaGodiniService } from '../../../services/student-na-godini.service';
 import { CommonModule } from '@angular/common';
 import { StudentNaGodini } from '../../../models/StudentNaGodini';
+import { SvObrazacService } from '../../../services/sv-obrazac.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ studentNaGodini!: StudentNaGodini;
 
   constructor(
     private route: ActivatedRoute,
-    private studentNaGodiniService: StudentNaGodiniService
+    private studentNaGodiniService: StudentNaGodiniService,
+    private svObrazacService: SvObrazacService
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +34,20 @@ studentNaGodini!: StudentNaGodini;
       error: (err) => {
         console.error('Greška pri dohvatanju studenta:', err);
       }
+    });
+  }
+
+  exportujXml() {
+
+      this.svObrazacService.exportujXML(this.studentNaGodini.svObrazac.id).subscribe({
+      next: (xmlContent) => {
+        const blob = new Blob([xmlContent], { type: 'application/xml' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `svObrazac_${this.studentNaGodini.brojIndeksa.replace(/\s+/g, '_')}.xml`;    
+        link.click();
+      },
+      error: (err) => console.error('Greška prilikom izvoza XML-a:', err)
     });
   }
 }

@@ -1,16 +1,16 @@
+@if (univerzitet){
 <header>
   <nav>
     <section>
-    <a [routerLink]="['/']"> <h1>Univerzitet</h1></a> 
+    <a [routerLink]="['/']"> <h1>{{univerzitet.naziv}}</h1></a> 
       <a [routerLink]="['/']"><img src="harvard.png" alt="slika-univerziteta" /></a>
     </section>
     <ul>
       <li appOnHoverDisplay>
         O Univerzitetu
         <div class="padajuce-opcije">
-          <p>Bulevar Mihajla Pupina 4a, Orlovat</p>
-          <p>O rektoru što manje to bolje</p>
-          <p>Krajnje žalosno ali guramo jbg</p>
+        <p>Adresa: {{univerzitet.adresa.ulica}} {{univerzitet.adresa.broj}}, {{univerzitet.adresa.grad.naziv}}, {{univerzitet.adresa.grad.drzava.naziv}}</p>
+        <p>Datum osnivanja: {{ univerzitet.datumOsnivanja | date: 'dd.MM.yyyy.' }}</p>
         </div>
       </li>
       <li appOnHoverDisplay>
@@ -40,10 +40,11 @@
       <li appOnHoverDisplay>
         Kontakt
         <div class="padajuce-opcije">
-          <p>Telefon: 021/111111, 021/222222</p>
-          <p>Email: tim3faks&#64;gmail.com</p>
+        <p>Telefon: {{univerzitet.kontakt}}</p>
+        <p>Email: {{univerzitet.email}}</p>
         </div>
       </li>
     </ul>
   </nav>
 </header>
+}

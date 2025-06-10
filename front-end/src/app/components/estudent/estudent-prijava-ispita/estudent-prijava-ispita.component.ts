@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { StudentNaGodiniService } from '../../../services/student-na-godini.service';
 import { GodinaStudijaPredmetService } from '../../../services/godina-studija-predmet.service';
+import { IspitniRokService } from '../../../services/ispitni-rok.service';
+import { PredmetService } from '../../../services/predmet.service';
+import { IspitniRok } from '../../../models/IspitniRok';
 
 @Component({
   selector: 'app-estudent-prijava-ispita',
@@ -14,15 +17,34 @@ import { GodinaStudijaPredmetService } from '../../../services/godina-studija-pr
 export class EstudentPrijavaIspitaComponent implements OnInit {
   studentNaGodiniId!: number;
   prijavljiviPredmeti: any[] = [];
+  ispitniRokovi: any[] = [];
+  expandovaniRokovi: { [rokId: number]: boolean } = {};
+  rok:any;
+  predmet:any;
 
   constructor(
     private route: ActivatedRoute,
     private studentNaGodiniService: StudentNaGodiniService,
-    private gspService: GodinaStudijaPredmetService
+    private gspService: GodinaStudijaPredmetService,
+    private iService: IspitniRokService,
+    private pService: PredmetService
   ) {}
+
+toggleRok(rokId: number): void {
+  this.expandovaniRokovi[rokId] = !this.expandovaniRokovi[rokId];
+}
 
   ngOnInit(): void {
     this.studentNaGodiniId = Number(this.route.parent?.snapshot.paramMap.get('id'));
+
+    this.iService.getAll().subscribe({
+      next: (rokovi) =>{
+        this.ispitniRokovi=rokovi;
+      }
+      ,
+      error: (err) => console.error('Greška pri dohvatu rokova:', err)
+    });
+  
 
     this.studentNaGodiniService.getById(this.studentNaGodiniId).subscribe({
       next: (student) => {
@@ -38,7 +60,7 @@ export class EstudentPrijavaIspitaComponent implements OnInit {
           }
         }
 
-        // Sada dohvatamo sve predmete iz godine studija
+
         this.gspService.getByGodinaId(godinaId).subscribe({
           next: (veze) => {
             this.prijavljiviPredmeti = veze
@@ -51,8 +73,20 @@ export class EstudentPrijavaIspitaComponent implements OnInit {
     });
   }
 
-  prijavi(predmetId: number) {
-    alert(`Испит за предмет са ID ${predmetId} је пријављен!`);
-    // Ovde ćeš kasnije dodati poziv za prijavu ispita
-  }
+  prijavi(predmetId: number, rokId: number) {
+
+    // this.iService.getById(rokId).subscribe({
+    //   next:(rok) => {
+    //     this.rok = rok;
+    //   }
+    // });
+    //     this.pService.getById(predmetId).subscribe({
+    //   next:(predmet) => {
+    //     this.predmet = predmet;
+    //   }
+    // })
+    alert(`ispit ID ${predmetId} je prijavljen u roku ID ${rokId}`);
+
+}
+
 }

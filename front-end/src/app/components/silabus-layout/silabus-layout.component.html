@@ -1,7 +1,8 @@
 <h2>Silabus</h2>
 
 <div class="silabus-wrapper">
-  <button class="export-btn" >Exportuj u XML</button>
+<button class="export-btn" (click)="exportujXml()">Exportuj u XML</button>
+
 
   @if (termini.length === 0) {
     <p class="prazna-poruka">Nema unetih termina u silabusu.</p>

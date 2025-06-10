@@ -9,3 +9,29 @@ div {
   margin: 0 auto;
   padding: 20px 0;
 }
+
+.paginacija {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.paginacija button {
+  padding: 6px 12px;
+  border: 1px solid #aaa;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.paginacija button:hover {
+  background-color: #eee;
+}
+
+.paginacija button.aktivna {
+  background-color: brown;
+  color: white;
+  border-color: brown;
+}

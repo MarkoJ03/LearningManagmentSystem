@@ -4,6 +4,7 @@
   <h3>{{ studentNaGodini.student.ime }} {{ studentNaGodini.student.prezime }} – {{ studentNaGodini.brojIndeksa }}</h3>
 
   <table>
+    <tr><td>JMBG</td><td>{{ studentNaGodini.student.jmbg }}</td></tr>
     <tr><td>Maternji jezik</td><td>{{ studentNaGodini.svObrazac.maternjiJezik }}</td></tr>
     <tr><td>Vrsta prethodno završene srednje škole</td><td>{{ studentNaGodini.svObrazac.vrstaZavreseneSrednje }}</td></tr>
     <tr><td>Datum završetka srednje škole</td><td>{{ studentNaGodini.svObrazac.datumZavrsetkaSrednje }}</td></tr>
@@ -13,15 +14,15 @@
       <td>
         {{ studentNaGodini.student.adresa.ulica }}
         {{ studentNaGodini.student.adresa.broj }},
-        {{ studentNaGodini.student.adresa.grad }},
-        {{ studentNaGodini.student.adresa.drzava }}
+        {{ studentNaGodini.student.adresa.grad.naziv }},
+        {{ studentNaGodini.student.adresa.grad.drzava.naziv}}
       </td>
     </tr>
     <tr><td>Zaposlen</td><td>{{ studentNaGodini.svObrazac.zaposlen ? 'Da' : 'Ne' }}</td></tr>
     <tr><td>Način finansiranja</td><td>{{ studentNaGodini.svObrazac.nacinFinansiranja ? 'Budžet' : 'Samofinansiranje' }}</td></tr>
   </table>
 
-  <div class="pdf-btn-container">
-    <button class="pdf-btn">Exportuj u PDF</button>
+  <div class="xml-btn-container">
+    <button class="xml-btn" (click)="exportujXml()">Exportuj u XML</button>
   </div>
 </div>
