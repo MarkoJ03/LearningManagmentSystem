@@ -64,4 +64,10 @@ public class GrupaStudenataService extends BaseService<GrupaStudenata, GrupaStud
        
         return entity;
     }
+
+	@Override
+	protected void updateEntityFromDto(GrupaStudenataDTO dto, GrupaStudenata entity) {
+		// TODO Auto-generated method stub
+		
+	}
 }

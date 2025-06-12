@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Korisnik } from '../../../../models/Korisnik';
 import { KorisnikService } from '../../../../services/korisnik.service';
+import { DodeljenoPravoPristupa } from '../../../../models/DodeljenoPravoPristupa';
 
 @Component({
   selector: 'app-korisnik',
@@ -12,6 +13,7 @@ import { KorisnikService } from '../../../../services/korisnik.service';
 })
 export class KorisnikComponent {
   korisnik: Korisnik | null = null;
+  dodeljenaPravaPristupa: DodeljenoPravoPristupa[] = [];
 
   constructor(
     private route: ActivatedRoute,

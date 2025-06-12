@@ -1,6 +1,7 @@
 package server.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -104,6 +105,39 @@ public class FakultetService extends BaseService<Fakultet, FakultetDTO, Long> {
 
 	    return fakultet;
 	}
+
+	@Override
+	protected void updateEntityFromDto(FakultetDTO dto, Fakultet entity) {
+	    entity.setNaziv(dto.getNaziv());
+	    entity.setVidljiv(dto.getVidljiv());
+
+	    if (dto.getUniverzitet() != null && dto.getUniverzitet().getId() != null) {
+	        var existingUniverzitet = univerzitetService.getRepository().findById(dto.getUniverzitet().getId())
+	            .orElseThrow(() -> new RuntimeException("Univerzitet not found with id " + dto.getUniverzitet().getId()));
+	        entity.setUniverzitet(existingUniverzitet);
+	    } else {
+	        entity.setUniverzitet(null);
+	    }
+
+	    if (dto.getDepartmani() != null) {
+	        List<Departman> updatedDepartmani = new ArrayList<>();
+
+	        for (DepartmanDTO dDto : dto.getDepartmani()) {
+	            if (dDto.getId() != null) {
+	                Departman existingDepartman = departmanService.getRepository()
+	                    .findById(dDto.getId())
+	                    .orElseThrow(() -> new RuntimeException("Departman not found with id " + dDto.getId()));
+
+	                existingDepartman.setFakultet(entity);
+	                updatedDepartmani.add(existingDepartman);
+	            }
+	        }
+	        entity.setDepartmani(updatedDepartmani);
+	    } else {
+	        entity.setDepartmani(new ArrayList<>());
+	    }
+	}
+
 
 
 }

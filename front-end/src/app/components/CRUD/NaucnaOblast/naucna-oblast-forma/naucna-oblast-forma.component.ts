@@ -47,22 +47,55 @@ export class NaucnaOblastFormaComponent {
     this.router.navigate(['/naucne-oblasti']);
   }
 
+  // public sacuvajNaucnuOblast(vrednosti: any): void {
+  //   if (this.idNaucneOblasti) {
+  //     this.naucnaOblastService.update(this.idNaucneOblasti, vrednosti).subscribe({
+  //       next: () => {
+  //         this.router.navigate(['/naucne-oblasti'])
+  //         console.log('Šaljem vrednosti:', vrednosti);
+  //       },
+  //       error: err => console.error('Greška pri izmeni naucne oblasti:', err)
+  //     });
+  //   } else {
+  //     this.naucnaOblastService.create(vrednosti).subscribe({
+  //       next: () => {
+  //         this.router.navigate(['/naucne-oblasti'])
+  //         console.log('Šaljem vrednosti:', vrednosti);
+  //       },
+  //       error: err => console.error('Greška pri čuvanju naucne oblasti:', err)
+  //     });
+  //   }
+  // }
+
   public sacuvajNaucnuOblast(vrednosti: any): void {
-    if (this.idNaucneOblasti) {
-      this.naucnaOblastService.update(this.idNaucneOblasti, vrednosti).subscribe({
-        next: () => this.router.navigate(['/naucne-oblasti']),
-        error: err => console.error('Greška pri izmeni naucne oblasti:', err)
-      });
-    } else {
-      this.naucnaOblastService.create(vrednosti).subscribe({
-        next: () => this.router.navigate(['/naucne-oblasti']),
-        error: err => console.error('Greška pri čuvanju naucne oblasti:', err)
-      });
-    }
+  const vrednostiZaSlanje = {
+    ...vrednosti,
+    vidljiv: vrednosti.vidljiv === 'true' || vrednosti.vidljiv === true,
+    zvanja: vrednosti.zvanja.map((zvanje: Zvanje) => ({ id: zvanje.id }))
+  };
+
+  if (this.idNaucneOblasti) {
+    this.naucnaOblastService.update(this.idNaucneOblasti, vrednostiZaSlanje).subscribe({
+      next: () => this.router.navigate(['/naucne-oblasti']),
+      error: err => console.error('Greška pri izmeni naucne oblasti:', err)
+    });
+  } else {
+    this.naucnaOblastService.create(vrednostiZaSlanje).subscribe({
+      next: () => this.router.navigate(['/naucne-oblasti']),
+      error: err => console.error('Greška pri čuvanju naucne oblasti:', err)
+    });
   }
+}
+
+
 
   private kreirajModel(podaci?: NaucnaOblast): FormaModel {
-    let selektovanaZvanja = podaci?.zvanja ?? [];
+    // let selektovanaZvanja = podaci?.zvanja?.map(z => z.id) ?? [];
+    let selektovanaZvanja = podaci?.zvanja
+      ?.map(zvanjeIzPodataka => this.svaZvanja.find(z => z.id === zvanjeIzPodataka.id))
+      .filter(z => z !== undefined) ?? [];
+
+
     return {
       naziv: podaci ? 'Izmena naucne oblasti' : 'Dodavanje naucne oblasti',
       polja: [

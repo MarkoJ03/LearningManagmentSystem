@@ -40,4 +40,10 @@ public class KnjigaService extends BaseService<Knjiga, KnjigaDTO, Long> {
                 dto.getVidljiv()
         );
     }
+
+	@Override
+	protected void updateEntityFromDto(KnjigaDTO dto, Knjiga entity) {
+		// TODO Auto-generated method stub
+		
+	}
 }

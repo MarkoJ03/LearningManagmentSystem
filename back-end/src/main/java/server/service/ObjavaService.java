@@ -48,4 +48,10 @@ public class ObjavaService extends BaseService<Objava, ObjavaDTO, Long> {
             );
     }
 
+	@Override
+	protected void updateEntityFromDto(ObjavaDTO dto, Objava entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

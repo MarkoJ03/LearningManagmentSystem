@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.annotation.security.PermitAll;
 import server.service.BaseService;
 
-@Secured("ROLE_ADMIN")
-//@PermitAll
+//@Secured("ROLE_ADMIN")
 public abstract class BaseController<T, DTO, ID> {
 
     protected abstract BaseService<T, DTO, ID> getService();
@@ -51,7 +50,7 @@ public abstract class BaseController<T, DTO, ID> {
         if (!getService().findById(id).isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(getService().save(dto), HttpStatus.OK);
+        return new ResponseEntity<>(getService().update(id, dto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

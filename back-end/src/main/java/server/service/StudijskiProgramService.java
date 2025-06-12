@@ -77,7 +77,11 @@ public class StudijskiProgramService extends BaseService<StudijskiProgram, Studi
 
 
 		return new StudijskiProgram(dto.getId(), dto.getNaziv(), tipPrograma, katedra, godineStudija, dto.getVidljiv());
+	}
 
-
+	@Override
+	protected void updateEntityFromDto(StudijskiProgramDTO dto, StudijskiProgram entity) {
+		// TODO Auto-generated method stub
+		
 	}
 }

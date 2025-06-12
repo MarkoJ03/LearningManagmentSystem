@@ -30,13 +30,13 @@ public class StudentNaGodiniController extends BaseController<StudentNaGodini, S
     }
     
     @GetMapping
-    @Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA, ROLE_NASTAVNIK"})
+    @Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"})
     public ResponseEntity<List<StudentNaGodiniDTO>> findAll() {
         return new ResponseEntity<>(studentNaGodiniService.findAll(), HttpStatus.OK);
     }
     
     @GetMapping("/{id}")
-    @Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA, ROLE_NASTAVNIK"})
+    @Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"})
     public ResponseEntity<StudentNaGodiniDTO> getOne(@PathVariable Long id) {
         Optional<StudentNaGodiniDTO> entity = studentNaGodiniService.findById(id);
         return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))

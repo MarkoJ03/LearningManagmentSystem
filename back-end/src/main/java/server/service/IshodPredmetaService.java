@@ -43,4 +43,10 @@ public class IshodPredmetaService extends BaseService<IshodPredmeta, IshodPredme
 
 	}
 
+	@Override
+	protected void updateEntityFromDto(IshodPredmetaDTO dto, IshodPredmeta entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

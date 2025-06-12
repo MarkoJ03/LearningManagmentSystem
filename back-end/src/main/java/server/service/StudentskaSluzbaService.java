@@ -50,5 +50,11 @@ public class StudentskaSluzbaService extends BaseService<StudentskaSluzba, Stude
             dto.getVidljiv()
         );
     }
+
+	@Override
+	protected void updateEntityFromDto(StudentskaSluzbaDTO dto, StudentskaSluzba entity) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

@@ -80,4 +80,10 @@ public class BibliotekaService extends BaseService<Biblioteka, BibliotekaDTO, Lo
         return biblioteka;
     }
 
+	@Override
+	protected void updateEntityFromDto(BibliotekaDTO dto, Biblioteka entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

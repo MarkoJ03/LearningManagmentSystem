@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.data.repository.CrudRepository;
 
+import jakarta.transaction.Transactional;
+
 public abstract class BaseService<T, DTO, ID> {
 
     protected abstract CrudRepository<T, ID> getRepository();
@@ -39,6 +41,20 @@ public abstract class BaseService<T, DTO, ID> {
         setVidljiv(entity, true);
         return convertToDTO(getRepository().save(entity));
     }
+    
+    @Transactional
+    public DTO update(ID id, DTO dto) {
+        Optional<T> optionalEntity = getRepository().findById(id);
+        if (optionalEntity.isPresent()) {
+            T existingEntity = optionalEntity.get();
+            updateEntityFromDto(dto, existingEntity);
+            T updatedEntity = getRepository().save(existingEntity);
+            return convertToDTO(updatedEntity);
+        }
+        return null;
+    }
+    
+    protected abstract void updateEntityFromDto(DTO dto, T entity);
 
     public void deleteById(ID id) {
         Optional<T> optional = getRepository().findById(id);

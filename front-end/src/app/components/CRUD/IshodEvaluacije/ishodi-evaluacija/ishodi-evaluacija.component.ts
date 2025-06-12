@@ -17,21 +17,21 @@ export class IshodiEvaluacijaComponent {
   constructor(
     private ishodEvaluacijeService: IshodEvaluacijeService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.ishodEvaluacijeService.getAll().subscribe({
-  next: (res) => {
-    this.ishodiEvaluacija = res.map(i => ({
-      ...i,
-      student: i.studentNaGodini?.brojIndeksa ?? '-',
-      tipEvaluacije: i.evaluacijaZnanja?.tipEvaluacije?.naziv ?? '-',
-      ocena: i.ishodPredmeta?.ocena ?? '-'
-    }));
-    this.kolone = ['bodovi', 'napomena', 'student', 'tipEvaluacije', 'ocena', 'vidljiv'];
-  },
-  error: (err) => console.error('Greška:', err),
-});
+      next: (res) => {
+        this.ishodiEvaluacija = res.map(i => ({
+          ...i,
+          student: i.studentNaGodini?.brojIndeksa ?? '-',
+          tipEvaluacije: i.evaluacijaZnanja?.tipEvaluacije?.naziv ?? '-',
+          ocena: i.ishodPredmeta?.ocena ?? '-'
+        }));
+        this.kolone = ['bodovi', 'napomena', 'student', 'tipEvaluacije', 'ocena', 'vidljiv'];
+      },
+      error: (err) => console.error('Greška:', err),
+    });
 
   }
 

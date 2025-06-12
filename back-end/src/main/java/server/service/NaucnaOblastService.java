@@ -12,6 +12,7 @@ import server.DTOs.ZvanjeDTO;
 import server.model.NaucnaOblast;
 import server.model.Zvanje;
 import server.repository.NaucnaOblastRepository;
+import server.repository.ZvanjeRepository;
 
 @Service
 public class NaucnaOblastService extends BaseService<NaucnaOblast, NaucnaOblastDTO, Long>{
@@ -22,6 +23,9 @@ public class NaucnaOblastService extends BaseService<NaucnaOblast, NaucnaOblastD
 	@Autowired
 	@Lazy
 	private ZvanjeService zvanjeService;
+	
+	@Autowired
+	private ZvanjeRepository zvanjeRepository;
 
 
 	@Override
@@ -47,16 +51,28 @@ public class NaucnaOblastService extends BaseService<NaucnaOblast, NaucnaOblastD
 	@Override
 	protected NaucnaOblast convertToEntity(NaucnaOblastDTO dto) {
 
-		ArrayList<Zvanje> zvanja = new ArrayList<>();
+	    ArrayList<Zvanje> zvanja = new ArrayList<>();
 
-		for(ZvanjeDTO zDTO : dto.getZvanja()) {
-			Zvanje z = zvanjeService.convertToEntity(zDTO);
-			zvanja.add(z);
-		}
+	    if (dto.getZvanja() != null) {
+	        for (ZvanjeDTO zDTO : dto.getZvanja()) {
+	            Zvanje zvanje = zvanjeRepository.findById(zDTO.getId())
+	                .orElseThrow(() -> new RuntimeException("Zvanje sa ID " + zDTO.getId() + " ne postoji."));
+	            zvanja.add(zvanje);
+	        }
+	    }
 
+	    return new NaucnaOblast(
+	        dto.getId(),
+	        dto.getNaziv(),
+	        zvanja,
+	        dto.getVidljiv()
+	    );
+	}
 
-		return new NaucnaOblast(dto.getId(), dto.getNaziv(), zvanja, dto.getVidljiv());
-
+	@Override
+	protected void updateEntityFromDto(NaucnaOblastDTO dto, NaucnaOblast entity) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

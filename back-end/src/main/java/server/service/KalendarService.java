@@ -64,4 +64,10 @@ public class KalendarService extends BaseService<Kalendar, KalendarDTO, Long> {
 //        );
 //    }
 
+	@Override
+	protected void updateEntityFromDto(KalendarDTO dto, Kalendar entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

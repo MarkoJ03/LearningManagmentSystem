@@ -92,4 +92,10 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 
 	}
 
+	@Override
+	protected void updateEntityFromDto(RealizacijaPredmetaDTO dto, RealizacijaPredmeta entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

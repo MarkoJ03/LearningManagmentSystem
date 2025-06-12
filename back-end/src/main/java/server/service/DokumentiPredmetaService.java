@@ -51,4 +51,10 @@ public class DokumentiPredmetaService extends BaseService<DokumentiPredmeta, Dok
 
 	}
 
+	@Override
+	protected void updateEntityFromDto(DokumentiPredmetaDTO dto, DokumentiPredmeta entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

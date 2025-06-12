@@ -21,8 +21,7 @@ import server.service.ObjavaService;
 
 @Controller
 @RequestMapping("/api/objave")
-@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"})
-
+//@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"})
 public class ObjavaController extends BaseController<Objava, ObjavaDTO, Long> {
 
     @Autowired
@@ -34,13 +33,13 @@ public class ObjavaController extends BaseController<Objava, ObjavaDTO, Long> {
     }
     
     @GetMapping
-    @PermitAll
+//    @PermitAll
     public ResponseEntity<List<ObjavaDTO>> findAll() {
         return new ResponseEntity<>(objavaService.findAll(), HttpStatus.OK);
     }
     
     @GetMapping("/{id}")
-    @PermitAll
+//    @PermitAll
     public ResponseEntity<ObjavaDTO> getOne(@PathVariable Long id) {
         Optional<ObjavaDTO> entity = objavaService.findById(id);
         return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))

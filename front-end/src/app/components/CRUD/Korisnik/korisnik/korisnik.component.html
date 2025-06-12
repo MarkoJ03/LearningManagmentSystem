@@ -1,8 +1,14 @@
 <h2>Detalji o korisniku</h2>
 
 <p *ngIf="korisnik">
-  {{ korisnik.email }}
-  {{ korisnik.vidljiv }}
+  Email: {{ korisnik.email }} <br>
+  {{ korisnik.vidljiv }} <br>
 </p>
+
+<ul *ngIf="korisnik?.dodeljenaPravaPristupa?.length">
+    <ng-container *ngFor="let dodeljenoPravoPristupa of korisnik?.dodeljenaPravaPristupa">
+        <li>{{ dodeljenoPravoPristupa.pravoPristupa.naziv }}</li>
+    </ng-container>
+</ul> <br>
 
 <a routerLink="/korisnici">← Nazad na listu korisnika</a>

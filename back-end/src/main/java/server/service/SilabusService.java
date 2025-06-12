@@ -70,4 +70,10 @@ public class SilabusService extends BaseService<Silabus, SilabusDTO, Long> {
 		return new Silabus(dto.getId(), termini, dto.getVidljiv());
 	}
 
+	@Override
+	protected void updateEntityFromDto(SilabusDTO dto, Silabus entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

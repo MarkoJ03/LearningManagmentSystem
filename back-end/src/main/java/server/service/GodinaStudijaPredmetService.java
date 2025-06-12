@@ -60,4 +60,10 @@ public class GodinaStudijaPredmetService extends BaseService<GodinaStudijaPredme
 	            .map(this::convertToDTO)
 	            .collect(Collectors.toList());
 	}
+
+	@Override
+	protected void updateEntityFromDto(GodinaStudijaPredmetDTO dto, GodinaStudijaPredmet entity) {
+		// TODO Auto-generated method stub
+		
+	}
 }

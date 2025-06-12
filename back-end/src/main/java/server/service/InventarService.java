@@ -45,4 +45,10 @@ public class InventarService extends BaseService<Inventar, InventarDTO, Long> {
 	            dto.getVidljiv()
 	        );
 	    }
+
+		@Override
+		protected void updateEntityFromDto(InventarDTO dto, Inventar entity) {
+			// TODO Auto-generated method stub
+			
+		}
 }

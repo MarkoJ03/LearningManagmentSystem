@@ -78,4 +78,10 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 
 	}
 
+	@Override
+	protected void updateEntityFromDto(PredmetDTO dto, Predmet entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

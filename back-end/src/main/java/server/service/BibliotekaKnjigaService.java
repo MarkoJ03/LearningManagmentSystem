@@ -62,4 +62,10 @@ public class BibliotekaKnjigaService extends BaseService<BibliotekaKnjiga, Bibli
 	            .map(this::convertToDTO)
 	            .collect(Collectors.toList());
 	}
+
+	@Override
+	protected void updateEntityFromDto(BibliotekaKnjigaDTO dto, BibliotekaKnjiga entity) {
+		// TODO Auto-generated method stub
+		
+	}
 }

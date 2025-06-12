@@ -121,7 +121,7 @@ public class DepartmanService extends BaseService<Departman, DepartmanDTO, Long>
 	    ArrayList<DepartmanNastavnik> departmanNastavnici = new ArrayList<>();
 	    if (dto.getNastavnici() != null) {
 	        for (DepartmanNastavnikDTO dnDto : dto.getNastavnici()) {
-	            NastavnikDTO n = dnDto.getNastavnik(); // extract the nested DTO
+	            NastavnikDTO n = dnDto.getNastavnik(); // vadi nastavnik DTO
 
 	            if (n != null) {
 	                Nastavnik nastavnik = new Nastavnik(
@@ -148,6 +148,12 @@ public class DepartmanService extends BaseService<Departman, DepartmanDTO, Long>
 	    departman.setNastavnici(departmanNastavnici);
 
 	    return departman;
+	}
+
+	@Override
+	protected void updateEntityFromDto(DepartmanDTO dto, Departman entity) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

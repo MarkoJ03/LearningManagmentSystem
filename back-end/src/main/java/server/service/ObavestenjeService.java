@@ -41,4 +41,10 @@ public class ObavestenjeService extends BaseService<Obavestenje, ObavestenjeDTO,
 
 	}
 
+	@Override
+	protected void updateEntityFromDto(ObavestenjeDTO dto, Obavestenje entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

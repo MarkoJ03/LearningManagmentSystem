@@ -69,6 +69,12 @@ public class UniverzitetService extends BaseService<Univerzitet, UniverzitetDTO,
 
 		}
 
+	@Override
+	protected void updateEntityFromDto(UniverzitetDTO dto, Univerzitet entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }

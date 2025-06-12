@@ -51,4 +51,10 @@ public class SvObrazacService extends BaseService<SvObrazac, SvObrazacDTO, Long>
             dto.getVidljiv()
         );
     }
+
+	@Override
+	protected void updateEntityFromDto(SvObrazacDTO dto, SvObrazac entity) {
+		// TODO Auto-generated method stub
+		
+	}
 }

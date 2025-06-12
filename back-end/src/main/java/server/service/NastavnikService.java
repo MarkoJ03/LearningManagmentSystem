@@ -128,7 +128,7 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 		}
 		
 
-		Korisnik korisnik = new Korisnik(dto.getKorisnik().getId(), dto.getKorisnik().getEmail(), dto.getKorisnik().getLozinka(), dto.getKorisnik().getVidljiv(), dodeljenaPravaPristupa);
+		Korisnik korisnik = new Korisnik(dto.getKorisnik().getId(), dto.getKorisnik().getEmail(), dto.getKorisnik().getLozinka(), dodeljenaPravaPristupa, dto.getKorisnik().getVidljiv());
 
 		ArrayList<Zvanje> zvanja = new ArrayList<>();
 
@@ -170,6 +170,12 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 		return new Nastavnik(dto.getId(), korisnik, dto.getIme(), dto.getPrezime(), dto.getJmbg(),
 				zvanja, departmaniNastavnici, katedreNastavnici,null, realizacijePredmeta, obavestenja,null, dto.getVidljiv());
 
+	}
+
+	@Override
+	protected void updateEntityFromDto(NastavnikDTO dto, Nastavnik entity) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

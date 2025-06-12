@@ -87,11 +87,17 @@ public class StudentService extends BaseService<Student, StudentDTO, Long>{
 			studenti.add(sDTO);
 		}
 		
-		Korisnik korisnik= new Korisnik(dto.getKorisnik().getId(), dto.getKorisnik().getEmail(), dto.getKorisnik().getLozinka(),dto.getKorisnik().getVidljiv(), dodeljenaPravaPristupa);
+		Korisnik korisnik= new Korisnik(dto.getKorisnik().getId(), dto.getKorisnik().getEmail(), dto.getKorisnik().getLozinka(),dodeljenaPravaPristupa, dto.getKorisnik().getVidljiv());
 
 		Adresa adresa = new Adresa(dto.getAdresa().getId(),gService.convertToEntity(dto.getAdresa().getGrad()),dto.getAdresa().getUlica(), dto.getAdresa().getBroj(), dto.getAdresa().getVidljiv());
 		return new Student(dto.getId(),korisnik,dto.getIme(),dto.getPrezime(),dto.getJmbg(), adresa, null,studenti, dto.getVidljiv()); 	
 		}
+
+	@Override
+	protected void updateEntityFromDto(StudentDTO dto, Student entity) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 

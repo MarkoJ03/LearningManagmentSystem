@@ -28,13 +28,13 @@ public class FakultetController extends BaseController<Fakultet, FakultetDTO, Lo
     }
     
     @GetMapping
-    @PermitAll
+    //@PermitAll
     public ResponseEntity<List<FakultetDTO>> findAll() {
         return new ResponseEntity<>(fakultetService.findAll(), HttpStatus.OK);
     }
     
     @GetMapping("/{id}")
-    @PermitAll
+    //@PermitAll
     public ResponseEntity<FakultetDTO> getOne(@PathVariable Long id) {
         Optional<FakultetDTO> entity = fakultetService.findById(id);
         return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))

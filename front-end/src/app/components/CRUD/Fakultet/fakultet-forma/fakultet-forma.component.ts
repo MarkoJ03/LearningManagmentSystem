@@ -57,44 +57,19 @@ export class FakultetFormaComponent {
     this.router.navigate(['/fakulteti']);
   }
 
-  // public sacuvajFakultet(vrednosti: any): void {
-  //   if (this.idFakulteta) {
-  //     this.fakultetService.update(this.idFakulteta, vrednosti).subscribe({
-  //       next: () => this.router.navigate(['/fakulteti']),
-  //       error: err => console.error('Greška pri izmeni fakulteta:', err)
-  //     });
-  //   } else {
-  //     this.fakultetService.create(vrednosti).subscribe({
-  //       next: () => {this.router.navigate(['/fakulteti'])
-  //         console.log('Podaci koji se šalju u backend:', vrednosti);
-
-  //       },
-  //       error: err => console.error('Greška pri čuvanju fakulteta:', err)
-  //     });
-  //   }
-  // }
-
-  public sacuvajFakultet(vrednosti: any): void {
-
-  vrednosti.departmani = vrednosti.departmani.map((d: any) => ({ id: d.id }));
-  vrednosti.univerzitet = { id: vrednosti.univerzitet.id };
-  vrednosti.vidljiv = vrednosti.vidljiv === 'true' || vrednosti.vidljiv === true;
-
-  if (this.idFakulteta) {
-    this.fakultetService.update(this.idFakulteta, vrednosti).subscribe({
-      next: () => this.router.navigate(['/fakulteti']),
-      error: err => console.error('Greška pri izmeni fakulteta:', err)
-    });
-  } else {
-    this.fakultetService.create(vrednosti).subscribe({
-      next: () => {
-        this.router.navigate(['/fakulteti']);
-        console.log("departmani", vrednosti.departmani);
-      },
-      error: err => console.error('Greška pri čuvanju fakulteta:', err)
-    });
+public sacuvajFakultet(vrednosti: any): void {
+    if (this.idFakulteta) {
+      this.fakultetService.update(this.idFakulteta, vrednosti).subscribe({
+        next: () => this.router.navigate(['/fakulteti']),
+        error: err => console.error('Greška pri izmeni fakulteta:', err)
+      });
+    } else {
+      this.fakultetService.create(vrednosti).subscribe({
+        next: () => this.router.navigate(['/fakulteti']),
+        error: err => console.error('Greška pri čuvanju fakulteta:', err)
+      });
+    }
   }
-}
 
 
   private kreirajModel(podaci?: Fakultet): FormaModel {

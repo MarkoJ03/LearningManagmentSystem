@@ -73,5 +73,11 @@ public class GodinaStudijaService extends BaseService<GodinaStudija, GodinaStudi
 	        .collect(Collectors.toList());
 	}
 
+	@Override
+	protected void updateEntityFromDto(GodinaStudijaDTO dto, GodinaStudija entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
