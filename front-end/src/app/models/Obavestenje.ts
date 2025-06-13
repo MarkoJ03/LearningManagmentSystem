@@ -1,4 +1,5 @@
 import { Nastavnik } from "./Nastavnik";
+import { Predmet } from "./Predmet";
 
 
 export interface Obavestenje {
@@ -7,4 +8,5 @@ export interface Obavestenje {
   nastavnik: Nastavnik;
   naslov: string;
   sadrzaj: string;
+  predmet: Predmet;
 }

@@ -9,12 +9,14 @@ import org.springframework.stereotype.Service;
 
 import server.DTOs.IshodPredmetaDTO;
 import server.DTOs.NastavnikDTO;
+import server.DTOs.ObavestenjeDTO;
 import server.DTOs.PredmetDTO;
 import server.DTOs.RealizacijaPredmetaDTO;
 import server.DTOs.TerminNastaveDTO;
 import server.DTOs.TipNastaveDTO;
 import server.model.IshodPredmeta;
 import server.model.Nastavnik;
+import server.model.Obavestenje;
 import server.model.Predmet;
 import server.model.RealizacijaPredmeta;
 import server.model.TerminNastave;
@@ -34,6 +36,11 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 	@Autowired
 	@Lazy
 	private IshodPredmetaService ishodPredmetaService;
+	
+	@Autowired
+	@Lazy
+	private ObavestenjeService oService;
+
 
 	@Override
 	protected CrudRepository<RealizacijaPredmeta, Long> getRepository() {
@@ -42,6 +49,14 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 
 	@Override
 	protected RealizacijaPredmetaDTO convertToDTO(RealizacijaPredmeta entity) {
+		
+		
+		ArrayList<ObavestenjeDTO> obavestenja = new ArrayList<>();
+		
+		for(Obavestenje rp : entity.getPredmet().getObavestenja()) {
+			ObavestenjeDTO rpDTO = oService.convertToDTO(rp);
+			obavestenja.add(rpDTO);
+		}
 
 		NastavnikDTO nastavnik = new NastavnikDTO(entity.getNastavnik().getId(),null, entity.getNastavnik().getIme(),
 				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null, null,null,null, entity.getNastavnik().getVidljiv());
@@ -50,7 +65,7 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 		PredmetDTO predmet = new PredmetDTO(entity.getPredmet().getId(),entity.getPredmet().getNaziv(), entity.getPredmet().getEsbp(),
 				entity.getPredmet().getObavezan(), entity.getPredmet().getBrojPredavanja(), entity.getPredmet().getBrojVezbi(),
 				entity.getPredmet().getIstrazivackiRad(), entity.getPredmet().getBrojSemestara(), entity.getPredmet().getOpis(),
-				entity.getPredmet().getCilj(), null, null,null,null, entity.getPredmet().getVidljiv());
+				entity.getPredmet().getCilj(), null, null,null,null,obavestenja, entity.getPredmet().getVidljiv());
 
 		ArrayList<TerminNastaveDTO> terminiNastave = new ArrayList<>();
 
@@ -68,6 +83,15 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 
 	@Override
 	protected RealizacijaPredmeta convertToEntity(RealizacijaPredmetaDTO dto) {
+		
+		ArrayList<Obavestenje> obavestenja = new ArrayList<>();
+
+		
+		for(ObavestenjeDTO rp : dto.getPredmet().getObavestenja()) {
+			Obavestenje rpDTO = oService.convertToEntity(rp);
+			obavestenja.add(rpDTO);
+		}
+		
 		Nastavnik nastavnik = new Nastavnik(dto.getNastavnik().getId(), null, dto.getNastavnik().getIme(),
 
 				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null, null,null,null,null, dto.getNastavnik().getVidljiv());
@@ -76,7 +100,7 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 		Predmet predmet = new Predmet(dto.getPredmet().getId(),dto.getPredmet().getNaziv(), dto.getPredmet().getEsbp(),
 				dto.getPredmet().getObavezan(), dto.getPredmet().getBrojPredavanja(), dto.getPredmet().getBrojVezbi(),
 				dto.getPredmet().getIstrazivackiRad(), dto.getPredmet().getBrojSemestara(), dto.getPredmet().getOpis(),
-				dto.getPredmet().getCilj(), null, null,null,null,dto.getPredmet().getVidljiv());
+				dto.getPredmet().getCilj(), null, null,null,null,obavestenja,dto.getPredmet().getVidljiv());
 
 		ArrayList<TerminNastave> terminiNastave = new ArrayList<>();
 

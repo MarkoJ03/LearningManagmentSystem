@@ -24,6 +24,7 @@ import { EstudentPodaciOStudentuComponent } from './components/estudent/estudent
 import { ObjavaDetaljiComponent } from './components/objava-detalji/objava-detalji.component';
 import { PocetnaComponent } from './components/pocetna/pocetna.component';
 import { SilabusLayoutComponent } from './components/silabus-layout/silabus-layout.component';
+import { ObavestenjaPredmetaComponent } from './components/estudent/obavestenja-predmeta/obavestenja-predmeta.component';
 
 
 
@@ -85,6 +86,10 @@ export const routes: Routes = [
       { path: 'sv-obrazac', component: SvObrazacComponent },
 
       { path: 'podaci-o-studentu', component: EstudentPodaciOStudentuComponent },
+
+      { path: 'predmeti/:id/obavestenja', component: ObavestenjaPredmetaComponent },
+
+
 
       { path: '', redirectTo: 'objave', pathMatch: 'full' }
 

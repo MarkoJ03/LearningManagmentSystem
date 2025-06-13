@@ -1,6 +1,7 @@
 import { DokumentiPredmeta } from './DokumentiPredmeta';
 import { EvaluacijaZnanja } from './EvaluacijaZnanja';
 import { GrupaStudenataPredmet } from './GrupaStudenataPredmet';
+import { Obavestenje } from './Obavestenje';
 import { RealizacijaPredmeta } from './RealizacijaPredmeta';
 
 export interface Predmet {
@@ -18,5 +19,6 @@ export interface Predmet {
   evaluacijaZnanja?: EvaluacijaZnanja[];
   grupaStudenataPredmet?: GrupaStudenataPredmet[];
   realizacijePredmeta?: RealizacijaPredmeta[];
+  obavestenja?: Obavestenje[];
   vidljiv: boolean;
 }

@@ -5,6 +5,6 @@ export interface DokumentiPredmeta {
   id: number;
   vidljiv: boolean;
   akreditacija: string;
-  silabus: Silabus;
+  silabus?: Silabus;
   predmet: Predmet;
 }

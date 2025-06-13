@@ -3,6 +3,7 @@ package server.DTOs;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import server.model.Predmet;
 
 @Data
 @NoArgsConstructor
@@ -12,6 +13,7 @@ public class ObavestenjeDTO {
 	private String naslov;
 	private String sadrzaj;
 	private NastavnikDTO nastavnik;
+	private PredmetDTO predmet;
 	private Boolean vidljiv = true;
 
 }

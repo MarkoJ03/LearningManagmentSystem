@@ -59,6 +59,9 @@ public class Predmet {
 
     @OneToMany
     private List<RealizacijaPredmeta> realizacijePredmeta;
+    
+    @OneToMany (fetch= FetchType.LAZY, mappedBy = "predmet")
+    private List<Obavestenje> obavestenja;
 
     @Column(nullable = false)
     private Boolean vidljiv = true;

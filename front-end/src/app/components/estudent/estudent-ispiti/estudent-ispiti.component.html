@@ -1,7 +1,9 @@
-<h2>Polozeni ispiti</h2>
+<h2>Položeni ispiti</h2>
 
-@if (ocene.length === 0) {
-  <p>Nema polozenih ispita za prikaz</p>
+<input type="text" [(ngModel)]="searchTerm" (input)="filtriraj()" placeholder="Pretraži ispite..." class="search-input"/>
+
+@if (filtriraneOcene.length === 0) {
+  <p>Nema rezultata za prikaz</p>
 } @else {
   <table class="ispiti-tabela">
     <thead>
@@ -15,30 +17,23 @@
       </tr>
     </thead>
     <tbody>
-<tbody>
-  @for ( o of ocene; track o.id) {
-    <tr>
-
-      <td> <strong>{{ o.naziv }}</strong></td>
-      <td>{{ o.tip }}</td>
-      <td>{{ o.bodovi }}</td>
-      <td>{{ o.ocena }}</td>
-      <td>{{ o.espb }}</td>
-      <td>{{ o.nastavnik }}</td>
-    </tr>
-  }
-
-
-
-</tbody>
-
-<div>
-<strong class="rezime">Prosecna Ocena: {{ prosecnaOcena }}</strong>
-</div>
-<strong class="rezime">Ukupno ESBP: {{ ukupnoEspb }}</strong>
-
-
-
-
+      @for (o of filtriraneOcene; track o.id) {
+        <tr>
+          <td><strong>{{ o.naziv }}</strong></td>
+          <td>{{ o.tip }}</td>
+          <td>{{ o.bodovi }}</td>
+          <td>{{ o.ocena }}</td>
+          <td>{{ o.espb }}</td>
+          <td>{{ o.nastavnik }}</td>
+        </tr>
+      }
+    </tbody>
   </table>
+
+  <div class="rezime">
+    <strong>Prosečna ocena: {{ prosecnaOcena }}</strong>
+  </div>
+  <div class="rezime">
+    <strong>Ukupno ESPB: {{ ukupnoEspb }}</strong>
+  </div>
 }

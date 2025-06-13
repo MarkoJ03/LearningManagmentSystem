@@ -8,9 +8,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import server.DTOs.DokumentiPredmetaDTO;
+import server.DTOs.ObavestenjeDTO;
 import server.DTOs.PredmetDTO;
 import server.DTOs.RealizacijaPredmetaDTO;
 import server.model.DokumentiPredmeta;
+import server.model.Obavestenje;
 import server.model.Predmet;
 import server.model.RealizacijaPredmeta;
 import server.repository.PredmetRepository;
@@ -33,6 +35,10 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 	@Autowired
 	@Lazy
 	private SilabusService silabusService;
+	
+	@Autowired
+	@Lazy
+	private ObavestenjeService oService;
 
 	@Override
 	protected CrudRepository<Predmet, Long> getRepository() {
@@ -52,10 +58,17 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 			RealizacijaPredmetaDTO rpDTO = realizacijaPredmetaService.convertToDTO(rp);
 			realizacijePredmeta.add(rpDTO);
 		}
+		
+		ArrayList<ObavestenjeDTO> obavestenja = new ArrayList<>();
+		
+		for(Obavestenje rp : entity.getObavestenja()) {
+			ObavestenjeDTO rpDTO = oService.convertToDTO(rp);
+			obavestenja.add(rpDTO);
+		}
 
 		return new PredmetDTO(entity.getId(),entity.getNaziv(), entity.getEsbp(), entity.getObavezan(),
 				entity.getBrojPredavanja(), entity.getBrojVezbi(), entity.getIstrazivackiRad(),
-				entity.getBrojSemestara(), entity.getOpis(), entity.getCilj(), dokumentiPredmeta,null,null, realizacijePredmeta,entity.getVidljiv());
+				entity.getBrojSemestara(), entity.getOpis(), entity.getCilj(), dokumentiPredmeta,null,null, realizacijePredmeta,obavestenja,entity.getVidljiv());
 
 	}
 
@@ -71,10 +84,17 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long>{
 			RealizacijaPredmeta rp = realizacijaPredmetaService.convertToEntity(rpDTO);
 			realizacijePredmeta.add(rp);
 		}
+		
+		ArrayList<Obavestenje> obavestenja = new ArrayList<>();
+		
+		for(ObavestenjeDTO rp : dto.getObavestenja()) {
+			Obavestenje rpDTO = oService.convertToEntity(rp);
+			obavestenja.add(rpDTO);
+		}
 
 		return new Predmet(dto.getId(),dto.getNaziv(), dto.getEsbp(), dto.getObavezan(), dto.getBrojPredavanja(),
 				dto.getBrojVezbi(), dto.getIstrazivackiRad(), dto.getBrojSemestara(), dto.getOpis(),
-				dto.getCilj(), dokumentiPredmeta,null,null, realizacijePredmeta,dto.getVidljiv());
+				dto.getCilj(), dokumentiPredmeta,null,null, realizacijePredmeta,obavestenja,dto.getVidljiv());
 
 	}
 

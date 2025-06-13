@@ -1,0 +1,20 @@
+@if (obavestenja) {
+
+<div class="obavestenja-wrapper">
+  <h2 class="naslov-stranice">Obaveštenja za {{predmet.naziv}}</h2>
+
+  <hr>
+
+  <div *ngIf="obavestenja.length === 0" class="prazno">
+    Nema obaveštenja za ovaj predmet.
+  </div>
+
+  <div *ngFor="let obavestenje of obavestenja" class="obavestenje-kartica">
+    <h3 class="obavestenje-naslov">{{ obavestenje.naslov }}</h3>
+    <p class="obavestenje-sadrzaj">{{ obavestenje.sadrzaj }}</p>
+    <p class="obavestenje-nastavnik">
+      <strong>Nastavnik:</strong> {{ obavestenje.nastavnik.ime }} {{ obavestenje.nastavnik.prezime }}
+    </p>
+  </div>
+</div>
+}

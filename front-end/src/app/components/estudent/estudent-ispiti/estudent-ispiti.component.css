@@ -22,8 +22,9 @@
 }
 
 .rezime {
-  background-color: #efefef;
+  margin-top: 10px;
   font-weight: bold;
+
 }
 
 h2 {
@@ -32,3 +33,17 @@ h2 {
 
 
 
+.search-input {
+  padding: 8px 12px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: sans-serif;
+}
+
+*{
+  font-family: sans-serif;
+}
