@@ -35,8 +35,6 @@ public class StudentskaSluzbaDTO {
 
 		private List<OsobljeDTO> Osoblje;
 
-		private List<NastavnikDTO> nastavnici;
-
 		private List<KalendarDTO> kalendari;
 
 		private List<StudentDTO> studenti;

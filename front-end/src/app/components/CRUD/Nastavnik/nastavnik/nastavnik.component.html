@@ -31,9 +31,13 @@ Katedre:
 
 Realizacije predmeta:
 <ul *ngIf="nastavnik?.realizacijePredmeta?.length">
-    <ng-container *ngFor="let realizacijaPredmeta of nastavnik?.realizacijePredmeta">
-        <li>{{ realizacijaPredmeta.predmet.naziv }}</li>
-    </ng-container>
+  <ng-container *ngFor="let realizacijaPredmeta of nastavnik?.realizacijePredmeta">
+      <ul>
+        <ng-container *ngFor="let predmetRealizacije of realizacijaPredmeta.predmeti">
+          <li>{{ predmetRealizacije.predmet.naziv }}</li>
+        </ng-container>
+      </ul>
+  </ng-container>
 </ul> <br>
 
 Obavestenja:

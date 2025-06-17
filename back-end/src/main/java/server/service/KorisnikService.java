@@ -65,7 +65,7 @@ public class KorisnikService extends BaseService<Korisnik, KorisnikDTO, Long>{
       return new KorisnikDTO(
           entity.getId(),
           entity.getEmail(),
-          null, // iz sigurnosnih razloga ne vraćamo lozinku u DTO
+          null, 
           pravaDTO,
           entity.getVidljiv()
       );

@@ -34,8 +34,6 @@ public class NastavnikDTO {
 
 	private List<KatedraNastavnikDTO> katedre;
 	
-	private StudentskaSluzbaDTO studentskaSluzba;
-
 	private List<RealizacijaPredmetaDTO> realizacijePredmeta;
 
 	private List<ObavestenjeDTO> obavestenja;

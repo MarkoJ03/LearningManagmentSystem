@@ -110,7 +110,7 @@ export class TerminNastaveFormaComponent {
           tip: 'select',
           podrazumevanaVrednost: selektovanaRealizacijaPredmeta,
           opcije: this.sveRealizacijePredmeta,
-          displayFn: (r: RealizacijaPredmeta) => `${r.predmet.naziv}`,
+          displayFn: (r: RealizacijaPredmeta) => `${r.nastavnik.ime} ${r.nastavnik.prezime}`,
           validatori: [Validators.required]
         },
         {

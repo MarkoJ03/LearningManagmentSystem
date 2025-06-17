@@ -42,11 +42,11 @@ export class EnastavnikPredmetiComponent {
           console.log('Response from server:', nastavnik);
           console.log('RealizacijePredmeta:', nastavnik.realizacijePredmeta);
 
-          this.predmeti = (nastavnik.realizacijePredmeta || [])
-            .map(rp => rp.predmet)
-            .filter((predmet, index, self) =>
-              predmet && self.findIndex(p => p.id === predmet.id) === index
-            );
+          // this.predmeti = (nastavnik.realizacijePredmeta || [])
+          //   .map(rp => rp.predmet)
+          //   .filter((predmet, index, self) =>
+          //     predmet && self.findIndex(p => p.id === predmet.id) === index
+          //   );
           console.log('Dohvaćeni predmeti:', this.predmeti);
         },
         error: (err) => {

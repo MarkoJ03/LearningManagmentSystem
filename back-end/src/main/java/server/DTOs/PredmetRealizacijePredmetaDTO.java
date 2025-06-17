@@ -7,12 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ObavestenjeDTO {
+public class PredmetRealizacijePredmetaDTO {
 	private Long id;
-	private String naslov;
-	private String sadrzaj;
-	private NastavnikDTO nastavnik;
 	private PredmetDTO predmet;
-	private Boolean vidljiv = true;
-
+	private RealizacijaPredmetaDTO realizacijaPredmeta;
+	private Boolean vidljiv;
 }

@@ -87,8 +87,6 @@ export class NaucnaOblastFormaComponent {
   }
 }
 
-
-
   private kreirajModel(podaci?: NaucnaOblast): FormaModel {
     // let selektovanaZvanja = podaci?.zvanja?.map(z => z.id) ?? [];
     let selektovanaZvanja = podaci?.zvanja

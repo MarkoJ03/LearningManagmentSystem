@@ -12,11 +12,11 @@
 
         <div class="linkovi">
           <a *ngIf="predmet.dokumentiPredmeta?.silabus" target="_blank"
-             [href]="'/uploads/' + predmet.dokumentiPredmeta.silabus">
+             [href]="'/uploads/' + predmet.dokumentiPredmeta?.silabus">
              Silabus
           </a>
           <a *ngIf="predmet.dokumentiPredmeta?.akreditacija" target="_blank"
-             [href]="'/uploads/' + predmet.dokumentiPredmeta.akreditacija">
+             [href]="'/uploads/' + predmet.dokumentiPredmeta?.akreditacija">
              Akreditacija
           </a>
         </div>

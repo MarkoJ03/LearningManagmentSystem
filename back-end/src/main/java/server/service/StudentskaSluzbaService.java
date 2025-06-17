@@ -28,7 +28,6 @@ public class StudentskaSluzbaService extends BaseService<StudentskaSluzba, Stude
             null,  
             null,  
             null,  
-            null,  
             null,
             null,
             entity.getVidljiv()
@@ -39,7 +38,6 @@ public class StudentskaSluzbaService extends BaseService<StudentskaSluzba, Stude
     protected StudentskaSluzba convertToEntity(StudentskaSluzbaDTO dto) {
         return new StudentskaSluzba(
             dto.getId(),
-            null,  
             null,  
             null,  
             null,  

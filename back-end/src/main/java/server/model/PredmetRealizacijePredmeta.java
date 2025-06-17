@@ -14,18 +14,17 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Obavestenje {
+public class PredmetRealizacijePredmeta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(nullable = false)
-	private String naslov;
-	@Column(nullable = false)
-	private String sadrzaj;
-	@ManyToOne
-	private Nastavnik nastavnik;
+	
 	@ManyToOne
 	private Predmet predmet;
-    @Column(nullable = false)
-    private Boolean vidljiv = true;
+	
+	@ManyToOne
+	private	RealizacijaPredmeta realizacijaPredmeta;
+	
+	@Column
+	private Boolean vidljiv;
 }

@@ -63,10 +63,10 @@ public class KatedraService extends BaseService<Katedra, KatedraDTO, Long> {
 						null, null, null),
 				new NastavnikDTO(entity.getSekretarKatedre().getId(), null, entity.getSekretarKatedre().getIme(),
 						entity.getSekretarKatedre().getPrezime(), entity.getSekretarKatedre().getJmbg(), null, null,
-						null, null, null, null, null, entity.getSekretarKatedre().getVidljiv()),
+						null, null, null, null, entity.getSekretarKatedre().getVidljiv()),
 				new NastavnikDTO(entity.getSefKatedre().getId(), null, entity.getSefKatedre().getIme(),
 						entity.getSefKatedre().getPrezime(), entity.getSefKatedre().getJmbg(), null, null, null, null,
-						null, null, null, entity.getSefKatedre().getVidljiv()),
+						null, null, entity.getSefKatedre().getVidljiv()),
 				nastavnici, programi, entity.getVidljiv());
 	}
 
@@ -93,6 +93,23 @@ public class KatedraService extends BaseService<Katedra, KatedraDTO, Long> {
 			sef.setId(dto.getSefKatedre().getId());
 			katedra.setSefKatedre(sef);
 		}
+		
+		List<KatedraNastavnik> nastavniciLinks = new ArrayList<>();
+		if (dto.getNastavnici() != null) {
+			for (KatedraNastavnikDTO knDTO : dto.getNastavnici()) {
+				if (knDTO.getNastavnik() != null && knDTO.getNastavnik().getId() != null) {
+					Optional<Nastavnik> optNastavnik = nastavnikRepository.findById(knDTO.getNastavnik().getId());
+					if (optNastavnik.isPresent()) {
+						KatedraNastavnik kn = new KatedraNastavnik();
+						kn.setKatedra(katedra); 
+						kn.setNastavnik(optNastavnik.get());
+						kn.setVidljiv(knDTO.getVidljiv() != null ? knDTO.getVidljiv() : true);
+						nastavniciLinks.add(kn);
+					}
+				}
+			}
+		}
+		katedra.setNastavnici(nastavniciLinks);
 
 		ArrayList<StudijskiProgram> programi = new ArrayList<>();
 
@@ -101,7 +118,7 @@ public class KatedraService extends BaseService<Katedra, KatedraDTO, Long> {
 				if (sDto.getId() != null) {
 
 					StudijskiProgram existingProgram = studijskiProgramService.getRepository().findById(sDto.getId())
-							.orElseThrow(() -> new RuntimeException("Departman not found with id " + sDto.getId()));
+							.orElseThrow(() -> new RuntimeException("Studijski program not found with id " + sDto.getId()));
 
 					existingProgram.setKatedra(katedra);
 
@@ -117,7 +134,7 @@ public class KatedraService extends BaseService<Katedra, KatedraDTO, Long> {
 
 	@Override
 	protected void updateEntityFromDto(KatedraDTO dto, Katedra entity) {
-	    entity.setNaziv(dto.getNaziv());
+		entity.setNaziv(dto.getNaziv());
 
 	    if (dto.getDepartman() != null && dto.getDepartman().getId() != null) {
 	        Departman dep = new Departman();

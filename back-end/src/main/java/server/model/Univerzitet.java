@@ -3,6 +3,7 @@ package server.model;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -36,7 +37,7 @@ public class Univerzitet {
 	@JoinColumn(name = "adresa_id", nullable = false)
 	private Adresa adresa;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "univerzitet")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "univerzitet", cascade = {CascadeType.ALL}, orphanRemoval = true)
 	private List<Fakultet> fakulteti;
 	
 	@Column(nullable = false)

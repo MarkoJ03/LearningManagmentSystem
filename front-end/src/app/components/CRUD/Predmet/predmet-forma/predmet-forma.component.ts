@@ -79,53 +79,60 @@ export class PredmetFormaComponent {
     });
   }
 
-
-
   otkazi(): void {
     this.router.navigate(['/predmeti']);
   }
 
   public sacuvajPredmet(vrednosti: any): void {
     if (this.idPredmeta) {
-      this.predmetService.update(this.idPredmeta, vrednosti).subscribe({
+      const izmenjenPredmet = {
+        ...vrednosti,
+        grupeStudenata: vrednosti.grupeStudenata.map((gs: GrupaStudenata) => ({
+          grupaStudenata: { id: gs.id },
+          predmet: { id:this.idPredmeta},
+          vidljiv: true
+        })),
+        realizacijePredmeta: vrednosti.realizacijePredmeta.map((rp: RealizacijaPredmeta) => ({
+          realizacijaPredmeta: { id: rp.id },
+          predmet: { id:this.idPredmeta},
+          vidljiv: true
+        }))
+      };
+
+      this.predmetService.update(this.idPredmeta, izmenjenPredmet).subscribe({
         next: () => this.router.navigate(['/predmeti']),
         error: err => console.error('Greška pri izmeni predmeta:', err)
       });
     } else {
-      console.log(vrednosti);
-      this.predmetService.create(vrednosti).subscribe({
-        next: (predmet) => {
-          console.log('Kreiran predmet:', predmet);
-          console.log(vrednosti.grupaStudenata);
-          this.kreiraniPredmet = predmet;
+      const novPredmet = {
+        ...vrednosti,
+        grupeStudenata: vrednosti.grupeStudenata.map((gs: GrupaStudenata) => ({
+          grupaStudenata: { id: gs.id },
+          predmet: { id:this.idPredmeta},
+          vidljiv: true
+        })),
+        realizacijePredmeta: vrednosti.realizacijePredmeta.map((rp: RealizacijaPredmeta) => ({
+          realizacijaPredmeta: { id: rp.id },
+          predmet: { id:this.idPredmeta},
+          vidljiv: true
+        }))
+      };
 
-
-          for (let grupaStudenata of vrednosti.grupeStudenata) {
-            const veza = {
-              predmet: predmet,
-              grupaStudenata: grupaStudenata,
-              vidljiv: true
-            };
-
-            this.grupaStudenataPredmetService.create(veza).subscribe({
-              next: () => console.log(`Povezana grupa studenata ${grupaStudenata.id} sa predmetom ${predmet.id}`),
-              error: err => console.error('Greška pri vezivanju grupe studenata:', err)
-            });
-          }
-
-          this.router.navigate(['/predmeti']);
-        },
-
+      this.predmetService.create(novPredmet).subscribe({
+        next: () => this.router.navigate(['/predmeti']),
         error: err => console.error('Greška pri čuvanju predmeta:', err)
       });
     }
   }
 
-  private kreirajModel(podaci?: any): FormaModel {
-    let selektovaneEvaluacijeZnanja = podaci?.sluzba ?? [];
-    let selektovaneRealizacijePredmeta = podaci?.knjiga ?? [];
-    let selektovanaObavestenja = podaci?.knjiga ?? [];
-    let selektovaniDokumentiPredmeta = podaci?.knjiga ?? null;
+
+  private kreirajModel(podaci?: Predmet): FormaModel {
+    let selektovaneEvaluacijeZnanja = podaci?.evaluacijeZnanja ?? [];
+    let selektovaneRealizacijePredmeta: RealizacijaPredmeta[] = podaci?.realizacijePredmeta?.map(rp => rp.realizacijaPredmeta) ?? [];
+    let selektovanaObavestenja = podaci?.obavestenja ?? [];
+    let selektovaniDokumentiPredmeta = podaci?.dokumentiPredmeta ?? null;
+    let selektovaneGrupeStudenata: GrupaStudenata[] = podaci?.grupeStudenata?.map(gs => gs.grupaStudenata) ?? [];
+
 
     return {
       naziv: podaci ? 'Izmena predmeta' : "Dodavanje predmeta",
@@ -137,112 +144,112 @@ export class PredmetFormaComponent {
           podrazumevanaVrednost: podaci.id
         }] : []),
         {
-        naziv: 'naziv',
-        labela: 'Naziv',
-        tip: 'text',
-        podrazumevanaVrednost: podaci?.naziv ?? '',
-        validatori: [Validators.required]
-      },
-      {
-        naziv: 'esbp',
-        labela: 'Esbp',
-        tip: 'number',
-        podrazumevanaVrednost: podaci?.esbp ?? 0,
-        validatori: [Validators.required]
-      },
-      {
-        naziv: 'obavezan',
-        labela: 'Obavezan',
-        tip: 'checkbox',
-        podrazumevanaVrednost: podaci?.obavezan ?? false,
-        validatori: [Validators.required]
-      },
-      {
-        naziv: 'brojPredavanja',
-        labela: 'Broj Predavanja',
-        tip: 'number',
-        podrazumevanaVrednost: podaci?.brojPredavanja ?? 0,
-        validatori: [Validators.required]
-      },
-      {
-        naziv: 'brojVezbi',
-        labela: 'Broj Vezbi',
-        tip: 'number',
-        podrazumevanaVrednost: podaci?.brojVezbi ?? 0,
-        validatori: [Validators.required]
-      },
-      {
-        naziv: 'istrazivackiRad',
-        labela: 'Istrazivacki Rad',
-        tip: 'checkbox',
-        podrazumevanaVrednost: podaci?.istrazivackiRad ?? false,
-        validatori: [Validators.required]
-      },
-      {
-        naziv: 'brojSemestara',
-        labela: 'Broj Semestara',
-        tip: 'number',
-        podrazumevanaVrednost: podaci?.brojSemestara ?? 0,
-        validatori: [Validators.required]
-      },
-      {
-        naziv: 'opis',
-        labela: 'Opis',
-        tip: 'textarea',
-        podrazumevanaVrednost: podaci?.opis ?? '',
-        validatori: [Validators.required]
-      },
-      {
-        naziv: 'cilj',
-        labela: 'Cilj',
-        tip: 'textarea',
-        podrazumevanaVrednost: podaci?.cilj ?? '',
-        validatori: [Validators.required]
-      },
-      {
-        naziv: 'dokumentiPredmeta',
-        labela: 'Dokumenti Predmeta',
-        tip: 'select',
-        podrazumevanaVrednost: selektovaniDokumentiPredmeta,
-        opcije: this.sviDokumentiPredmeta,
-        displayFn: (d: DokumentiPredmeta) => `${d.silabus} ${d.akreditacija}`,
-        validatori: [Validators.required]
-      },
-      {
-        naziv: 'evaluacijeZnanja',
-        labela: 'Evaluacije znanja',
-        tip: 'checkbox-list',
-        podrazumevanaVrednost: selektovaneEvaluacijeZnanja,
-        opcije: this.sveEvaluacijeZnanja,
-        displayFn: (e: EvaluacijaZnanja) => e.tipEvaluacije.naziv,
-        validatori: [Validators.required]
-      },
-      {
-        naziv: 'grupeStudenata',
-        labela: 'Grupe Studenata',
-        tip: 'checkbox-list',
-        podrazumevanaVrednost: [],
-        opcije: this.sveGrupeStudenata,
-        displayFn: (g: GrupaStudenataPredmet) => `${g.grupaStudenata}`,
-      },
-      {
-        naziv: 'realizacijaPredmeta',
-        labela: 'Realizacija Predmeta',
-        tip: 'checkbox-list',
-        podrazumevanaVrednost: selektovaneRealizacijePredmeta,
-        opcije: this.sveRealizacijePredmeta,
-        displayFn: (r: RealizacijaPredmeta) => `${r.nastavnik.ime}  ${r.nastavnik.prezime} ${r.tipNastave.naziv}`,
-        validatori: [Validators.required]
-      },
-      {
-        naziv: 'obavestenja',
-        labela: 'Obavestenja',
-        tip: 'checkbox-list',
-        podrazumevanaVrednost: selektovanaObavestenja,
-        opcije: this.svaObavestenja,
-        displayFn: (o: Obavestenje) => o.naslov
-      },
-      {
+          naziv: 'naziv',
+          labela: 'Naziv',
+          tip: 'text',
+          podrazumevanaVrednost: podaci?.naziv ?? '',
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'esbp',
+          labela: 'Esbp',
+          tip: 'number',
+          podrazumevanaVrednost: podaci?.esbp ?? 0,
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'obavezan',
+          labela: 'Obavezan',
+          tip: 'checkbox',
+          podrazumevanaVrednost: podaci?.obavezan ?? false,
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'brojPredavanja',
+          labela: 'Broj Predavanja',
+          tip: 'number',
+          podrazumevanaVrednost: podaci?.brojPredavanja ?? 0,
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'brojVezbi',
+          labela: 'Broj Vezbi',
+          tip: 'number',
+          podrazumevanaVrednost: podaci?.brojVezbi ?? 0,
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'istrazivackiRad',
+          labela: 'Istrazivacki Rad',
+          tip: 'checkbox',
+          podrazumevanaVrednost: podaci?.istrazivackiRad ?? false,
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'brojSemestara',
+          labela: 'Broj Semestara',
+          tip: 'number',
+          podrazumevanaVrednost: podaci?.brojSemestara ?? 0,
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'opis',
+          labela: 'Opis',
+          tip: 'textarea',
+          podrazumevanaVrednost: podaci?.opis ?? '',
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'cilj',
+          labela: 'Cilj',
+          tip: 'textarea',
+          podrazumevanaVrednost: podaci?.cilj ?? '',
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'dokumentiPredmeta',
+          labela: 'Dokumenti Predmeta',
+          tip: 'select',
+          podrazumevanaVrednost: selektovaniDokumentiPredmeta,
+          opcije: this.sviDokumentiPredmeta,
+          displayFn: (d: DokumentiPredmeta) => `${d.silabus} ${d.akreditacija}`,
+          //validatori: [Validators.required]
+        },
+        {
+          naziv: 'evaluacijeZnanja',
+          labela: 'Evaluacije znanja',
+          tip: 'checkbox-list',
+          podrazumevanaVrednost: selektovaneEvaluacijeZnanja,
+          opcije: this.sveEvaluacijeZnanja,
+          displayFn: (e: EvaluacijaZnanja) => `${e.id}`,
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'grupeStudenata',
+          labela: 'Grupe Studenata',
+          tip: 'checkbox-list',
+          podrazumevanaVrednost: selektovaneGrupeStudenata,
+          opcije: this.sveGrupeStudenata,
+          displayFn: (g: GrupaStudenata) => `${g.id}`,
+        },
+        {
+          naziv: 'realizacijePredmeta',
+          labela: 'Realizacija Predmeta',
+          tip: 'checkbox-list',
+          podrazumevanaVrednost: selektovaneRealizacijePredmeta,
+          opcije: this.sveRealizacijePredmeta,
+          displayFn: (r: RealizacijaPredmeta) => `${r.nastavnik.ime}  ${r.nastavnik.prezime} ${r.tipNastave.naziv}`,
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'obavestenja',
+          labela: 'Obavestenja',
+          tip: 'checkbox-list',
+          podrazumevanaVrednost: selektovanaObavestenja,
+          opcije: this.svaObavestenja,
+          displayFn: (o: Obavestenje) => o.naslov
+        },
+        {
           naziv: 'vidljiv',
           labela: 'Vidljiv',
           tip: 'checkbox',

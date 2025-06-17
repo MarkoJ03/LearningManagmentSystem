@@ -4,9 +4,15 @@
 <p *ngIf="realizacijaPredmeta">
     Nastavnik: <span>{{ realizacijaPredmeta.nastavnik.ime }} {{ realizacijaPredmeta.nastavnik.prezime }}</span> <br>
     Tip nastave: {{ realizacijaPredmeta.tipNastave.naziv }} <br>
-    Predmet: {{ realizacijaPredmeta.predmet.naziv }} <br>
     Vidljiv: {{ realizacijaPredmeta.vidljiv }} <br>
 </p>
+Predmeti:
+<ul *ngIf="realizacijaPredmeta?.predmeti?.length">
+    <ng-container *ngFor="let predmet of realizacijaPredmeta?.predmeti">
+        <li>{{ predmet.predmet.naziv }}</li>
+    </ng-container>
+</ul>
+
 Termin nastave:
 <ul *ngIf="realizacijaPredmeta?.terminiNastave?.length">
     <ng-container *ngFor="let terminNastave of realizacijaPredmeta?.terminiNastave">

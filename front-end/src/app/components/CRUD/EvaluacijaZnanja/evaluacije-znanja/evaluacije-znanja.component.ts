@@ -22,10 +22,12 @@ export class EvaluacijeZnanjaComponent {
   ngOnInit(): void {
     this.evaluacijaZnanjaService.getAll().subscribe({
       next: (res) => {
-        this.evaluacijeZnanja = res;
-        this.evaluacijeZnanja.forEach(e => {
-          (e as any).nastavnikImePrezime = `${e.nastavnik.ime} ${e.nastavnik.prezime}`;
-        });
+        console.log("podaci ", res);
+        
+        this.evaluacijeZnanja = res.map(e => ({
+          ...e,
+          nastavnikImePrezime: `${e.nastavnik.ime} ${e.nastavnik.prezime}`,
+        }));
       },
       error: (err) => console.error('Greška prilikom učitavanja evaluacija znanja:', err),
     });

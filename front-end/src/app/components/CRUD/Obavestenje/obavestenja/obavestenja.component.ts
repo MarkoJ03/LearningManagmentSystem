@@ -21,7 +21,13 @@ export class ObavestenjaComponent {
 
   ngOnInit(): void {
     this.obavestenjeService.getAll().subscribe({
-      next: (res) => this.obavestenja = res,
+      next: (res) => {
+        this.obavestenja = res.map(o => ({
+          ...o,
+          nastavnikImePrezime: o.nastavnik ? `${o.nastavnik.ime} ${o.nastavnik.prezime}` : '-',
+        }));
+        this.kolone = ['nastavnikImePrezime', 'naslov', 'sadrzaj', 'predmet', 'vidljiv'];
+      },
       error: (err) => console.error('Greška prilikom učitavanja obavestenja:', err),
     });
   }

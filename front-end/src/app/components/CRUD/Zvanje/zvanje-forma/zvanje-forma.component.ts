@@ -102,7 +102,7 @@ export class ZvanjeFormaComponent {
           labela: 'Datum Prestanka',
           tip: 'date',
           podrazumevanaVrednost: podaci?.datumPrestanka ?? '',
-          validatori: [Validators.required]
+          //validatori: [Validators.required]
         },
         {
           naziv: 'tipZvanja',
@@ -110,6 +110,7 @@ export class ZvanjeFormaComponent {
           tip: 'select',
           podrazumevanaVrednost: selektovanTipZvanja,
           opcije: this.sviTipoviZvanja,
+          displayFn: (t: TipZvanja) => t.naziv,
           validatori: [Validators.required]
         },
         {
@@ -118,6 +119,7 @@ export class ZvanjeFormaComponent {
           tip: 'select',
           podrazumevanaVrednost: selektovanaNaucnaOblast,
           opcije: this.sveNaucneOblasti,
+          displayFn: (n: NaucnaOblast) => n.naziv,
           validatori: [Validators.required]
         },
         {
@@ -126,6 +128,7 @@ export class ZvanjeFormaComponent {
           tip: 'select',
           podrazumevanaVrednost: selektovaniNastavnik,
           opcije: this.sviNastavnici,
+          displayFn: (n: Nastavnik) => `${n.ime} ${n.prezime}`,
           validatori: [Validators.required]
         },
         {

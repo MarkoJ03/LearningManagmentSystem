@@ -53,8 +53,8 @@ public class DepartmanService extends BaseService<Departman, DepartmanDTO, Long>
 		return new DepartmanDTO(entity.getId(),entity.getNaziv()
 
 				,new FakultetDTO(entity.getFakultet().getId(),entity.getFakultet().getNaziv(), null,null, entity.getFakultet().getVidljiv()),
-				new NastavnikDTO(entity.getSekretarDepartmana().getId(),null, entity.getSekretarDepartmana().getIme(),entity.getSekretarDepartmana().getPrezime(),entity.getSekretarDepartmana().getJmbg(),null,null,null, null,null,null,null, entity.getSekretarDepartmana().getVidljiv()),
-				new NastavnikDTO(entity.getDirektorDepartmana().getId(),null, entity.getDirektorDepartmana().getIme(),entity.getDirektorDepartmana().getPrezime(),entity.getDirektorDepartmana().getJmbg(),null,null,null, null,null,null,null, entity.getDirektorDepartmana().getVidljiv()),
+				new NastavnikDTO(entity.getSekretarDepartmana().getId(),null, entity.getSekretarDepartmana().getIme(),entity.getSekretarDepartmana().getPrezime(),entity.getSekretarDepartmana().getJmbg(),null,null,null, null,null,null, entity.getSekretarDepartmana().getVidljiv()),
+				new NastavnikDTO(entity.getDirektorDepartmana().getId(),null, entity.getDirektorDepartmana().getIme(),entity.getDirektorDepartmana().getPrezime(),entity.getDirektorDepartmana().getJmbg(),null,null,null, null,null,null, entity.getDirektorDepartmana().getVidljiv()),
 						null,katedre, entity.getVidljiv());
 
 	}
@@ -86,7 +86,7 @@ public class DepartmanService extends BaseService<Departman, DepartmanDTO, Long>
 	            dto.getSekretarDepartmana().getIme(),
 	            dto.getSekretarDepartmana().getPrezime(),
 	            dto.getSekretarDepartmana().getJmbg(),
-	            null, null, null,
+	            null, null,
 	            null, null, null, null,
 	            dto.getSekretarDepartmana().getVidljiv()
 	        );
@@ -100,7 +100,7 @@ public class DepartmanService extends BaseService<Departman, DepartmanDTO, Long>
 	            dto.getDirektorDepartmana().getIme(),
 	            dto.getDirektorDepartmana().getPrezime(),
 	            dto.getDirektorDepartmana().getJmbg(),
-	            null, null, null,
+	            null, null,
 	            null, null, null, null,
 	            dto.getDirektorDepartmana().getVidljiv()
 	        );
@@ -130,7 +130,7 @@ public class DepartmanService extends BaseService<Departman, DepartmanDTO, Long>
 	                    n.getIme(),
 	                    n.getPrezime(),
 	                    n.getJmbg(),
-	                    null, null, null,
+	                    null, null,
 	                    null, null, null, null,
 	                    n.getVidljiv()
 	                );
