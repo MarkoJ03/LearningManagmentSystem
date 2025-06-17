@@ -13,7 +13,12 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import server.DTOs.AdresaXmlDTO;
+import server.DTOs.DrzavaXmlDTO;
+import server.DTOs.GradXmlDTO;
 import server.DTOs.StudentNaGodiniDTO;
+import server.DTOs.StudentNaGodiniXmlDTO;
+import server.DTOs.StudentXmlDTO;
 import server.DTOs.SvObrazacDTO;
 import server.DTOs.SvObrazacXmlDTO;
 import server.model.SvObrazac;
@@ -40,26 +45,37 @@ public class SvObrazacController extends BaseController<SvObrazac, SvObrazacDTO,
         }
 
         StudentNaGodiniDTO sng = dto.getStudentNaGodini();
+        StudentNaGodiniXmlDTO sngXml = new StudentNaGodiniXmlDTO();
+        sngXml.setBrojIndeksa(sng.getBrojIndeksa());
+
+        StudentXmlDTO student = new StudentXmlDTO();
+        student.setIme(sng.getStudent().getIme());
+        student.setPrezime(sng.getStudent().getPrezime());
+        student.setJmbg(sng.getStudent().getJmbg());
+
+        AdresaXmlDTO adresa = new AdresaXmlDTO();
+        adresa.setUlica(sng.getStudent().getAdresa().getUlica());
+        adresa.setBroj(sng.getStudent().getAdresa().getBroj());
+
+        GradXmlDTO grad = new GradXmlDTO();
+        grad.setNaziv(sng.getStudent().getAdresa().getGrad().getNaziv());
+
+        DrzavaXmlDTO drzava = new DrzavaXmlDTO();
+        drzava.setNaziv(sng.getStudent().getAdresa().getGrad().getDrzava().getNaziv());
+
+        grad.setDrzava(drzava);
+        adresa.setGrad(grad);
+        student.setAdresa(adresa);
+        sngXml.setStudent(student);
 
         SvObrazacXmlDTO exportDTO = new SvObrazacXmlDTO();
-
-        exportDTO.setIme(sng.getStudent().getIme());
-        exportDTO.setPrezime(sng.getStudent().getPrezime());
-        exportDTO.setBrojIndeksa(sng.getBrojIndeksa());
-        exportDTO.setJmbg(sng.getStudent().getJmbg());
+        exportDTO.setStudentNaGodini(sngXml);
 
         exportDTO.setMaternjiJezik(dto.getMaternjiJezik());
         exportDTO.setVrstaZavreseneSrednje(dto.getVrstaZavreseneSrednje());
         exportDTO.setDatumZavrsetkaSrednje(dto.getDatumZavrsetkaSrednje());
-
         exportDTO.setBracniStatus(dto.getBracniStatus() ? "Oženjen/Udata" : "Neoženjen/Neudata");
         exportDTO.setKontakt(dto.getKontakt());
-
-        exportDTO.setAdresaUlica(sng.getStudent().getAdresa().getUlica());
-        exportDTO.setAdresaBroj(sng.getStudent().getAdresa().getBroj());
-        exportDTO.setAdresaGrad(sng.getStudent().getAdresa().getGrad().getNaziv());
-        exportDTO.setAdresaDrzava(sng.getStudent().getAdresa().getGrad().getDrzava().getNaziv());
-
         exportDTO.setZaposlen(dto.getZaposlen() ? "Da" : "Ne");
         exportDTO.setNacinFinansiranja(dto.getNacinFinansiranja() ? "Budžet" : "Samofinansiranje");
 

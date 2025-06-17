@@ -5,6 +5,9 @@
   font-family: sans-serif;
 }
 
+*{
+  font-family: sans-serif;
+}
 .prijava-tabela th,
 .prijava-tabela td {
   border: 1px solid #ccc;
@@ -60,4 +63,10 @@ h2 {
   font-size: 0.9em;
   margin-left: 8px;
   color: gray;
+}
+
+.info-poruka {
+  font-size: 13px;
+  color: #b40000;
+  margin-top: 5px;
 }

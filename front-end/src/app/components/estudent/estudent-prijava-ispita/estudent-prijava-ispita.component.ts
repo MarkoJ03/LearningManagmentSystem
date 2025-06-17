@@ -89,4 +89,12 @@ toggleRok(rokId: number): void {
 
 }
 
+rokJeAktivan(rok: IspitniRok): boolean {
+  const danas = new Date();
+  const pocetak = new Date(rok.datumPocetka);
+  const kraj = new Date(rok.datumZavrsetka);
+  return danas >= pocetak && danas <= kraj;
+}
+
+
 }

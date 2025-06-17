@@ -25,6 +25,8 @@ import { ObjavaDetaljiComponent } from './components/objava-detalji/objava-detal
 import { PocetnaComponent } from './components/pocetna/pocetna.component';
 import { SilabusLayoutComponent } from './components/silabus-layout/silabus-layout.component';
 import { ObavestenjaPredmetaComponent } from './components/estudent/obavestenja-predmeta/obavestenja-predmeta.component';
+import { EsluzbaLayoutComponent } from './components/esluzba/esluzba-layout/esluzba-layout.component';
+import { EsluzbaObjaveComponent } from './components/esluzba/esluzba-objave/esluzba-objave.component';
 
 
 
@@ -88,6 +90,33 @@ export const routes: Routes = [
       { path: 'podaci-o-studentu', component: EstudentPodaciOStudentuComponent },
 
       { path: 'predmeti/:id/obavestenja', component: ObavestenjaPredmetaComponent },
+
+
+
+      { path: '', redirectTo: 'objave', pathMatch: 'full' }
+
+    ]
+  },
+
+
+  {
+    path: 'osoblje/:id/esluzba',
+    component: EsluzbaLayoutComponent,
+    children: [
+      { path: 'objave', component: EsluzbaObjaveComponent },
+
+//       { path: 'predmeti', component: EstudentPredmetiComponent },
+
+//       { path: 'ispiti', component: EstudentIspitiComponent },
+
+//       { path: 'prijava-ispita', component: EstudentPrijavaIspitaComponent },
+//       { path: 'aktivnosti', component: EstudentAktivnostiComponent }
+// ,
+//       { path: 'sv-obrazac', component: SvObrazacComponent },
+
+//       { path: 'podaci-o-studentu', component: EstudentPodaciOStudentuComponent },
+
+//       { path: 'predmeti/:id/obavestenja', component: ObavestenjaPredmetaComponent },
 
 
 

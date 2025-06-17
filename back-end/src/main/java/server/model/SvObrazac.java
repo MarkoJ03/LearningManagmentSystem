@@ -39,7 +39,7 @@ public class SvObrazac {
 	private Boolean nacinFinansiranja;
 	
 	
-	@OneToOne
+	@OneToOne(optional = true)
 	private StudentNaGodini studentNaGodini;
 	
 	@ManyToOne

@@ -2,7 +2,7 @@ package server.controller;
 
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import server.DTOs.SilabusDTO;
 import server.DTOs.SilabusTerminDTO;
-import server.DTOs.SilabusTerminXmlDTO;
+import server.DTOs.TerminXmlDTO;
+
+import server.DTOs.NastavnikXmlDTO;
 import server.DTOs.SilabusXmlDTO;
 import server.model.Silabus;
 import server.service.SilabusService;
@@ -30,27 +32,31 @@ public class SilabusController extends BaseController<Silabus, SilabusDTO, Long>
     public ResponseEntity<String> exportSilabusXml(@PathVariable Long id) throws Exception {
         SilabusDTO silabus = silabusService.findById(id).orElse(null);
 
-        List<SilabusTerminXmlDTO> terminDtoList = new ArrayList<>();
+        List<TerminXmlDTO> terminiXml = new ArrayList<>();
+
         for (SilabusTerminDTO termin : silabus.getTermini()) {
-            String nastavnikImePrezime = termin.getNastavnik().getIme() + " " + termin.getNastavnik().getPrezime();
-            SilabusTerminXmlDTO dto = new SilabusTerminXmlDTO(
-                termin.getDatum(),
-                termin.getMaterijal(),
-                termin.getCilj(),
-                termin.getOpis(),
-                nastavnikImePrezime
-            );
-            terminDtoList.add(dto);
+            TerminXmlDTO terminXml = new TerminXmlDTO();
+            terminXml.setDatum(termin.getDatum().toString());
+            terminXml.setMaterijal(termin.getMaterijal());
+            terminXml.setCilj(termin.getCilj());
+            terminXml.setOpis(termin.getOpis());
+
+            NastavnikXmlDTO nastavnikXml = new NastavnikXmlDTO();
+            nastavnikXml.setIme(termin.getNastavnik().getIme());
+            nastavnikXml.setPrezime(termin.getNastavnik().getPrezime());
+            terminXml.setNastavnik(nastavnikXml);
+
+            terminiXml.add(terminXml);
         }
 
-        SilabusXmlDTO exportDto = new SilabusXmlDTO(terminDtoList);
+        SilabusXmlDTO exportXml = new SilabusXmlDTO();
+        exportXml.setTermini(terminiXml);
 
         XmlMapper xmlMapper = new XmlMapper();
-        xmlMapper.registerModule(new JavaTimeModule());
-        xmlMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
         xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        String xml = xmlMapper.writeValueAsString(exportDto);
+        String xml = xmlMapper.writeValueAsString(exportXml);
         return ResponseEntity.ok(xml);
     }
 

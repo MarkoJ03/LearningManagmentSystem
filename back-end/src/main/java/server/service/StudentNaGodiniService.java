@@ -12,14 +12,14 @@ import server.DTOs.GodinaStudijaDTO;
 import server.DTOs.IshodEvaluacijeDTO;
 import server.DTOs.StudentNaGodiniDTO;
 import server.DTOs.SvObrazacDTO;
-import server.DTOs.ZvanjeDTO;
+
 import server.model.GodinaStudija;
 import server.model.GrupaStudenata;
 import server.model.IshodEvaluacije;
 import server.model.Student;
 import server.model.StudentNaGodini;
 import server.model.SvObrazac;
-import server.model.Zvanje;
+
 import server.repository.StudentNaGodiniRepository;
 
 

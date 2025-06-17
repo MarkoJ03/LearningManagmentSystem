@@ -44,7 +44,8 @@ public class BibliotekaService extends BaseService<Biblioteka, BibliotekaDTO, Lo
     protected BibliotekaDTO convertToDTO(Biblioteka entity) {
         return new BibliotekaDTO(
             entity.getId(),
-            entity.getStudentskaSluzba() != null ? studentskaSluzbaService.convertToDTO(entity.getStudentskaSluzba()) : null,
+//            entity.getStudentskaSluzba() != null ? studentskaSluzbaService.convertToDTO(entity.getStudentskaSluzba()) : null,
+            null,
             entity.getBibliotekaKnjiga() != null ? entity.getBibliotekaKnjiga().stream()
             		.map(bk -> new BibliotekaKnjigaDTO(
             			    bk.getId(),
@@ -62,7 +63,8 @@ public class BibliotekaService extends BaseService<Biblioteka, BibliotekaDTO, Lo
     protected Biblioteka convertToEntity(BibliotekaDTO dto) {
         Biblioteka biblioteka = new Biblioteka();
         biblioteka.setId(dto.getId());
-        biblioteka.setStudentskaSluzba(studentskaSluzbaService.convertToEntity(dto.getStudentskaSluzba()));
+//        biblioteka.setStudentskaSluzba(studentskaSluzbaService.convertToEntity(dto.getStudentskaSluzba()));
+        biblioteka.setStudentskaSluzba(null);
         biblioteka.setVidljiv(dto.getVidljiv());
 
         if (dto.getBibliotekaKnjiga() != null) {

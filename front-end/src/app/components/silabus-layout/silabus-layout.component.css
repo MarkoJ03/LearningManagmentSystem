@@ -4,7 +4,15 @@
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
+h2{
+  text-align: center;
+  color:brown;
+    margin-bottom: 2rem;
+}
 
+*{
+  font-family: sans-serif;
+}
 .silabus-tabela {
   width: 100%;
   border-collapse: collapse;
@@ -30,7 +38,7 @@
 }
 
 .export-btn {
-  background-color: #007acc;
+  background-color: #a41c1c;
   color: white;
   border: none;
   padding: 10px 18px;
@@ -41,5 +49,5 @@
 }
 
 .export-btn:hover {
-  background-color: #005fa3;
+  background-color: #891717;
 }

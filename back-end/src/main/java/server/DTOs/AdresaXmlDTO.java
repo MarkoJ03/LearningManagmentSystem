@@ -1,0 +1,14 @@
+package server.DTOs;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class AdresaXmlDTO {
+    private String ulica;
+    private String broj;
+    private GradXmlDTO grad;
+}

@@ -12,7 +12,7 @@ public class OsobljeDTO {
 
 	 	private Long id;
 
-	    private Korisnik korisnik;
+	    private KorisnikDTO korisnik;
 
 		private String ime;
 
@@ -20,7 +20,7 @@ public class OsobljeDTO {
 
 		private String jmbg;
 
-		private StudentskaSluzbaDTO studentsaSluzba;
+		private StudentskaSluzbaDTO studentskaSluzba;
 
 	    private Boolean vidljiv = true;
 	}

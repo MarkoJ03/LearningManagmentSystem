@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
 
 import { UniverzitetHeaderComponent } from '../../../components/shared/univerzitet-header/univerzitet-header.component';
 import { UniverzitetFooterComponent } from '../../../components/shared/univerzitet-footer/univerzitet-footer.component';
@@ -30,44 +30,51 @@ export class FakultetLayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const idParam = this.route.snapshot.paramMap.get('id');
-    const id = idParam ? parseInt(idParam, 10) : null;
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      const idParam = params.get('id');
+      const id = idParam ? parseInt(idParam, 10) : null;
 
-    if (id !== null && !isNaN(id)) {
-      this.fakultetService.getById(id).subscribe({
-        next: (data: Fakultet) => {
-          this.fakultet = data;
+      if (id !== null && !isNaN(id)) {
+        this.ucitajFakultet(id);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
 
-          for (const dep of data.departmani ?? []) {
-            const sekId = dep.sekretarDepartmana?.id;
-            if (sekId && !this.sekretariZvanja[sekId]) {
-              this.nastavnikService.getById(sekId).subscribe({
-                next: (nastavnik) => {
-                  this.sekretariZvanja[sekId] = nastavnik.zvanja ?? [];
-                },
-                error: (err) => {
-                  console.error(`Greška pri dohvatanju zvanja za sekretara ${sekId}`, err);
-                }
-              });
-            }
+  private ucitajFakultet(id: number): void {
+    this.fakultetService.getById(id).subscribe({
+      next: (data: Fakultet) => {
+        this.fakultet = data;
 
-            const dirId = dep.direktorDepartmana?.id;
-            if (dirId && !this.direktoriZvanja[dirId]) {
-              this.nastavnikService.getById(dirId).subscribe({
-                next: (nastavnik) => {
-                  this.direktoriZvanja[dirId] = nastavnik.zvanja ?? [];
-                },
-                error: (err) => {
-                  console.error(`Greška pri dohvatanju zvanja za direktora ${dirId}`, err);
-                }
-              });
-            }
+        for (const dep of data.departmani ?? []) {
+          const sekId = dep.sekretarDepartmana?.id;
+          if (sekId && !this.sekretariZvanja[sekId]) {
+            this.nastavnikService.getById(sekId).subscribe({
+              next: (nastavnik) => {
+                this.sekretariZvanja[sekId] = nastavnik.zvanja ?? [];
+              },
+              error: (err) => {
+                console.error(`Greška pri dohvatanju zvanja za sekretara ${sekId}`, err);
+              }
+            });
           }
-        },
-        error: (err) => {
-          console.error('Greška pri dohvatanju fakulteta:', err);
+
+          const dirId = dep.direktorDepartmana?.id;
+          if (dirId && !this.direktoriZvanja[dirId]) {
+            this.nastavnikService.getById(dirId).subscribe({
+              next: (nastavnik) => {
+                this.direktoriZvanja[dirId] = nastavnik.zvanja ?? [];
+              },
+              error: (err) => {
+                console.error(`Greška pri dohvatanju zvanja za direktora ${dirId}`, err);
+              }
+            });
+          }
         }
-      });
-    }
+      },
+      error: (err) => {
+        console.error('Greška pri dohvatanju fakulteta:', err);
+      }
+    });
   }
 }
