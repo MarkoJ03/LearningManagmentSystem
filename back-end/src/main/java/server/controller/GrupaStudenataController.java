@@ -11,12 +11,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import jakarta.annotation.security.PermitAll;
 import server.DTOs.GrupaStudenataDTO;
 import server.model.GrupaStudenata;
 import server.service.GrupaStudenataService;
 
 @Controller
 @RequestMapping("/api/grupe-studenata")
+@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"})
 public class GrupaStudenataController extends BaseController<GrupaStudenata, GrupaStudenataDTO, Long> {
 
     @Autowired
@@ -28,13 +31,13 @@ public class GrupaStudenataController extends BaseController<GrupaStudenata, Gru
     }
     
     @GetMapping
-    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK"})
+    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_STUDENTSKA_SLUZBA"})
     public ResponseEntity<List<GrupaStudenataDTO>> findAll() {
         return new ResponseEntity<>(grupaStudenataService.findAll(), HttpStatus.OK);
     }
     
     @GetMapping("/{id}")
-    @Secured({"ROLE_ADMIN", "ROLE_NASTAVNIK", "ROLE_STUDENT"})
+    @PermitAll
     public ResponseEntity<GrupaStudenataDTO> getOne(@PathVariable Long id) {
         Optional<GrupaStudenataDTO> entity = grupaStudenataService.findById(id);
         return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))

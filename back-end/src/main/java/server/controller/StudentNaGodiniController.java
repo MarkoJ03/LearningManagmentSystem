@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import jakarta.annotation.security.PermitAll;
 import server.DTOs.StudentNaGodiniDTO;
 import server.model.StudentNaGodini;
 import server.service.StudentNaGodiniService;
@@ -36,7 +38,7 @@ public class StudentNaGodiniController extends BaseController<StudentNaGodini, S
     }
     
     @GetMapping("/{id}")
-    @Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"})
+    @PermitAll
     public ResponseEntity<StudentNaGodiniDTO> getOne(@PathVariable Long id) {
         Optional<StudentNaGodiniDTO> entity = studentNaGodiniService.findById(id);
         return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
