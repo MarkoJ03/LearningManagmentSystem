@@ -17,10 +17,9 @@ export class LoginService {
   token: any = null;
 
   login(user: any) {
-    //korisnik??
-    return this.http.post<any>("http://localhost:3000/login", user).pipe(
+    return this.http.post("http://localhost:8080/api/auth/login", user, { responseType: 'text' }).pipe(
       tap(x => {
-        this.token = x["token"];
+        this.token = x;
         localStorage.setItem("token", this.token);
       })
     );
@@ -36,7 +35,7 @@ export class LoginService {
   getRoles() {
     let user = this.getUser();
     if(user) {
-      return user.roles;
+      return user.authorities.map((a: any) => a.authority);
     }
   }
 

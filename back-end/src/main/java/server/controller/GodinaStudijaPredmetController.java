@@ -18,7 +18,6 @@ import server.service.GodinaStudijaPredmetService;
 
 @Controller
 @RequestMapping("/api/godina-studija-predmet")
-@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"})
 public class GodinaStudijaPredmetController extends BaseController<GodinaStudijaPredmet, GodinaStudijaPredmetDTO, Long>{
 
 	@Autowired
@@ -33,18 +32,4 @@ public class GodinaStudijaPredmetController extends BaseController<GodinaStudija
 	public ResponseEntity<List<GodinaStudijaPredmetDTO>> getByGodinaStudija(@PathVariable Long id) {
 	    return ResponseEntity.ok(godinaStudijaPredmetService.findByGodinaStudijaId(id));
 	}
-	
-	@GetMapping
-    @PermitAll
-    public ResponseEntity<List<GodinaStudijaPredmetDTO>> findAll() {
-        return new ResponseEntity<>(godinaStudijaPredmetService.findAll(), HttpStatus.OK);
-    }
-    
-    @GetMapping("/{id}")
-    @PermitAll
-    public ResponseEntity<GodinaStudijaPredmetDTO> getOne(@PathVariable Long id) {
-        Optional<GodinaStudijaPredmetDTO> entity = godinaStudijaPredmetService.findById(id);
-        return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
-                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
 }

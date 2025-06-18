@@ -17,7 +17,6 @@ import server.service.BibliotekaKnjigaService;
 
 @Controller
 @RequestMapping("/api/biblioteka-knjiga")
-@Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"})
 public class BibliotekaKnjigaController extends BaseController<BibliotekaKnjiga, BibliotekaKnjigaDTO, Long> {
 
     @Autowired
@@ -32,18 +31,5 @@ public class BibliotekaKnjigaController extends BaseController<BibliotekaKnjiga,
 	public ResponseEntity<List<BibliotekaKnjigaDTO>> getByBibliotekaId(@PathVariable Long id) {
 	    return ResponseEntity.ok(bibliotekaKnjigaService.findByBibliotekaId(id));
 	}
-	
-	@GetMapping
-    @PermitAll
-    public ResponseEntity<List<BibliotekaKnjigaDTO>> findAll() {
-        return new ResponseEntity<>(bibliotekaKnjigaService.findAll(), HttpStatus.OK);
-    }
-    
-    @GetMapping("/{id}")
-    @PermitAll
-    public ResponseEntity<BibliotekaKnjigaDTO> getOne(@PathVariable Long id) {
-        Optional<BibliotekaKnjigaDTO> entity = bibliotekaKnjigaService.findById(id);
-        return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
-                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+
 }

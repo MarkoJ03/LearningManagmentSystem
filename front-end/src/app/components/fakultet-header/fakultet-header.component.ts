@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { Fakultet } from '../../models/Fakultet';
 import { OnHoverDisplayDirective } from '../../../directives/on-hover-display.directive';

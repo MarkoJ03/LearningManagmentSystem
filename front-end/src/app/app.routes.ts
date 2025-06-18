@@ -138,35 +138,32 @@ import { EnastavnikPredmetDetaljiComponent } from './components/enastavnik/enast
 
 
 export const routes: Routes = [
-    {
-        path: 'es',
-        component: UserHeaderComponent,
-        data: {requiredRoles: ["ROLE_ADMIN"]},
-        canActivate: [authGuard]
-    },
-    { path: 'ishod-predmeta', component: IshodiPredmetaComponent },
-  { path: 'ishod-predmeta/dodaj', component: IshodPredmetaFormaComponent }, 
-  { path: 'ishod-predmeta/izmeni/:id', component: IshodPredmetaFormaComponent }, 
-  { path: 'ishod-predmeta/:id', component: IshodPredmetaComponent },
+    // {
+    //     path: 'es',
+    //     component: UserHeaderComponent,
+    //     data: {requiredRoles: ["ROLE_ADMIN"]},
+    //     canActivate: [authGuard]
+    // },
+    { path: 'ishod-predmeta', component: IshodiPredmetaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+  { path: 'ishod-predmeta/dodaj', component: IshodPredmetaFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]}, 
+  { path: 'ishod-predmeta/izmeni/:id', component: IshodPredmetaFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]}, 
+  { path: 'ishod-predmeta/:id', component: IshodPredmetaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
 
-{ path: 'studenti', component: StudentiComponent },
-  { path: 'studenti/dodaj', component: StudentFormaComponent },
-  { path: 'studenti/:id', component: StudentComponent },
-  { path: 'studenti/izmeni/:id', component: StudentFormaComponent },
+{ path: 'studenti', component: StudentiComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+  { path: 'studenti/dodaj', component: StudentFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+  { path: 'studenti/izmeni/:id', component: StudentFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+  { path: 'studenti/:id', component: StudentComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
 
 
-{ path: 'osoblje', component: OsobljaComponent },
-  { path: 'osoblje/dodaj', component: OsobljeFormaComponent },
-  { path: 'osoblje/izmeni/:id', component: OsobljeFormaComponent },
-  { path: 'osoblje/:id', component: OsobljeComponent },
+{ path: 'osoblje', component: OsobljaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+  { path: 'osoblje/dodaj', component: OsobljeFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+  { path: 'osoblje/izmeni/:id', component: OsobljeFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+  { path: 'osoblje/:id', component: OsobljeComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
 
-    { path: 'bibliotekaForma', component: BibliotekaFormaComponent },
 
-    { path: 'biblioteke', component: BibliotekeComponent },
 
-    { path: 'biblioteke/izmeni/:id', component: BibliotekaFormaComponent },
 
-    { path: 'student/:id', component: StudentSelectionComponent },
+    { path: 'student/:id', component: StudentSelectionComponent, data: {requiredRoles: ["ROLE_STUDENT"]}, canActivate: [authGuard] },
 
       {
         path:'',
@@ -176,7 +173,7 @@ export const routes: Routes = [
      { path: 'fakultet/:id', component: FakultetLayoutComponent },
      { path: 'departman/:id', component: DepartmanLayoutComponent },
      { path: 'katedra/:id', component: KatedraLayoutComponent },
-     { path: 'studijskiProgram/:id', component: StudijskiProgramLayoutComponent },
+     { path: 'studijski-program/:id', component: StudijskiProgramLayoutComponent },
      { path: 'predmet/:id', component: PredmetLayoutComponent },
      { path: 'objava/:id', component: ObjavaDetaljiComponent },
          {
@@ -187,80 +184,80 @@ export const routes: Routes = [
       },
 
 
-    { path: 'tipovi-zvanja', component: TipoviZvanjaComponent},
-    { path: 'tipovi-zvanja/forma', component: TipZvanjaFormaComponent},
-    { path: 'tipovi-zvanja/forma/:id', component: TipZvanjaFormaComponent},
-    { path: 'tipovi-zvanja/:id', component: TipZvanjaComponent},
+    { path: 'tipovi-zvanja', component: TipoviZvanjaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'tipovi-zvanja/forma', component: TipZvanjaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'tipovi-zvanja/forma/:id', component: TipZvanjaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'tipovi-zvanja/:id', component: TipZvanjaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
 
-    { path: 'tipovi-evaluacije', component: TipoviEvaluacijeComponent},
-    { path: 'tipovi-evaluacije/forma', component: TipEvaluacijeFormaComponent},
-    { path: 'tipovi-evaluacije/forma/:id', component: TipEvaluacijeFormaComponent},
-    { path: 'tipovi-evaluacije/:id', component: TipEvaluacijeComponent},
+    { path: 'tipovi-evaluacije', component: TipoviEvaluacijeComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'tipovi-evaluacije/forma', component: TipEvaluacijeFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'tipovi-evaluacije/forma/:id', component: TipEvaluacijeFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'tipovi-evaluacije/:id', component: TipEvaluacijeComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
 
-    { path: 'univerziteti', component: UniverzitetiComponent},
-    { path: 'univerziteti/forma', component: UniverzitetFormaComponent},
-    { path: 'univerziteti/forma/:id', component: UniverzitetFormaComponent},
-    { path: 'univerziteti/:id', component: UniverzitetComponent},
+    { path: 'univerziteti', component: UniverzitetiComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
+    { path: 'univerziteti/forma', component: UniverzitetFormaComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
+    { path: 'univerziteti/forma/:id', component: UniverzitetFormaComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
+    { path: 'univerziteti/:id', component: UniverzitetComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
 
-    { path: 'fakulteti', component: FakultetiComponent},
-    { path: 'fakulteti/forma', component: FakultetFormaComponent},
-    { path: 'fakulteti/forma/:id', component: FakultetFormaComponent},
-    { path: 'fakulteti/:id', component: FakultetComponent},
+    { path: 'fakulteti', component: FakultetiComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
+    { path: 'fakulteti/forma', component: FakultetFormaComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
+    { path: 'fakulteti/forma/:id', component: FakultetFormaComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
+    { path: 'fakulteti/:id', component: FakultetComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
 
-    { path: 'katedre', component: KatedreComponent},
-    { path: 'katedre/forma', component: KatedraFormaComponent},
-    { path: 'katedre/forma/:id', component: KatedraFormaComponent},
-    { path: 'katedre/:id', component: KatedraComponent},
+    { path: 'katedre', component: KatedreComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+    { path: 'katedre/forma', component: KatedraFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+    { path: 'katedre/forma/:id', component: KatedraFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+    { path: 'katedre/:id', component: KatedraComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
 
-    { path: 'predmeti', component: PredmetiComponent},
-    { path: 'predmeti/forma', component: PredmetFormaComponent},
-    { path: 'predmeti/forma/:id', component: PredmetFormaComponent},
-    { path: 'predmeti/:id', component: PredmetComponent},
+    { path: 'predmeti', component: PredmetiComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'predmeti/forma', component: PredmetFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'predmeti/forma/:id', component: PredmetFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'predmeti/:id', component: PredmetComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
 
-    { path: 'obavestenja', component: ObavestenjaComponent},
-    { path: 'obavestenja/forma', component: ObavestenjeFormaComponent},
-    { path: 'obavestenja/forma/:id', component: ObavestenjeFormaComponent},
-    { path: 'obavestenja/:id', component: ObavestenjeComponent},
+    { path: 'obavestenja', component: ObavestenjaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'obavestenja/forma', component: ObavestenjeFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'obavestenja/forma/:id', component: ObavestenjeFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'obavestenja/:id', component: ObavestenjeComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
 
-    { path: 'korisnici', component: KorisniciComponent},
-    { path: 'korisnici/forma', component: KorisnikFormaComponent},
-    { path: 'korisnici/forma/:id', component: KorisnikFormaComponent},
-    { path: 'korisnici/:id', component: KorisnikComponent},
+    { path: 'korisnici', component: KorisniciComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'korisnici/forma', component: KorisnikFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+    { path: 'korisnici/forma/:id', component: KorisnikFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+    { path: 'korisnici/:id', component: KorisnikComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
 
-    { path: 'naucne-oblasti', component: NaucneOblastiComponent},
-    { path: 'naucne-oblasti/forma', component: NaucnaOblastFormaComponent},
-    { path: 'naucne-oblasti/forma/:id', component: NaucnaOblastFormaComponent},
-    { path: 'naucne-oblasti/:id', component: NaucnaOblastComponent},
+    { path: 'naucne-oblasti', component: NaucneOblastiComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'naucne-oblasti/forma', component: NaucnaOblastFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'naucne-oblasti/forma/:id', component: NaucnaOblastFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'naucne-oblasti/:id', component: NaucnaOblastComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
 
-    { path: 'termini-nastave', component: TerminiNastaveComponent},
-    { path: 'termini-nastave/forma', component: TerminNastaveFormaComponent},
-    { path: 'termini-nastave/forma/:id', component: TerminNastaveFormaComponent},
-    { path: 'termini-nastave/:id', component: TerminNastaveComponent},
+    { path: 'termini-nastave', component: TerminiNastaveComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'termini-nastave/forma', component: TerminNastaveFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'termini-nastave/forma/:id', component: TerminNastaveFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'termini-nastave/:id', component: TerminNastaveComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
 
-    { path: 'zvanja', component: ZvanjaComponent},
-    { path: 'zvanja/forma', component: ZvanjeFormaComponent},
-    { path: 'zvanja/forma/:id', component: ZvanjeFormaComponent},
-    { path: 'zvanja/:id', component: ZvanjeComponent},
+    { path: 'zvanja', component: ZvanjaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'zvanja/forma', component: ZvanjeFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'zvanja/forma/:id', component: ZvanjeFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'zvanja/:id', component: ZvanjeComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
 
-    { path: 'realizacije-predmeta', component: RealizacijePredmetaComponent},
-    { path: 'realizacije-predmeta/forma', component: RealizacijaPredmetaFormaComponent},
-    { path: 'realizacije-predmeta/forma/:id', component: RealizacijaPredmetaFormaComponent},
-    { path: 'realizacije-predmeta/:id', component: RealizacijaPredmetaComponent},
+    { path: 'realizacije-predmeta', component: RealizacijePredmetaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'realizacije-predmeta/forma', component: RealizacijaPredmetaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'realizacije-predmeta/forma/:id', component: RealizacijaPredmetaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'realizacije-predmeta/:id', component: RealizacijaPredmetaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
 
-    { path: 'ishodi-evaluacija', component: IshodiEvaluacijaComponent},
-    { path: 'ishodi-evaluacija/forma', component: IshodEvaluacijeFormaComponent},
-    { path: 'ishodi-evaluacija/forma/:id', component: IshodEvaluacijeFormaComponent},
-    { path: 'ishodi-evaluacija/:id', component: IshodEvaluacijeComponent},
+    { path: 'ishodi-evaluacija', component: IshodiEvaluacijaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'ishodi-evaluacija/forma', component: IshodEvaluacijeFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'ishodi-evaluacija/forma/:id', component: IshodEvaluacijeFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'ishodi-evaluacija/:id', component: IshodEvaluacijeComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
 
-    { path: 'evaluacije-znanja', component: EvaluacijeZnanjaComponent},
-    { path: 'evaluacije-znanja/forma', component: EvaluacijaZnanjaFormaComponent},
-    { path: 'evaluacije-znanja/forma/:id', component: EvaluacijaZnanjaFormaComponent},
-    { path: 'evaluacije-znanja/:id', component: EvaluacijaZnanjaComponent},
+    { path: 'evaluacije-znanja', component: EvaluacijeZnanjaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'evaluacije-znanja/forma', component: EvaluacijaZnanjaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'evaluacije-znanja/forma/:id', component: EvaluacijaZnanjaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'evaluacije-znanja/:id', component: EvaluacijaZnanjaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
 
-    { path: 'nastavnici', component: NastavniciComponent},
-    { path: 'nastavnici/forma', component: NastavnikFormaComponent},    
-    { path: 'nastavnici/forma/:id', component: NastavnikFormaComponent},    
-    { path: 'nastavnici/:id', component: NastavnikComponent},
+    { path: 'nastavnici', component: NastavniciComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+    { path: 'nastavnici/forma', component: NastavnikFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},    
+    { path: 'nastavnici/forma/:id', component: NastavnikFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},    
+    { path: 'nastavnici/:id', component: NastavnikComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
 
      { path: 'fakultet/:id', component: FakultetLayoutComponent },
 
@@ -271,91 +268,79 @@ export const routes: Routes = [
     { path: 'studijskiProgram/:id', component: StudijskiProgramLayoutComponent },
 
     { path: 'predmet/:id', component: PredmetLayoutComponent },
+
+
     { path: 'knjige', component: KnjigeComponent },
-  { path: 'knjige/dodaj', component: KnjigaFormaComponent },
-  { path: 'knjige/izmeni/:id', component: KnjigaFormaComponent },
+  { path: 'knjige/dodaj', component: KnjigaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+  { path: 'knjige/izmeni/:id', component: KnjigaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
 
    { path: 'objave', component: ObjaveComponent },
-  { path: 'objave/dodaj', component: ObjavaFormaComponent },
-  { path: 'objave/izmeni/:id', component: ObjavaFormaComponent },
+  { path: 'objave/dodaj', component: ObjavaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+  { path: 'objave/izmeni/:id', component: ObjavaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
 
   
   { path: 'student-na-godini', component: StudentiNaGodiniComponent },
-{ path: 'student-na-godini/dodaj', component: StudentNaGodiniFormaComponent },
-{ path: 'student-na-godini/izmeni/:id', component: StudentNaGodiniFormaComponent },
-{
-  path: 'studijski-programi',
-  component: StudijskiProgramiComponent
-},
-{
-  path: 'studijski-programi/dodaj',
-  component: StudijskiProgramFormaComponent
-},
-{
-  path: 'studijski-programi/izmeni/:id',
-  component: StudijskiProgramFormaComponent
-},
-{
-  path: 'studijski-programi/:id',
-  component: StudijskiProgramComponent
-},{ path: 'tip-programa', component: TipoviProgramaComponent },
-{ path: 'tip-programa/dodaj', component: TipProgramaFormaComponent },
-{ path: 'tip-programa/izmeni/:id', component: TipProgramaFormaComponent },
+{ path: 'student-na-godini/dodaj', component: StudentNaGodiniFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'student-na-godini/izmeni/:id', component: StudentNaGodiniFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
 
-{ path: 'studentske-sluzbe', component: StudentskeSluzbeComponent },
-{ path: 'studentske-sluzbe/dodaj', component: StudentskaSluzbaFormaComponent },
-{ path: 'studentske-sluzbe/izmeni/:id', component: StudentskaSluzbaFormaComponent },
-{ path: 'studentske-sluzbe/:id', component: StudentskaSluzbaComponent },
+{path: 'studijski-programi',component: StudijskiProgramiComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+{path: 'studijski-programi/dodaj',component: StudijskiProgramFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+{path: 'studijski-programi/izmeni/:id',component: StudijskiProgramFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+{path: 'studijski-programi/:id',component: StudijskiProgramComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+
+{ path: 'tip-programa', component: TipoviProgramaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'tip-programa/dodaj', component: TipProgramaFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+{ path: 'tip-programa/izmeni/:id', component: TipProgramaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+
+{ path: 'studentske-sluzbe', component: StudentskeSluzbeComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'studentske-sluzbe/dodaj', component: StudentskaSluzbaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'studentske-sluzbe/izmeni/:id', component: StudentskaSluzbaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'studentske-sluzbe/:id', component: StudentskaSluzbaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
 
 
-{ path: 'inventari', component: InventariComponent },
-{ path: 'inventari/dodaj', component: InventarFormaComponent },
-{ path: 'inventari/izmeni/:id', component: InventarFormaComponent },
-{ path: 'inventari/:id', component: InventarComponent },
+{ path: 'inventari', component: InventariComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'inventari/dodaj', component: InventarFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'inventari/izmeni/:id', component: InventarFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'inventari/:id', component: InventarComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
 
 
-{ path: 'godine-studija', component: GodineStudijaComponent },
-{ path: 'godine-studija/dodaj', component: GodinaStudijaFormaComponent },
-{ path: 'godine-studija/izmeni/:id', component: GodinaStudijaFormaComponent },
-{ path: 'godine-studija/:id', component: GodinaStudijaComponent },
+{ path: 'godine-studija', component: GodineStudijaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'godine-studija/dodaj', component: GodinaStudijaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'godine-studija/izmeni/:id', component: GodinaStudijaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'godine-studija/:id', component: GodinaStudijaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
 
 
 
-{ path: 'kalendar', component: KalendariComponent },
-{ path: 'kalendar/dodaj', component: KalendarFormaComponent },
-{ path: 'kalendar/izmeni/:id', component: KalendarFormaComponent },
-{ path: 'kalendar/:id', component: KalendarComponent },
+{ path: 'kalendar', component: KalendariComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'kalendar/dodaj', component: KalendarFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'kalendar/izmeni/:id', component: KalendarFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'kalendar/:id', component: KalendarComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
 
 
-{ path: 'sv-obrasci', component: SvObrasciComponent },
-  { path: 'sv-obrazac/dodaj', component: SvObrazacFormaComponent },
-  { path: 'sv-obrazac/izmeni/:id', component: SvObrazacFormaComponent },
-  { path: 'sv-obrazac/:id', component: SvObrazacComponent },
+{ path: 'sv-obrasci', component: SvObrasciComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+  { path: 'sv-obrazac/dodaj', component: SvObrazacFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_STUDENT"]}, canActivate: [authGuard] },
+  { path: 'sv-obrazac/izmeni/:id', component: SvObrazacFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_STUDENT"]}, canActivate: [authGuard]},
+  { path: 'sv-obrazac/:id', component: SvObrazacComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
 
-        { path: 'biblioteke', component: BibliotekeComponent },
-        { path: 'biblioteke/dodaj', component: BibliotekaFormaComponent },
+      { path: 'biblioteke', component: BibliotekeComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+      { path: 'biblioteke/dodaj', component: BibliotekaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+      { path: 'biblioteke/izmeni/:id', component: BibliotekaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
 
-//       { path: 'EvaluacijaZnanja', component: EvaluacijeZnanjaComponent },         
-// { path: 'EvaluacijaZnanja/dodaj', component: EvaluacijaZnanjaFormaComponent },
-// { path: 'EvaluacijaZnanja/:id', component: EvaluacijaZnanjaComponent },     
-// { path: 'EvaluacijaZnanja/izmeni/:id', component: EvaluacijaZnanjaFormaComponent },     
+  {path: 'grupeStudenata' , component: GrupeStudenataComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+      { path: 'grupeStudenata/dodaj', component: GrupaStudenataFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'grupeStudenata/izmeni/:id', component: GrupaStudenataFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
 
-{path: 'grupeStudenata' , component: GrupeStudenataComponent},
-      { path: 'grupeStudenata/dodaj', component: GrupaStudenataFormaComponent },
-{ path: 'grupeStudenata/izmeni/:id', component: GrupaStudenataFormaComponent },
-
-    { path: 'departmaniForma', component: DepartmanFormaComponent },
+    { path: 'departmaniForma', component: DepartmanFormaComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard] },
     
 
-        { path: 'departmani', component: DepartmaniComponent},
+        { path: 'departmani', component: DepartmaniComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+        { path: 'departmani/izmeni/:id', component: DepartmanFormaComponent , data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
+ 
+        { path: 'adrese', component: AdreseComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+ { path: 'adrese/:id', component: AdresaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+ { path: 'adrese/izmeni/:id', component: AdresaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+ { path: 'adreseForma', component: AdresaFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
 
-        { path: 'departmani/izmeni/:id', component: DepartmanFormaComponent },
- { path: 'adrese', component: AdreseComponent },
- { path: 'adrese/:id', component: AdresaComponent },
- { path: 'adrese/izmeni/:id', component: AdresaFormaComponent },
- { path: 'adreseForma', component: AdresaFormaComponent },
-
-    { path: 'biblioteke/izmeni/:id', component: BibliotekaFormaComponent },
 
       { path: 'student/:id', component: StudentiComponent },
 
@@ -378,7 +363,7 @@ export const routes: Routes = [
 
       { path: '', redirectTo: 'objave', pathMatch: 'full' }
 
-    ]
+    ], data: {requiredRoles: ["ROLE_STUDENT"]}, canActivate: [authGuard]
   },
 
   {
@@ -406,7 +391,7 @@ export const routes: Routes = [
     { path: 'studenti', component: EnastavnikStudentiComponent },
 
     { path: '', redirectTo: 'objave', pathMatch: 'full' }
-  ]
+  ], data: {requiredRoles: ["ROLE_NASTAVNIK"]}, canActivate: [authGuard]
 }
   
 ];
