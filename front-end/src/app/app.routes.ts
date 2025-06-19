@@ -181,7 +181,7 @@ export const routes: Routes = [
      { path: 'fakultet/:id', component: FakultetLayoutComponent },
      { path: 'departman/:id', component: DepartmanLayoutComponent },
      { path: 'katedra/:id', component: KatedraLayoutComponent },
-     { path: 'studijski-program/:id', component: StudijskiProgramLayoutComponent },
+     { path: 'studijskiProgram/:id', component: StudijskiProgramLayoutComponent },
      { path: 'predmet/:id', component: PredmetLayoutComponent },
      { path: 'objava/:id', component: ObjavaDetaljiComponent },
      { path: 'predmet/:id/silabus', component: SilabusLayoutComponent },
