@@ -1,4 +1,4 @@
-<h2>Moji Predmeti</h2>
+<!-- <h2>Moji Predmeti</h2>
 
 @if (predmeti.length === 0) {
   <p>Nema predmeta za prikaz.</p>
@@ -23,4 +23,33 @@
       </div>
     }
   </div>
-}
+} -->
+
+<h2>Moji Predmeti</h2>
+
+<div *ngIf="loading">Učitavanje predmeta...</div>
+
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<div *ngIf="!loading && !error && predmeti.length === 0">
+  <p>Nema predmeta za prikaz.</p>
+</div>
+
+<div *ngIf="!loading && !error && predmeti.length > 0" class="predmeti-container">
+  <div *ngFor="let predmet of predmeti; trackBy: trackByPredmetId" class="predmet-kartica">
+    <h3>{{ predmet.naziv }}</h3>
+    <p><strong>ESPB:</strong> {{ predmet.esbp }}</p>
+    <p>{{ predmet.opis }}</p>
+
+    <div class="linkovi">
+      <a *ngIf="predmet.dokumentiPredmeta?.silabus" target="_blank"
+         [href]="'/uploads/' + predmet.dokumentiPredmeta?.silabus">
+         Silabus
+      </a>
+      <a *ngIf="predmet.dokumentiPredmeta?.akreditacija" target="_blank"
+         [href]="'/uploads/' + predmet.dokumentiPredmeta?.akreditacija">
+         Akreditacija
+      </a>
+    </div>
+  </div>
+</div>

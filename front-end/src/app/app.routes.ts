@@ -311,10 +311,10 @@ export const routes: Routes = [
 
 
 
-{ path: 'kalendar', component: KalendariComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
-{ path: 'kalendar/dodaj', component: KalendarFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
-{ path: 'kalendar/izmeni/:id', component: KalendarFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
-{ path: 'kalendar/:id', component: KalendarComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+{ path: 'kalendar', component: KalendariComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard] },
+{ path: 'kalendar/dodaj', component: KalendarFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard] },
+{ path: 'kalendar/izmeni/:id', component: KalendarFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard] },
+{ path: 'kalendar/:id', component: KalendarComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard] },
 
 
 { path: 'sv-obrasci', component: SvObrasciComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },

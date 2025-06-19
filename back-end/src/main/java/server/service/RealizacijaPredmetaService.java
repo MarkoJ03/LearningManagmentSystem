@@ -163,8 +163,8 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 		}
 		
 		List<PredmetRealizacijePredmeta> updatedLinks = new ArrayList<>();
-	    if (dto.getPredmet() != null) {
-	        for (PredmetRealizacijePredmetaDTO prpDTO : dto.getPredmet()) {
+	    if (dto.getPredmeti() != null) {
+	        for (PredmetRealizacijePredmetaDTO prpDTO : dto.getPredmeti()) {
 	            if (prpDTO.getPredmet() != null && prpDTO.getPredmet().getId() != null) {
 	                Optional<Predmet> optPredmet = predmetRepository.findById(prpDTO.getPredmet().getId());
 	                if (optPredmet.isPresent()) {

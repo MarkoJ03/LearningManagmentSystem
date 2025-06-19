@@ -54,7 +54,7 @@ public class KorisnikService extends BaseService<Korisnik, KorisnikDTO, Long>{
  
   
   @Override
-  protected KorisnikDTO convertToDTO(Korisnik entity) {
+  public KorisnikDTO convertToDTO(Korisnik entity) {
       Set<DodeljenoPravoPristupaDTO> pravaDTO = new HashSet<>();
       if (entity.getDodeljenaPravaPristupa() != null) {
           for (DodeljenoPravoPristupa pravo : entity.getDodeljenaPravaPristupa()) {

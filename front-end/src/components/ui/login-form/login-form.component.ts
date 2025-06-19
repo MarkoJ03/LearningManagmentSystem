@@ -18,18 +18,32 @@ export class LoginFormComponent {
   public constructor(
     private loginService: LoginService,
     private router: Router
-  
-  ){}
+
+  ) { }
 
   login() {
-    if(this.forma.valid) {
+    if (this.forma.valid) {
       this.loginService.login({
-        "email": this.forma.value.email,
-        "lozinka": this.forma.value.lozinka
-      }).subscribe(r => {
-        console.log(this.loginService.getUser());
-        console.log(this.loginService.getRoles());
-        this.router.navigate(['/']);
+        email: this.forma.value.email,
+        lozinka: this.forma.value.lozinka
+      }).subscribe(() => {
+        const user = this.loginService.getUser();
+        const roles = this.loginService.getRoles();
+        const email = user.sub;
+
+        if (roles.includes("ROLE_NASTAVNIK")) {
+          this.loginService.getUserByEmail(email).subscribe(fullUser => {
+            const id = fullUser.id;
+            this.router.navigate([`/nastavnik/${id}/enastavnik`]);
+          });
+        } else if (roles.includes("ROLE_STUDENT")) {
+          this.loginService.getUserByEmail(email).subscribe(fullUser => {
+            const id = fullUser.id;
+            this.router.navigate([`/studentNaGodini/${id}/estudent`]);
+          });
+        } else {
+          this.router.navigate(['/']);
+        }
       });
     }
   }

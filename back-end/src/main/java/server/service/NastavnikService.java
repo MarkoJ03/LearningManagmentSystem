@@ -23,6 +23,7 @@ import server.DTOs.KorisnikDTO;
 import server.DTOs.NastavnikDTO;
 import server.DTOs.ObavestenjeDTO;
 import server.DTOs.PredmetDTO;
+import server.DTOs.PredmetRealizacijePredmetaDTO;
 import server.DTOs.RealizacijaPredmetaDTO;
 import server.DTOs.StudijskiProgramDTO;
 import server.DTOs.ZvanjeDTO;
@@ -78,11 +79,9 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 	@Autowired
 	@Lazy
 	private EvaluacijaZnanjaService evaluacijaZnanjaService;
-	
+
 	@Autowired
 	private ZvanjeRepository zvanjeRepository;
-//	@Autowired 
-//	private DodeljenoPravoPristupaRepository dodeljenoPravoPristupaRepository;
 	@Autowired
 	private DepartmanNastavnikRepository departmanNastavnikRepository;
 	@Autowired
@@ -99,7 +98,7 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 	private EvaluacijaZnanjaRepository evaluacijaZnanjaRepository;
 	@Autowired
 	private KorisnikRepository korisnikRepository;
-	
+
 	@Override
 	protected CrudRepository<Nastavnik, Long> getRepository() {
 		return nastavnikRepository;
@@ -107,13 +106,7 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 
 	@Override
 	protected NastavnikDTO convertToDTO(Nastavnik entity) {
-//		Set<DodeljenoPravoPristupaDTO> dodeljenaPravaPristupa = new HashSet<>();
-//		
-//		for(DodeljenoPravoPristupa dpp: entity.getKorisnik().getDodeljenaPravaPristupa()) {
-//			DodeljenoPravoPristupaDTO dppDTO = dodeljenoPravoPrisupaService.convertToDTO(dpp);
-//			dodeljenaPravaPristupa.add(dppDTO);
-//		}
-
+		
 		KorisnikDTO korisnik = new KorisnikDTO(entity.getKorisnik().getId(), entity.getKorisnik().getEmail(), null, null,entity.getKorisnik().getVidljiv());
 
 		ArrayList<ZvanjeDTO> zvanja = new ArrayList<>();
@@ -122,18 +115,6 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 			ZvanjeDTO zDTO = zvanjeService.convertToDTO(z);
 			zvanja.add(zDTO);
 		}
-
-
-//		ArrayList<DepartmanNastavnikDTO> departmaniNastavnici = new ArrayList<>();
-//        for (DepartmanNastavnik dn : entity.getDepartmani()) {
-//            DepartmanNastavnikDTO dnDTO = new DepartmanNastavnikDTO(
-//                dn.getId(),
-//                dn.getDepartman() != null ? new DepartmanDTO(dn.getDepartman().getId(), dn.getDepartman().getNaziv(), null, null, null, null, null, null) : null,
-//                null,
-//                dn.getVidljiv()
-//            );
-//            departmaniNastavnici.add(dnDTO);
-//        }
 		
 		List<DepartmanNastavnikDTO> departmaniNastavniciDTO = entity.getDepartmani() != null ? // <--- Use the correct getter for the join entity
 	            entity.getDepartmani().stream()
@@ -147,19 +128,6 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 	                .collect(Collectors.toList()) :
 	            new ArrayList<>();
 		
-		// findByNastavnikId??
-
-//        ArrayList<KatedraNastavnikDTO> katedreNastavnici = new ArrayList<>();
-//        for (KatedraNastavnik kn : entity.getKatedre()) {
-//            KatedraNastavnikDTO knDTO = new KatedraNastavnikDTO(
-//                kn.getId(),
-//                kn.getKatedra() != null ? new KatedraDTO(kn.getKatedra().getId(), kn.getKatedra().getNaziv(), null, null, null, null, null, kn.getKatedra().getVidljiv()) : null,
-//                null,
-//                kn.getVidljiv()
-//            );
-//            katedreNastavnici.add(knDTO);
-//        }
-		
 		List<KatedraNastavnikDTO> katedreNastavniciDTO = entity.getKatedre() != null ? 
 	            entity.getKatedre().stream()
 	                .map(kn -> {
@@ -172,19 +140,37 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 	                .collect(Collectors.toList()) :
 	            new ArrayList<>();
 		
-		
-		//findByNastavnikId??
-		
+
 		ArrayList<RealizacijaPredmetaDTO> realizacijePredmeta = new ArrayList<>();
 
         for (RealizacijaPredmeta rp : entity.getRealizacijePredmeta()) {
-            RealizacijaPredmetaDTO rpDTO = new RealizacijaPredmetaDTO(
+            
+        	List<PredmetRealizacijePredmetaDTO> predmetiDTO = null;
+
+        	if (rp.getPredmeti() != null) {
+        	    predmetiDTO = rp.getPredmeti().stream()
+        	        .map(prp -> {
+        	            PredmetDTO predmetDTO = new PredmetDTO();
+        	            predmetDTO.setId(prp.getPredmet().getId());
+        	            predmetDTO.setNaziv(prp.getPredmet().getNaziv());
+        	            predmetDTO.setEsbp(prp.getPredmet().getEsbp());        	            
+        	            predmetDTO.setVidljiv(prp.getPredmet().getVidljiv());
+
+        	            return new PredmetRealizacijePredmetaDTO(
+        	                prp.getId(),
+        	                predmetDTO,
+        	                null,            
+        	                prp.getVidljiv()
+        	            );
+        	        })
+        	        .collect(Collectors.toList());
+        	}
+
+        	RealizacijaPredmetaDTO rpDTO = new RealizacijaPredmetaDTO(
                 rp.getId(),
                 rp.getNastavnik() != null ? new NastavnikDTO(rp.getNastavnik().getId(), null, null, null, null, null, null, null, null, null, null, rp.getNastavnik().getVidljiv()) : null,
-//                null,
                 null,
-                //rp.getPredmet() != null ? new getPredmetRealizacijePredmetaDTO(rp.getPredmet().getId(), null, null, rp.getPredmet().getVidljiv()) : null,
-                null,
+                predmetiDTO,
                 null,
                 null,
                 rp.getVidljiv()
@@ -237,16 +223,14 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 		nastavnik.setPrezime(dto.getPrezime());
 		nastavnik.setJmbg(dto.getJmbg());
 		nastavnik.setVidljiv(dto.getVidljiv());
-		
 
 		if (dto.getKorisnik() != null && dto.getKorisnik().getId() != null) {
-            Korisnik existingKorisnik = korisnikRepository.findById(dto.getKorisnik().getId())
-                .orElseThrow(() -> new RuntimeException("Korisnik with ID " + dto.getKorisnik().getId() + " not found."));
-            nastavnik.setKorisnik(existingKorisnik);
-        } else {
-            throw new IllegalArgumentException("Korisnik information (ID) is missing for Nastavnik.");
-        }
-		
+			Korisnik existingKorisnik = korisnikRepository.findById(dto.getKorisnik().getId()).orElseThrow(
+					() -> new RuntimeException("Korisnik with ID " + dto.getKorisnik().getId() + " not found."));
+			nastavnik.setKorisnik(existingKorisnik);
+		} else {
+			throw new IllegalArgumentException("Korisnik information (ID) is missing for Nastavnik.");
+		}
 
 		ArrayList<Zvanje> zvanja = new ArrayList<>();
 
@@ -254,8 +238,8 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 			for (ZvanjeDTO zDto : dto.getZvanja()) {
 				if (zDto.getId() != null) {
 
-					Zvanje existingZvanje = zvanjeService.getRepository().findById(zDto.getId())
-							.orElseThrow(() -> new RuntimeException("Studijski program not found with id " + zDto.getId()));
+					Zvanje existingZvanje = zvanjeService.getRepository().findById(zDto.getId()).orElseThrow(
+							() -> new RuntimeException("Studijski program not found with id " + zDto.getId()));
 
 					existingZvanje.setNastavnik(nastavnik);
 
@@ -272,8 +256,9 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 			for (RealizacijaPredmetaDTO rDto : dto.getRealizacijePredmeta()) {
 				if (rDto.getId() != null) {
 
-					RealizacijaPredmeta existingRealizacija = realizacijaPredmetaService.getRepository().findById(rDto.getId())
-							.orElseThrow(() -> new RuntimeException("Studijski program not found with id " + rDto.getId()));
+					RealizacijaPredmeta existingRealizacija = realizacijaPredmetaService.getRepository()
+							.findById(rDto.getId()).orElseThrow(
+									() -> new RuntimeException("Studijski program not found with id " + rDto.getId()));
 
 					existingRealizacija.setNastavnik(nastavnik);
 
@@ -291,7 +276,8 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 				if (oDto.getId() != null) {
 
 					Obavestenje existingObavestenje = obavestenjeService.getRepository().findById(oDto.getId())
-							.orElseThrow(() -> new RuntimeException("Studijski program not found with id " + oDto.getId()));
+							.orElseThrow(
+									() -> new RuntimeException("Studijski program not found with id " + oDto.getId()));
 
 					existingObavestenje.setNastavnik(nastavnik);
 
@@ -309,7 +295,8 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 				if (eDto.getId() != null) {
 
 					EvaluacijaZnanja existingEvaluacija = evaluacijaZnanjaService.getRepository().findById(eDto.getId())
-							.orElseThrow(() -> new RuntimeException("Evaluacija znanja not found with id " + eDto.getId()));
+							.orElseThrow(
+									() -> new RuntimeException("Evaluacija znanja not found with id " + eDto.getId()));
 
 					existingEvaluacija.setNastavnik(nastavnik);
 
@@ -319,7 +306,7 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 		}
 
 		nastavnik.setEvaluacijeZnanja(evaluacijeZnanja);
-		
+
 		return nastavnik;
 	}
 
@@ -329,108 +316,104 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 		entity.getPrezime();
 		entity.getJmbg();
 		entity.getVidljiv();
-		
+
 		if (dto.getKorisnik() != null && dto.getKorisnik().getId() != null) {
-		    Korisnik existingKorisnik = korisnikRepository.findById(dto.getKorisnik().getId()) 
-		        .orElseThrow(() -> new RuntimeException("Korisnik with ID " + dto.getKorisnik().getId() + " not found."));
-		    entity.setKorisnik(existingKorisnik);
+			Korisnik existingKorisnik = korisnikRepository.findById(dto.getKorisnik().getId()).orElseThrow(
+					() -> new RuntimeException("Korisnik with ID " + dto.getKorisnik().getId() + " not found."));
+			entity.setKorisnik(existingKorisnik);
 		}
-		
+
 		List<Zvanje> updatedZvanja = new ArrayList<>();
-	    if (dto.getZvanja() != null) {
-	        for (ZvanjeDTO zDTO : dto.getZvanja()) {
-	            if (zDTO.getId() != null) {
-	                zvanjeRepository.findById(zDTO.getId())
-	                    .ifPresent(updatedZvanja::add);
-	            }
-	        }
-	    }
-	    entity.getZvanja().clear();
-	    for (Zvanje z : updatedZvanja) {
-	        z.setNastavnik(entity);
-	        entity.getZvanja().add(z);
-	    }
-	    
-	    List<RealizacijaPredmeta> updatedRealizacijaPredmeta = new ArrayList<>();
-	    if (dto.getRealizacijePredmeta() != null) {
-	        for (RealizacijaPredmetaDTO rDTO : dto.getRealizacijePredmeta()) {
-	            if (rDTO.getId() != null) {
-	                realizacijaPredmetaRepository.findById(rDTO.getId())
-	                    .ifPresent(updatedRealizacijaPredmeta::add);
-	            }
-	        }
-	    }
-	    entity.getRealizacijePredmeta().clear();
-	    for (RealizacijaPredmeta r: updatedRealizacijaPredmeta) {
-	        r.setNastavnik(entity);
-	        entity.getRealizacijePredmeta().add(r);
-	    }
-	    
-	    List<Obavestenje> updatedObavestenja = new ArrayList<>();
-	    if (dto.getObavestenja() != null) {
-	        for (ObavestenjeDTO oDTO : dto.getObavestenja()) {
-	            if (oDTO.getId() != null) {
-	                obavestenjeRepository.findById(oDTO.getId())
-	                    .ifPresent(updatedObavestenja::add);
-	            }
-	        }
-	    }
-	    entity.getObavestenja().clear();
-	    for (Obavestenje o : updatedObavestenja) {
-	        o.setNastavnik(entity);
-	        entity.getObavestenja().add(o);
-	    }
-	    
-	    List<EvaluacijaZnanja> updatedEvaluacije = new ArrayList<>();
-	    if (dto.getEvaluacijeZnanja() != null) {
-	        for (EvaluacijaZnanjaDTO eDTO : dto.getEvaluacijeZnanja()) {
-	            if (eDTO.getId() != null) {
-	                evaluacijaZnanjaRepository.findById(eDTO.getId())
-	                    .ifPresent(updatedEvaluacije::add);
-	            }
-	        }
-	    }
-	    entity.getEvaluacijeZnanja().clear();
-	    for (EvaluacijaZnanja e : updatedEvaluacije) {
-	        e.setNastavnik(entity);
-	        entity.getEvaluacijeZnanja().add(e);
-	    }
-	    
-	    List<KatedraNastavnik> updatedLinksK = new ArrayList<>();
-	    if (dto.getKatedre() != null) {
-	        for (KatedraNastavnikDTO knDTO : dto.getKatedre()) {
-	            if (knDTO.getKatedra() != null && knDTO.getKatedra().getId() != null) {
-	                Optional<Katedra> optKatedra = katedraRepository.findById(knDTO.getKatedra().getId());
-	                if (optKatedra.isPresent()) {
-	                    KatedraNastavnik kn = new KatedraNastavnik();
-	                    kn.setNastavnik(entity);
-	                    kn.setKatedra(optKatedra.get());
-	                    kn.setVidljiv(knDTO.getVidljiv() != null ? knDTO.getVidljiv() : true);
-	                    updatedLinksK.add(kn);
-	                }
-	            }
-	        }
-	    }
-	    entity.getKatedre().clear();
-	    entity.getKatedre().addAll(updatedLinksK);
-	    
-	    List<DepartmanNastavnik> updatedLinksD = new ArrayList<>();
-	    if (dto.getDepartmani() != null) {
-	        for (DepartmanNastavnikDTO dnDTO : dto.getDepartmani()) {
-	            if (dnDTO.getDepartman() != null && dnDTO.getDepartman().getId() != null) {
-	                Optional<Departman> optDepartman = departmanRepository.findById(dnDTO.getDepartman().getId());
-	                if (optDepartman.isPresent()) {
-	                    DepartmanNastavnik dn = new DepartmanNastavnik();
-	                    dn.setNastavnik(entity);
-	                    dn.setDepartman(optDepartman.get());
-	                    dn.setVidljiv(dnDTO.getVidljiv() != null ? dnDTO.getVidljiv() : true);
-	                    updatedLinksD.add(dn);
-	                }
-	            }
-	        }
-	    }
-	    entity.getDepartmani().clear();
-	    entity.getDepartmani().addAll(updatedLinksD);
+		if (dto.getZvanja() != null) {
+			for (ZvanjeDTO zDTO : dto.getZvanja()) {
+				if (zDTO.getId() != null) {
+					zvanjeRepository.findById(zDTO.getId()).ifPresent(updatedZvanja::add);
+				}
+			}
+		}
+		entity.getZvanja().clear();
+		for (Zvanje z : updatedZvanja) {
+			z.setNastavnik(entity);
+			entity.getZvanja().add(z);
+		}
+
+		List<RealizacijaPredmeta> updatedRealizacijaPredmeta = new ArrayList<>();
+		if (dto.getRealizacijePredmeta() != null) {
+			for (RealizacijaPredmetaDTO rDTO : dto.getRealizacijePredmeta()) {
+				if (rDTO.getId() != null) {
+					realizacijaPredmetaRepository.findById(rDTO.getId()).ifPresent(updatedRealizacijaPredmeta::add);
+				}
+			}
+		}
+		entity.getRealizacijePredmeta().clear();
+		for (RealizacijaPredmeta r : updatedRealizacijaPredmeta) {
+			r.setNastavnik(entity);
+			entity.getRealizacijePredmeta().add(r);
+		}
+
+		List<Obavestenje> updatedObavestenja = new ArrayList<>();
+		if (dto.getObavestenja() != null) {
+			for (ObavestenjeDTO oDTO : dto.getObavestenja()) {
+				if (oDTO.getId() != null) {
+					obavestenjeRepository.findById(oDTO.getId()).ifPresent(updatedObavestenja::add);
+				}
+			}
+		}
+		entity.getObavestenja().clear();
+		for (Obavestenje o : updatedObavestenja) {
+			o.setNastavnik(entity);
+			entity.getObavestenja().add(o);
+		}
+
+		List<EvaluacijaZnanja> updatedEvaluacije = new ArrayList<>();
+		if (dto.getEvaluacijeZnanja() != null) {
+			for (EvaluacijaZnanjaDTO eDTO : dto.getEvaluacijeZnanja()) {
+				if (eDTO.getId() != null) {
+					evaluacijaZnanjaRepository.findById(eDTO.getId()).ifPresent(updatedEvaluacije::add);
+				}
+			}
+		}
+		entity.getEvaluacijeZnanja().clear();
+		for (EvaluacijaZnanja e : updatedEvaluacije) {
+			e.setNastavnik(entity);
+			entity.getEvaluacijeZnanja().add(e);
+		}
+
+		List<KatedraNastavnik> updatedLinksK = new ArrayList<>();
+		if (dto.getKatedre() != null) {
+			for (KatedraNastavnikDTO knDTO : dto.getKatedre()) {
+				if (knDTO.getKatedra() != null && knDTO.getKatedra().getId() != null) {
+					Optional<Katedra> optKatedra = katedraRepository.findById(knDTO.getKatedra().getId());
+					if (optKatedra.isPresent()) {
+						KatedraNastavnik kn = new KatedraNastavnik();
+						kn.setNastavnik(entity);
+						kn.setKatedra(optKatedra.get());
+						kn.setVidljiv(knDTO.getVidljiv() != null ? knDTO.getVidljiv() : true);
+						updatedLinksK.add(kn);
+					}
+				}
+			}
+		}
+		entity.getKatedre().clear();
+		entity.getKatedre().addAll(updatedLinksK);
+
+		List<DepartmanNastavnik> updatedLinksD = new ArrayList<>();
+		if (dto.getDepartmani() != null) {
+			for (DepartmanNastavnikDTO dnDTO : dto.getDepartmani()) {
+				if (dnDTO.getDepartman() != null && dnDTO.getDepartman().getId() != null) {
+					Optional<Departman> optDepartman = departmanRepository.findById(dnDTO.getDepartman().getId());
+					if (optDepartman.isPresent()) {
+						DepartmanNastavnik dn = new DepartmanNastavnik();
+						dn.setNastavnik(entity);
+						dn.setDepartman(optDepartman.get());
+						dn.setVidljiv(dnDTO.getVidljiv() != null ? dnDTO.getVidljiv() : true);
+						updatedLinksD.add(dn);
+					}
+				}
+			}
+		}
+		entity.getDepartmani().clear();
+		entity.getDepartmani().addAll(updatedLinksD);
 	}
 
 }

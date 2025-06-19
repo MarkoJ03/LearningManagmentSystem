@@ -14,7 +14,7 @@ public class RealizacijaPredmetaDTO {
 	private Long id;
 	private NastavnikDTO nastavnik;
 	private TipNastaveDTO tipNastave;
-	private List<PredmetRealizacijePredmetaDTO> predmet;
+	private List<PredmetRealizacijePredmetaDTO> predmeti;
 	private List<TerminNastaveDTO> terminiNastave;
 	private IshodPredmetaDTO ishodPredmeta;
 	private Boolean vidljiv = true;

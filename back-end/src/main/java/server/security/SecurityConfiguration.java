@@ -134,7 +134,7 @@ public class SecurityConfiguration {
 			    		"/api/biblioteka-knjiga/**", "/api/departman-nastavnik/**", "/api/dodeljena-prava-pristupa/**",
 			    		"/api/dokumenti-predmeta/**", "/api/Drzava/**", "/api/godina-studija-predmet/**",
 			    		"/api/Grad/**", "/api/grupe-studenata/**", "/api/grupa-studenata-predmet/**",
-			    		"/api/inventari/**", "/api/IspitniRok/**", "/api/kalendari/**", "/api/katedre/**",
+			    		"/api/inventari/**", "/api/IspitniRok/**", "/api/katedre/**",
 			    		"/api/katedra-nastavnik/**", "/api/knjige/**", "/api/korisnici/**", "/api/studenti/**",
 			    		"/api/studenti-na-godini/**", "/api/studentske-sluzbe/**", "/api/tipovi-programa/**")
 			        .hasAnyRole("ADMIN", "STUDENTSKA_SLUZBA")
@@ -145,7 +145,7 @@ public class SecurityConfiguration {
 			    	
 			    .requestMatchers("/api/evaluacije-znanja/**", "/api/nastavnici/**", "/api/naucne-oblasti/**",
 			    		"/api/predmeti/**", "/api/termini-nastave/**", "/api/tipovi-evaluacije/**", "/api/tipovi-nastave/**",
-			    		"/api/tipovi-zvanja/**", "/api/zvanja/**")
+			    		"/api/tipovi-zvanja/**", "/api/zvanja/**", "/api/kalendari/**")
 			    	.hasAnyRole("ADMIN", "STUDENTSKA_SLUZBA", "NASTAVNIK")
 			    	
 			    .requestMatchers("/api/ishodi-evaluacije/**", "/api/ishod-predmeta/**", "/api/obavestenja/**",

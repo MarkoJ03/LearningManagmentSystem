@@ -2,7 +2,6 @@ package server.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +23,6 @@ public class KalendarController extends BaseController<Kalendar, KalendarDTO, Lo
     }
     
     @GetMapping("/nastavnik/{nastavnikId}")
-    @Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA, ROLE_NASTAVNIK"})
     public ResponseEntity<KalendarDTO> getKalendarByNastavnikId(@PathVariable Long nastavnikId) {
         try {
             KalendarDTO dto = kalendarService.findByNastavnikId(nastavnikId);
