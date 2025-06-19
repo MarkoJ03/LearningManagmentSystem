@@ -33,12 +33,12 @@ td:first-child {
   width: 40%;
 }
 
-.pdf-btn-container {
+.xml-btn-container {
   text-align: center;
   margin-top: 30px;
 }
 
-.pdf-btn {
+.xml-btn {
   padding: 10px 25px;
   background-color: #a41c1c;
   color: white;
@@ -50,6 +50,6 @@ td:first-child {
   transition: background-color 0.3s ease;
 }
 
-.pdf-btn:hover {
+.xml-btn:hover {
   background-color: #891717;
 }

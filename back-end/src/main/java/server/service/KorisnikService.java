@@ -1,5 +1,7 @@
 package server.service;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -15,6 +17,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import server.DTOs.DodeljenoPravoPristupaDTO;
+import server.DTOs.KorisnikDTO;
 import jakarta.transaction.Transactional;
 import server.DTOs.DodeljenoPravoPristupaDTO;
 import server.DTOs.KorisnikDTO;

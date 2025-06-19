@@ -206,7 +206,6 @@ public class KalendarService extends BaseService<Kalendar, KalendarDTO, Long> {
 
         return kalendar;
     }
-
     public Kalendar getById(Long id) {
         return kalendarRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Kalendar sa id " + id + " nije pronađen."));

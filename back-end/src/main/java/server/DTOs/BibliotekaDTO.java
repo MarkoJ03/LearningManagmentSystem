@@ -20,7 +20,6 @@ public class BibliotekaDTO {
 	private StudentskaSluzbaDTO studentskaSluzba;
 
     private Boolean vidljiv = true;
-   
 
 	}
 

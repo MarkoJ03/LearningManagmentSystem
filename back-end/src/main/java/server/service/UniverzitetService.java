@@ -220,6 +220,10 @@ public class UniverzitetService extends BaseService<Univerzitet, UniverzitetDTO,
     private AdresaRepository adresaRepository;
 
     @Autowired
+    @Lazy
+    private GradService gService;
+    
+    @Autowired
     private FakultetRepository fakultetRepository;
 
     @Override
@@ -237,7 +241,7 @@ public class UniverzitetService extends BaseService<Univerzitet, UniverzitetDTO,
     	}
     	
     	return new UniverzitetDTO(entity.getId(), entity.getNaziv(), entity.getDatumOsnivanja(),
-    			new AdresaDTO(entity.getAdresa().getId(), null,entity.getAdresa().getUlica(), entity.getAdresa().getBroj(), null), 
+    			new AdresaDTO(entity.getAdresa().getId(), gService.convertToDTO(entity.getAdresa().getGrad()),entity.getAdresa().getUlica(), entity.getAdresa().getBroj(), null), 
     			fakulteti, entity.getEmail(), entity.getKontakt(), entity.getVidljiv());
     }
 

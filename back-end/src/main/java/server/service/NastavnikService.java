@@ -179,6 +179,7 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
         }
 
 
+
 		ArrayList<ObavestenjeDTO> obavestenja = new ArrayList<>();
 
 		for (Obavestenje o : entity.getObavestenja()) {
@@ -209,6 +210,7 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
             );
             evaluacijeZnanja.add(eDTO);
         }
+
 
 		return new NastavnikDTO(entity.getId(), korisnik,entity.getIme(), entity.getPrezime(), entity.getJmbg(), zvanja,
 				 departmaniNastavniciDTO, katedreNastavniciDTO,realizacijePredmeta, obavestenja,evaluacijeZnanja, entity.getVidljiv());

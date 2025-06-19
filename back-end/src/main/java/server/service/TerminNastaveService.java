@@ -39,6 +39,7 @@ public class TerminNastaveService extends BaseService<TerminNastave, TerminNasta
 	protected TerminNastaveDTO convertToDTO(TerminNastave entity) {
 		//predmetDTO
 		RealizacijaPredmetaDTO realizacijaPredmeta = new RealizacijaPredmetaDTO(entity.getRealizacijaPredmeta().getId(),
+
 				null, null, null, null ,null, entity.getRealizacijaPredmeta().getVidljiv());
 		
 		KalendarDTO kalendar = new KalendarDTO(entity.getKalendar().getId(), null,null,null,null, entity.getKalendar().getVidljiv());
@@ -52,6 +53,7 @@ public class TerminNastaveService extends BaseService<TerminNastave, TerminNasta
 		//Predmet predmet = new Predmet(dto.getRealizacijaPredmeta().getPredmet().getId(), dto.getRealizacijaPredmeta().getPredmet().getNaziv(), null,null,null,null,null,null,null,null,null,null,null,null,null,null);
 		
 		RealizacijaPredmeta realizacijaPredmeta = new RealizacijaPredmeta(dto.getRealizacijaPredmeta().getId(),
+
 				null, null, null, null ,null, dto.getRealizacijaPredmeta().getVidljiv());
 		
 		Kalendar kalendar = new Kalendar(dto.getKalendar().getId(), null,null,null,null, dto.getKalendar().getVidljiv());

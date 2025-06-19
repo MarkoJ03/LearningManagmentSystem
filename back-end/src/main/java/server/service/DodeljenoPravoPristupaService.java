@@ -1,5 +1,6 @@
 package server.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +10,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import server.DTOs.DodeljenoPravoPristupaDTO;
+import server.DTOs.KorisnikDTO;
+import server.DTOs.PravoPristupaDTO;
 import server.DTOs.KatedraNastavnikDTO;
 import server.DTOs.KorisnikDTO;
 import server.DTOs.PravoPristupaDTO;

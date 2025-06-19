@@ -20,7 +20,12 @@
         <div class="dokumenta">
           <h3>Dokumenti</h3>
           @if (predmet.dokumentiPredmeta?.silabus) {
-            <p><a [href]="'/assets/pdf/' + predmet.dokumentiPredmeta?.silabus" target="_blank">Silabus</a></p>
+            <p>
+              <a [routerLink]="['/predmet', predmet.id, 'silabus']">Prikaži silabus</a>
+            </p>
+
+
+
           }
           @if (predmet.dokumentiPredmeta?.akreditacija) {
             <p><a [href]="'/assets/pdf/' + predmet.dokumentiPredmeta?.akreditacija" target="_blank">Akreditacija</a></p>

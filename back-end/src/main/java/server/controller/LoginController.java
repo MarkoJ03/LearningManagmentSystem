@@ -30,6 +30,7 @@ public class LoginController {
 	@Autowired
 	private KorisnikService korisnikService;
 	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	

@@ -28,6 +28,7 @@ public class NaucnaOblastService extends BaseService<NaucnaOblast, NaucnaOblastD
 	private ZvanjeRepository zvanjeRepository;
 
 
+
 	@Override
 	protected CrudRepository<NaucnaOblast, Long> getRepository() {
 		return naucnaOblastRepository;

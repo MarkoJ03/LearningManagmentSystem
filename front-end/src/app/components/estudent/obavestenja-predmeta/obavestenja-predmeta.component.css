@@ -1,0 +1,52 @@
+.obavestenja-wrapper {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: sans-serif;
+}
+
+.naslov-stranice {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #2c3e50;
+}
+
+.prazno {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+}
+
+.obavestenje-kartica {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  border-left: 6px solid brown;
+  padding: 20px 25px;
+  background-color: #fdfdfd;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, background-color 0.2s;
+  margin-top: 35px;
+}
+
+.obavestenje-kartica:hover {
+  transform: scale(1.02);
+  background-color: #fff3eb;
+}
+
+.obavestenje-naslov {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #34495e;
+}
+
+.obavestenje-sadrzaj {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.obavestenje-nastavnik {
+  font-size: 14px;
+  color: gray;
+}

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SvObrazacComponent } from './sv-obrazac.component';
+import { EsluzbaHeaderComponent } from './esluzba-header.component';
 
-describe('SvObrazacComponent', () => {
-  let component: SvObrazacComponent;
-  let fixture: ComponentFixture<SvObrazacComponent>;
+describe('EsluzbaHeaderComponent', () => {
+  let component: EsluzbaHeaderComponent;
+  let fixture: ComponentFixture<EsluzbaHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SvObrazacComponent]
+      imports: [EsluzbaHeaderComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SvObrazacComponent);
+    fixture = TestBed.createComponent(EsluzbaHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

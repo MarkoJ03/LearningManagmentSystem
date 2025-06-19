@@ -2,7 +2,10 @@ import { DokumentiPredmeta } from './DokumentiPredmeta';
 import { EvaluacijaZnanja } from './EvaluacijaZnanja';
 import { GrupaStudenataPredmet } from './GrupaStudenataPredmet';
 import { Obavestenje } from './Obavestenje';
+
+
 import { PredmetRealizacijePredmeta } from './PredmetRealizacijePredmeta';
+
 
 export interface Predmet {
   id: number;
@@ -15,6 +18,7 @@ export interface Predmet {
   brojSemestara: number;
   opis: string;
   cilj: string;
+
   dokumentiPredmeta?: DokumentiPredmeta;
   evaluacijeZnanja?: EvaluacijaZnanja[];
   grupeStudenata?: GrupaStudenataPredmet[];

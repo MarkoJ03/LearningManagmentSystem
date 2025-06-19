@@ -78,6 +78,10 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long> {
 	@Autowired
 	@Lazy
 	private SilabusService silabusService;
+	
+	@Autowired
+	@Lazy
+	private ObavestenjeService oService;
 	@Autowired
 	@Lazy
 	private EvaluacijaZnanjaService evaluacijaZnanjaService;
@@ -95,7 +99,7 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long> {
 
 		DokumentiPredmetaDTO dokumentiPredmeta = null;
 		if (entity.getDokumentiPredmeta() != null) {
-			dokumentiPredmeta = new DokumentiPredmetaDTO(entity.getDokumentiPredmeta().getId(), null,
+			dokumentiPredmeta = new DokumentiPredmetaDTO(entity.getDokumentiPredmeta().getId(), silabusService.convertToDTO(entity.getDokumentiPredmeta().getSilabus()),
 					entity.getDokumentiPredmeta().getAkreditacija(), null, entity.getDokumentiPredmeta().getVidljiv());
 		}
 		
@@ -116,12 +120,14 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long> {
 		for (Obavestenje o : entity.getObavestenja()) {
 			ObavestenjeDTO oDTO = new ObavestenjeDTO(o.getId(), o.getNaslov(), o.getSadrzaj(),
 					o.getNastavnik() != null
-							? new NastavnikDTO(o.getNastavnik().getId(), null, null, null, null, null, null, null, null,
+							? new NastavnikDTO(o.getNastavnik().getId(), null, o.getNastavnik().getIme(), o.getNastavnik().getPrezime(), null, null, null, null, null,
 									null, null, o.getNastavnik().getVidljiv())
 							: null,
 					null, o.getVidljiv());
 			obavestenja.add(oDTO);
 		}
+		
+
 
 		ArrayList<EvaluacijaZnanjaDTO> evaluacijeZnanja = new ArrayList<>();
 
@@ -211,6 +217,13 @@ public class PredmetService extends BaseService<Predmet, PredmetDTO, Long> {
 					evaluacijeZnanja.add(existingEvaluacija);
 				}
 			}
+		}
+		
+		ArrayList<Obavestenje> obavestenja = new ArrayList<>();
+		
+		for(ObavestenjeDTO rp : dto.getObavestenja()) {
+			Obavestenje rpDTO = oService.convertToEntity(rp);
+			obavestenja.add(rpDTO);
 		}
 
 		predmet.setEvaluacijeZnanja(evaluacijeZnanja);

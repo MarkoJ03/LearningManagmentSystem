@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import server.DTOs.DepartmanNastavnikDTO;
 import server.DTOs.IshodPredmetaDTO;
 import server.DTOs.NastavnikDTO;
+import server.DTOs.ObavestenjeDTO;
 import server.DTOs.PredmetDTO;
 import server.DTOs.PredmetRealizacijePredmetaDTO;
 import server.DTOs.RealizacijaPredmetaDTO;
@@ -22,6 +23,7 @@ import server.model.Departman;
 import server.model.DepartmanNastavnik;
 import server.model.IshodPredmeta;
 import server.model.Nastavnik;
+import server.model.Obavestenje;
 import server.model.Predmet;
 import server.model.PredmetRealizacijePredmeta;
 import server.model.RealizacijaPredmeta;
@@ -91,7 +93,6 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 			TerminNastaveDTO tnDTO = terminNastaveService.convertToDTO(tn);
 			terminiNastave.add(tnDTO);
 		}
-
 		IshodPredmetaDTO ishodPredmeta = null; 
 		if (entity.getIshodPredmeta() != null) {
 			ishodPredmeta = new IshodPredmetaDTO(

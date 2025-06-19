@@ -1,6 +1,9 @@
 package server.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,7 @@ import server.DTOs.NastavnikDTO;
 import server.DTOs.ObjavaDTO;
 import server.DTOs.OsobljeDTO;
 import server.DTOs.StudentDTO;
+import server.DTOs.StudentNaGodiniDTO;
 import server.DTOs.StudentskaSluzbaDTO;
 import server.DTOs.SvObrazacDTO;
 import server.model.Biblioteka;
@@ -21,6 +25,7 @@ import server.model.Nastavnik;
 import server.model.Objava;
 import server.model.Osoblje;
 import server.model.Student;
+import server.model.StudentNaGodini;
 import server.model.StudentskaSluzba;
 import server.model.SvObrazac;
 import server.repository.StudentskaSluzbaRepository;
@@ -43,6 +48,40 @@ public class StudentskaSluzbaService extends BaseService<StudentskaSluzba, Stude
 
     @Autowired
     private StudentskaSluzbaRepository studentskaSluzbaRepository;
+    
+    @Autowired
+    @Lazy
+    private InventarService iService;
+    
+    @Autowired
+    @Lazy
+    private ObjavaService oService;
+    
+    @Autowired
+    @Lazy
+    private NastavnikService nService;
+    
+    @Autowired
+    @Lazy
+    private BibliotekaService bService;
+    
+    @Autowired
+    @Lazy
+    private KalendarService kalendarService;
+    
+    @Autowired
+    @Lazy
+    private StudentService studentService;
+    
+    @Autowired
+    @Lazy
+    private SvObrazacService obrazacService;
+    
+    @Autowired
+    @Lazy
+    private OsobljeService osobljeService;
+    
+    
 
     
     @Autowired

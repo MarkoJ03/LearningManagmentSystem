@@ -1,9 +1,11 @@
 package server.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import server.DTOs.StudentDTO;
 import server.DTOs.StudentNaGodiniDTO;
 import server.DTOs.StudentskaSluzbaDTO;
 import server.DTOs.SvObrazacDTO;
@@ -25,6 +27,10 @@ public class SvObrazacService extends BaseService<SvObrazac, SvObrazacDTO, Long>
     @Autowired
     private StudentNaGodiniRepository studentNaGodiniRepository;
     
+    @Autowired
+    @Lazy
+    private AdresaService aService;
+    
     SvObrazacService(StudentController studentController) {
         this.studentController = studentController;
     }
@@ -40,7 +46,10 @@ public class SvObrazacService extends BaseService<SvObrazac, SvObrazacDTO, Long>
 
     	StudentNaGodiniDTO studentNaGodini = null;
         if (entity.getStudentNaGodini() != null) {
-            studentNaGodini = new StudentNaGodiniDTO(entity.getStudentNaGodini().getId(),entity.getStudentNaGodini().getBrojIndeksa(),null,null,null,null,null,null, entity.getStudentNaGodini().getVidljiv());
+            studentNaGodini =  new StudentNaGodiniDTO(entity.getStudentNaGodini().getId(),entity.getStudentNaGodini().getBrojIndeksa(),null,
+            		new StudentDTO(entity.getStudentNaGodini().getStudent().getId(),null,entity.getStudentNaGodini().getStudent().getIme(),entity.getStudentNaGodini().getStudent().getPrezime(),entity.getStudentNaGodini().getStudent().getJmbg(),
+            		aService.convertToDTO(entity.getStudentNaGodini().getStudent().getAdresa()),null,null,entity.getStudentNaGodini().getStudent().getVidljiv()),
+            		null,null,null,null,entity.getStudentNaGodini().getVidljiv());
         }
     	
     	

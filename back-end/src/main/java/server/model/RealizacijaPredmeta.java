@@ -28,6 +28,10 @@ public class RealizacijaPredmeta {
 	private Nastavnik nastavnik;
 	@ManyToOne
 	private TipNastave tipNastave;
+
+	
+	
+	
 	@OneToMany(fetch= FetchType.LAZY, mappedBy = "realizacijaPredmeta", cascade = {CascadeType.ALL}, orphanRemoval = true)
 	private List<PredmetRealizacijePredmeta> predmeti;
 	@OneToMany(mappedBy = "realizacijaPredmeta", cascade = {CascadeType.ALL}, orphanRemoval = true)

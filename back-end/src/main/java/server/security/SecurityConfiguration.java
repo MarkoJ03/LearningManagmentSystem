@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -26,7 +28,7 @@ import server.utils.TokenUtils;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
+@EnableMethodSecurity(securedEnabled = false, prePostEnabled = true)
 public class SecurityConfiguration {
 
 	@Bean
@@ -127,6 +129,7 @@ public class SecurityConfiguration {
 			    .requestMatchers(HttpMethod.GET, "/api/tipovi-zvanja/**").permitAll()
 			    .requestMatchers(HttpMethod.GET, "/api/univerziteti/**").permitAll()
 			    .requestMatchers(HttpMethod.GET, "/api/zvanja/**").permitAll()
+			    .requestMatchers(HttpMethod.GET, "/api/sv-obrazac/**").permitAll()
 			    .requestMatchers("/api/auth/**").permitAll()
 
 			    .requestMatchers("/api/studijski-programi/**", "/api/godine-studija/**", 

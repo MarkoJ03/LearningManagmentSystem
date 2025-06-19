@@ -39,7 +39,7 @@ export class LoginFormComponent {
         } else if (roles.includes("ROLE_STUDENT")) {
           this.loginService.getUserByEmail(email).subscribe(fullUser => {
             const id = fullUser.id;
-            this.router.navigate([`/studentNaGodini/${id}/estudent`]);
+            this.router.navigate([`/student/${id}`]);
           });
         } else {
           this.router.navigate(['/']);

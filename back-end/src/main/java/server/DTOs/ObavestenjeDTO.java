@@ -3,6 +3,7 @@ package server.DTOs;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import server.model.Predmet;
 
 @Data
 @NoArgsConstructor

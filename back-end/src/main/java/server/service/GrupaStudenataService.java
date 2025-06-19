@@ -20,6 +20,7 @@ import server.model.Student;
 import server.model.Predmet;
 
 import server.repository.GrupaStudenataRepository;
+import java.util.List;
 import server.repository.KalendarRepository;
 import server.repository.StudentNaGodiniRepository;
 import server.repository.StudentRepository;
@@ -129,6 +130,7 @@ public class GrupaStudenataService extends BaseService<GrupaStudenata, GrupaStud
             entity.getVidljiv()
         );
     }
+    
 
     @Override
     protected GrupaStudenata convertToEntity(GrupaStudenataDTO dto) {

@@ -32,6 +32,7 @@ public class TipZvanjaService extends BaseService<TipZvanja, TipZvanjaDTO, Long>
 	@Autowired
 	private ZvanjeRepository zvanjeRepository;
 
+
 	@Override
 	protected CrudRepository<TipZvanja, Long> getRepository() {
 		return tipZvanjaRepository;
@@ -39,6 +40,7 @@ public class TipZvanjaService extends BaseService<TipZvanja, TipZvanjaDTO, Long>
 
 	@Override
 	protected TipZvanjaDTO convertToDTO(TipZvanja entity) {
+
 		ArrayList<ZvanjeDTO> zvanja = new ArrayList<>();
 		if (entity.getZvanja() != null) {
 			for (Zvanje z : entity.getZvanja()) {
@@ -47,6 +49,7 @@ public class TipZvanjaService extends BaseService<TipZvanja, TipZvanjaDTO, Long>
 			}
 		}
 		return new TipZvanjaDTO(entity.getId(), entity.getNaziv(), zvanja, entity.getVidljiv());
+
 	}
 
 	@Override

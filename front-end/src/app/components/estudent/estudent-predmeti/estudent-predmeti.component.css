@@ -3,20 +3,31 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   margin-top: 20px;
-  transition: transform 0.2s ease-in-out;
   font-family: sans-serif;
 }
 
+*{
+    font-family: sans-serif;
+}
+
+.predmet-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .predmet-kartica {
+  display: block;
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 15px;
   background-color: #fdfdfd;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease-in-out, background-color 0.2s;
 }
 
-.predmeti-container :hover{
-    transform: scale(1.02);
+.predmet-kartica:hover {
+  transform: scale(1.02);
   background-color: #fff3eb;
 }
 
@@ -24,13 +35,40 @@
   margin-top: 0;
 }
 
-.linkovi a {
-  display: block;
+.linkovi {
   margin-top: 10px;
-  color: #b40000;
-  text-decoration: none;
 }
 
-h2{
-    font-family: sans-serif;
+.linkovi a {
+  display: block;
+  color: #b40000;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.paginacija {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.paginacija button {
+  padding: 6px 12px;
+  border: 1px solid #aaa;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.paginacija button:hover {
+  background-color: #eee;
+}
+
+.paginacija button.aktivna {
+  background-color: brown;
+  color: white;
+  border-color: brown;
 }

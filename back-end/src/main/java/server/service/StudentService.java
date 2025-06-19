@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.ArrayList; // i dalje koristimo ArrayList za inicijalizaciju
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
@@ -178,7 +179,6 @@ public class StudentService extends BaseService<Student, StudentDTO, Long> {
 
 	
 
-	
 
 
        

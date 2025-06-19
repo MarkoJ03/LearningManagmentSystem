@@ -18,5 +18,4 @@ public class UniverzitetController extends BaseController<Univerzitet, Univerzit
     protected UniverzitetService getService() {
         return univerzitetService;
     }
-
 }

@@ -1,8 +1,9 @@
+import { Grad } from "./Grad";
+
 export interface Adresa {
   id: number;
+  grad: Grad;
   vidljiv: boolean;
   broj: string;
-  drzava: string;
-  grad: string;
   ulica: string;
 }

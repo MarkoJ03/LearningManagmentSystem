@@ -72,12 +72,19 @@ import { EstudentAktivnostiComponent } from './components/estudent/estudent-akti
 //import { SvObrazacComponent } from './components/estudent/estudent-sv-obrazac/estudent-sv-obrazac.component';
 import { EstudentPodaciOStudentuComponent } from './components/estudent/estudent-podaci-o-studentu/estudent-podaci-o-studentu.component';
 import { PocetnaComponent } from './components/pocetna/pocetna.component';
+
+import { SilabusLayoutComponent } from './components/silabus-layout/silabus-layout.component';
+import { ObavestenjaPredmetaComponent } from './components/estudent/obavestenja-predmeta/obavestenja-predmeta.component';
+import { EsluzbaLayoutComponent } from './components/esluzba/esluzba-layout/esluzba-layout.component';
+import { EsluzbaObjaveComponent } from './components/esluzba/esluzba-objave/esluzba-objave.component';
+
 import { ObjavaDetaljiComponent } from './components/objava-detalji/objava-detalji.component';
 import { EnastavnikLayoutComponent } from './components/enastavnik/enastavnik-layout/enastavnik-layout.component';
 import { EnastavnikObjaveComponent } from './components/enastavnik/enastavnik-objave/enastavnik-objave.component';
 import { EnastavnikPredmetiComponent } from './components/enastavnik/enastavnik-predmeti/enastavnik-predmeti.component';
 import { EnastavnikKalendarComponent } from './components/enastavnik/enastavnik-kalendar/enastavnik-kalendar.component';
 import { EnastavnikStudentiComponent } from './components/enastavnik/enastavnik-studenti/enastavnik-studenti.component';
+
 
 import { AdresaComponent } from './components/adresa/adresa.component';
 import { DepartmanFormaComponent } from './components/departman/departman-forma/departman-forma.component';
@@ -104,7 +111,7 @@ import { StudijskiProgramiComponent } from './components/studijaskiProgram/studi
 import { StudijskiProgramFormaComponent } from './components/studijaskiProgram/studijski-program-forma/studijski-program-forma.component';
 import { StudijskiProgramComponent } from './components/studijaskiProgram/studijski-program/studijski-program.component';
 import { SvObrazacFormaComponent } from './components/svObrazac/sv-obrazac-forma/sv-obrazac-forma.component';
-import { SvObrazacComponent } from './components/sv-obrazac/sv-obrazac.component';
+
 import { SvObrasciComponent } from './components/svObrazac/sv-obrasci/sv-obrasci.component';
 import { TipProgramaComponent } from './components/tip-programa/tip-programa.component';
 import { TipProgramaFormaComponent } from './components/tipPrograma/tip-programa-forma/tip-programa-forma.component';
@@ -133,6 +140,7 @@ import { EvaluacijeZnanjaComponent } from './components/CRUD/EvaluacijaZnanja/ev
 import { EvaluacijaZnanjaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacija-znanja/evaluacija-znanja.component';
 import { EvaluacijaZnanjaFormaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacija-znanja-forma/evaluacija-znanja-forma.component';
 import { EnastavnikPredmetDetaljiComponent } from './components/enastavnik/enastavnik-predmet-detalji/enastavnik-predmet-detalji.component';
+import { SvObrazacComponent } from './components/estudent/estudent-sv-obrazac/estudent-sv-obrazac.component';
 
 // import {  FakultetComponentComponent } from './components/fakultet-component/fakultet-component.component';
 
@@ -176,6 +184,7 @@ export const routes: Routes = [
      { path: 'studijski-program/:id', component: StudijskiProgramLayoutComponent },
      { path: 'predmet/:id', component: PredmetLayoutComponent },
      { path: 'objava/:id', component: ObjavaDetaljiComponent },
+     { path: 'predmet/:id/silabus', component: SilabusLayoutComponent },
          {
         path: 'login',
         component: LoginFormComponent
@@ -365,6 +374,37 @@ export const routes: Routes = [
       { path: 'sv-obrazac', component: SvObrazacComponent },
 
       { path: 'podaci-o-studentu', component: EstudentPodaciOStudentuComponent },
+
+      { path: 'predmeti/:id/obavestenja', component: ObavestenjaPredmetaComponent },
+
+
+
+      { path: '', redirectTo: 'objave', pathMatch: 'full' }
+
+    ],  data: {requiredRoles: ["ROLE_STUDENT"]}, canActivate: [authGuard]
+  },
+
+
+  {
+    path: 'osoblje/:id/esluzba',
+    component: EsluzbaLayoutComponent,
+    children: [
+      { path: 'objave', component: EsluzbaObjaveComponent },
+
+//       { path: 'predmeti', component: EstudentPredmetiComponent },
+
+//       { path: 'ispiti', component: EstudentIspitiComponent },
+
+//       { path: 'prijava-ispita', component: EstudentPrijavaIspitaComponent },
+//       { path: 'aktivnosti', component: EstudentAktivnostiComponent }
+// ,
+//       { path: 'sv-obrazac', component: SvObrazacComponent },
+
+//       { path: 'podaci-o-studentu', component: EstudentPodaciOStudentuComponent },
+
+//       { path: 'predmeti/:id/obavestenja', component: ObavestenjaPredmetaComponent },
+
+
 
       { path: '', redirectTo: 'objave', pathMatch: 'full' }
 

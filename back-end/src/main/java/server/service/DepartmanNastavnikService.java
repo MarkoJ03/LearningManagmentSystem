@@ -77,12 +77,6 @@ public class DepartmanNastavnikService extends BaseService<DepartmanNastavnik, D
       return departmanNastavnik;
   }
 
-	public List<DepartmanNastavnikDTO> findByDepartmanId(Long departmanId) {
-	    return departmanNastavnikRepository.findByDepartmanIdAndVidljivTrue(departmanId)
-	            .stream()
-	            .map(this::convertToDTO)
-	            .collect(Collectors.toList());
-	}
 
 	@Override
 	protected void updateEntityFromDto(DepartmanNastavnikDTO dto, DepartmanNastavnik entity) {
@@ -90,6 +84,12 @@ public class DepartmanNastavnikService extends BaseService<DepartmanNastavnik, D
 		
 	}
 
+	public List<DepartmanNastavnikDTO> findByDepartmanId(Long departmanId) {
+	    return departmanNastavnikRepository.findByDepartmanIdAndVidljivTrue(departmanId)
+	            .stream()
+	            .map(this::convertToDTO)
+	            .collect(Collectors.toList());
+	}
 
 
 	

@@ -1,17 +1,21 @@
 package server.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import server.DTOs.GodinaStudijaDTO;
 import server.DTOs.GodinaStudijaPredmetDTO;
+import server.DTOs.ObavestenjeDTO;
 import server.DTOs.PredmetDTO;
 import server.model.GodinaStudija;
 import server.model.GodinaStudijaPredmet;
+import server.model.Obavestenje;
 import server.model.Predmet;
 import server.repository.GodinaStudijaPredmetRepository;
 
@@ -25,6 +29,10 @@ public class GodinaStudijaPredmetService extends BaseService<GodinaStudijaPredme
 	protected CrudRepository<GodinaStudijaPredmet, Long> getRepository() {
 		return godinaStudijaPredmetRepository;
 	}
+	
+	@Autowired
+	@Lazy
+	private ObavestenjeService oService;
 
 	@Override
 	protected GodinaStudijaPredmetDTO convertToDTO(GodinaStudijaPredmet entity) {

@@ -1,0 +1,35 @@
+<h2>Silabus za {{predmet.naziv}}</h2>
+
+<hr>
+
+<div class="silabus-wrapper">
+<button class="export-btn" (click)="exportujXml()">Exportuj u XML</button>
+
+
+  @if (termini.length === 0) {
+    <p class="prazna-poruka">Nema unetih termina u silabusu.</p>
+  } @else {
+    <table class="silabus-tabela">
+      <thead>
+        <tr>
+          <th>Datum</th>
+          <th>Materijal</th>
+          <th>Cilj</th>
+          <th>Opis</th>
+          <th>Nastavnik</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (t of termini; track t.id) {
+          <tr>
+            <td>{{ t.datum }}</td>
+            <td>{{ t.materijal }}</td>
+            <td>{{ t.cilj }}</td>
+            <td>{{ t.opis }}</td>
+            <td>{{ t.nastavnik.ime }} {{ t.nastavnik.prezime }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>

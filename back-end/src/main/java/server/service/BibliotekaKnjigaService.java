@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import server.DTOs.BibliotekaDTO;
 import server.DTOs.BibliotekaKnjigaDTO;
+import server.model.BibliotekaKnjiga;
 import server.DTOs.KnjigaDTO;
 import server.model.Biblioteka;
 import server.model.BibliotekaKnjiga;

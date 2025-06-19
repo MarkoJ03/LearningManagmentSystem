@@ -1,13 +1,15 @@
+@if (univerzitet){
 <footer>
     <section>
-        <h2>Tim 3 Univerzitet</h2>
+        <h2>{{univerzitet.naziv}}</h2>
         <img src="harvard.png" alt="slika-univerziteta">
-        <p>Fakultet Tim 3 &#xA9; 2025 Sva prava zadrzana</p>
+        <p>{{univerzitet.naziv}} &#xA9; 2025 Sva prava zadrzana</p>
     </section>
     <section>
         <h2>Kontakt</h2>
-        <p>Adresa: Bulevar Mihajla Pupina 4a, Orlovat</p>
-        <p>Telefon: 021/111111, 021/222222</p>
-        <p>Email: tim3faks&#64;gmail.com</p>
+        <p>Adresa: {{univerzitet.adresa.ulica}} {{univerzitet.adresa.broj}}, {{univerzitet.adresa.grad.naziv}}, {{univerzitet.adresa.grad.drzava.naziv}}</p>
+        <p>Telefon: {{univerzitet.kontakt}}</p>
+        <p>Email: {{univerzitet.email}}</p>
     </section>
 </footer>
+}

@@ -5,6 +5,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import server.DTOs.IshodEvaluacijeDTO;
 import server.DTOs.IshodPredmetaDTO;
+
+
+import server.model.IshodPredmeta;
+
+
 import server.DTOs.RealizacijaPredmetaDTO;
 import server.model.IshodEvaluacije;
 import server.model.IshodPredmeta;

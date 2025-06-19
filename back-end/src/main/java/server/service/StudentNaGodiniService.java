@@ -1,6 +1,7 @@
 package server.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import java.util.List;
 import java.util.Optional;
@@ -89,14 +90,13 @@ public class StudentNaGodiniService extends BaseService<StudentNaGodini, Student
         GodinaStudijaDTO godinaStudijaDTO = null;
         if (entity.getGodinaStudija() != null) {
             
-            godinaStudijaDTO = godinaStudijaService.convertToDTO(entity.getGodinaStudija());
+    		godinaStudijaDTO = godinaStudijaService.convertToDTO(entity.getGodinaStudija());
         }
 
 
         StudentDTO studenti = null;
 		if (entity.getStudent() != null) {
-			studenti = new StudentDTO(entity.getStudent().getId(), null,
-					null,null, null,null,null,null, entity.getStudent().getVidljiv());
+			studenti= studentService.convertToDTO(entity.getStudent());
 		}	
        
         GrupaStudenataDTO grupaStudenataDTO = null;

@@ -62,14 +62,12 @@ public class EvaluacijaZnanjaService extends BaseService<EvaluacijaZnanja, Evalu
 	protected EvaluacijaZnanjaDTO convertToDTO(EvaluacijaZnanja entity) {
 		NastavnikDTO nastavnikDTO = null;
         if (entity.getNastavnik() != null) {
-            nastavnikDTO = new NastavnikDTO(entity.getNastavnik().getId(), entity.getNastavnik().getIme(),
-                    entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null,
-                    null, null, null, entity.getNastavnik().getVidljiv());
+            nastavnikDTO = nastavnikService.convertToDTO(entity.getNastavnik());
         }
 		
 		return new EvaluacijaZnanjaDTO(entity.getId(), entity.getVremePocetka(), entity.getVremeZavrsetka(),
 				new KalendarDTO(entity.getKalendar().getId(),null,null,null,null, entity.getKalendar().getVidljiv()),
-				new PredmetDTO(entity.getPredmet().getId(), entity.getPredmet().getNaziv(), null,null,null,null
+				new PredmetDTO(entity.getPredmet().getId(), entity.getPredmet().getNaziv(), entity.getPredmet().getEsbp(),null,null,null
 						,null,null,null,null,null,null,null,null,null, entity.getPredmet().getVidljiv()),
 				nastavnikDTO,
 				new TipEvaluacijeDTO(entity.getTipEvaluacije().getId(), entity.getTipEvaluacije().getNaziv(), null, entity.getTipEvaluacije().getVidljiv()),

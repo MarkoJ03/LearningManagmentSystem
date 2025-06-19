@@ -2,19 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { StudentNaGodiniService } from '../../../services/student-na-godini.service';
+import { FormsModule, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-estudent-ispiti',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './estudent-ispiti.component.html',
   styleUrls: ['./estudent-ispiti.component.css']
 })
 export class EstudentIspitiComponent implements OnInit {
   studentNaGodiniId!: number;
   ocene: any[] = [];
+  filtriraneOcene: any[] = [];
   prosecnaOcena: number = 0;
   ukupnoEspb: number = 0;
+  searchTerm: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -47,13 +50,13 @@ export class EstudentIspitiComponent implements OnInit {
             });
           } else {
             const postojeci = predmetMap.get(id);
-            postojeci.bodovi += ev.bodovi; // sabiranje bodova
+            postojeci.bodovi += ev.bodovi;
           }
         }
 
         this.ocene = Array.from(predmetMap.values());
+        this.filtriraj(); // primeni filter odmah
 
-        // Izračunavanje prosečne ocene i ukupnog broja ESPB
         const espbSum = this.ocene.reduce((sum, o) => sum + o.espb, 0);
         const ocenaSum = this.ocene.reduce((sum, o) => sum + o.ocena, 0);
 
@@ -62,5 +65,12 @@ export class EstudentIspitiComponent implements OnInit {
       },
       error: (err) => console.error('Greška pri dohvatu studenta:', err)
     });
+  }
+
+  filtriraj(): void {
+    const termin = this.searchTerm.toLowerCase();
+    this.filtriraneOcene = this.ocene.filter(o =>
+      Object.values(o).join(' ').toLowerCase().includes(termin)
+    );
   }
 }

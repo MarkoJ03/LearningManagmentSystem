@@ -1,26 +1,32 @@
 <h2>Moji Predmeti</h2>
 
-@if (predmeti.length === 0) {
-  <p>Nema predmeta za prikaz.</p>
-} @else {
-  <div class="predmeti-container">
-    @for (predmet of predmeti; track predmet.id) {
-      <div class="predmet-kartica">
+<div class="predmeti-container">
+  @for (predmet of prikazaniPredmeti; track predmet.id) {
+    <div class="predmet-wrapper">
+      <a class="predmet-kartica"
+         [routerLink]="['/studentNaGodini', studentNaGodiniId, 'estudent', 'predmeti', predmet.id, 'obavestenja']">
         <h3>{{ predmet.naziv }}</h3>
         <p><strong>ESPB:</strong> {{ predmet.esbp }}</p>
         <p>{{ predmet.opis }}</p>
+      </a>
 
-        <div class="linkovi">
-          <a *ngIf="predmet.dokumentiPredmeta?.silabus" target="_blank"
-             [href]="'/uploads/' + predmet.dokumentiPredmeta?.silabus">
-             Silabus
-          </a>
-          <a *ngIf="predmet.dokumentiPredmeta?.akreditacija" target="_blank"
-             [href]="'/uploads/' + predmet.dokumentiPredmeta?.akreditacija">
-             Akreditacija
-          </a>
-        </div>
-      </div>
-    }
-  </div>
-}
+
+
+    </div>
+  }
+</div>
+
+<div class="paginacija">
+  <button (click)="idiNaStranicu(trenutnaStranica - 1)" [disabled]="trenutnaStranica === 1">«</button>
+
+  @for (i of [].constructor(ukupnoStranica); track i; let index = $index) {
+    <button
+      (click)="idiNaStranicu(index + 1)"
+      [class.aktivna]="trenutnaStranica === (index + 1)">
+      {{ index + 1 }}
+    </button>
+  }
+
+  <button (click)="idiNaStranicu(trenutnaStranica + 1)" [disabled]="trenutnaStranica === ukupnoStranica">»</button>
+</div>
+

@@ -28,7 +28,6 @@ public class TokenUtils {
 		return claims;
 	}
 	
-	
 	public boolean isExpired(String token) {
 		return this.getClaims(token).getExpiration().before(new Date(System.currentTimeMillis()));
 	}

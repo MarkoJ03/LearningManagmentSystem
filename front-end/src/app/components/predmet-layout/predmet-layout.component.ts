@@ -8,7 +8,7 @@ import { PredmetService } from '../../services/predmet.service';
 
 @Component({
   selector: 'app-predmet-layout',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './predmet-layout.component.html',
   styleUrl: './predmet-layout.component.css'
 })

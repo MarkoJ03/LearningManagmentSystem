@@ -8,5 +8,7 @@ export interface Obavestenje {
   naslov: string;
   sadrzaj: string;
   predmet: Predmet;
+
   vidljiv: boolean;
+
 }

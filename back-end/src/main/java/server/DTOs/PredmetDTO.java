@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import server.model.DokumentiPredmeta;
 import server.model.EvaluacijaZnanja;
 import server.model.GrupaStudenataPredmet;
+import server.model.Obavestenje;
 import server.model.RealizacijaPredmeta;
 
 @AllArgsConstructor
@@ -55,7 +56,7 @@ public class PredmetDTO {
 
 
     private List<PredmetRealizacijePredmetaDTO> realizacijePredmeta;
-
+    
     private List<ObavestenjeDTO> obavestenja;
 
     private Boolean vidljiv = true;

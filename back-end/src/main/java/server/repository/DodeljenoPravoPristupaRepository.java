@@ -7,7 +7,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import server.model.DodeljenoPravoPristupa;
-import server.model.KatedraNastavnik;
+
 
 @Repository
 public interface DodeljenoPravoPristupaRepository extends CrudRepository<DodeljenoPravoPristupa, Long>, PagingAndSortingRepository<DodeljenoPravoPristupa, Long>{
