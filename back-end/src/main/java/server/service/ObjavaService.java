@@ -87,6 +87,7 @@ public class ObjavaService extends BaseService<Objava, ObjavaDTO, Long> {
 			entity.setStudentskaSluzba(null);
 		}
 
+
 		
 	}
 

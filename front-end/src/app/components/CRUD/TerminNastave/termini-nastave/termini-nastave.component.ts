@@ -21,7 +21,13 @@ export class TerminiNastaveComponent {
 
   ngOnInit(): void {
     this.terminNastaveService.getAll().subscribe({
-      next: (res) => this.terminiNastave = res,
+      next: (res) => {
+        this.terminiNastave = res.map(t => ({
+          ...t,
+          nastavnik: t.realizacijaPredmeta ? t.realizacijaPredmeta.nastavnik?.ime : '-',
+        }));
+        this.kolone = ['vremePocetka', 'vremeKraja', 'brojCasova', 'nastavnik', 'kalendar', 'vidljiv'];
+      },
       error: (err) => console.error('Greška prilikom učitavanja termina nastave:', err),
     });
   }

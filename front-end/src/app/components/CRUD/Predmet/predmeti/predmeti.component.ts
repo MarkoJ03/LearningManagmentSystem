@@ -14,7 +14,7 @@ export class PredmetiComponent {
   predmeti: Predmet[] = [];
   kolone: string[] = ['naziv', 'esbp', 'obavezan', 'brojPredavanja', 'brojVezbi', 
     'istrazivackiRad', 'brojSemestara', 'opis', 'cilj', 'dokumentiPredmeta', 
-    'evaluacijeZnanja', 'grupaStudenata', 'realizacijePredmeta', 'obavestenja'];
+    'evaluacijeZnanja', 'grupeStudenata', 'realizacijePredmeta', 'obavestenja'];
 
   constructor(
     private predmetService: PredmetService,

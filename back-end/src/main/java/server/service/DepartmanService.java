@@ -57,18 +57,17 @@ public class DepartmanService extends BaseService<Departman, DepartmanDTO, Long>
 			katedre.add(kDTO);
 		}
 
-		return new DepartmanDTO(entity.getId(), entity.getNaziv()
-
-				,
+		return new DepartmanDTO(entity.getId(), entity.getNaziv(),
 				new FakultetDTO(entity.getFakultet().getId(), entity.getFakultet().getNaziv(), null, null,
 						entity.getFakultet().getVidljiv()),
-				new NastavnikDTO(entity.getSekretarDepartmana().getId(), null, entity.getSekretarDepartmana().getIme(),
+				new NastavnikDTO(entity.getSekretarDepartmana().getId(), entity.getSekretarDepartmana().getIme(),
 						entity.getSekretarDepartmana().getPrezime(), entity.getSekretarDepartmana().getJmbg(), null,
-						null, null, null, null, null, null, entity.getSekretarDepartmana().getVidljiv()),
-				new NastavnikDTO(entity.getDirektorDepartmana().getId(), null, entity.getDirektorDepartmana().getIme(),
+						null, null, null, null, null, entity.getSekretarDepartmana().getVidljiv()),
+				new NastavnikDTO(entity.getDirektorDepartmana().getId(), entity.getDirektorDepartmana().getIme(),
 						entity.getDirektorDepartmana().getPrezime(), entity.getDirektorDepartmana().getJmbg(), null,
-						null, null, null, null, null, null, entity.getDirektorDepartmana().getVidljiv()),
+						null, null, null, null, null, entity.getDirektorDepartmana().getVidljiv()),
 				null, katedre, entity.getVidljiv());
+
 
 	}
 
@@ -87,33 +86,57 @@ public class DepartmanService extends BaseService<Departman, DepartmanDTO, Long>
 					dto.getFakultet().getVidljiv());
 		}
 
-		Nastavnik sekretar = null;
-		if (dto.getSekretarDepartmana() != null) {
-			sekretar = new Nastavnik(dto.getSekretarDepartmana().getId(), null, dto.getSekretarDepartmana().getIme(),
-					dto.getSekretarDepartmana().getPrezime(), dto.getSekretarDepartmana().getJmbg(), null, null, null,
-					null, null, null, null, dto.getSekretarDepartmana().getVidljiv());
-		}
 
-		Nastavnik direktor = null;
-		if (dto.getDirektorDepartmana() != null) {
-			direktor = new Nastavnik(dto.getDirektorDepartmana().getId(), null, dto.getDirektorDepartmana().getIme(),
-					dto.getDirektorDepartmana().getPrezime(), dto.getDirektorDepartmana().getJmbg(), null, null, null,
-					null, null, null, null, dto.getDirektorDepartmana().getVidljiv());
-		}
+	    Nastavnik sekretar = null;
+	    if (dto.getSekretarDepartmana() != null) {
+	        sekretar = new Nastavnik(
+	            dto.getSekretarDepartmana().getId(),
+	            null,
+	            dto.getSekretarDepartmana().getIme(),
+	            dto.getSekretarDepartmana().getPrezime(),
+	            dto.getSekretarDepartmana().getJmbg(),
+	            null, null,
+	            null, null, null, null,
+	            dto.getSekretarDepartmana().getVidljiv()
+	        );
+	    }
+
+	    Nastavnik direktor = null;
+	    if (dto.getDirektorDepartmana() != null) {
+	        direktor = new Nastavnik(
+	            dto.getDirektorDepartmana().getId(),
+	            null,
+	            dto.getDirektorDepartmana().getIme(),
+	            dto.getDirektorDepartmana().getPrezime(),
+	            dto.getDirektorDepartmana().getJmbg(),
+	            null, null,
+	            null, null, null, null,
+	            dto.getDirektorDepartmana().getVidljiv()
+	        );
+	    }
 
 		
 		Departman departman = new Departman(dto.getId(), dto.getNaziv(), fakultet, sekretar, direktor,
 				new ArrayList<>(), 
 				katedre, dto.getVidljiv());
 
-		ArrayList<DepartmanNastavnik> departmanNastavnici = new ArrayList<>();
-		if (dto.getNastavnici() != null) {
-			for (DepartmanNastavnikDTO dnDto : dto.getNastavnici()) {
-				NastavnikDTO n = dnDto.getNastavnik(); 
 
-				if (n != null) {
-					Nastavnik nastavnik = new Nastavnik(n.getId(), null, n.getIme(), n.getPrezime(), n.getJmbg(), null,
-							null, null, null, null, null, null, n.getVidljiv());
+	    ArrayList<DepartmanNastavnik> departmanNastavnici = new ArrayList<>();
+	    if (dto.getNastavnici() != null) {
+	        for (DepartmanNastavnikDTO dnDto : dto.getNastavnici()) {
+	            NastavnikDTO n = dnDto.getNastavnik(); 
+
+	            if (n != null) {
+	                Nastavnik nastavnik = new Nastavnik(
+	                    n.getId(),
+	                    null,
+	                    n.getIme(),
+	                    n.getPrezime(),
+	                    n.getJmbg(),
+	                    null, null,
+	                    null, null, null, null,
+	                    n.getVidljiv()
+	                );
 
 					DepartmanNastavnik dn = new DepartmanNastavnik();
 					dn.setDepartman(departman); 
@@ -181,5 +204,6 @@ public class DepartmanService extends BaseService<Departman, DepartmanDTO, Long>
 
 		entity.setVidljiv(dto.getVidljiv());
 	}
+
 
 }

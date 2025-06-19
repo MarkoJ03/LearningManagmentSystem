@@ -33,4 +33,6 @@ public class PravoPristupa {
 	@OneToMany(mappedBy = "pravoPristupa")
 	private Set<DodeljenoPravoPristupa> dodeljenaPravaPristupa;
 	
+	@Column(nullable = false)
+    private Boolean vidljiv = true;
 }

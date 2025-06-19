@@ -7,6 +7,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Fakultet } from '../../../../models/Fakultet';
 import { FakultetService } from '../../../../services/fakultet.service';
 import { Univerzitet } from '../../../../models/Univerzitet';
+import { Adresa } from '../../../../models/Adresa';
+import { AdresaService } from '../../../../services/adresa.service';
 
 @Component({
   selector: 'app-univerzitet-forma',
@@ -19,10 +21,12 @@ export class UniverzitetFormaComponent {
   idUniverziteta: number | null = null;
   sviFakulteti: Fakultet[] = [];
   kreiraniUniverzitet: Univerzitet | null = null;
+  sveAdrese: Adresa[] = [];
 
   constructor(
     private univerzitetService: UniverzitetService,
     private fakultetService: FakultetService,
+    private adresaService: AdresaService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -31,15 +35,20 @@ export class UniverzitetFormaComponent {
     this.fakultetService.getAll().subscribe(fakulteti => {
       this.sviFakulteti = fakulteti;
 
-      const idParam = this.route.snapshot.paramMap.get('id');
-      if (idParam) {
-        this.idUniverziteta = +idParam;
-        this.univerzitetService.getById(this.idUniverziteta).subscribe(univerzitet => {
-          this.formaModel = this.kreirajModel(univerzitet);
-        });
-      } else {
-        this.formaModel = this.kreirajModel();
-      }
+      this.adresaService.getAll().subscribe(adrese => {
+        this.sveAdrese = adrese;
+
+        const idParam = this.route.snapshot.paramMap.get('id');
+        if (idParam) {
+          this.idUniverziteta = +idParam;
+          this.univerzitetService.getById(this.idUniverziteta).subscribe(univerzitet => {
+            this.formaModel = this.kreirajModel(univerzitet);
+          });
+        } else {
+          this.formaModel = this.kreirajModel();
+        }
+      })
+
     })
   }
 
@@ -48,13 +57,36 @@ export class UniverzitetFormaComponent {
   }
 
   public sacuvajUniverzitet(vrednosti: any): void {
+    const adresaToSend = vrednosti.adresa ? { id: vrednosti.adresa.id } : null;
+
+    const fakultetiToSend = vrednosti.fakulteti ? vrednosti.fakulteti.map((fakultet: Fakultet) => {
+      if (fakultet.id) {
+        return { id: fakultet.id };
+      } else {
+        return {
+            naziv: fakultet.naziv,
+            vidljiv: fakultet.vidljiv
+        };
+      }
+    }) : [];
+
+    const finalUniverzitetDto = {
+      ...vrednosti, 
+      adresa: adresaToSend,
+      fakulteti: fakultetiToSend 
+    };
+
+    if (!this.idUniverziteta) {
+      delete finalUniverzitetDto.id;
+    }
+
     if (this.idUniverziteta) {
-      this.univerzitetService.update(this.idUniverziteta, vrednosti).subscribe({
+      this.univerzitetService.update(this.idUniverziteta, finalUniverzitetDto).subscribe({
         next: () => this.router.navigate(['/univerziteti']),
         error: err => console.error('Greška pri izmeni univerziteta:', err)
       });
     } else {
-      this.univerzitetService.create(vrednosti).subscribe({
+      this.univerzitetService.create(finalUniverzitetDto).subscribe({
         next: () => this.router.navigate(['/univerziteti']),
         error: err => console.error('Greška pri čuvanju univerziteta:', err)
       });
@@ -63,6 +95,7 @@ export class UniverzitetFormaComponent {
 
   private kreirajModel(podaci?: any): FormaModel {
     let selektovaniFakulteti = podaci?.fakultet ?? [];
+    let selektovanaAdresa = podaci?.adresa ?? null;
 
     return {
       naziv: podaci ? 'Izmena univerziteta' : 'Dodavanje univerziteta',
@@ -83,8 +116,10 @@ export class UniverzitetFormaComponent {
         {
           naziv: 'adresa',
           labela: 'Adresa',
-          tip: 'text',
-          podrazumevanaVrednost: podaci?.adresa ? `${podaci.adresa.ulica} ${podaci.adresa.broj}` : '',
+          tip: 'select',
+          podrazumevanaVrednost: selektovanaAdresa,
+          opcije: this.sveAdrese,
+          displayFn: (a: Adresa) => `${a.ulica} ${a.broj}`,
           validatori: [Validators.required]
         },
         {
@@ -101,6 +136,20 @@ export class UniverzitetFormaComponent {
           podrazumevanaVrednost: selektovaniFakulteti,
           opcije: this.sviFakulteti,
           displayFn: (f: Fakultet) => f.naziv,
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'email',
+          labela: 'Email',
+          tip: 'text',
+          podrazumevanaVrednost: podaci?.email ?? '',
+          validatori: [Validators.required]
+        },
+        {
+          naziv: 'kontakt',
+          labela: 'Kontakt',
+          tip: 'text',
+          podrazumevanaVrednost: podaci?.kontakt ?? '',
           validatori: [Validators.required]
         },
         {

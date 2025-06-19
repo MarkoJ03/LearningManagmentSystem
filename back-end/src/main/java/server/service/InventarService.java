@@ -77,4 +77,5 @@ public class InventarService extends BaseService<Inventar, InventarDTO, Long> {
 
 	        
 	    }
+
 }

@@ -114,7 +114,7 @@ public class GrupaStudenataService extends BaseService<GrupaStudenata, GrupaStud
 	                .map(rp -> {
 	                    PredmetDTO realizacijaDTO = null;
 	                    if (rp.getPredmet() != null) {
-	                        realizacijaDTO = new PredmetDTO(rp.getPredmet().getId(),rp.getPredmet().getNaziv(),null,null,null,null,null,null,null,null,null,null,null,null,rp.getPredmet().getVidljiv());
+	                        realizacijaDTO = new PredmetDTO(rp.getPredmet().getId(),rp.getPredmet().getNaziv(),null,null,null,null,null,null,null,null,null,null,null,null,null,rp.getPredmet().getVidljiv());
 	                    }
 	                    return new GrupaStudenataPredmetDTO(rp.getId(), null, realizacijaDTO, rp.getVidljiv());
 	                })
@@ -246,3 +246,5 @@ List<GrupaStudenataPredmet> grupeLinks = new ArrayList<>();
 
     
 }
+
+

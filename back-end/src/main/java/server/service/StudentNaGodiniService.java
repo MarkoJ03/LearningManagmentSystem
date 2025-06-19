@@ -1,9 +1,10 @@
 package server.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors; // Added for stream API
+import java.util.stream.Collectors; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -278,3 +279,6 @@ public class StudentNaGodiniService extends BaseService<StudentNaGodini, Student
         entity.getIshodEvaluacije().addAll(updatedIshodi);
     }
 }
+
+
+

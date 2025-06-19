@@ -4,7 +4,7 @@
     <hr />
     <h2>Login</h2>
     <form [formGroup]="forma" (ngSubmit)="login()">
-      <input type="text" name="korisnickoIme" formControlName="korisnickoIme" placeholder="Korisničko ime" />
+      <input type="text" name="email" formControlName="email" placeholder="Email" />
       <input type="password" name="lozinka" formControlName="lozinka" placeholder="Lozinka" />
       <button type="submit">Prijava / Login</button>
     </form>

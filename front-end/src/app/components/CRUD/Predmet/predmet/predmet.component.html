@@ -10,8 +10,8 @@
     Broj semestara: {{ predmet.brojSemestara }}<br>
     Opis: {{ predmet.opis }}<br>
     Cilj: {{ predmet.cilj }}<br>
-    Silabus: {{ predmet.dokumentiPredmeta.silabus }}<br>
-    Akreditacija: {{ predmet.dokumentiPredmeta.akreditacija }}<br>
+    Silabus: {{ predmet.dokumentiPredmeta?.silabus }}<br>
+    Akreditacija: {{ predmet.dokumentiPredmeta?.akreditacija }}<br>
     Vidljiv: {{ predmet.vidljiv }}
 </p>
 Evaluacija znanja:
@@ -21,15 +21,15 @@ Evaluacija znanja:
     </ng-container>
 </ul> <br>
 Grupa studenata:
-<ul *ngIf="predmet?.grupaStudenataPredmet?.length">
-    <ng-container *ngFor="let grupaStudenata of predmet?.grupaStudenataPredmet">
+<ul *ngIf="predmet?.grupeStudenata?.length">
+    <ng-container *ngFor="let grupaStudenata of predmet?.grupeStudenata">
         <li>{{ grupaStudenata.id }}</li>
     </ng-container>
 </ul> <br>
 Realizacija predmeta:
 <ul *ngIf="predmet?.realizacijePredmeta?.length">
     <ng-container *ngFor="let realizacijaPredmeta of predmet?.realizacijePredmeta">
-        <li>{{ realizacijaPredmeta.tipNastave.naziv }}</li>
+        <li>{{ realizacijaPredmeta.realizacijaPredmeta.tipNastave.naziv }}</li>
     </ng-container>
 </ul> <br>
 Obavestenja:

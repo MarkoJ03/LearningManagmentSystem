@@ -1,5 +1,64 @@
+// import { CommonModule } from '@angular/common';
+// import { Component } from '@angular/core';
+// import { Predmet } from '../../../models/Predmet';
+// import { ActivatedRoute } from '@angular/router';
+// import { NastavnikService } from '../../../services/nastavnik.service';
+
+// @Component({
+//   selector: 'app-enastavnik-predmeti',
+//   imports: [CommonModule],
+//   templateUrl: './enastavnik-predmeti.component.html',
+//   styleUrl: './enastavnik-predmeti.component.css'
+// })
+// export class EnastavnikPredmetiComponent {
+//   predmeti: Predmet[] = [];
+//   nastavnikId!: number;
+
+//   constructor(
+//     private route: ActivatedRoute,
+//     private nastavnikService: NastavnikService
+//   ) { }
+
+//   ngOnInit(): void {
+//     this.route.parent?.paramMap.subscribe(params => {
+//       const idParam = params.get('id');
+
+//       if (!idParam) {
+//         console.warn('No nastavnik ID found in route parameters.');
+//         return;
+//       }
+
+//       this.nastavnikId = Number(idParam);
+//       console.log('Nastavnik ID:', this.nastavnikId);
+
+//       if (isNaN(this.nastavnikId) || this.nastavnikId <= 0) {
+//         console.warn('Invalid nastavnik ID:', this.nastavnikId);
+//         return;
+//       }
+
+//       this.nastavnikService.getById(this.nastavnikId).subscribe({
+
+//         next: (nastavnik) => {
+//           console.log('Response from server:', nastavnik);
+//           console.log('RealizacijePredmeta:', nastavnik.realizacijePredmeta);
+
+//           // this.predmeti = (nastavnik.realizacijePredmeta || [])
+//           //   .map(rp => rp.predmet)
+//           //   .filter((predmet, index, self) =>
+//           //     predmet && self.findIndex(p => p.id === predmet.id) === index
+//           //   );
+//           console.log('Dohvaćeni predmeti:', this.predmeti);
+//         },
+//         error: (err) => {
+//           console.error('Greška pri dohvatu nastavnika:', err);
+//         }
+//       });
+//     });
+//   }
+// }
+
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Predmet } from '../../../models/Predmet';
 import { ActivatedRoute } from '@angular/router';
 import { NastavnikService } from '../../../services/nastavnik.service';
@@ -8,51 +67,72 @@ import { NastavnikService } from '../../../services/nastavnik.service';
   selector: 'app-enastavnik-predmeti',
   imports: [CommonModule],
   templateUrl: './enastavnik-predmeti.component.html',
-  styleUrl: './enastavnik-predmeti.component.css'
+  styleUrls: ['./enastavnik-predmeti.component.css']
 })
-export class EnastavnikPredmetiComponent {
+export class EnastavnikPredmetiComponent implements OnInit {
   predmeti: Predmet[] = [];
   nastavnikId!: number;
+  loading = false;
+  error?: string;
 
   constructor(
     private route: ActivatedRoute,
     private nastavnikService: NastavnikService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.parent?.paramMap.subscribe(params => {
       const idParam = params.get('id');
 
       if (!idParam) {
-        console.warn('No nastavnik ID found in route parameters.');
+        this.error = 'Nastavnik ID nije pronađen u parametrima rute.';
         return;
       }
 
       this.nastavnikId = Number(idParam);
-      console.log('Nastavnik ID:', this.nastavnikId);
 
       if (isNaN(this.nastavnikId) || this.nastavnikId <= 0) {
-        console.warn('Invalid nastavnik ID:', this.nastavnikId);
+        this.error = 'Nevažeći ID nastavnika.';
         return;
       }
 
-      this.nastavnikService.getById(this.nastavnikId).subscribe({
-
-        next: (nastavnik) => {
-          console.log('Response from server:', nastavnik);
-          console.log('RealizacijePredmeta:', nastavnik.realizacijePredmeta);
-
-          this.predmeti = (nastavnik.realizacijePredmeta || [])
-            .map(rp => rp.predmet)
-            .filter((predmet, index, self) =>
-              predmet && self.findIndex(p => p.id === predmet.id) === index
-            );
-          console.log('Dohvaćeni predmeti:', this.predmeti);
-        },
-        error: (err) => {
-          console.error('Greška pri dohvatu nastavnika:', err);
-        }
-      });
+      this.loadPredmeti();
     });
   }
+
+  loadPredmeti() {
+    this.loading = true;
+    this.error = undefined;
+
+    this.nastavnikService.getById(this.nastavnikId).subscribe({
+      next: (nastavnik) => {
+        console.log('Nastavnik:', nastavnik);
+        this.predmeti = [];
+
+        if (nastavnik.realizacijePredmeta) {
+          for (const realizacija of nastavnik.realizacijePredmeta) {
+            if (realizacija.predmeti) {
+              for (const prp of realizacija.predmeti) {
+                if (prp.predmet && !this.predmeti.some(p => p.id === prp.predmet.id)) {
+                  this.predmeti.push(prp.predmet);
+                }
+              }
+            }
+          }
+        }
+
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Greška pri dohvatu nastavnika.';
+        console.error(err);
+        this.loading = false;
+      }
+    });
+  }
+
+  trackByPredmetId(index: number, predmet: Predmet): number {
+  return predmet.id;
+}
+
 }

@@ -28,12 +28,6 @@ public class SilabusService extends BaseService<Silabus, SilabusDTO, Long> {
 	@Autowired
 	private SilabusRepository silabusRepository;
 
-
-
-
-
-
-
 	@Autowired
 	@Lazy
 	private SilabusTerminService stService;

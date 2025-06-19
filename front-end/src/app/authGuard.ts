@@ -9,5 +9,5 @@ export function authGuard(route: ActivatedRouteSnapshot, state: RouterStateSnaps
     loginService.validateRoles(route.data['requiredRoles'])){
         return true;
     }
-    return new RedirectCommand(router.parseUrl("/login"));
+    return new RedirectCommand(router.parseUrl("/"));
 }

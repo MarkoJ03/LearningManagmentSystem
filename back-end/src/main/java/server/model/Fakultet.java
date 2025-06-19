@@ -29,7 +29,7 @@ public class Fakultet {
 	@Column(nullable = false)
 	private String naziv;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private Univerzitet univerzitet;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fakultet")

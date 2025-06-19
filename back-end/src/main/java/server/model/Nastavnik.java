@@ -2,6 +2,7 @@ package server.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -33,26 +34,24 @@ public class Nastavnik {
 	private String prezime;
 	@Column(nullable=false, length = 13, unique = true)
 	private String jmbg;
-	@OneToMany (fetch= FetchType.LAZY, mappedBy = "nastavnik")
+	
+	@OneToMany (fetch= FetchType.LAZY, mappedBy = "nastavnik", cascade = {CascadeType.ALL}, orphanRemoval = true)
 	private List<Zvanje> zvanja;
-	@OneToMany(mappedBy = "nastavnik")
+	
+	@OneToMany(mappedBy = "nastavnik", cascade = {CascadeType.ALL}, orphanRemoval = true)
 	private List<DepartmanNastavnik> departmani;
-
-	@OneToMany(mappedBy = "nastavnik")
+	
+	@OneToMany(mappedBy = "nastavnik", cascade = {CascadeType.ALL}, orphanRemoval = true)
 	private List<KatedraNastavnik> katedre;
 
-
-	@ManyToOne(optional = false)
-	private StudentskaSluzba studentskaSluzba;
-
-	@OneToMany(mappedBy = "nastavnik")
+	@OneToMany(mappedBy = "nastavnik", cascade = {CascadeType.ALL}, orphanRemoval = true)
 	private List<RealizacijaPredmeta> realizacijePredmeta;
-	@OneToMany(mappedBy = "nastavnik")
+	
+	@OneToMany(mappedBy = "nastavnik", cascade = {CascadeType.ALL}, orphanRemoval = true)
 	private List<Obavestenje> obavestenja;
 
-
-	@OneToMany (fetch= FetchType.LAZY, mappedBy = "nastavnik")
-	private List<EvaluacijaZnanja> evaluacijaZnanja;
+	@OneToMany (mappedBy = "nastavnik", cascade = {CascadeType.ALL}, orphanRemoval = true)
+	private List<EvaluacijaZnanja> evaluacijeZnanja;
 
 	@Column(nullable = false)
     private Boolean vidljiv = true;

@@ -1,11 +1,13 @@
 package server.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,12 +15,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"korisnik", "pravoPristupa"})
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class DodeljenoPravoPristupa {
 
     @Id
@@ -31,4 +30,7 @@ public class DodeljenoPravoPristupa {
 
     @ManyToOne
     private PravoPristupa pravoPristupa;
+    
+    @Column(nullable = false)
+    private Boolean vidljiv = true;
 }

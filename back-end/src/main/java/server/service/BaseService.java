@@ -27,7 +27,6 @@ public abstract class BaseService<T, DTO, ID> {
         return null;
     }
 
-    protected abstract void updateEntityFromDto(DTO dto, T entity);
 
     public List<DTO> findAll() {
         return ((List<T>) getRepository().findAll())
@@ -55,6 +54,10 @@ public abstract class BaseService<T, DTO, ID> {
         setVidljiv(entity, true);
         return convertToDTO(getRepository().save(entity));
     }
+    
+    
+    
+    protected abstract void updateEntityFromDto(DTO dto, T entity);
 
     public void deleteById(ID id) {
         Optional<T> optional = getRepository().findById(id);

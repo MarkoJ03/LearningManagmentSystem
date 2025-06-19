@@ -13,7 +13,7 @@ export class KalendarService extends BaseService<Kalendar> {
     this.setUrl('http://localhost:8080/api/kalendari');
   }
 
-  getByNastavnikId(nastavnikId: number): Observable<Kalendar[]> {
-    return this.http.get<Kalendar[]>(`http://localhost:8080/api/kalendari/nastavnik/${nastavnikId}`);
+  getByNastavnikId(nastavnikId: number): Observable<Kalendar> {
+    return this.http.get<Kalendar>(`http://localhost:8080/api/kalendari/nastavnik/${nastavnikId}`);
   }
 }

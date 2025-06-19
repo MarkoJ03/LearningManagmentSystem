@@ -35,8 +35,8 @@ export class IshodEvaluacijeFormaComponent {
   ) { }
 
   ngOnInit(): void {
-    // this.studentNaGodiniService.getAll().subscribe(studentiNaGodini => {
-    //   this.sviStudentiNaGodini = studentiNaGodini;
+    this.studentNaGodiniService.getAll().subscribe(studentiNaGodini => {
+      this.sviStudentiNaGodini = studentiNaGodini;
 
       this.evaluacijaZnanjaService.getAll().subscribe(evaluacijeZnanja => {
         this.sveEvaluacijeZnanja = evaluacijeZnanja;
@@ -55,7 +55,7 @@ export class IshodEvaluacijeFormaComponent {
           }
         })
       })
-  //  })
+   })
   }
 
   otkazi(): void {

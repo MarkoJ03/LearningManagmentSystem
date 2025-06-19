@@ -14,6 +14,6 @@ export class GodinaStudijaService extends BaseService<GodinaStudija> {
   }
 
   getByProgramId(id: number): Observable<GodinaStudija[]> {
-  return this.http.get<GodinaStudija[]>(`http://localhost:8080/api/GodinaStudija/program/${id}`);
+  return this.http.get<GodinaStudija[]>(`http://localhost:8080/api/godine-studija/program/${id}`);
 }
 }

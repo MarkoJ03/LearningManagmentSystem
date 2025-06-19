@@ -174,6 +174,11 @@ public class StudentService extends BaseService<Student, StudentDTO, Long> {
            
             System.err.println("StudentDTO nema StudentskaSluzba informaciju, ili ID StudentskeSluzbe je null.");
         }
+		
+
+	
+
+	
 
 
        

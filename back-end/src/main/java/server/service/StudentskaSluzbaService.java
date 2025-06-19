@@ -182,6 +182,7 @@ public class StudentskaSluzbaService extends BaseService<StudentskaSluzba, Stude
             kalendariDTO,
             studentiDTO,
             obrasciDTO,
+
             entity.getVidljiv()
         );
     }

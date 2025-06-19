@@ -13,7 +13,7 @@ import { UniverzitetService } from '../../../../services/univerzitet.service';
 export class UniverzitetiComponent {
   univerziteti: Univerzitet[] = [];
   tabelaPodaci: any[] = [];
-  kolone: string[] = ['naziv', 'datumOsnivanja', 'adresa', 'fakulteti', 'vidljiv'];
+  kolone: string[] = ['naziv', 'datumOsnivanja', 'adresa', 'fakulteti', 'email', 'kontakt', 'vidljiv'];
 
   constructor(
     private univerzitetService: UniverzitetService,

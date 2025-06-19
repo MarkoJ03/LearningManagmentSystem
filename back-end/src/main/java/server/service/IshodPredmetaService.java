@@ -139,4 +139,6 @@ public class IshodPredmetaService extends BaseService<IshodPredmeta, IshodPredme
         entity.getIshodiEvaluacije().clear();
         entity.getIshodiEvaluacije().addAll(updatedIshodi);
     }
+
+
 }

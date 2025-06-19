@@ -128,4 +128,5 @@ public class BibliotekaService extends BaseService<Biblioteka, BibliotekaDTO, Lo
         entity.getKnjige().addAll(updatedLinksD);
 
 }
+
 }

@@ -36,6 +36,7 @@ public class StudentskaSluzba {
     private Biblioteka biblioteke;
 
 
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
 	private List<Kalendar> kalendari;
 

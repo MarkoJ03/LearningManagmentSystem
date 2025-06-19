@@ -10,9 +10,8 @@
 
 <div *ngIf="termini.length > 0" class="kalendari-container">
   <div *ngFor="let termin of termini" class="kalendar-kartica">
-    <p><strong>Predmet:</strong> {{ termin.predmet }}</p>
-    <p><strong>Grupa:</strong> {{ termin.grupa }}</p>
-    <p><strong>Tip:</strong> {{ termin.tip }}</p>
-    <p><strong>Vreme:</strong> {{ termin.vremePocetka | date:'short' }} - {{ termin.vremeZavrsetka | date:'short' }}</p>
+    <p><strong>Predmet:</strong> {{ termin.realizacijaPredmeta?.predmeti?.[0]?.predmet?.naziv }}</p>
+    <p><strong>Tip:</strong> {{ termin.realizacijaPredmeta?.tipNastave?.naziv }}</p>
+    <p><strong>Vreme:</strong> {{ termin.vremePocetka | date:'short' }} - {{ termin.vremeKraja| date:'short' }}</p>
   </div>
 </div>

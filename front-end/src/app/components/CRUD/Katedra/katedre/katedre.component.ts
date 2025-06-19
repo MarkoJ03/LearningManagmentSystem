@@ -17,12 +17,23 @@ export class KatedreComponent {
   constructor(
     private katedraService: KatedraService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.katedraService.getAll().subscribe({
-      next: (res) => this.katedre = res,
-      error: (err) => console.error('Greška prilikom učitavanja katedri:', err),
+      next: (res) => {
+        this.katedre = res.map(k => ({
+          ...k,
+          departmanNaziv: k.departman?.naziv ?? '-',
+          sefKatedreIme: k.sefKatedre ? `${k.sefKatedre.ime} ${k.sefKatedre.prezime}` : '-',
+          sekretarKatedreIme: k.sekretarKatedre ? `${k.sekretarKatedre.ime} ${k.sekretarKatedre.prezime}` : '-',
+          studijskiProgramiNazivi: (k.studijskiProgrami || []).map(sp => sp.naziv).join(', '),
+          nastavniciImena: (k.nastavnici || []).map(kn => `${kn.nastavnik.ime} ${kn.nastavnik.prezime}`).join(', '),
+        }));
+
+        this.kolone = ['naziv', 'departmanNaziv', 'sefKatedreIme', 'sekretarKatedreIme', 'studijskiProgramiNazivi', 'nastavniciImena', 'vidljiv'];
+      },
+      error: (err) => console.error('Greška pri učitavanju katedri:', err),
     });
   }
 

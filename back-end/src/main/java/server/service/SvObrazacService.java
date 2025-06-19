@@ -111,9 +111,11 @@ public class SvObrazacService extends BaseService<SvObrazac, SvObrazacDTO, Long>
         return svObrazac;
     }
 
-    @Override
-    protected void updateEntityFromDto(SvObrazacDTO dto, SvObrazac entity) {
-        // TODO Auto-generated method stub
-        
-    }
+
+	@Override
+	protected void updateEntityFromDto(SvObrazacDTO dto, SvObrazac entity) {
+		// TODO Auto-generated method stub
+		
+	
+}
 }

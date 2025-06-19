@@ -48,14 +48,15 @@ public class PredmetDTO {
     private DokumentiPredmetaDTO dokumentiPredmeta;
 
 
-	private List<EvaluacijaZnanjaDTO> evaluacijaZnanja;
+	private List<EvaluacijaZnanjaDTO> evaluacijeZnanja;
 
 
-	private List<GrupaStudenataPredmetDTO> grupaStudenataPredmet;
+	private List<GrupaStudenataPredmetDTO> grupeStudenata;
 
 
-    private List<RealizacijaPredmetaDTO> realizacijePredmeta;
+    private List<PredmetRealizacijePredmetaDTO> realizacijePredmeta;
 
+    private List<ObavestenjeDTO> obavestenja;
 
     private Boolean vidljiv = true;
 }

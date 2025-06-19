@@ -75,12 +75,30 @@ export class RealizacijaPredmetaFormaComponent {
 
   public sacuvajRealizacijuPredmeta(vrednosti: any): void {
     if (this.idRealizacijePredmeta) {
-      this.realizacijaPredmetaService.update(this.idRealizacijePredmeta, vrednosti).subscribe({
+      const izmenjenaRealizacija = {
+        ...vrednosti,
+        predmeti: vrednosti.predmeti.map((p: Predmet) => ({
+          predmet: { id: p.id },
+          realizacijaPredmeta: { id: this.idRealizacijePredmeta },
+          vidljiv: true
+        }))
+      };
+
+      this.realizacijaPredmetaService.update(this.idRealizacijePredmeta, izmenjenaRealizacija).subscribe({
         next: () => this.router.navigate(['/realizacije-predmeta']),
         error: err => console.error('Greška pri izmeni realizacije predmeta:', err)
       });
     } else {
-      this.realizacijaPredmetaService.create(vrednosti).subscribe({
+      const novPredmet = {
+        ...vrednosti,
+        predmeti: vrednosti.predmeti.map((p: Predmet) => ({
+          predmet: { id: p.id },
+          realizacijaPredmeta: { id: this.idRealizacijePredmeta },
+          vidljiv: true
+        }))
+      };
+
+      this.realizacijaPredmetaService.create(novPredmet).subscribe({
         next: () => this.router.navigate(['/realizacije-predmeta']),
         error: err => console.error('Greška pri čuvanju realizacije predmeta:', err)
       });
@@ -90,7 +108,7 @@ export class RealizacijaPredmetaFormaComponent {
   private kreirajModel(podaci?: RealizacijaPredmeta): FormaModel {
     let selektovaniNastavnik = podaci?.nastavnik ?? null;
     let selektovaniTipNastave = podaci?.tipNastave ?? null;
-    let selektovaniPredmet = podaci?.predmet ?? null;
+    let selektovaniPredmet: Predmet[] = podaci?.predmeti?.map(p => p.predmet) ?? [];
     let selektovaniTerminiNastave = podaci?.terminiNastave ?? [];
 
 
@@ -122,9 +140,9 @@ export class RealizacijaPredmetaFormaComponent {
           validatori: [Validators.required]
         },
         {
-          naziv: 'predmet',
+          naziv: 'predmeti',
           labela: 'Predmet',
-          tip: 'select',
+          tip: 'checkbox-list',
           podrazumevanaVrednost: selektovaniPredmet,
           opcije: this.sviPredmeti,
           displayFn: (p: Predmet) => p.naziv,

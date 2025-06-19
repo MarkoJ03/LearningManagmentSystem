@@ -74,12 +74,12 @@ public class KalendarService extends BaseService<Kalendar, KalendarDTO, Long> {
                 
                 PredmetDTO predmetDTO = null;
                 if (ez.getPredmet() != null) {
-                    predmetDTO = new PredmetDTO(ez.getPredmet().getId(), null, null, null, null, null, null, null, null, null, null, null, null, null, ez.getPredmet().getVidljiv());
+                    predmetDTO = new PredmetDTO(ez.getPredmet().getId(), null, null, null,null, null, null, null, null, null, null, null, null, null, null, ez.getPredmet().getVidljiv());
                 }
 
                 NastavnikDTO nastavnikDTO = null;
                 if (ez.getNastavnik() != null) {
-                    nastavnikDTO = new NastavnikDTO(ez.getNastavnik().getId(), null, ez.getNastavnik().getIme(), ez.getNastavnik().getPrezime(), null, null, null, null, null, null, null, null, ez.getNastavnik().getVidljiv());
+                    nastavnikDTO = new NastavnikDTO(ez.getNastavnik().getId(), ez.getNastavnik().getIme(), ez.getNastavnik().getPrezime(), null, null, null, null, null, null, null, ez.getNastavnik().getVidljiv());
                 }
 
                 TipEvaluacijeDTO tipEvaluacijeDTO = null;
@@ -216,6 +216,7 @@ public class KalendarService extends BaseService<Kalendar, KalendarDTO, Long> {
         Kalendar kalendar = kalendarRepository.findKalendarByNastavnikId(nastavnikId);
         return convertToDTO(kalendar);
     }
+
 
     @Override
     protected void updateEntityFromDto(KalendarDTO dto, Kalendar entity) {

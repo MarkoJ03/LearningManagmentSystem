@@ -84,7 +84,7 @@ export class TipZvanjaFormaComponent {
         {
           naziv: 'zvanja',
           labela: 'Zvanja',
-          tip: 'select',
+          tip: 'checkbox-list',
           podrazumevanaVrednost: selektovanaZvanja,
           opcije: this.svaZvanja,
           displayFn: (z: Zvanje) => `${z.nastavnik.ime} ${z.nastavnik.prezime}`,

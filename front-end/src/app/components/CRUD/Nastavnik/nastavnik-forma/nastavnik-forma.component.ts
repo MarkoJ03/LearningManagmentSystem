@@ -19,7 +19,6 @@ import { KatedraService } from '../../../../services/katedra.service';
 import { RealizacijaPredmetaService } from '../../../../services/realizacija-predmeta.service';
 import { ObavestenjeService } from '../../../../services/obavestenje.service';
 import { EvaluacijaZnanjaService } from '../../../../services/evaluacija-znanja.service';
-import { DepartmanNastavnik } from '../../../../models/DepartmanNastavnik';
 import { DepartmanNastavnikService } from '../../../../services/departman-nastavnik.service';
 import { KatedraNastavnikService } from '../../../../services/katedra-nastavnik.service';
 
@@ -66,14 +65,14 @@ export class NastavnikFormaComponent {
         this.katedreService.getAll().subscribe(katedre => {
           this.sveKatedre = katedre;
 
-          // this.realizacijaPredmetaService.getAll().subscribe(realizacijePredmeta => {
-          //   this.sveRealizacijePredmeta = realizacijePredmeta;
+          this.realizacijaPredmetaService.getAll().subscribe(realizacijePredmeta => {
+            this.sveRealizacijePredmeta = realizacijePredmeta;
 
-            // this.obavestenjaService.getAll().subscribe(obavestenja => {
-              // this.svaObavestenja = obavestenja;
+            this.obavestenjaService.getAll().subscribe(obavestenja => {
+              this.svaObavestenja = obavestenja;
 
-              // this.evaluacijaZnanjaService.getAll().subscribe(evaluacijeZnanja => {
-              //   this.sveEvaluacijeZnanja = evaluacijeZnanja;
+              this.evaluacijaZnanjaService.getAll().subscribe(evaluacijeZnanja => {
+                this.sveEvaluacijeZnanja = evaluacijeZnanja;
 
                 this.korisnikService.getAll().subscribe(korisnici => {
                   this.sviKorisnici = korisnici;
@@ -92,9 +91,9 @@ export class NastavnikFormaComponent {
               })
             })
           })
-        // })
-      // })
-    // })
+        })
+      })
+    })
   }
 
   otkazi(): void {
@@ -110,12 +109,13 @@ export class NastavnikFormaComponent {
     } else {
       this.nastavnikService.create(vrednosti).subscribe({
         next: (nastavnik) => {
-          this.kreiraniNastavnik = nastavnik;
+          this.kreiraniNastavnik = nastavnik; 
 
-          for (let departman of vrednosti.departmani) {
+          for (const departman of vrednosti.departmani) {
             const veza = {
-              nastavnik: nastavnik,
-              departman: departman,
+              id: null, 
+              departman: departman, 
+              nastavnik: nastavnik, 
               vidljiv: true
             };
 
@@ -125,10 +125,11 @@ export class NastavnikFormaComponent {
             });
           }
 
-          for (let katedra of vrednosti.katedre) {
+          for (const katedra of vrednosti.katedre) {
             const veza = {
-              nastavnik: nastavnik,
-              katedra: katedra,
+              id: null,
+              katedra: katedra,           
+              nastavnik: nastavnik, 
               vidljiv: true
             };
 
@@ -140,7 +141,6 @@ export class NastavnikFormaComponent {
 
           this.router.navigate(['/nastavnici']);
         },
-
         error: err => console.error('Greška pri čuvanju nastavnika:', err)
       });
     }
@@ -227,7 +227,7 @@ export class NastavnikFormaComponent {
           tip: 'checkbox-list',
           podrazumevanaVrednost: selektovaneRealizacijePredmeta,
           opcije: this.sveRealizacijePredmeta,
-          displayFn: (r: RealizacijaPredmeta) => r.predmet.naziv,
+          displayFn: (r: RealizacijaPredmeta) => `${r.id}`,
           validatori: [Validators.required]
         },
         {

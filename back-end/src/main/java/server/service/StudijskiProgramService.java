@@ -178,4 +178,5 @@ public class StudijskiProgramService extends BaseService<StudijskiProgram, Studi
         entity.getGodineStudija().clear();
         entity.getGodineStudija().addAll(updatedGodineStudija);
     }
+		
 }

@@ -12,16 +12,23 @@ import { KorisnikService } from '../../../../services/korisnik.service';
 })
 export class KorisniciComponent {
   korisnici: Korisnik[] = [];
-  kolone: string[] = ['email', 'vidljiv'];
+  kolone: string[] = ['email', 'dodeljenaPravaPristupa', 'vidljiv'];
 
   constructor(
     private korisnikService: KorisnikService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.korisnikService.getAll().subscribe({
-      next: (res) => this.korisnici = res,
+      next: (res) => {
+        this.korisnici = res.map(k => ({
+          ...k,
+          pravaPristupa: (k.dodeljenaPravaPristupa || []).map(kp => kp.pravoPristupa.naziv).join(', ')
+        }));
+
+        this.kolone = ['email', 'pravaPristupa', 'vidljiv']
+      },
       error: (err) => console.error('Greška prilikom učitavanja korisnika:', err),
     });
   }

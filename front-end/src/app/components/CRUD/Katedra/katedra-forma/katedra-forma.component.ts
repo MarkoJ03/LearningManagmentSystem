@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Departman } from '../../../../models/Departaman';
 import { DepartmanService } from '../../../../services/departman.service';
 import { KatedraNastavnikService } from '../../../../services/katedra-nastavnik.service';
+import { KatedraNastavnik } from '../../../../models/KatedraNastavnik';
 
 @Component({
   selector: 'app-katedra-forma',
@@ -58,10 +59,7 @@ export class KatedraFormaComponent {
           }
         })
       })
-
-
     })
-
   }
 
   otkazi(): void {
@@ -70,30 +68,35 @@ export class KatedraFormaComponent {
 
   public sacuvajKatedru(vrednosti: any): void {
     if (this.idKatedre) {
-      this.katedraService.update(this.idKatedre, vrednosti).subscribe({
+      const izmenjenaKatedra = {
+        ...vrednosti,
+        nastavnici: vrednosti.nastavnici.map((n: Nastavnik) => ({
+          nastavnik: { id: n.id },
+          vidljiv: true
+        })),
+        studijskiProgrami: vrednosti.studijskiProgrami.map((sp: StudijskiProgram) => ({
+          id: sp.id
+        }))
+      };
+
+      this.katedraService.update(this.idKatedre, izmenjenaKatedra).subscribe({
         next: () => this.router.navigate(['/katedre']),
         error: err => console.error('Greška pri izmeni katedre:', err)
       });
     } else {
-      this.katedraService.create(vrednosti).subscribe({
-        next: (katedra) => {
-          this.kreiranaKatedra = katedra
+      const novaKatedra = {
+        ...vrednosti,
+        nastavnici: vrednosti.nastavnici.map((n: Nastavnik) => ({
+          nastavnik: { id: n.id },
+          vidljiv: true
+        })),
+        studijskiProgrami: vrednosti.studijskiProgrami.map((sp: StudijskiProgram) => ({
+          id: sp.id
+        }))
+      };
 
-          for (let nastavnik of vrednosti.nastavnik) {
-            const veza = {
-              katedra: katedra,
-              nastavnik: nastavnik,
-              vidljiv: true
-            };
-
-            this.katedraNastavnikService.create(veza).subscribe({
-              next: () => console.log(`Povezan nastavnik ${nastavnik.id} sa katedrom ${katedra.id}`),
-              error: err => console.error('Greška pri vezivanju nastavnika:', err)
-            });
-          }
-          
-          this.router.navigate(['/katedre'])
-        },
+      this.katedraService.create(novaKatedra).subscribe({
+        next: () => this.router.navigate(['/katedre']),
         error: err => console.error('Greška pri čuvanju katedre:', err)
       });
     }
@@ -102,10 +105,10 @@ export class KatedraFormaComponent {
   private kreirajModel(podaci?: Katedra): FormaModel {
     let selektovaniSefKatedre = podaci?.sefKatedre ?? null;
     let selektovaniSekretarKatedre = podaci?.sekretarKatedre ?? null;
-    let selektovaniNastavnici = podaci?.nastavnici ?? [];
+    let selektovaniNastavnici: Nastavnik[] = podaci?.nastavnici?.map(nk => nk.nastavnik) ?? [];
     let selektovaniStudijskiProgrami = podaci?.studijskiProgrami ?? [];
     let selektovaniDepartman = podaci?.departman ?? null;
-  
+
 
     return {
       naziv: podaci ? 'Izmena katedre' : 'Dodavanje katedre',

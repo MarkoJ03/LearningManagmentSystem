@@ -12,6 +12,7 @@ public class ObavestenjeDTO {
 	private String naslov;
 	private String sadrzaj;
 	private NastavnikDTO nastavnik;
+	private PredmetDTO predmet;
 	private Boolean vidljiv = true;
 
 }

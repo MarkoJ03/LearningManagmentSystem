@@ -4,6 +4,7 @@ import { filter } from 'rxjs/operators';
 import { Nastavnik } from '../../../models/Nastavnik';
 import { NastavnikService } from '../../../services/nastavnik.service';
 import { CommonModule } from '@angular/common';
+import { LogoutService } from '../../../../services/logout.service';
 
 @Component({
   selector: 'app-enastavnik-sidebar',
@@ -21,8 +22,9 @@ export class EnastavnikSidebarComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private logoutService: LogoutService,
     private nastavnikService: NastavnikService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.nastavnikId = Number(this.route.snapshot.paramMap.get('id'));
@@ -48,5 +50,10 @@ export class EnastavnikSidebarComponent {
         this.uKontekstuPredmeta = false;
       }
     });
+  }
+
+  logout(event: Event): void {
+    event.preventDefault();
+    this.logoutService.logout();
   }
 }
