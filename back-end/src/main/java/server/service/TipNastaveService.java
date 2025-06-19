@@ -60,4 +60,10 @@ public class TipNastaveService extends BaseService<TipNastave, TipNastaveDTO, Lo
 
 	}
 
+	@Override
+	protected void updateEntityFromDto(TipNastaveDTO dto, TipNastave entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

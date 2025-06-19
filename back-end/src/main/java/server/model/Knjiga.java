@@ -2,6 +2,7 @@ package server.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -29,8 +30,8 @@ public class Knjiga {
 	@Column(nullable = false, unique = true)
 	private String ISBN;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "knjiga")
-	private List<BibliotekaKnjiga> bibliotekaKnjiga;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "knjiga",cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<BibliotekaKnjiga> biblioteke;
 	
 
 	@Column(nullable = false)

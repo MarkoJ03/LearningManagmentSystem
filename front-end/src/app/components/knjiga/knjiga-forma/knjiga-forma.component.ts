@@ -99,6 +99,7 @@ export class KnjigaFormaComponent implements OnInit {
           validatori: [Validators.required]
         },
         
+        
       ]
     };
   }

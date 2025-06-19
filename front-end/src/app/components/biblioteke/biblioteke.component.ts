@@ -13,7 +13,7 @@ import { BaseTableComponent } from '../base-table/base-table.component';
 })
 export class BibliotekeComponent {
   biblioteke: Biblioteka[] = [];
-  kolone: string[] = ['studentskaSluzba', 'knjige'];
+  kolone: string[] = ['studentskaSluzba', 'nazivKnjige'];
 
   constructor(
     private bibliotekaSerivce: BibliotekaService,
@@ -23,18 +23,16 @@ export class BibliotekeComponent {
 
   ngOnInit(): void {
     this.bibliotekaSerivce.getAll().subscribe({
-      next: (res) => {
-        this.biblioteke = res;
+  next: (res) => {
+    this.biblioteke = res.map(n => ({
+      ...n,
+      
+    nazivKnjige: n.knjige?.map(o => o.knjiga?.naziv).join(', ') || ''
+    }));
+  },
+  error: (err) => console.error('Greška prilikom učitavanja nastavnika:', err),
+});
 
-       
-        for (let biblioteka of this.biblioteke) {
-          this.bibliotekaKnjigaService.getByBibliotekaId(biblioteka.id).subscribe(veze => {
-            biblioteka.knjige = veze.map(v => v.knjiga); 
-          });
-        }
-      },
-      error: (err) => console.error('Greška prilikom učitavanja biblioteka:', err),
-    });
   }
 
   izmeni(biblioteka: Biblioteka): void {

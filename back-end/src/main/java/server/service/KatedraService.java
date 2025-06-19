@@ -78,5 +78,12 @@ public class KatedraService extends BaseService<Katedra, KatedraDTO, Long>{
 		}
 
 
+	@Override
+	protected void updateEntityFromDto(KatedraDTO dto, Katedra entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }

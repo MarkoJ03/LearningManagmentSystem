@@ -45,6 +45,12 @@ public class SilabusTerminService extends BaseService<SilabusTermin, SilabusTerm
 		return new SilabusTermin(dto.getId(),dto.getDatum(),dto.getMaterijal(),dto.getCilj(), dto.getOpis(),nastavnikService.convertToEntity(dto.getNastavnik()),s, dto.getVidljiv());
 		}
 
+	@Override
+	protected void updateEntityFromDto(SilabusTerminDTO dto, SilabusTermin entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }

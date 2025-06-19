@@ -1,31 +1,54 @@
-<table>
-    <thead>
-      <tr>
-        @for (col of displayedColumns; track col) {
-          <th>{{ col | titlecase }}</th>
-        }
-        <th>Akcije</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (item of data; track item['id']) {
-        <tr>
-          @for (col of displayedColumns; track col) {
-            <td>
-              @if (isObject(item[col])) {
-                {{ extractDisplayValue(item[col]) }}
-              } @else {
-                {{ item[col] }}
-              }
-            </td>
-          }
-          <td>
-            <button (click)="edit.emit(item)">Izmeni</button>
-            <button (click)="delete.emit(item['id'])">Obriši</button>
-            <button (click)="details.emit(item['id'])">Detalji</button>            
-          </td>
-        </tr>
+<!-- base-table.component.html -->
+<table class="w-full text-left table-auto border-collapse rounded-lg overflow-hidden shadow-md">
+  <thead>
+    <tr class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal">
+      <!-- Iterates through the column names to be displayed -->
+      @for (column of displayedColumns; track $index) {
+        <th class="py-3 px-6 text-left border-b border-gray-300">{{column}}</th>
       }
-    </tbody>
-  </table>
-  
+      <!-- Actions column (Edit, Remove, Details) -->
+      <th class="py-3 px-6 text-center border-b border-gray-300">Akcije</th>
+    </tr>
+  </thead>
+  <tbody class="text-gray-600 text-sm font-light">
+    <!-- Iterates through data rows (each 'row' is one item, e.g., Library) -->
+    @for (row of data; track row['id']) { <!-- MODIFIED LINE HERE: track row.id changed to row['id'] -->
+      <tr class="border-b border-gray-200 hover:bg-gray-100">
+        <!-- Iterates through columns for each row -->
+        @for (column of displayedColumns; track $index) {
+          <td class="py-3 px-6 text-left whitespace-nowrap">
+            <!-- Calls 'extractDisplayValue' to get the string value for display.
+                 Passes 'row[column]' (the value for that column) and 'column' (the column name)
+                 for contextual handling (e.g., for bibliotekaKnjiga). -->
+            {{ extractDisplayValue(row[column], column) }}
+          </td>
+        }
+        <td class="py-3 px-6 text-center">
+          <div class="flex item-center justify-center space-x-2">
+            <!-- Delete button -->
+            <button
+              (click)="onDelete(row['id'])"
+              class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              Ukloni
+            </button>
+            <!-- Edit button -->
+            <button
+              (click)="onEdit(row)"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              Izmeni
+            </button>
+            <!-- Details button -->
+            <button
+              (click)="details.emit(row['id'])"
+              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              Detalji
+            </button>
+          </div>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

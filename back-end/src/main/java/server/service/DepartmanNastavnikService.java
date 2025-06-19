@@ -50,6 +50,12 @@ public class DepartmanNastavnikService extends BaseService<DepartmanNastavnik, D
 	            .collect(Collectors.toList());
 	}
 
+	@Override
+	protected void updateEntityFromDto(DepartmanNastavnikDTO dto, DepartmanNastavnik entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 	

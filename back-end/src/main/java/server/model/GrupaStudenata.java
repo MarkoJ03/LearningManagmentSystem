@@ -2,6 +2,7 @@ package server.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,15 +25,15 @@ public class GrupaStudenata {
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
 
-	    @OneToMany(fetch = FetchType.EAGER, mappedBy = "grupaStudenata")
+	    @OneToMany(fetch = FetchType.EAGER, mappedBy = "grupaStudenata",  cascade = CascadeType.ALL, orphanRemoval = true)
 	    private List<StudentNaGodini> studentNaGodini;
 
-	    @OneToMany(fetch = FetchType.EAGER, mappedBy = "grupaStudenata")
-	    private List<GrupaStudenataPredmet> grupaStudenataPredmet;
+	    @OneToMany(fetch = FetchType.EAGER, mappedBy = "grupaStudenata", cascade = CascadeType.ALL, orphanRemoval = true)
+	    private List<GrupaStudenataPredmet> predmeti;
 
-	    @ManyToOne(optional = false)
+	    @ManyToOne(optional = true)
 	    private Kalendar kalendar;
 
-	    @Column(nullable = false)
+	    @Column(nullable = true)
 	    private Boolean vidljiv = true;
 }

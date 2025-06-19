@@ -1,5 +1,5 @@
 package server.DTOs;
-
+	
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -15,18 +15,12 @@ public class BibliotekaDTO {
 
     private Long id;
 
-    private List<BibliotekaKnjigaDTO> bibliotekaKnjiga;
+    private List<BibliotekaKnjigaDTO> knjige;
 
 	private StudentskaSluzbaDTO studentskaSluzba;
 
     private Boolean vidljiv = true;
-    
-    public BibliotekaDTO(Long id, StudentskaSluzbaDTO studentskaSluzba, List<BibliotekaKnjigaDTO> bibliotekaKnjiga, Boolean vidljiv) {
-        this.id = id;
-        this.studentskaSluzba = studentskaSluzba;
-        this.bibliotekaKnjiga = bibliotekaKnjiga;
-        this.vidljiv = vidljiv;
-    }
+   
 
 	}
 

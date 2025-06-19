@@ -32,6 +32,12 @@ public class GradService extends BaseService<Grad, GradDTO, Long>{
 
 		return new Grad(dto.getId(),dto.getNaziv(),new Drzava(dto.getDrzava().getId(),dto.getDrzava().getNaziv(),null,dto.getDrzava().getVidljiv()),dto.getVidljiv());		}
 
+	@Override
+	protected void updateEntityFromDto(GradDTO dto, Grad entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }

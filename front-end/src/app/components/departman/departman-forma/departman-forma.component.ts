@@ -33,6 +33,7 @@ export class DepartmanFormaComponent {
   selektovaniNastavnik: Nastavnik[] = [];
   sviNastavnici: Nastavnik[] = [];
   kreiraniDepartman: Departman | null = null;
+  
 
   constructor(
     private departmanService: DepartmanService,
@@ -153,7 +154,7 @@ export class DepartmanFormaComponent {
     console.log(vrednosti);
   }
 
-  private kreirajModel(podaci?: any): FormaModel {
+  private kreirajModel(podaci?: Departman): FormaModel {
     const selektovaniFakultet = podaci?.fakultet ?? null;
     const selektovaniSekretar = podaci?.sekretarDepartmana ?? null;
     const selektovaniDirektor = podaci?.direktorDepartmana ?? null;
@@ -203,14 +204,7 @@ export class DepartmanFormaComponent {
           displayFn: (n: Nastavnik) => `${n.ime} ${n.prezime}`,
           validatori: [Validators.required]
         },
-        {
-          naziv: 'katedre',
-          labela: 'Katedre',
-          tip: 'checkbox-list',
-          podrazumevanaVrednost: selektovaneKatedre,
-          opcije: this.sveKatedre,
-          displayFn: (k: Katedra) => k.naziv,
-        },
+        
         {
           naziv: 'nastavnici',
           labela: 'Nastavnici',

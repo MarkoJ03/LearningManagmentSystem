@@ -4,6 +4,6 @@ export interface Objava {
   id: number;
   naslov: string;
   sadrzaj: string;
-  studentska_sluzba: StudentskaSluzba;
+  studentskaSluzba: StudentskaSluzba;
   vidljiv: boolean;
 }

@@ -99,10 +99,10 @@ export class ObjavaFormaComponent implements OnInit {
           validatori: [Validators.required]
         },
         {
-          naziv: 'studentska_sluzba',
+          naziv: 'studentskaSluzba',
           labela: 'Studentska služba',
           tip: 'select',
-          podrazumevanaVrednost: podaci?.studentska_sluzba ?? null,
+          podrazumevanaVrednost: podaci?.studentskaSluzba ?? null,
           opcije: this.sveStudentskeSluzbe,
           displayFn: (s: StudentskaSluzba) => `${s.id}`
         }

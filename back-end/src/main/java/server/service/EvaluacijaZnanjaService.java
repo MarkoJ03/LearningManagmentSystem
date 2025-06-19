@@ -62,4 +62,10 @@ public class EvaluacijaZnanjaService extends BaseService<EvaluacijaZnanja, Evalu
         
         return entity;
     }
+
+	@Override
+	protected void updateEntityFromDto(EvaluacijaZnanjaDTO dto, EvaluacijaZnanja entity) {
+		// TODO Auto-generated method stub
+		
+	}
     }

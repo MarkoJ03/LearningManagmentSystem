@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
 })
 export class StudentiComponent implements OnInit {
   studenti: Student[] = [];
-  kolone: string[] = ['ime', 'prezime', 'jmbg', 'adresa', 'studentska_sluzba', 'vidljiv'];
+  kolone: string[] = ['ime', 'prezime', 'jmbg', 'adresa', 'studentskaSluzba', 'vidljiv'];
 
   constructor(
     private studentService: StudentService,

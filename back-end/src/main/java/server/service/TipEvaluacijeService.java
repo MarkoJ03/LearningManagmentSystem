@@ -59,5 +59,11 @@ public class TipEvaluacijeService extends BaseService<TipEvaluacije, TipEvaluaci
         );
     }
 
+	@Override
+	protected void updateEntityFromDto(TipEvaluacijeDTO dto, TipEvaluacije entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
     
 }

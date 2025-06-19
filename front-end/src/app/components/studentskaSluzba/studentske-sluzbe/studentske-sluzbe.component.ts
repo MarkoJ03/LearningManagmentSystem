@@ -14,21 +14,29 @@ import { BaseTableComponent } from '../../base-table/base-table.component';
 export class StudentskeSluzbeComponent implements OnInit {
   sluzbe: StudentskaSluzba[] = [];
   kolone: string[] = [
-    'id', 'naziv', 'vidljiv',
-    'objave', 'inventari', 'biblioteke', 'osoblje',
-    'nastavnici', 'kalendari', 'studenti', 'obrasci'
+    'id', 'vidljiv',
+    'naslovObjave', 'inventari', 'biblioteke',
+   'kalendari', 'studenti', 'obrasci'
   ];
 
   constructor(
     private sluzbaService: StudentskaSluzbaService,
     private router: Router
   ) {}
-
-  ngOnInit(): void {
+ngOnInit(): void {
     this.sluzbaService.getAll().subscribe({
-      next: (res) => (this.sluzbe = res),
-      error: (err) => console.error('Greška:', err)
-    });
+  next: (res) => {
+    this.sluzbe = res.map(n => ({
+      ...n,
+      
+    naslovObjave: n.objave?.map(o => o.naslov).join(', ') || '',
+    
+
+    }));
+  },
+  error: (err) => console.error('Greška prilikom učitavanja nastavnika:', err),
+});
+
   }
 
   izmeni(sluzba: StudentskaSluzba): void {

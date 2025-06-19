@@ -54,4 +54,10 @@ public class ZvanjeService extends BaseService<Zvanje, ZvanjeDTO, Long> {
 
 	}
 
+	@Override
+	protected void updateEntityFromDto(ZvanjeDTO dto, Zvanje entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

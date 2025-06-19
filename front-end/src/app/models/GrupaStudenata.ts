@@ -6,6 +6,6 @@ export interface GrupaStudenata {
   id: number;
   vidljiv: boolean;
   kalendar: Kalendar;                          
-  studentNaGodini?: StudentNaGodini[];        
-  grupaStudenataPredmet?: GrupaStudenataPredmet[];
+  studentiNaGodini?: StudentNaGodini[];        
+  predmeti?: GrupaStudenataPredmet[];
 }

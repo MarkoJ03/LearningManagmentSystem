@@ -12,7 +12,7 @@ import { ObjavaService } from '../../../services/objava.service';
 })
 export class ObjaveComponent {
   objave: Objava[] = [];
-  kolone: string[] = ['naslov', 'sadrzaj', 'studentska_sluzba', 'vidljiv'];
+  kolone: string[] = ['naslov', 'sadrzaj', 'studentskaSluzba', 'vidljiv'];
 
   constructor(
     private objavaService: ObjavaService,

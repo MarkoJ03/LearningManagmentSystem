@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { TipPrograma } from '../../../models/TipPrograma';
 import { TipProgramaService } from '../../../services/tip-programa.service';
 import { BaseTableComponent } from '../../base-table/base-table.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tipovi-programa',
@@ -13,35 +14,42 @@ import { BaseTableComponent } from '../../base-table/base-table.component';
 })
 export class TipoviProgramaComponent implements OnInit {
   tipoviPrograma: TipPrograma[] = [];
-  kolone: string[] = ['naziv', 'vidljiv'];
+  
+  kolone: string[] = ['naziv', 'vidljiv', 'studijskiProgramiNaziv']; 
 
   constructor(
-    private tipProgramaService: TipProgramaService,
+    private service: TipProgramaService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.tipProgramaService.getAll().subscribe({
-      next: (res) => (this.tipoviPrograma = res),
-      error: (err) => console.error('Greška:', err)
-    });
-  }
+    this.service.getAll().subscribe({
+  next: (res) => {
+    this.tipoviPrograma = res.map(n => ({
+      ...n,
+      
+    studijskiProgramiNaziv: n.programi?.map(o => o.naziv).join(', ') || ''
+    }));
+  },
+  error: (err) => console.error('Greška prilikom učitavanja nastavnika:', err),
+});
 
-  izmeni(tip: TipPrograma): void {
-    this.router.navigate(['/tip-programa/izmeni', tip.id]);
+  }
+  izmeni(tipPrograma: TipPrograma): void {
+    this.router.navigate(['/tipovi-programa/izmeni', tipPrograma.id]);
   }
 
   obrisi(id: number): void {
-    this.tipProgramaService.delete(id).subscribe(() => {
-      this.tipoviPrograma = this.tipoviPrograma.filter(p => p.id !== id);
+    this.service.delete(id).subscribe(() => {
+      this.tipoviPrograma = this.tipoviPrograma.filter(tp => tp.id !== id);
     });
   }
 
   detalji(id: number): void {
-    this.router.navigate(['/tip-programa', id]);
+    this.router.navigate(['/tipovi-programa', id]);
   }
 
   otkazi(): void {
-    this.router.navigate(['/tip-programa']);
-  }
+  this.router.navigate(['/tipovi-programa']); 
+}
 }

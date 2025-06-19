@@ -31,6 +31,12 @@ public class IspitniRokService extends BaseService<IspitniRok, IspitniRokDTO, Lo
 		return new IspitniRok(dto.getId(),dto.getNaziv(),dto.getDatumPocetka(),dto.getDatumZavrsetka(),dto.getVidljiv());
 		}
 
+	@Override
+	protected void updateEntityFromDto(IspitniRokDTO dto, IspitniRok entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }

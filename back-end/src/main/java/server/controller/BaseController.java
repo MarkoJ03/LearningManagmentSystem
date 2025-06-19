@@ -51,7 +51,7 @@ public abstract class BaseController<T, DTO, ID> {
         if (!getService().findById(id).isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(getService().save(dto), HttpStatus.OK);
+        return new ResponseEntity<>(getService().update(id,dto), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

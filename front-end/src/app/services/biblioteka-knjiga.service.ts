@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class BibliotekaKnjigaService extends BaseService<BibliotekaKnjiga> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/BibliotekaKnjiga');
+    this.setUrl('http://localhost:8080/api/biblioteka-knjiga');
 
   }
 

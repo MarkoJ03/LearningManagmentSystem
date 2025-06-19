@@ -3,7 +3,7 @@ package server.model;
 
 import java.util.List;
 
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,10 +27,10 @@ public class IshodPredmeta {
 	private Integer ocena;
 
 	
-	@OneToMany(mappedBy = "ishodPredmeta")
+	@OneToMany(mappedBy = "ishodPredmeta", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<RealizacijaPredmeta> realizacijePredmeta;
 	
-	@OneToMany(mappedBy = "ishodPredmeta")
+	@OneToMany(mappedBy = "ishodPredmeta", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<IshodEvaluacije> ishodiEvaluacije;
 
     @Column(nullable = false)

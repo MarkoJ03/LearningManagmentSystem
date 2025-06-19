@@ -15,7 +15,7 @@ export class DepartmaniComponent {
 
 
   departmani: Departman[] = [];
-  kolone: string[] = ['naziv', 'fakultet','sekretarDepartmana','direktorDepartmana','katedre','nastavnici'];
+  kolone: string[] = ['naziv', 'fakultet','sekretarDepartmana','direktorDepartmana','nastavnici'];
 
   constructor(
     private departmanService: DepartmanService,

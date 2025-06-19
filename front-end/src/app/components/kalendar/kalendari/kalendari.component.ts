@@ -13,22 +13,33 @@ import { BaseTableComponent } from '../../base-table/base-table.component';
 })
 export class KalendariComponent implements OnInit {
   kalendari: Kalendar[] = [];
-  kolone: string[] = ['id', 'vidljiv'];
+  kolone: string[] = ['id', 'vidljiv', 'studentskaSluzbaId', 'tipEvaluacije', 'grupaStudenata','terminiNastave'];
 
   constructor(
     private kalendarService: KalendarService,
     private router: Router
+
+    
   ) {}
 
-  ngOnInit(): void {
+ngOnInit(): void {
     this.kalendarService.getAll().subscribe({
-      next: (res) => (this.kalendari = res),
-      error: (err) => console.error('Greška:', err)
-    });
+  next: (res) => {
+    this.kalendari = res.map(n => ({
+      ...n,
+      
+    tipEvaluacije: n.evaluacijaZnanja?.map(o => o.tipEvaluacije?.naziv).join(', ') || '',
+    terminNastave: n.terminiNastave?.map(o => o.vremePocetka && o.vremeKraja).join(', ')|| '',
+    studentskaSluzbaId: n.studentskaSluzba?.id
+    }));
+  },
+  error: (err) => console.error('Greška prilikom učitavanja nastavnika:', err),
+});
+
   }
 
   izmeni(kalendar: Kalendar): void {
-    this.router.navigate(['/kalendar/izmeni', kalendar.id]);
+    this.router.navigate(['/kalendari/izmeni', kalendar.id]);
   }
 
   obrisi(id: number): void {
@@ -38,10 +49,10 @@ export class KalendariComponent implements OnInit {
   }
 
   detalji(id: number): void {
-    this.router.navigate(['/kalendar', id]);
+    this.router.navigate(['/kalendari', id]);
   }
 
   otkazi(): void {
-    this.router.navigate(['/kalendar']);
+    this.router.navigate(['/kalendari']);
   }
 }

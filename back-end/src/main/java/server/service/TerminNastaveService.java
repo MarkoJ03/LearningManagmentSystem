@@ -45,4 +45,10 @@ public class TerminNastaveService extends BaseService<TerminNastave, TerminNasta
 
 	}
 
+	@Override
+	protected void updateEntityFromDto(TerminNastaveDTO dto, TerminNastave entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

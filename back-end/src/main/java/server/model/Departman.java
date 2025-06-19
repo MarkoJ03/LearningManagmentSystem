@@ -2,6 +2,7 @@ package server.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,10 +38,10 @@ public class Departman {
     @JoinColumn(name = "direktorDepartmana_id", nullable = false)
 	private Nastavnik direktorDepartmana;
 
-	@OneToMany(mappedBy = "departman")
+	@OneToMany(mappedBy = "departman", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<DepartmanNastavnik> nastavnici;
 	
-	@OneToMany(mappedBy= "departman")
+	@OneToMany(mappedBy= "departman", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Katedra> katedre;
 
 

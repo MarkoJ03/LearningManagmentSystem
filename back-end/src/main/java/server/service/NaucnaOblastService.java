@@ -59,4 +59,10 @@ public class NaucnaOblastService extends BaseService<NaucnaOblast, NaucnaOblastD
 
 	}
 
+	@Override
+	protected void updateEntityFromDto(NaucnaOblastDTO dto, NaucnaOblast entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -1,3 +1,5 @@
+// ishod-predmeta-forma.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { GenerickaFormaComponent } from '../../genericka-forma/genericka-forma.component';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -60,64 +62,65 @@ export class IshodPredmetaFormaComponent implements OnInit {
   }
 
   sacuvaj(vrednosti: any): void {
-    console.log('Čuvanje ishoda predmeta:', vrednosti);
+    console.log('Originalne vrednosti za čuvanje:', vrednosti);
+
+    
+
 
     if (this.idIshodPredmeta) {
-      this.ishodPredmetaService.update(this.idIshodPredmeta, vrednosti).subscribe({
+      this.ishodPredmetaService.update(this.idIshodPredmeta, vrednosti).subscribe({ // Use dataToSend
         next: () => this.router.navigate(['/ishod-predmeta']),
         error: err => console.error('Greška prilikom ažuriranja:', err)
       });
     } else {
-      this.ishodPredmetaService.create(vrednosti).subscribe({
+      this.ishodPredmetaService.create(vrednosti).subscribe({ // Use dataToSend
         next: () => this.router.navigate(['/ishod-predmeta']),
         error: err => console.error('Greška prilikom kreiranja:', err)
       });
     }
   }
 
- private kreirajModel(podaci?: IshodPredmeta): FormaModel {
-  return {
-    naziv: podaci ? 'Izmena ishoda predmeta' : 'Dodavanje ishoda predmeta',
-    polja: [
-      ...(podaci ? [{
-        naziv: 'id',
-        labela: '',
-        tip: 'hidden',
-        podrazumevanaVrednost: podaci.id
-      }] : []),
+  private kreirajModel(podaci?: IshodPredmeta): FormaModel {
+    return {
+      naziv: podaci ? 'Izmena ishoda predmeta' : 'Dodavanje ishoda predmeta',
+      polja: [
+        ...(podaci ? [{
+          naziv: 'id',
+          labela: '',
+          tip: 'hidden',
+          podrazumevanaVrednost: podaci.id
+        }] : []),
 
-      {
-        naziv: 'vidljiv',
-        labela: 'Vidljiv',
-        tip: 'checkbox',
-        podrazumevanaVrednost: podaci?.vidljiv ?? true
-      },
-      {
-        naziv: 'ocena',
-        labela: 'Ocena',
-        tip: 'number',
-        podrazumevanaVrednost: podaci?.ocena ?? null,
-        validatori: [Validators.required, Validators.min(1), Validators.max(10)]
-      },
-      {
-        naziv: 'realizacijePredmeta',
-        labela: 'Realizacije predmeta',
-        tip: 'checkbox-list',
-        podrazumevanaVrednost: podaci?.realizacijePredmeta || [],
-        opcije: this.sviRealizacijePredmeta,
-        displayFn: (r: RealizacijaPredmeta) => `ID: ${r.id}`
-      },
-      {
-        naziv: 'ishodiEvaluacije',
-        labela: 'Ishodi evaluacije',
-        tip: 'checkbox-list',
-        podrazumevanaVrednost: podaci?.ishodiEvaluacije || [],
-        opcije: this.sviIshodiEvaluacije,
-        displayFn: (i: IshodEvaluacije) => i.napomena || `ID: ${i.id}`
-      }
-    ]
-  };
-}
-
-
+        {
+          naziv: 'vidljiv',
+          labela: 'Vidljiv',
+          tip: 'checkbox',
+          podrazumevanaVrednost: podaci?.vidljiv ?? true
+        },
+        {
+          naziv: 'ocena',
+          labela: 'Ocena',
+          tip: 'number',
+          podrazumevanaVrednost: podaci?.ocena ?? null,
+          validatori: [Validators.required, Validators.min(1), Validators.max(10)]
+        },
+        {
+          naziv: 'realizacijePredmeta',
+          labela: 'Realizacije predmeta',
+          tip: 'checkbox-list',
+          podrazumevanaVrednost: podaci?.realizacijePredmeta || [],
+          opcije: this.sviRealizacijePredmeta,
+          displayFn: (r: RealizacijaPredmeta) => `ID: ${r.id}`
+        },
+        {
+          naziv: 'ishodiEvaluacije',
+          labela: 'Ishodi evaluacije',
+          tip: 'checkbox-list',
+          podrazumevanaVrednost: podaci?.ishodiEvaluacije || [],
+          opcije: this.sviIshodiEvaluacije,
+          displayFn: (i: IshodEvaluacije) => i.napomena || `ID: ${i.id}`
+        }
+      ]
+    };
+  }
 }

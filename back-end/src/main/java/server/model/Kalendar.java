@@ -2,7 +2,7 @@ package server.model;
 
 import java.util.List;
 
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,15 +30,15 @@ public class Kalendar {
 		@ManyToOne(optional = true)
 		private StudentskaSluzba studentskaSluzba;
 	
-		@OneToMany (fetch= FetchType.LAZY, mappedBy = "kalendar")
+		@OneToMany (fetch= FetchType.LAZY, mappedBy = "kalendar", cascade = CascadeType.ALL, orphanRemoval = true)
 		private List<EvaluacijaZnanja> evaluacijaZnanja;
 	
-		@OneToMany (fetch= FetchType.LAZY, mappedBy = "kalendar")
+		@OneToMany (fetch= FetchType.LAZY, mappedBy = "kalendar", cascade = CascadeType.ALL, orphanRemoval = true)
 		private List<GrupaStudenata> grupaStudenata;
 	
 	
 	
-		@OneToMany(mappedBy = "kalendar")
+		@OneToMany(mappedBy = "kalendar", cascade = CascadeType.ALL, orphanRemoval = true)
 		private List<TerminNastave> terminiNastave;
 	
 	    @Column(nullable = false)

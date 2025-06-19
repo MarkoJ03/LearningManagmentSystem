@@ -280,7 +280,7 @@ export const routes: Routes = [
   { path: 'objave/izmeni/:id', component: ObjavaFormaComponent },
 
   
-  { path: 'student-na-godini', component: StudentiNaGodiniComponent },
+  { path: 'studenti-na-godini', component: StudentiNaGodiniComponent },
 { path: 'student-na-godini/dodaj', component: StudentNaGodiniFormaComponent },
 { path: 'student-na-godini/izmeni/:id', component: StudentNaGodiniFormaComponent },
 {
@@ -298,9 +298,9 @@ export const routes: Routes = [
 {
   path: 'studijski-programi/:id',
   component: StudijskiProgramComponent
-},{ path: 'tip-programa', component: TipoviProgramaComponent },
-{ path: 'tip-programa/dodaj', component: TipProgramaFormaComponent },
-{ path: 'tip-programa/izmeni/:id', component: TipProgramaFormaComponent },
+},{ path: 'tipovi-programa', component: TipoviProgramaComponent },
+{ path: 'tipovi-programa/dodaj', component: TipProgramaFormaComponent },
+{ path: 'tipovi-programa/izmeni/:id', component: TipProgramaFormaComponent },
 
 { path: 'studentske-sluzbe', component: StudentskeSluzbeComponent },
 { path: 'studentske-sluzbe/dodaj', component: StudentskaSluzbaFormaComponent },
@@ -321,13 +321,13 @@ export const routes: Routes = [
 
 
 
-{ path: 'kalendar', component: KalendariComponent },
-{ path: 'kalendar/dodaj', component: KalendarFormaComponent },
-{ path: 'kalendar/izmeni/:id', component: KalendarFormaComponent },
-{ path: 'kalendar/:id', component: KalendarComponent },
+{ path: 'kalendari', component: KalendariComponent },
+{ path: 'kalendari/dodaj', component: KalendarFormaComponent },
+{ path: 'kalendari/izmeni/:id', component: KalendarFormaComponent },
+{ path: 'kalendari/:id', component: KalendarComponent },
 
 
-{ path: 'sv-obrasci', component: SvObrasciComponent },
+{ path: 'sv-obrazac', component: SvObrasciComponent },
   { path: 'sv-obrazac/dodaj', component: SvObrazacFormaComponent },
   { path: 'sv-obrazac/izmeni/:id', component: SvObrazacFormaComponent },
   { path: 'sv-obrazac/:id', component: SvObrazacComponent },
@@ -340,9 +340,9 @@ export const routes: Routes = [
 // { path: 'EvaluacijaZnanja/:id', component: EvaluacijaZnanjaComponent },     
 // { path: 'EvaluacijaZnanja/izmeni/:id', component: EvaluacijaZnanjaFormaComponent },     
 
-{path: 'grupeStudenata' , component: GrupeStudenataComponent},
-      { path: 'grupeStudenata/dodaj', component: GrupaStudenataFormaComponent },
-{ path: 'grupeStudenata/izmeni/:id', component: GrupaStudenataFormaComponent },
+{path: 'grupe-studenata' , component: GrupeStudenataComponent},
+      { path: 'grupe-studenata/dodaj', component: GrupaStudenataFormaComponent },
+{ path: 'grupe-studenata/izmeni/:id', component: GrupaStudenataFormaComponent },
 
     { path: 'departmaniForma', component: DepartmanFormaComponent },
     

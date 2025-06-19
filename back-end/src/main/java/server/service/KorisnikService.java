@@ -65,6 +65,12 @@ public class KorisnikService extends BaseService<Korisnik, KorisnikDTO, Long>{
 		return this.korisnikRepository.findByEmail(email).orElse(null);
 	}
 
+	@Override
+	protected void updateEntityFromDto(KorisnikDTO dto, Korisnik entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
 
 

@@ -52,4 +52,10 @@ public class PravoPristupaService extends BaseService<PravoPristupa, PravoPristu
 		return new PravoPristupa(dto.getId(), dto.getNaziv(), dodeljenaPravaPristupa);
 	}
 
+	@Override
+	protected void updateEntityFromDto(PravoPristupaDTO dto, PravoPristupa entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -14,7 +14,7 @@ export interface StudentskaSluzba {
   objave: Objava[];
   inventari?: Inventar[];
   biblioteka: Biblioteka;
-  osoblje?: Osoblje[];
+  // osoblje?: Osoblje[];
   kalendari?: Kalendar[];
   studenti?: Student[];
   obrasci?: SvObrazac[];

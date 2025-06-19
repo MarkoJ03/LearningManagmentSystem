@@ -172,4 +172,10 @@ public class NastavnikService extends BaseService<Nastavnik, NastavnikDTO, Long>
 
 	}
 
+	@Override
+	protected void updateEntityFromDto(NastavnikDTO dto, Nastavnik entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -53,23 +53,6 @@ public class FakultetService extends BaseService<Fakultet, FakultetDTO, Long> {
 
 	}
 
-//	@Override
-//	protected Fakultet convertToEntity(FakultetDTO dto) {
-//
-//		ArrayList<Departman> departmani = new ArrayList<>();
-//
-//		for (DepartmanDTO s : dto.getDepartmani()) {
-//			Departman e = departmanService.convertToEntity(s);
-//			departmani.add(e);
-//		}
-//
-//		return new Fakultet(dto.getId(), dto.getNaziv(),
-//				new Univerzitet(dto.getUniverzitet().getId(), dto.getUniverzitet().getNaziv(), null, null, null,
-//						dto.getUniverzitet().getEmail(), dto.getUniverzitet().getKontakt(),
-//						dto.getUniverzitet().getVidljiv()),
-//				departmani, dto.getVidljiv());
-//
-//	}
 	
 	@Override
 	protected Fakultet convertToEntity(FakultetDTO dto) {
@@ -103,6 +86,12 @@ public class FakultetService extends BaseService<Fakultet, FakultetDTO, Long> {
 	    fakultet.setDepartmani(departmani);
 
 	    return fakultet;
+	}
+
+	@Override
+	protected void updateEntityFromDto(FakultetDTO dto, Fakultet entity) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

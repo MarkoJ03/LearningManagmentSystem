@@ -19,7 +19,7 @@ public class KnjigaDTO {
 		
 		private String ISBN;
 
-		private List<BibliotekaKnjigaDTO> bibliotekaKnjiga;
+		private List<BibliotekaKnjigaDTO> biblioteke;
 
 
 	    private Boolean vidljiv = true;

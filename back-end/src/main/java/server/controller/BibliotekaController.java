@@ -27,13 +27,13 @@ public class BibliotekaController extends BaseController<Biblioteka, BibliotekaD
     }
     
     @GetMapping
-    @PermitAll
+    //@PermitAll
     public ResponseEntity<List<BibliotekaDTO>> findAll() {
         return new ResponseEntity<>(bibliotekaService.findAll(), HttpStatus.OK);
     }
     
     @GetMapping("/{id}")
-    @PermitAll
+  //  @PermitAll
     public ResponseEntity<BibliotekaDTO> getOne(@PathVariable Long id) {
         Optional<BibliotekaDTO> entity = bibliotekaService.findById(id);
         return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))

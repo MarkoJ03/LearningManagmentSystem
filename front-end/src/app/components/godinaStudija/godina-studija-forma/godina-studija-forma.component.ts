@@ -7,6 +7,9 @@ import { GodinaStudijaService } from '../../../services/godina-studija.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudijskiProgram } from '../../../models/StudijskiProgram';
 import { StudijskiProgramService } from '../../../services/studijski-program.service';
+import { TipPrograma } from '../../../models/TipPrograma'; 
+import { StudentNaGodini } from '../../../models/StudentNaGodini';
+import { StudentNaGodiniService } from '../../../services/student-na-godini.service';
 
 @Component({
   selector: 'app-godina-studija-forma',
@@ -18,29 +21,44 @@ import { StudijskiProgramService } from '../../../services/studijski-program.ser
 export class GodinaStudijaFormaComponent implements OnInit {
   formaModel: FormaModel | null = null;
   idGodinaStudija: number | null = null;
-  studijskiProgrami: StudijskiProgram[] = [];
+  svistudijskiProgrami: StudijskiProgram[] = [];
+  sviStudentiNaGodini: StudentNaGodini[] = [];
+  
 
   constructor(
     private service: GodinaStudijaService,
     private studijskiProgramService: StudijskiProgramService,
+    private studentNaGodiniService: StudentNaGodiniService,
+    
     private router: Router,
     private route: ActivatedRoute
   ) {}
+ngOnInit(): void {
+    this.studentNaGodiniService.getAll().subscribe(studenti => {
+      this.sviStudentiNaGodini = studenti;
 
-  ngOnInit(): void {
-    this.studijskiProgramService.getAll().subscribe(programi => {
-      this.studijskiProgrami = programi;
 
-      const idParam = this.route.snapshot.paramMap.get('id');
-      if (idParam) {
-        this.idGodinaStudija = +idParam;
-        this.service.getById(this.idGodinaStudija).subscribe(data => {
-          this.formaModel = this.kreirajModel(data);
-        });
-      } else {
-        this.formaModel = this.kreirajModel();
-      }
+ this.studijskiProgramService.getAll().subscribe(programi => {
+    
+      this.svistudijskiProgrami = programi;
+
+        const idParam = this.route.snapshot.paramMap.get('id');
+        if (idParam) {
+          this.idGodinaStudija = +idParam;
+          this.service.getById(this.idGodinaStudija).subscribe(godine => {
+            this.formaModel = this.kreirajModel(godine);
+
+            
+          });
+        } else {
+          this.formaModel = this.kreirajModel();
+        }
+      });
+
     });
+
+   
+    
   }
 
   otkazi(): void {
@@ -48,24 +66,51 @@ export class GodinaStudijaFormaComponent implements OnInit {
   }
 
   sacuvaj(vrednosti: any): void {
+    
+
     if (this.idGodinaStudija) {
-      this.service.update(this.idGodinaStudija, vrednosti).subscribe({
+
+       const izmenjenaGodinaStudija = {
+        ...vrednosti,
+        studentiNaGodini: vrednosti.studentiNaGodini?.map((sp: StudentNaGodini) => ({
+          id: sp.id
+        }))}
+
+
+      this.service.update(this.idGodinaStudija, izmenjenaGodinaStudija).subscribe({
         next: () => this.router.navigate(['/godine-studija']),
         error: err => console.error('Greška:', err)
       });
     } else {
-      this.service.create(vrednosti).subscribe({
-        next: () => this.router.navigate(['/godine-studija']),
+
+      const izmenjenaGodinaStudija = {
+        ...vrednosti,
+        studentiNaGodini: vrednosti.studentiNaGodini?.map((sp: StudentNaGodini) => ({
+          id: sp.id
+        }))}
+
+      this.service.create(izmenjenaGodinaStudija).subscribe({
+        
+        
+        
+        next: () => {
+          console.log(izmenjenaGodinaStudija);
+          this.router.navigate(['/godine-studija'])},
         error: err => console.error('Greška:', err)
       });
     }
   }
 
-  private kreirajModel(podaci?: GodinaStudija): FormaModel {
+  private kreirajModel(podaci?: any): FormaModel { 
+    const selektovanaGodina = podaci?.godina ?? null;
+    const selektovaniStudijskiProgram = podaci?.studijskiProgram ?? null;
+    
+    const selektovaniStudentiNaGodini = podaci?.studentiNaGodini ?? [];
+
     return {
-      naziv: podaci ? 'Izmena godine studija' : 'Dodavanje godine studija',
+      naziv: podaci && podaci.id ? 'Izmena godine studija' : 'Dodavanje godine studija',
       polja: [
-        ...(podaci ? [{
+        ...(podaci && podaci.id ? [{
           naziv: 'id',
           labela: '',
           tip: 'hidden',
@@ -75,24 +120,30 @@ export class GodinaStudijaFormaComponent implements OnInit {
           naziv: 'godina',
           labela: 'Godina',
           tip: 'text',
-          podrazumevanaVrednost: podaci?.godina ?? '',
+          podrazumevanaVrednost: podaci?.godina ?? null,
+          displayFn: (godina: string) => godina,
+          validatori: [Validators.required]
+        },
+       
+         {
+          naziv: 'studijskiProgram',
+          labela: 'studijskiProgram',
+          tip: 'select',
+          podrazumevanaVrednost: selektovaniStudijskiProgram,
+          opcije: this.svistudijskiProgrami,
+          displayFn: (p: StudijskiProgram) => p.naziv ,
           validatori: [Validators.required]
         },
         {
-          naziv: 'vidljiv',
-          labela: 'Vidljiv',
-          tip: 'checkbox',
-          podrazumevanaVrednost: podaci?.vidljiv ?? true
-        },
-        {
-          naziv: 'studijskiProgram',
-          labela: 'Studijski program',
-          tip: 'select',
-          podrazumevanaVrednost: podaci?.studijskiProgram ?? null,
-          opcije: this.studijskiProgrami,
-          displayFn: (p: StudijskiProgram) => p.naziv,
+          naziv: 'studentiNaGodini',
+          labela: 'studentiNaGodini',
+          tip: 'checkbox-list',
+          podrazumevanaVrednost: selektovaniStudentiNaGodini,
+          opcije: this.sviStudentiNaGodini,
+          displayFn: (p: StudentNaGodini) => p.brojIndeksa ,
           validatori: [Validators.required]
         }
+        
       ]
     };
   }

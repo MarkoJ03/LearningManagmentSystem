@@ -70,19 +70,14 @@ export class AdresaFormaComponent {
         podrazumevanaVrednost: podaci?.broj ?? '',
         validatori: [Validators.required]
       },
-      {
-        naziv: 'drzava',
-        labela: 'Država',
-        tip: 'text',
-        podrazumevanaVrednost: podaci?.drzava ?? '',
-        validatori: [Validators.required]
-      },
+      
       {
         naziv: 'grad',
         labela: 'Grad',
-        tip: 'text',
+        tip: 'select',
         podrazumevanaVrednost: podaci?.grad ?? '',
         validatori: [Validators.required]
+        
       },
       {
         naziv: 'ulica',

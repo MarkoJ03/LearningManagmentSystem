@@ -59,4 +59,10 @@ public class KatedraNastavnikService extends BaseService<KatedraNastavnik, Kated
 				.map(this::convertToDTO).collect(Collectors.toList());
 	}
 
+	@Override
+	protected void updateEntityFromDto(KatedraNastavnikDTO dto, KatedraNastavnik entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

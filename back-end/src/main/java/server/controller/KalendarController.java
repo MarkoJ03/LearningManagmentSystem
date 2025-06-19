@@ -27,7 +27,7 @@ public class KalendarController extends BaseController<Kalendar, KalendarDTO, Lo
     }
     
     @GetMapping("/{id}")
-    @Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA, ROLE_NASTAVNIK"})
+    @Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"})
     public ResponseEntity<KalendarDTO> getOne(@PathVariable Long id) {
         Optional<KalendarDTO> entity = kalendarService.findById(id);
         return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
@@ -35,7 +35,7 @@ public class KalendarController extends BaseController<Kalendar, KalendarDTO, Lo
     }
     
     @GetMapping("/nastavnik/{nastavnikId}")
-    @Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA, ROLE_NASTAVNIK"})
+    @Secured({"ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"})
     public ResponseEntity<KalendarDTO> getKalendarByNastavnikId(@PathVariable Long nastavnikId) {
         try {
             KalendarDTO dto = kalendarService.findByNastavnikId(nastavnikId);

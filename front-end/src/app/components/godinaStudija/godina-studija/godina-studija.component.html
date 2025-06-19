@@ -1,9 +1,15 @@
-<div *ngIf="godinaStudija">
-  <h2>Godina studija: {{ godinaStudija.godina }}</h2>
-  <p><strong>Vidljiv:</strong> {{ godinaStudija.vidljiv ? 'Da' : 'Ne' }}</p>
-  <p><strong>Studijski program:</strong> {{ godinaStudija.studijskiProgram.naziv }}</p>
+<div *ngIf="godinaStudija as g">
+  <h2>Godina studija: {{ g.godina }}</h2>
+  <p><strong>Vidljiv:</strong> {{ g.vidljiv ? 'Da' : 'Ne' }}</p>
+  <p>
+    <strong>Studijski program:</strong>
+    <!-- Koristi ?. za siguran pristup, prvo probaj tipPrograma.naziv, pa onda naziv programa -->
+    {{ g.studijskiProgram?.tipPrograma?.naziv || g.studijskiProgram?.naziv || 'Nije definisan' }}
+  </p>
 </div>
 
 <div *ngIf="!godinaStudija">
   <p>Godina studija nije pronađena.</p>
 </div>
+
+<a routerLink="/godine-studija">← Nazad na listu godina studija</a>

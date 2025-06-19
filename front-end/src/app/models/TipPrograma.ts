@@ -5,4 +5,6 @@ export interface TipPrograma {
   naziv: string;
   vidljiv: boolean;
   programi?: StudijskiProgram[];
+
+  
 }

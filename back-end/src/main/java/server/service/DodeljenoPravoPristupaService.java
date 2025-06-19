@@ -39,4 +39,10 @@ public class DodeljenoPravoPristupaService extends BaseService<DodeljenoPravoPri
 		return new DodeljenoPravoPristupa(dto.getId(), korisnik, pravoPristupa);
 	}
 
+	@Override
+	protected void updateEntityFromDto(DodeljenoPravoPristupaDTO dto, DodeljenoPravoPristupa entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

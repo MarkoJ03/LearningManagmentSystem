@@ -1,5 +1,9 @@
-<div *ngIf="tipPrograma">
-  <h2>Detalji tipa programa</h2>
-  <p><strong>Naziv:</strong> {{ tipPrograma.naziv }}</p>
-  <p><strong>Vidljiv:</strong> {{ tipPrograma.vidljiv ? 'Da' : 'Ne' }}</p>
-</div>
+<p *ngIf="tipPrograma">
+  <strong>ID:</strong> {{ tipPrograma.id }} <br>
+  <strong>Naziv tipa programa:</strong> {{ tipPrograma.naziv }} <br>
+  <strong>Vidljiv:</strong> {{ tipPrograma.vidljiv ? 'Da' : 'Ne' }} <br>
+  <strong>Povezani studijski programi:</strong> {{ studijskiProgramiNazivi || 'Nema povezanih programa' }} <br>
+  <strong>Povezane katedre:</strong> {{ katedreNazivi || 'Nema povezanih katedri' }}
+</p>
+
+<a routerLink="/tipovi-programa">← Nazad na listu tipova programa</a>
