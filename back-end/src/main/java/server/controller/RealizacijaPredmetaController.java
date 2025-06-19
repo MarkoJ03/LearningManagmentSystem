@@ -18,7 +18,6 @@ import server.service.RealizacijaPredmetaService;
 
 @Controller
 @RequestMapping("/api/realizacije-predmeta")
-@Secured({"ROLE_ADMIN, ROLE_NASTAVNIK"})
 public class RealizacijaPredmetaController extends BaseController<RealizacijaPredmeta, RealizacijaPredmetaDTO, Long>{
 
 	@Autowired
@@ -29,17 +28,4 @@ public class RealizacijaPredmetaController extends BaseController<RealizacijaPre
 		return realizacijaPredmetaService;
 	}
 
-	@GetMapping
-    @PermitAll
-    public ResponseEntity<List<RealizacijaPredmetaDTO>> findAll() {
-        return new ResponseEntity<>(realizacijaPredmetaService.findAll(), HttpStatus.OK);
-    }
-    
-    @GetMapping("/{id}")
-    @PermitAll
-    public ResponseEntity<RealizacijaPredmetaDTO> getOne(@PathVariable Long id) {
-        Optional<RealizacijaPredmetaDTO> entity = realizacijaPredmetaService.findById(id);
-        return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
-                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
 }

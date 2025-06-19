@@ -6,5 +6,5 @@ export interface Biblioteka {
   id: number;
   vidljiv: boolean;
   studentska_sluzba: StudentskaSluzba;
-  knjige?: Knjiga[];
+  knjige: BibliotekaKnjiga[];
 }

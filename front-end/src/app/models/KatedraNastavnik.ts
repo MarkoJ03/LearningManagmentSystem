@@ -3,7 +3,7 @@ import { Nastavnik } from "./Nastavnik";
 
 
 export interface KatedraNastavnik {
-  id: number;
+  id?: number | null;
   vidljiv: boolean;
   katedra: Katedra;      
   nastavnik: Nastavnik;  

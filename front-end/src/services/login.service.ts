@@ -6,29 +6,27 @@ import { tap } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
+  token: any = null;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     let t = localStorage.getItem("token");
-    if(t) {
+    if (t) {
       this.token = t;
     }
   }
 
-  token: any = null;
 
   login(user: any) {
-    //kada uvedemo model korisnika trebalo bi umesto any
-    //valjda
-    return this.http.post<any>("http://localhost:3000/login", user).pipe(
+    return this.http.post("http://localhost:8080/api/auth/login", user, { responseType: 'text' }).pipe(
       tap(x => {
-        this.token = x["token"];
+        this.token = x;
         localStorage.setItem("token", this.token);
       })
     );
   }
 
   getUser() {
-    if(this.token) {
+    if (this.token) {
       let payload = this.token.split(".")[1];
       return JSON.parse(atob(payload));
     }
@@ -36,8 +34,8 @@ export class LoginService {
 
   getRoles() {
     let user = this.getUser();
-    if(user) {
-      return user.roles;
+    if (user) {
+      return user.authorities.map((a: any) => a.authority);
     }
   }
 
@@ -45,9 +43,13 @@ export class LoginService {
     let requiredRolesSet: any = new Set(requiredRoles);
     let userRolesSet: any = new Set(this.getRoles());
     let r = requiredRolesSet.intersection(userRolesSet);
-    if(r.size > 0) {
+    if (r.size > 0) {
       return true;
     }
     return false;
+  }
+
+  getUserByEmail(email: string) {
+    return this.http.get<any>(`http://localhost:8080/api/korisnici/email/${email}`);
   }
 }

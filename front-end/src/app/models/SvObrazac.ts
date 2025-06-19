@@ -11,7 +11,7 @@ export interface SvObrazac {
   kontakt: string;
   zaposlen: boolean;
   nacinFinansiranja: boolean;
-  studentNaGodini: StudentNaGodini;
-  studentska_sluzba: StudentskaSluzba;
+  studentNaGodini?: StudentNaGodini;
+  studentskaSluzba: StudentskaSluzba;
   vidljiv: boolean;
 }

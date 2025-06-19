@@ -12,5 +12,6 @@ export interface Departman {
   sekretarDepartmana: Nastavnik;
   direktorDepartmana: Nastavnik;
   katedre?: Katedra[],
-  nastavnici?: DepartmanNastavnik[];
+  nastavnici: Nastavnik[];
+
 }

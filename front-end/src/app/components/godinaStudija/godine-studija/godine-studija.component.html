@@ -1,0 +1,9 @@
+<app-base-table
+  [data]="godineStudija"
+  [displayedColumns]="kolone"
+  (edit)="izmeni($event)"
+  (delete)="obrisi($event)"
+  (details)="detalji($event)">
+</app-base-table>
+
+<a routerLink = "/godine-studija/dodaj">Dodaj godinu studija</a>

@@ -14,10 +14,11 @@ import server.service.GradService;
 public class GradController extends BaseController<Grad, GradDTO, Long> {
 
     @Autowired
-    private GradService drzavaService;
+    private GradService gradService;
 
     @Override
     protected GradService getService() {
-        return drzavaService;
+        return gradService;
     }
+
 }

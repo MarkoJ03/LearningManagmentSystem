@@ -10,6 +10,6 @@ export interface Student {
   prezime: string;
   jmbg: string;
   adresa: Adresa;
-  studentska_sluzba: StudentskaSluzba;
+  studentskaSluzba: StudentskaSluzba;
   vidljiv: boolean;
 }

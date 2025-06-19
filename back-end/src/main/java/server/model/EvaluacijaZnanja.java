@@ -3,6 +3,7 @@ package server.model;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,7 +14,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -34,16 +37,18 @@ public class EvaluacijaZnanja {
 	@ManyToOne(optional = false)
 	private Kalendar kalendar;
 
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Predmet predmet;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	private Nastavnik nastavnik;
 
 	@ManyToOne(optional = false)
 	private TipEvaluacije tipEvaluacije;
 
-	@OneToMany (fetch= FetchType.EAGER, mappedBy = "evaluacijaZnanja")
+	@OneToMany (fetch= FetchType.EAGER, mappedBy = "evaluacijaZnanja", cascade = CascadeType.ALL, orphanRemoval = true) 
+	@ToString.Exclude 
+    @EqualsAndHashCode.Exclude 
 	private List<IshodEvaluacije> ishodEvaluacije;
 
 	@Column(nullable = false)

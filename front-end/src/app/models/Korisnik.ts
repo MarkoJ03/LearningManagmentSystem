@@ -1,6 +1,9 @@
+import { DodeljenoPravoPristupa } from "./DodeljenoPravoPristupa";
+
 export interface Korisnik {
   id: number;
-  vidljiv: boolean;
   email: string;
   lozinka: string;
+  dodeljenaPravaPristupa?: DodeljenoPravoPristupa[];
+  vidljiv: boolean;
 }

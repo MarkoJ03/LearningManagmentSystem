@@ -9,6 +9,6 @@ import { BaseService } from './base.service';
 export class GrupaStudenataService extends BaseService<GrupaStudenata> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/GrupaStudenata');
+    this.setUrl('http://localhost:8080/api/grupe-studenata');
   }
 }

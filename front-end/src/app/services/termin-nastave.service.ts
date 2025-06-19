@@ -9,6 +9,6 @@ import { BaseService } from './base.service';
 export class TerminNastaveService extends BaseService<TerminNastave> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/TerminNastave');
+    this.setUrl('http://localhost:8080/api/termini-nastave');
   }
 }

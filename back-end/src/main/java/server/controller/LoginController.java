@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ import server.service.KorisnikService;
 import server.utils.TokenUtils;
 
 @Controller
-@RequestMapping("/api/login")
+@RequestMapping("/api/auth")
 @PermitAll
 public class LoginController {
 	@Autowired
@@ -29,15 +30,33 @@ public class LoginController {
 	@Autowired
 	private KorisnikService korisnikService;
 	
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@PostMapping("login")
-	public ResponseEntity<String> login(@RequestBody UserLoginDTO user) {
-		Korisnik korisnik = korisnikService.findByEmailAndLozinka(user.getEmail(), user.getLozinka());
-		
-		if(korisnik !=null) {
-			UserDetails userDetails = userDetailsService.loadUserByUsername(korisnik.getEmail());
-			return new ResponseEntity<String>(tokenUtils.generateToken(userDetails), HttpStatus.OK);
-		}
-		
-		return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
-	}
+    public ResponseEntity<String> login(@RequestBody UserLoginDTO user) {
+        System.out.println("Email: " + user.getEmail());
+        System.out.println("Lozinka: " + user.getLozinka());
+
+        Korisnik korisnik = korisnikService.findByEmail(user.getEmail());
+
+        if (korisnik == null) {
+            System.out.println("Korisnik nije pronađen.");
+            return new ResponseEntity<>("Korisnik ne postoji", HttpStatus.UNAUTHORIZED);
+        }
+
+        boolean passwordMatches = passwordEncoder.matches(user.getLozinka(), korisnik.getLozinka());
+
+        System.out.println("Lozinka iz baze: " + korisnik.getLozinka());
+        System.out.println("Poklapanje lozinki: " + passwordMatches);
+
+        if (passwordMatches) {
+            UserDetails userDetails = userDetailsService.loadUserByUsername(korisnik.getEmail());
+            String token = tokenUtils.generateToken(userDetails);
+            return ResponseEntity.ok(token);
+        }
+
+        return new ResponseEntity<>("Pogrešna lozinka", HttpStatus.UNAUTHORIZED);
+    }
 }

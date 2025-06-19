@@ -1,0 +1,20 @@
+<div *ngIf="univerzitet">
+<h2>Detalji o univerzitetu</h2>
+
+<p *ngIf="univerzitet">
+    Naziv: {{ univerzitet.naziv }} <br>
+    Adresa: <span>{{ univerzitet.adresa.ulica }} {{ univerzitet.adresa.broj }}</span> <br>
+    Datum osnivanja: {{ univerzitet.datumOsnivanja}} <br>
+    Email: {{ univerzitet.email }} <br>
+    Kontakt: {{ univerzitet.kontakt }}
+    {{ univerzitet.vidljiv }}
+</p>
+
+Fakulteti:
+<ul *ngIf="univerzitet?.fakulteti?.length">
+    <ng-container *ngFor="let fakultet of univerzitet?.fakulteti">
+        <li>{{ fakultet.naziv }}</li>
+    </ng-container>
+</ul> <br>
+</div>
+<a routerLink="/univerziteti">← Nazad na listu svih univerziteta</a>

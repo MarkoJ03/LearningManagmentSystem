@@ -3,6 +3,8 @@ import { BibliotekaService } from '../../services/biblioteka.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Biblioteka } from '../../models/Biblioteka';
 import { CommonModule } from '@angular/common';
+import { Knjiga } from '../../models/Knjiga';
+import { BibliotekaKnjiga } from '../../models/BibliotekaKnjiga';
 
 @Component({
   selector: 'app-biblioteka',
@@ -11,9 +13,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './biblioteka.component.css'
 })
 export class BibliotekaComponent {
-
-
-    biblioteka: Biblioteka | null = null;
+  knjige: Knjiga[] | null = null;
+  biblioteka: Biblioteka | null = null;
 
   constructor(
     private route: ActivatedRoute,

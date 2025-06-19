@@ -14,7 +14,7 @@ import { BaseTableComponent } from '../base-table/base-table.component';
 export class AdreseComponent {
 
   adrese: Adresa[] = [];
-  kolone: string[] = ['broj', 'ulica', 'grad', 'drzava', 'vidljiv'];
+  kolone: string[] = ['broj', 'ulica', 'grad', 'vidljiv'];
 
   constructor(
     private adresaService: AdresaService,

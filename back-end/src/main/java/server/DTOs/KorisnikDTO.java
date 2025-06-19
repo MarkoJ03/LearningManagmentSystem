@@ -18,5 +18,5 @@ public class KorisnikDTO {
 	private Set<DodeljenoPravoPristupaDTO> dodeljenaPravaPristupa;
 
 	private Boolean vidljiv = true;
-
+	
 }

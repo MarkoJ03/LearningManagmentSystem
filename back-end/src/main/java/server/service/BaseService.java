@@ -7,11 +7,26 @@ import java.util.stream.Collectors;
 
 import org.springframework.data.repository.CrudRepository;
 
+import jakarta.transaction.Transactional;
+
 public abstract class BaseService<T, DTO, ID> {
 
     protected abstract CrudRepository<T, ID> getRepository();
     protected abstract DTO convertToDTO(T entity);
     protected abstract T convertToEntity(DTO dto);
+    
+    @Transactional
+    public DTO update(ID id, DTO dto) {
+        Optional<T> optionalEntity = getRepository().findById(id);
+        if (optionalEntity.isPresent()) {
+            T existingEntity = optionalEntity.get();
+            updateEntityFromDto(dto, existingEntity);
+            T updatedEntity = getRepository().save(existingEntity);
+            return convertToDTO(updatedEntity);
+        }
+        return null;
+    }
+
 
     public List<DTO> findAll() {
         return ((List<T>) getRepository().findAll())
@@ -39,6 +54,10 @@ public abstract class BaseService<T, DTO, ID> {
         setVidljiv(entity, true);
         return convertToDTO(getRepository().save(entity));
     }
+    
+    
+    
+    protected abstract void updateEntityFromDto(DTO dto, T entity);
 
     public void deleteById(ID id) {
         Optional<T> optional = getRepository().findById(id);
@@ -48,19 +67,18 @@ public abstract class BaseService<T, DTO, ID> {
         });
     }
 
-   // proverava da li je vidljiv == true
     private boolean isVidljiv(T entity) {
         try {
             Field field = entity.getClass().getDeclaredField("vidljiv");
             field.setAccessible(true);
             Boolean vidljiv = (Boolean) field.get(entity);
-            return vidljiv == null || vidljiv; // ako null, tretiramo kao true
+            return vidljiv == null || vidljiv; 
         } catch (Exception e) {
             throw new RuntimeException("Polje 'vidljiv' nije definisano u entitetu: " + entity.getClass().getSimpleName());
         }
     }
 
- // postavlja vidljivost
+ 
     private void setVidljiv(T entity, boolean value) {
         try {
             Field field = entity.getClass().getDeclaredField("vidljiv");

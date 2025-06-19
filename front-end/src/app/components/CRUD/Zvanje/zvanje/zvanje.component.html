@@ -1,0 +1,13 @@
+<h2>Detalji o zvanju</h2>
+
+<p *ngIf="zvanje">
+    Datum izbora: {{ zvanje.datumIzbora }} <br>
+    Datum prestanka: {{ zvanje.datumPrestanka }} <br>
+    Tip zvanja: {{ zvanje.tipZvanja.naziv }} <br>
+    Naucna oblast: {{ zvanje.naucnaOblast.naziv }} <br>
+    Nastavnik: <span>{{ zvanje.nastavnik.ime }} {{ zvanje.nastavnik.prezime }}</span> <br>
+    Vidljiv: {{ zvanje.vidljiv }} <br>
+</p>
+
+<a routerLink="/zvanja">← Nazad na listu svih zvanja</a>
+

@@ -35,7 +35,7 @@ public class KatedraNastavnikService extends BaseService<KatedraNastavnik, Kated
 						null, entity.getKatedra().getVidljiv()),
 				new NastavnikDTO(entity.getNastavnik().getId(), null, entity.getNastavnik().getIme(),
 						entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null,
-						null, null, null, entity.getNastavnik().getVidljiv()),
+						null, null, entity.getNastavnik().getVidljiv()),
 				entity.getVidljiv());
 
 	}
@@ -49,7 +49,7 @@ public class KatedraNastavnikService extends BaseService<KatedraNastavnik, Kated
 						dto.getKatedra().getVidljiv()),
 				new Nastavnik(dto.getNastavnik().getId(), null, dto.getNastavnik().getIme(),
 						dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null, null, null,
-						null, null, dto.getNastavnik().getVidljiv()),
+						null, dto.getNastavnik().getVidljiv()),
 				dto.getVidljiv());
 
 	}
@@ -57,6 +57,12 @@ public class KatedraNastavnikService extends BaseService<KatedraNastavnik, Kated
 	public List<KatedraNastavnikDTO> findByKatedraId(Long katedraId) {
 		return katedraNastavnikRepository.findByKatedraIdAndVidljivTrue(katedraId).stream()
 				.map(this::convertToDTO).collect(Collectors.toList());
+	}
+
+	@Override
+	protected void updateEntityFromDto(KatedraNastavnikDTO dto, KatedraNastavnik entity) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

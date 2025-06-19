@@ -1,0 +1,58 @@
+<div *ngIf="nastavnik">
+<h2>Detalji o nastavniku</h2>
+
+<p *ngIf="nastavnik">
+    Email: {{ nastavnik.korisnik.email }} <br>
+    Ime: {{ nastavnik.ime }} <br>
+    Prezime: {{ nastavnik.prezime }} <br>
+    JMBG: {{ nastavnik.jmbg }} <br>
+    Vidljiv: {{ nastavnik.vidljiv }}
+</p>
+Zvanja:
+<ul *ngIf="nastavnik?.zvanja?.length">
+    <ng-container *ngFor="let zvanje of nastavnik?.zvanja">
+        <li>{{ zvanje.tipZvanja.naziv }}</li>
+    </ng-container>
+</ul> <br>
+
+Departmani:
+<ul *ngIf="nastavnik?.departmani?.length">
+    <ng-container *ngFor="let departman of nastavnik?.departmani">
+        <li>{{ departman.departman.naziv }}</li>
+    </ng-container>
+</ul> <br>
+
+Katedre:
+<ul *ngIf="nastavnik?.katedre?.length">
+    <ng-container *ngFor="let katedra of nastavnik?.katedre">
+        <li>{{ katedra.katedra.naziv }}</li>
+    </ng-container>
+</ul> <br>
+
+Realizacije predmeta:
+<ul *ngIf="nastavnik?.realizacijePredmeta?.length">
+  <ng-container *ngFor="let realizacijaPredmeta of nastavnik?.realizacijePredmeta">
+      <ul>
+        <ng-container *ngFor="let predmetRealizacije of realizacijaPredmeta.predmeti">
+          <li>{{ predmetRealizacije.predmet.naziv }}</li>
+        </ng-container>
+      </ul>
+  </ng-container>
+</ul> <br>
+
+Obavestenja:
+<ul *ngIf="nastavnik?.obavestenja?.length">
+    <ng-container *ngFor="let obavestenje of nastavnik?.obavestenja">
+        <li>{{ obavestenje.naslov }}</li>
+    </ng-container>
+</ul> <br>
+
+Evaluacije znanja:
+<ul *ngIf="nastavnik?.evaluacijeZnanja?.length">
+    <ng-container *ngFor="let evaluacijaZnanja of nastavnik?.evaluacijeZnanja">
+        <li>{{ evaluacijaZnanja.predmet.naziv }}</li>
+    </ng-container>
+</ul> <br>
+
+</div>
+<a routerLink="/nastavnici">← Nazad na listu svih nastavnika</a>

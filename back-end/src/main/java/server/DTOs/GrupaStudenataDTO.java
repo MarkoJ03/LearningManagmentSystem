@@ -14,9 +14,9 @@ public class GrupaStudenataDTO {
 
 private Long id;
 
-	private List<StudentNaGodiniDTO> studentNaGodini;
+	private List<StudentNaGodiniDTO> studentiNaGodini;
 
-	private List<GrupaStudenataPredmetDTO> grupaStudenataPredmet;
+	private List<GrupaStudenataPredmetDTO> predmeti;
 
 	private KalendarDTO kalendar;
 

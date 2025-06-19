@@ -1,0 +1,18 @@
+<div class="content">
+
+<h2>Objave</h2>
+
+@if (objave.length === 0) {
+  <p>Nema objava za prikaz.</p>
+} @else {
+  @for (objava of objave; track objava.id) {
+<app-objava-card
+  [naslov]="objava.naslov"
+  [sadrzaj]="objava.sadrzaj"
+  [id]="objava.id">
+</app-objava-card>
+
+  }
+}
+
+</div>

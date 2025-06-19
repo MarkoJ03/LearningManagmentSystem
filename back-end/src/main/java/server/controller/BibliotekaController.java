@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import jakarta.annotation.security.PermitAll;
+
 import server.DTOs.BibliotekaDTO;
 import server.model.Biblioteka;
 import server.service.BibliotekaService;
@@ -26,17 +28,5 @@ public class BibliotekaController extends BaseController<Biblioteka, BibliotekaD
         return bibliotekaService;
     }
     
-    @GetMapping
-    @PermitAll
-    public ResponseEntity<List<BibliotekaDTO>> findAll() {
-        return new ResponseEntity<>(bibliotekaService.findAll(), HttpStatus.OK);
-    }
-    
-    @GetMapping("/{id}")
-    @PermitAll
-    public ResponseEntity<BibliotekaDTO> getOne(@PathVariable Long id) {
-        Optional<BibliotekaDTO> entity = bibliotekaService.findById(id);
-        return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
-                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+
 }

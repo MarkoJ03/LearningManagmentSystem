@@ -46,6 +46,7 @@ export class GenerickaFormaComponent implements OnChanges {
   onSubmit(): void {
     if (this.forma.valid) {
       this.submitEvent.emit(this.forma.value);
+      console.log('Vrednosti forme:', this.forma.value);
     }
   }
 
@@ -55,15 +56,18 @@ export class GenerickaFormaComponent implements OnChanges {
 
   onCheckboxChange(poljeNaziv: string, event: any, opcija: any): void {
     const kontrola = this.forma.get(poljeNaziv);
-    let trenutne = kontrola?.value || [];
+    let trenutne = [...(kontrola?.value || [])];
 
     if (event.target.checked) {
-      trenutne.push(opcija);
+      if (!trenutne.some((o: any) => this.compareFn(o, opcija))) {
+        trenutne.push(opcija);
+      }
     } else {
       trenutne = trenutne.filter((o: any) => !this.compareFn(o, opcija));
     }
 
     kontrola?.setValue(trenutne);
+    kontrola?.markAsDirty();
   }
 
   jeOpcijaSelektovana(naziv: string, opcija: any): boolean {

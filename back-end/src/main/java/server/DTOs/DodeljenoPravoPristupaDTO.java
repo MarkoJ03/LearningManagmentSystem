@@ -11,4 +11,5 @@ public class DodeljenoPravoPristupaDTO {
 	private Long id;
 	private KorisnikDTO korisnik;
 	private PravoPristupaDTO pravoPristupa;
+    private Boolean vidljiv = true;
 }

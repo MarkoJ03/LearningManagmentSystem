@@ -9,6 +9,6 @@ import { BaseService } from './base.service';
 export class IshodPredmetaService extends BaseService<IshodPredmeta> {
   constructor(http: HttpClient) {
     super(http);
-    this.setUrl('http://localhost:8080/api/IshodPredmeta');
+    this.setUrl('http://localhost:8080/api/ishod-predmeta');
   }
 }

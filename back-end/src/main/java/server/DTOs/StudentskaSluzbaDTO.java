@@ -31,11 +31,10 @@ public class StudentskaSluzbaDTO {
 
 		private List<InventarDTO> inventari;
 
-		private List<BibliotekaDTO> biblioteke;
+		private BibliotekaDTO biblioteke;
 
-		private List<OsobljeDTO> Osoblje;
+//		private List<OsobljeDTO> osoblje;
 
-		private List<NastavnikDTO> nastavnici;
 
 		private List<KalendarDTO> kalendari;
 

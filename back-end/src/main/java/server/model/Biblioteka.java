@@ -27,7 +27,7 @@ public class Biblioteka {
     private Long id;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "biblioteka", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<BibliotekaKnjiga> bibliotekaKnjiga;
+	private List<BibliotekaKnjiga> knjige;
 
 
 	@ManyToOne

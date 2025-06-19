@@ -1,0 +1,22 @@
+<div *ngIf="sluzba">
+  <h2>Studentska služba: {{ sluzba.naziv }}</h2>
+  <p><strong>ID:</strong> {{ sluzba.id }}</p>
+  <p><strong>Vidljiv:</strong> {{ sluzba.vidljiv ? 'Da' : 'Ne' }}</p>
+
+  <div *ngIf="sluzba.biblioteka">
+    <p><strong>Biblioteka:</strong> {{ sluzba.biblioteka.naziv }}</p>
+  </div>
+
+  <div *ngIf="sluzba.objave?.length">
+    <p><strong>Objave:</strong></p>
+    <ul>
+      <li *ngFor="let objava of sluzba.objave">{{ objava.naslov }}</li>
+    </ul>
+  </div>
+
+ 
+</div>
+
+<div *ngIf="!sluzba">
+  <p>Podaci o studentskoj službi nisu pronađeni.</p>
+</div>

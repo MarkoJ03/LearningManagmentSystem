@@ -2,6 +2,8 @@ package server.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors; // Dodato za stream API
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -16,68 +18,165 @@ import server.model.GodinaStudija;
 import server.model.Katedra;
 import server.model.StudijskiProgram;
 import server.model.TipPrograma;
+import server.repository.KatedraRepository; // Dodato
 import server.repository.StudijskiProgramRepository;
+import server.repository.TipProgramaRepository; // Dodato
 
 @Service
 public class StudijskiProgramService extends BaseService<StudijskiProgram, StudijskiProgramDTO, Long>{
 
-	@Autowired
-	private StudijskiProgramRepository studijskiProgramRepository;
+    @Autowired
+    private StudijskiProgramRepository studijskiProgramRepository;
 
+    @Autowired
+    private TipProgramaRepository tipProgramaRepository; 
+    
+    @Autowired
+    private KatedraRepository katedraRepository; 
 
-	@Autowired
-	@Lazy
-	private GodinaStudijaService godinaStudijaService;
+    @Autowired
+    @Lazy 
+    private GodinaStudijaService godinaStudijaService;
 
+    @Override
+    protected CrudRepository<StudijskiProgram, Long> getRepository() {
+        return studijskiProgramRepository;
+    }
 
-	@Override
-	protected CrudRepository<StudijskiProgram, Long> getRepository() {
-		return studijskiProgramRepository;
-	}
+    @Override
+    protected StudijskiProgramDTO convertToDTO(StudijskiProgram entity) {
+        
+        TipProgramaDTO tipProgramaDTO = null;
+        if (entity.getTipPrograma() != null) {
+            tipProgramaDTO = new TipProgramaDTO(
+                entity.getTipPrograma().getId(),
+                entity.getTipPrograma().getNaziv(),
+                null, 
+                entity.getTipPrograma().getVidljiv()
+            );
+        }
 
-	@Override
-	protected StudijskiProgramDTO convertToDTO(StudijskiProgram entity) {
-		TipProgramaDTO tipPrograma = new TipProgramaDTO(entity.getTipPrograma().getId(), entity.getTipPrograma().getNaziv(),
+       
+        KatedraDTO katedraDTO = null;
+        if (entity.getKatedra() != null) {
+            katedraDTO = new KatedraDTO(
+                entity.getKatedra().getId(),
+                entity.getKatedra().getNaziv(),
+                null, null, null, null, null, 
+                entity.getKatedra().getVidljiv()
+            );
+        }
 
-				null, entity.getTipPrograma().getVidljiv());
+       
+        List<GodinaStudijaDTO> godineStudijaDTO = new ArrayList<>();
+        if (entity.getGodineStudija() != null) {
+            for (GodinaStudija gs : entity.getGodineStudija()) {
+                
+                GodinaStudijaDTO gsDTO = godinaStudijaService.convertToDTO(gs);
+                godineStudijaDTO.add(gsDTO);
+            }
+        }
 
-		KatedraDTO katedra = new KatedraDTO(entity.getKatedra().getId(), entity.getKatedra().getNaziv(),
-				null, null, null, null,null, entity.getKatedra().getVidljiv());
+        return new StudijskiProgramDTO(
+            entity.getId(),
+            entity.getNaziv(),
+            tipProgramaDTO, 
+            katedraDTO,     
+            godineStudijaDTO,
+            entity.getVidljiv()
+        );
+    }
 
-		ArrayList<GodinaStudijaDTO> godineStudija = new ArrayList<>();
+    @Override
+    protected StudijskiProgram convertToEntity(StudijskiProgramDTO dto) {
+        StudijskiProgram studijskiProgram = new StudijskiProgram();
+        studijskiProgram.setId(dto.getId()); 
+        studijskiProgram.setNaziv(dto.getNaziv());
+        studijskiProgram.setVidljiv(dto.getVidljiv());
 
-		for(GodinaStudija gs : entity.getGodineStudija()) {
-			GodinaStudijaDTO gsDTO = godinaStudijaService.convertToDTO(gs);
-			godineStudija.add(gsDTO);
-		}
+        
+        if (dto.getTipPrograma() != null && dto.getTipPrograma().getId() != null) {
+            TipPrograma existingTipPrograma = tipProgramaRepository.findById(dto.getTipPrograma().getId())
+                .orElseThrow(() -> new RuntimeException("TipPrograma sa ID " + dto.getTipPrograma().getId() + " nije pronađen."));
+            studijskiProgram.setTipPrograma(existingTipPrograma);
+        } else {
+            studijskiProgram.setTipPrograma(null);
+        }
 
+        
+        if (dto.getKatedra() != null && dto.getKatedra().getId() != null) {
+            Katedra existingKatedra = katedraRepository.findById(dto.getKatedra().getId())
+                .orElseThrow(() -> new RuntimeException("Katedra sa ID " + dto.getKatedra().getId() + " nije pronađena."));
+            studijskiProgram.setKatedra(existingKatedra);
+        } else {
+            studijskiProgram.setKatedra(null);
+        }
 
-		return new StudijskiProgramDTO(entity.getId(), entity.getNaziv(), tipPrograma, katedra, godineStudija, entity.getVidljiv());
+        
+        List<GodinaStudija> godineStudija = new ArrayList<>();
+        if (dto.getGodineStudija() != null) {
+            for (GodinaStudijaDTO gsDTO : dto.getGodineStudija()) {
+                
+                GodinaStudija gs = godinaStudijaService.convertToEntity(gsDTO);
+                gs.setStudijskiProgram(studijskiProgram); 
+                godineStudija.add(gs);
+            }
+        }
+        studijskiProgram.setGodineStudija(godineStudija);
 
-	}
+        return studijskiProgram;
+    }
 
-	@Override
-	protected StudijskiProgram convertToEntity(StudijskiProgramDTO dto) {
-		TipPrograma tipPrograma = new TipPrograma(dto.getTipPrograma().getId(), dto.getTipPrograma().getNaziv(),
+    @Override
+    protected void updateEntityFromDto(StudijskiProgramDTO dto, StudijskiProgram entity) {
+        
+        entity.setNaziv(dto.getNaziv());
+        entity.setVidljiv(dto.getVidljiv() != null ? dto.getVidljiv() : true); 
 
-				null, dto.getTipPrograma().getVidljiv());
+        
+        if (dto.getTipPrograma() != null && dto.getTipPrograma().getId() != null) {
+            TipPrograma existingTipPrograma = tipProgramaRepository.findById(dto.getTipPrograma().getId())
+                .orElseThrow(() -> new RuntimeException("TipPrograma sa ID " + dto.getTipPrograma().getId() + " nije pronađen za ažuriranje."));
+            entity.setTipPrograma(existingTipPrograma);
+        } else {
+            
+            entity.setTipPrograma(null);
+        }
 
-	    Katedra katedra = null;
-	    if (dto.getKatedra() != null && dto.getKatedra().getId() != null) {
-	        katedra = new Katedra();
-	        katedra.setId(dto.getKatedra().getId());
-	    }
+        
+        if (dto.getKatedra() != null && dto.getKatedra().getId() != null) {
+            Katedra existingKatedra = katedraRepository.findById(dto.getKatedra().getId())
+                .orElseThrow(() -> new RuntimeException("Katedra sa ID " + dto.getKatedra().getId() + " nije pronađena za ažuriranje."));
+            entity.setKatedra(existingKatedra);
+        } else {
+            
+            entity.setKatedra(null);
+        }
 
-		ArrayList<GodinaStudija> godineStudija = new ArrayList<>();
-
-		for(GodinaStudijaDTO gsDTO : dto.getGodineStudija()) {
-			GodinaStudija gs = godinaStudijaService.convertToEntity(gsDTO);
-			godineStudija.add(gs);
-		}
-
-
-		return new StudijskiProgram(dto.getId(), dto.getNaziv(), tipPrograma, katedra, godineStudija, dto.getVidljiv());
-
-
-	}
+        List<GodinaStudija> updatedGodineStudija = new ArrayList<>();
+        if (dto.getGodineStudija() != null) {
+            for (GodinaStudijaDTO gsDTO : dto.getGodineStudija()) {
+                if (gsDTO.getId() != null) {
+                   
+                    godinaStudijaService.getRepository().findById(gsDTO.getId())
+                        .ifPresent(gs -> {
+                            
+                            godinaStudijaService.updateEntityFromDto(gsDTO, gs);
+                            gs.setStudijskiProgram(entity); 
+                            updatedGodineStudija.add(gs);
+                        });
+                } else {
+                    
+                    GodinaStudija newGs = godinaStudijaService.convertToEntity(gsDTO);
+                    newGs.setStudijskiProgram(entity); 
+                    updatedGodineStudija.add(newGs);
+                }
+            }
+        }
+        
+        
+        entity.getGodineStudija().clear();
+        entity.getGodineStudija().addAll(updatedGodineStudija);
+    }
+		
 }

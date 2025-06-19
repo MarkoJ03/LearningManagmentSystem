@@ -3,7 +3,6 @@ package server.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import server.DTOs.StudentskaSluzbaDTO;
 import server.model.StudentskaSluzba;
 import server.service.StudentskaSluzbaService;
@@ -19,4 +18,5 @@ public class StudentskaSluzbaController extends BaseController<StudentskaSluzba,
     protected StudentskaSluzbaService getService() {
         return studentskaSluzbaService;
     }
+
 }

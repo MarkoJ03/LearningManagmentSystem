@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import jakarta.annotation.security.PermitAll;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +20,6 @@ import server.service.ObjavaService;
 
 @Controller
 @RequestMapping("/api/objave")
-@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA"})
 
 public class ObjavaController extends BaseController<Objava, ObjavaDTO, Long> {
 
@@ -33,17 +31,4 @@ public class ObjavaController extends BaseController<Objava, ObjavaDTO, Long> {
         return objavaService;
     }
     
-    @GetMapping
-    @PermitAll
-    public ResponseEntity<List<ObjavaDTO>> findAll() {
-        return new ResponseEntity<>(objavaService.findAll(), HttpStatus.OK);
-    }
-    
-    @GetMapping("/{id}")
-    @PermitAll
-    public ResponseEntity<ObjavaDTO> getOne(@PathVariable Long id) {
-        Optional<ObjavaDTO> entity = objavaService.findById(id);
-        return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
-                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
 }

@@ -2,6 +2,7 @@ package server.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -27,7 +28,7 @@ public class GodinaStudija {
 	@Column(nullable = false)
 	private String godina;
 
-    @OneToMany (fetch= FetchType.LAZY, mappedBy = "godinaStudija")
+    @OneToMany (fetch= FetchType.LAZY, mappedBy = "godinaStudija", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<StudentNaGodini> studentiNaGodini;
 
     @ManyToOne(optional = false)

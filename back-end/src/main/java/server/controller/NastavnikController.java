@@ -25,12 +25,4 @@ public class NastavnikController extends BaseController<Nastavnik, NastavnikDTO,
 	protected BaseService<Nastavnik, NastavnikDTO, Long> getService() {
 		return nastavnikService;
 	}
-    
-    @GetMapping("/{id}")
-    @PermitAll
-    public ResponseEntity<NastavnikDTO> getOne(@PathVariable Long id) {
-        Optional<NastavnikDTO> entity = nastavnikService.findById(id);
-        return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
-                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
 }

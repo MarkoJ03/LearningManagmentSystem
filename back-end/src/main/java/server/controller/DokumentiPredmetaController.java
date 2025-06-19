@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import server.DTOs.DokumentiPredmetaDTO;
 import server.model.DokumentiPredmeta;
 import server.service.BaseService;

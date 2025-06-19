@@ -27,7 +27,6 @@ public class SvObrazac {
 	
 	private String vrstaZavreseneSrednje;
 	
-	
 	private String datumZavrsetkaSrednje;
 	
 	private Boolean bracniStatus;
@@ -37,7 +36,6 @@ public class SvObrazac {
 	private Boolean zaposlen;
 	
 	private Boolean nacinFinansiranja;
-	
 	
 	@OneToOne(optional = true)
 	private StudentNaGodini studentNaGodini;

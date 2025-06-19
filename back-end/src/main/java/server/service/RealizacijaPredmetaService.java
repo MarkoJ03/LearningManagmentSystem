@@ -1,27 +1,40 @@
 package server.service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import server.DTOs.DepartmanNastavnikDTO;
 import server.DTOs.IshodPredmetaDTO;
 import server.DTOs.NastavnikDTO;
 import server.DTOs.ObavestenjeDTO;
 import server.DTOs.PredmetDTO;
+import server.DTOs.PredmetRealizacijePredmetaDTO;
 import server.DTOs.RealizacijaPredmetaDTO;
 import server.DTOs.TerminNastaveDTO;
 import server.DTOs.TipNastaveDTO;
+import server.model.Departman;
+import server.model.DepartmanNastavnik;
 import server.model.IshodPredmeta;
 import server.model.Nastavnik;
 import server.model.Obavestenje;
 import server.model.Predmet;
+import server.model.PredmetRealizacijePredmeta;
 import server.model.RealizacijaPredmeta;
 import server.model.TerminNastave;
 import server.model.TipNastave;
+import server.repository.IshodPredmetaRepository;
+import server.repository.NastavnikRepository;
+import server.repository.PredmetRepository;
 import server.repository.RealizacijaPredmetaRepository;
+import server.repository.TerminNastaveRepository;
+import server.repository.TipNastaveRepository;
 
 @Service
 public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta, RealizacijaPredmetaDTO, Long> {
@@ -38,9 +51,15 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 	private IshodPredmetaService ishodPredmetaService;
 	
 	@Autowired
-	@Lazy
-	private ObavestenjeService oService;
-
+	private NastavnikRepository nastavnikRepository;
+	@Autowired
+	private TipNastaveRepository tipNastaveRepository;
+	@Autowired
+	private PredmetRepository predmetRepository;
+	@Autowired
+	private IshodPredmetaRepository ishodPredmetaRepository;
+	@Autowired
+	private TerminNastaveRepository terminNastaveRepository;
 
 	@Override
 	protected CrudRepository<RealizacijaPredmeta, Long> getRepository() {
@@ -49,23 +68,24 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 
 	@Override
 	protected RealizacijaPredmetaDTO convertToDTO(RealizacijaPredmeta entity) {
-		
-		
-		ArrayList<ObavestenjeDTO> obavestenja = new ArrayList<>();
-		
-		for(Obavestenje rp : entity.getPredmet().getObavestenja()) {
-			ObavestenjeDTO rpDTO = oService.convertToDTO(rp);
-			obavestenja.add(rpDTO);
-		}
 
 		NastavnikDTO nastavnik = new NastavnikDTO(entity.getNastavnik().getId(),null, entity.getNastavnik().getIme(),
-				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null, null,null,null, entity.getNastavnik().getVidljiv());
+				entity.getNastavnik().getPrezime(), entity.getNastavnik().getJmbg(), null, null, null, null,null,null, entity.getNastavnik().getVidljiv());
+		
 		TipNastaveDTO tipNastave = new TipNastaveDTO(entity.getTipNastave().getId(), entity.getTipNastave().getNaziv(),
 				null, entity.getTipNastave().getVidljiv());
-		PredmetDTO predmet = new PredmetDTO(entity.getPredmet().getId(),entity.getPredmet().getNaziv(), entity.getPredmet().getEsbp(),
-				entity.getPredmet().getObavezan(), entity.getPredmet().getBrojPredavanja(), entity.getPredmet().getBrojVezbi(),
-				entity.getPredmet().getIstrazivackiRad(), entity.getPredmet().getBrojSemestara(), entity.getPredmet().getOpis(),
-				entity.getPredmet().getCilj(), null, null,null,null,obavestenja, entity.getPredmet().getVidljiv());
+		
+		List<PredmetRealizacijePredmetaDTO> predmeti = entity.getPredmeti() != null ?
+	            entity.getPredmeti().stream()
+	                .map(p -> {
+	                    PredmetDTO predmetDTO = null;
+	                    if (p.getPredmet() != null) {
+	                        predmetDTO = new PredmetDTO(p.getPredmet().getId(), p.getPredmet().getNaziv(), null,null,null,null,null,null,null,null,null,null,null,null,null,p.getPredmet().getVidljiv());
+	                    }
+	                    return new PredmetRealizacijePredmetaDTO(p.getId(), predmetDTO, null, p.getVidljiv());
+	                })
+	                .collect(Collectors.toList()) :
+	            new ArrayList<>();
 
 		ArrayList<TerminNastaveDTO> terminiNastave = new ArrayList<>();
 
@@ -73,47 +93,115 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 			TerminNastaveDTO tnDTO = terminNastaveService.convertToDTO(tn);
 			terminiNastave.add(tnDTO);
 		}
+		IshodPredmetaDTO ishodPredmeta = null; 
+		if (entity.getIshodPredmeta() != null) {
+			ishodPredmeta = new IshodPredmetaDTO(
+				entity.getIshodPredmeta().getId(),
+				entity.getIshodPredmeta().getOcena(),
+				null, null, null 
+			);
+		}
 
-
-		IshodPredmetaDTO ip = ishodPredmetaService.convertToDTO(entity.getIshodPredmeta());
-
-		return new RealizacijaPredmetaDTO(entity.getId(), nastavnik, tipNastave, predmet, terminiNastave, ip, entity.getVidljiv());
+		return new RealizacijaPredmetaDTO(entity.getId(), nastavnik, tipNastave, predmeti, terminiNastave, ishodPredmeta, entity.getVidljiv());
 
 	}
 
 	@Override
 	protected RealizacijaPredmeta convertToEntity(RealizacijaPredmetaDTO dto) {
+		RealizacijaPredmeta realizacijaPredmeta = new RealizacijaPredmeta();
+		realizacijaPredmeta.setId(dto.getId());
+		realizacijaPredmeta.setVidljiv(dto.getVidljiv());
 		
-		ArrayList<Obavestenje> obavestenja = new ArrayList<>();
-
-		
-		for(ObavestenjeDTO rp : dto.getPredmet().getObavestenja()) {
-			Obavestenje rpDTO = oService.convertToEntity(rp);
-			obavestenja.add(rpDTO);
+		if (dto.getNastavnik() != null && dto.getNastavnik().getId() != null) {
+			Nastavnik nastavnik = new Nastavnik();
+			nastavnik.setId(dto.getNastavnik().getId());
+			realizacijaPredmeta.setNastavnik(nastavnik);
 		}
 		
-		Nastavnik nastavnik = new Nastavnik(dto.getNastavnik().getId(), null, dto.getNastavnik().getIme(),
-
-				dto.getNastavnik().getPrezime(), dto.getNastavnik().getJmbg(), null, null, null, null,null,null,null, dto.getNastavnik().getVidljiv());
-		TipNastave tipNastave = new TipNastave(dto.getTipNastave().getId(), dto.getTipNastave().getNaziv(),
-				null, dto.getTipNastave().getVidljiv());
-		Predmet predmet = new Predmet(dto.getPredmet().getId(),dto.getPredmet().getNaziv(), dto.getPredmet().getEsbp(),
-				dto.getPredmet().getObavezan(), dto.getPredmet().getBrojPredavanja(), dto.getPredmet().getBrojVezbi(),
-				dto.getPredmet().getIstrazivackiRad(), dto.getPredmet().getBrojSemestara(), dto.getPredmet().getOpis(),
-				dto.getPredmet().getCilj(), null, null,null,null,obavestenja,dto.getPredmet().getVidljiv());
-
+		if (dto.getTipNastave() != null && dto.getTipNastave().getId() != null) {
+			TipNastave tipNastave = new TipNastave();
+			tipNastave.setId(dto.getTipNastave().getId());
+			realizacijaPredmeta.setTipNastave(tipNastave);
+		}
+		
+		if (dto.getIshodPredmeta() != null && dto.getIshodPredmeta().getId() != null) {
+			IshodPredmeta ishodPredmeta = new IshodPredmeta();
+			ishodPredmeta.setId(dto.getIshodPredmeta().getId());
+			realizacijaPredmeta.setIshodPredmeta(ishodPredmeta);
+		}
+		
 		ArrayList<TerminNastave> terminiNastave = new ArrayList<>();
-
-		for(TerminNastaveDTO tnDTO : dto.getTerminiNastave()) {
-			TerminNastave tn = terminNastaveService.convertToEntity(tnDTO);
-			terminiNastave.add(tn);
+		
+		if (dto.getTerminiNastave() != null) {
+			for (TerminNastaveDTO tDTO : dto.getTerminiNastave()) {
+				if (tDTO.getId() != null) {
+					
+					TerminNastave existingTermin = terminNastaveService.getRepository().findById(tDTO.getId())
+							.orElseThrow(() -> new RuntimeException("Termin nastave not found with id " +  tDTO.getId()));
+					
+					existingTermin.setRealizacijaPredmeta(realizacijaPredmeta);
+					terminiNastave.add(existingTermin);
+				}
+			}
 		}
-
-
-		IshodPredmeta ip = ishodPredmetaService.convertToEntity(dto.getIshodPredmeta());
-
-		return new RealizacijaPredmeta(dto.getId(), nastavnik, tipNastave, predmet, terminiNastave, ip, dto.getVidljiv());
-
+		
+		realizacijaPredmeta.setTerminiNastave(terminiNastave);
+		return realizacijaPredmeta;
 	}
+
+	@Override
+	protected void updateEntityFromDto(RealizacijaPredmetaDTO dto, RealizacijaPredmeta entity) {
+		entity.setVidljiv(dto.getVidljiv());
+		
+		if (dto.getNastavnik() != null && dto.getNastavnik().getId() != null) {
+			nastavnikRepository.findById(dto.getNastavnik().getId())
+			.ifPresent(entity::setNastavnik);
+		}
+		
+		if (dto.getTipNastave() != null && dto.getTipNastave().getId() != null) {
+			tipNastaveRepository.findById(dto.getTipNastave().getId())
+			.ifPresent(entity::setTipNastave);
+		}
+		
+		List<PredmetRealizacijePredmeta> updatedLinks = new ArrayList<>();
+	    if (dto.getPredmeti() != null) {
+	        for (PredmetRealizacijePredmetaDTO prpDTO : dto.getPredmeti()) {
+	            if (prpDTO.getPredmet() != null && prpDTO.getPredmet().getId() != null) {
+	                Optional<Predmet> optPredmet = predmetRepository.findById(prpDTO.getPredmet().getId());
+	                if (optPredmet.isPresent()) {
+	                    PredmetRealizacijePredmeta prp = new PredmetRealizacijePredmeta();
+	                    prp.setRealizacijaPredmeta(entity);
+	                    prp.setPredmet(optPredmet.get());
+	                    prp.setVidljiv(prpDTO.getVidljiv() != null ? prpDTO.getVidljiv() : true);
+	                    updatedLinks.add(prp);
+	                }
+	            }
+	        }
+	    }
+	    entity.getPredmeti().clear();
+	    entity.getPredmeti().addAll(updatedLinks);
+		
+		if (dto.getIshodPredmeta() != null && dto.getIshodPredmeta().getId() != null) {
+			ishodPredmetaRepository.findById(dto.getIshodPredmeta().getId())
+			.ifPresent(entity::setIshodPredmeta);
+		}
+		
+		List<TerminNastave> updatedTermini = new ArrayList<>();
+		if (dto.getTerminiNastave() != null) {
+			for (TerminNastaveDTO tDTO : dto.getTerminiNastave()) {
+				if (tDTO.getId() != null) {
+					terminNastaveRepository.findById(tDTO.getId())
+					.ifPresent(updatedTermini::add);
+				}
+			}
+		}
+		entity.getTerminiNastave().clear();
+		for (TerminNastave tn : updatedTermini) {
+			tn.setRealizacijaPredmeta(entity);
+			entity.getTerminiNastave().add(tn);
+		}
+	}
+
+	
 
 }

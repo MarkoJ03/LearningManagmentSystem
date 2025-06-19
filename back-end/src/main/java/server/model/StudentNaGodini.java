@@ -36,17 +36,17 @@ public class StudentNaGodini {
 	@ManyToOne(optional = false)
 	private Student student;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private GodinaStudija godinaStudija;
 
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private GrupaStudenata grupaStudenata;
 	
     @OneToMany (fetch= FetchType.LAZY, mappedBy = "studentNaGodini")
 	private List<IshodEvaluacije> ishodEvaluacije;
     
-    @OneToOne(mappedBy = "studentNaGodini")
+    @OneToOne(mappedBy = "studentNaGodini", optional = true)
     private SvObrazac svObrazac;
 
     

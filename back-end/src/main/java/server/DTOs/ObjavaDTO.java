@@ -14,18 +14,13 @@ public class ObjavaDTO {
 
 
 
-
-
-
-
-
 	    private Long id;
 
 		private String naslov;
 
 		private String sadrzaj;
 
-		private StudentskaSluzba studentskaSluzba;
+		private StudentskaSluzbaDTO studentskaSluzba;
 
 	    private Boolean vidljiv = true;
 

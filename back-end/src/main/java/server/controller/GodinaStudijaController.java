@@ -2,6 +2,9 @@ package server.controller;
 
 import java.util.List;
 
+
+import java.util.Optional;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +25,7 @@ import server.service.GodinaStudijaService;
 
 @Controller
 @RequestMapping("/api/godine-studija")
-@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA"})
+
 public class GodinaStudijaController extends BaseController<GodinaStudija, GodinaStudijaDTO, Long> {
 
     @Autowired
@@ -31,21 +34,10 @@ public class GodinaStudijaController extends BaseController<GodinaStudija, Godin
     @Override
     protected GodinaStudijaService getService() {
         return godinaStudijaService; 
+
     }
     
-    @GetMapping
-    @PermitAll
-    public ResponseEntity<List<GodinaStudijaDTO>> findAll() {
-        return new ResponseEntity<>(godinaStudijaService.findAll(), HttpStatus.OK);
-    }
-    
-    @GetMapping("/{id}")
-    @PermitAll
-    public ResponseEntity<GodinaStudijaDTO> getOne(@PathVariable Long id) {
-        Optional<GodinaStudijaDTO> entity = godinaStudijaService.findById(id);
-        return entity.map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
-                     .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+   
     
     @GetMapping("/program/{id}")
     public ResponseEntity<List<GodinaStudijaDTO>> getByProgramId(@PathVariable Long id) {

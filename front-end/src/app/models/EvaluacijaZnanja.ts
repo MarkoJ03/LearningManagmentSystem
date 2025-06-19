@@ -6,12 +6,12 @@ import { TipEvaluacije } from "./TipEvaluacije";
 
 export interface EvaluacijaZnanja {
   id: number;
-  vidljiv: boolean;
   kalendar: Kalendar;
   nastavnik: Nastavnik;
   predmet: Predmet;
   tipEvaluacije: TipEvaluacije;
   vremePocetka: Date;
   vremeZavrsetka: Date;
-  ishodEvaluacije?: IshodEvaluacije[];
+  ishodiEvaluacije?: IshodEvaluacije[];
+  vidljiv: boolean;
 }

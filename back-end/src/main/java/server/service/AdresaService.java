@@ -36,6 +36,12 @@ public class AdresaService extends BaseService<Adresa, AdresaDTO, Long>{
 		return new Adresa(dto.getId(),gService.convertToEntity(dto.getGrad()),dto.getUlica(), dto.getBroj(),dto.getVidljiv());
 		}
 
+	@Override
+	protected void updateEntityFromDto(AdresaDTO dto, Adresa entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }

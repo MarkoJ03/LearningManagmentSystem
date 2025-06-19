@@ -2,7 +2,6 @@ package server.controller;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -13,10 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+
 import jakarta.annotation.security.PermitAll;
+
 import server.service.BaseService;
 
-@Secured("ROLE_ADMIN")
+
 //@PermitAll
 public abstract class BaseController<T, DTO, ID> {
 
@@ -51,7 +52,11 @@ public abstract class BaseController<T, DTO, ID> {
         if (!getService().findById(id).isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(getService().save(dto), HttpStatus.OK);
+
+        return new ResponseEntity<>(getService().update(id,dto), HttpStatus.OK);
+
+       
+
     }
 
     @DeleteMapping("/{id}")

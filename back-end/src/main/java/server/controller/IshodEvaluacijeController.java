@@ -10,7 +10,6 @@ import server.service.IshodEvaluacijeService;
 
 @Controller
 @RequestMapping("/api/ishodi-evaluacije")
-@Secured({"ROLE_ADMIN, ROLE_NASTAVNIK"})
 public class IshodEvaluacijeController extends BaseController<IshodEvaluacije, IshodEvaluacijeDTO, Long> {
 
     @Autowired
@@ -20,4 +19,5 @@ public class IshodEvaluacijeController extends BaseController<IshodEvaluacije, I
     protected IshodEvaluacijeService getService() {
         return ishodEvaluacijeService;
     }
+
 }

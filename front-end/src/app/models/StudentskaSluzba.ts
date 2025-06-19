@@ -8,13 +8,13 @@ import { Student } from './Student';
 import { SvObrazac } from './SvObrazac';
 
 export interface StudentskaSluzba {
+  naziv: string;
   id: number;
   vidljiv: boolean;
   objave: Objava[];
   inventari?: Inventar[];
   biblioteka: Biblioteka;
-  osoblje?: Osoblje[];
-  nastavnici?: Nastavnik[];
+  // osoblje?: Osoblje[];
   kalendari?: Kalendar[];
   studenti?: Student[];
   obrasci?: SvObrazac[];

@@ -12,6 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import server.DTOs.SilabusDTO;
 import server.DTOs.SilabusTerminDTO;
 import server.DTOs.TerminXmlDTO;
@@ -65,4 +68,5 @@ public class SilabusController extends BaseController<Silabus, SilabusDTO, Long>
     protected SilabusService getService() {
         return silabusService;
     }
+
 }

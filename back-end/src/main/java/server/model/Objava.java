@@ -31,7 +31,7 @@ public class Objava {
 	@Column(nullable = false, unique = true)
 	private String sadrzaj;
 
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = true)
 	private StudentskaSluzba studentskaSluzba;
 
 	@Column(nullable = false)

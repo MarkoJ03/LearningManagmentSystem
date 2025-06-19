@@ -7,8 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
+
+import server.DTOs.BibliotekaDTO;
 import server.DTOs.BibliotekaKnjigaDTO;
 import server.model.BibliotekaKnjiga;
+import server.DTOs.KnjigaDTO;
+import server.model.Biblioteka;
+import server.model.BibliotekaKnjiga;
+import server.model.Knjiga;
 import server.repository.BibliotekaKnjigaRepository;
 
 @Service
@@ -40,8 +46,8 @@ public class BibliotekaKnjigaService extends BaseService<BibliotekaKnjiga, Bibli
     	
         return new BibliotekaKnjigaDTO(
             entity.getId(),
-            bService.convertToDTO(entity.getBiblioteka()),
-            kService.convertToDTO(entity.getKnjiga()),
+            new BibliotekaDTO(entity.getBiblioteka().getId(), null,null,entity.getBiblioteka().getVidljiv()),
+            new KnjigaDTO(entity.getKnjiga().getId(),null,null,null,entity.getKnjiga().getVidljiv()),
             entity.getVidljiv()
         );
     }
@@ -50,8 +56,8 @@ public class BibliotekaKnjigaService extends BaseService<BibliotekaKnjiga, Bibli
     protected BibliotekaKnjiga convertToEntity(BibliotekaKnjigaDTO dto) {
         return new BibliotekaKnjiga(
             dto.getId(),
-            bService.convertToEntity(dto.getBiblioteka()),
-            kService.convertToEntity(dto.getKnjiga()),
+            new Biblioteka(dto.getBiblioteka().getId(), null,null,dto.getBiblioteka().getVidljiv()),
+            new Knjiga(dto.getKnjiga().getId(),null,null,null,dto.getKnjiga().getVidljiv()),
             dto.getVidljiv()
         );
     }
@@ -61,5 +67,11 @@ public class BibliotekaKnjigaService extends BaseService<BibliotekaKnjiga, Bibli
 	            .stream()
 	            .map(this::convertToDTO)
 	            .collect(Collectors.toList());
+	}
+
+	@Override
+	protected void updateEntityFromDto(BibliotekaKnjigaDTO dto, BibliotekaKnjiga entity) {
+		// TODO Auto-generated method stub
+		
 	}
 }

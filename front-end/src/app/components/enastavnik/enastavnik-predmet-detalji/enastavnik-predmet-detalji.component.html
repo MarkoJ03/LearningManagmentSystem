@@ -1,0 +1,50 @@
+<div *ngIf="loading">Učitavanje predmeta...</div>
+
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<div *ngIf="predmet && !loading && !error" class="predmet-detalji">
+  <h2>{{ predmet?.naziv }}</h2>
+  <p><strong>ESPB:</strong> {{ predmet?.esbp }}</p>
+  <p><strong>Obavezan predmet:</strong> {{ predmet?.obavezan ? 'Da' : 'Ne' }}</p>
+  <p><strong>Broj predavanja:</strong> {{ predmet?.brojPredavanja }}</p>
+  <p><strong>Broj vežbi:</strong> {{ predmet?.brojVezbi }}</p>
+  <p><strong>Istrazivački rad:</strong> {{ predmet?.istrazivackiRad ? 'Da' : 'Ne' }}</p>
+  <p><strong>Broj semestara:</strong> {{ predmet?.brojSemestara }}</p>
+  
+  <h3>Opis</h3>
+  <p>{{ predmet?.opis }}</p>
+
+  <h3>Cilj</h3>
+  <p>{{ predmet?.cilj }}</p>
+
+  <!-- <div *ngIf="predmet.dokumentiPredmeta">
+    <h3>Dokumenti predmeta</h3>
+    <ul>
+      <li *ngIf="predmet.dokumentiPredmeta.silabus">
+        <a [href]="'/uploads/' + predmet.dokumentiPredmeta.silabus" target="_blank">Silabus</a>
+      </li>
+      <li *ngIf="predmet.dokumentiPredmeta.akreditacija">
+        <a [href]="'/uploads/' + predmet.dokumentiPredmeta.akreditacija" target="_blank">Akreditacija</a>
+      </li>
+ Add more dokumentiPredmeta links here if needed 
+    </ul>
+  </div> -->
+
+  <div *ngIf="predmet.evaluacijeZnanja?.length">
+  <h3>Evaluacije znanja</h3>
+  <ul>
+    <li *ngFor="let eval of predmet.evaluacijeZnanja">
+      {{ eval.tipEvaluacije?.naziv || 'Evaluacija' }} 
+    </li>
+  </ul>
+</div>
+
+  <div *ngIf="predmet.obavestenja?.length">
+    <h3>Obaveštenja</h3>
+    <ul>
+      <li *ngFor="let ob of predmet.obavestenja">
+        {{ ob.naslov }} - {{ ob.sadrzaj }}
+      </li>
+    </ul>
+  </div>
+</div>

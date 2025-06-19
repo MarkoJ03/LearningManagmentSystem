@@ -57,6 +57,12 @@ public class DrzavaService extends BaseService<Drzava, DrzavaDTO, Long>{
 		return new Drzava(dto.getId(),dto.getNaziv(),gradovi,dto.getVidljiv());
 		}
 
+	@Override
+	protected void updateEntityFromDto(DrzavaDTO dto, Drzava entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }

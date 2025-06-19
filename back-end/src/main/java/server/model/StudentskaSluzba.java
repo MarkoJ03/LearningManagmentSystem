@@ -2,6 +2,7 @@ package server.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,14 +32,10 @@ public class StudentskaSluzba {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
 	private List<Inventar> inventari;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
-    private List<Biblioteka> biblioteke;
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba", optional = true, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Biblioteka biblioteke;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
-	private List<Osoblje> Osoblje;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
-	private List<Nastavnik> nastavnici;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "studentskaSluzba")
 	private List<Kalendar> kalendari;

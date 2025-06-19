@@ -26,9 +26,6 @@ export class BibliotekaFormaComponent implements OnInit {
   selektovaneKnjige: Knjiga[] = [];
   kreiranaBiblioteka: Biblioteka | null = null;
 
-
-  
-
   constructor(
     private bibliotekaService: BibliotekaService,
     private studentskaSluzbaService: StudentskaSluzbaService,
@@ -65,52 +62,60 @@ export class BibliotekaFormaComponent implements OnInit {
   }
 
 public sacuvajBiblioteku(vrednosti: any): void {
-  if (this.idBiblioteka) {
-    this.bibliotekaService.update(this.idBiblioteka, vrednosti).subscribe({
-      next: () => this.router.navigate(['/biblioteke']),
-      error: err => console.error('Greška pri izmeni biblioteke:', err)
-    });
-  } else {
-        console.log( vrednosti);
-    this.bibliotekaService.create(vrednosti).subscribe({
-      next: (biblioteka) => {
-        console.log('Kreirana biblioteka:', biblioteka);
-        console.log(vrednosti.knjige);
-        this.kreiranaBiblioteka = biblioteka;
+    if (this.idBiblioteka) {
 
-      
-        for (let knjiga of vrednosti.knjige) {
-          const veza = {
-            biblioteka: biblioteka, 
-            knjiga: knjiga,         
-            vidljiv: true
-          };
+      const izmenjenaBiblioteka = {
+        ...vrednosti,
+        knjige: vrednosti.knjige.map((n: Knjiga) => ({
+          knjiga: { id: n.id },
+          vidljiv: true
+        }))
+      };
 
-          this.bibliotekaKnjigaService.create(veza).subscribe({
-            next: () => console.log(`Povezana knjiga ${knjiga.id} sa bibliotekom ${biblioteka.id}`),
-            error: err => console.error('Greška pri vezivanju knjige:', err)
-          });
-        }
+      this.bibliotekaService.update(this.idBiblioteka, izmenjenaBiblioteka).subscribe({
+        next: () => this.router.navigate(['/biblioteke']),
+        error: err => console.error('Greška pri izmeni bibliteka:', err)
+      });
+    } else {
+      this.bibliotekaService.create(vrednosti).subscribe({
+        next: (biblioteka) => {
+          this.kreiranaBiblioteka = biblioteka; 
 
-        this.router.navigate(['/biblioteke']);
-      },
+          for (const knjiga of vrednosti.knjige) {
+            const veza = {
+              id: null, 
+              knjiga: knjiga, 
+              biblioteka: biblioteka, 
+              vidljiv: true
+            };
 
-      error: err => console.error('Greška pri čuvanju biblioteke:', err)
-    });
+            this.bibliotekaKnjigaService.create(veza).subscribe({
+              next: () => console.log("Povezan departman ${departman.id} sa nastavnikom ${nastavnik.id}"),
+              error: err => console.error('Greška pri vezivanju departmana:', err)
+            });
+          }
+
+          
+
+            
+
+          this.router.navigate(['/biblioteke']);
+        },
+        error: err => console.error('Greška pri čuvanju nastavnika:', err)
+      });
+    }
   }
-}
+
 
 
   private kreirajModel(podaci?: any): FormaModel {
-      let selektovanaSluzba = null; 
-      let selektovaneKnjige = null;
+      
 
-      if (podaci?.sluzba && podaci?.knjiga) {
-
+      
   
-        const selektovanaSluzba = podaci?.sluzba ?? null;
-        const selektovaneKnjige = podaci?.knjiga ?? null
-    }
+        let selektovanaSluzba = podaci?.sluzba ?? null;
+        let selektovaneKnjige = podaci?.knjige ?? [];
+    
       return {
   naziv: podaci ? 'Izmena biblioteke' : "Dodavanje biblioteke",
   polja: [{
@@ -126,7 +131,7 @@ public sacuvajBiblioteku(vrednosti: any): void {
   naziv: 'knjige',
   labela: 'Knjige',
   tip: 'checkbox-list',
-  podrazumevanaVrednost: [],
+  podrazumevanaVrednost: selektovaneKnjige,
   opcije: this.sveKnjige,
   displayFn: (k: Knjiga) => k.naziv
 }]
