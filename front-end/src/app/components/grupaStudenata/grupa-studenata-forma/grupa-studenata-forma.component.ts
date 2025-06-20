@@ -64,7 +64,7 @@ export class GrupaStudenataFormaComponent {
   }
 
   otkazi(): void {
-    this.router.navigate(['/grupa-studenata']);
+    this.router.navigate(['/grupeStudenata']);
   }
 
   sacuvajGrupu(vrednosti: any): void {
@@ -97,7 +97,7 @@ export class GrupaStudenataFormaComponent {
       this.grupaStudenataService
         .update(this.idGrupe, izmenjeGrupaStudenata)
         .subscribe({
-          next: () => this.router.navigate(['/grupe-studenata']),
+          next: () => this.router.navigate(['/grupeStudenata']),
           error: (err) =>
             console.error('Greška prilikom ažuriranja grupe:', err),
         });
@@ -119,7 +119,7 @@ export class GrupaStudenataFormaComponent {
     };
 
       this.grupaStudenataService.create(izmenjeGrupaStudenata).subscribe({
-        next: () => this.router.navigate(['/grupe-studenata']),
+        next: () => this.router.navigate(['/grupeStudenata']),
         error: (err) => console.error('Greška pri čuvanju grupe:', err),
       });
     }

@@ -111,35 +111,20 @@ public class StudentService extends BaseService<Student, StudentDTO, Long> {
     @Override
     protected Student convertToEntity(StudentDTO dto) {
       
-        Korisnik korisnikEntity = null;
-        if (dto.getKorisnik() != null) {
-            if (dto.getKorisnik().getId() != null) {
-               
-                korisnikEntity = korisnikRepository.findById(dto.getKorisnik().getId()).orElse(null);
-            }
-            if (korisnikEntity == null) {
-                
-                korisnikEntity = new Korisnik();
-                if (dto.getKorisnik().getId() != null) {
-                    korisnikEntity.setId(dto.getKorisnik().getId()); 
-                }
-            }
-            
-            korisnikEntity.setEmail(dto.getKorisnik().getEmail());
-            korisnikEntity.setLozinka(dto.getKorisnik().getLozinka());
-            korisnikEntity.setVidljiv(dto.getKorisnik().getVidljiv());
+    	Student student = new Student();
+    	
+    	
+    	if (dto.getKorisnik() != null && dto.getKorisnik().getId() != null) {
+			Korisnik existingKorisnik = korisnikRepository.findById(dto.getKorisnik().getId()).orElseThrow(
+					() -> new RuntimeException("Korisnik with ID " + dto.getKorisnik().getId() + " not found."));
+			student.setKorisnik(existingKorisnik);
+		} else {
+			throw new IllegalArgumentException("Korisnik information (ID) is missing for Nastavnik.");
+		}
+
 
            
-            Set<DodeljenoPravoPristupa> dodeljenaPravaPristupa = new HashSet<>();
-            if (dto.getKorisnik().getDodeljenaPravaPristupa() != null) {
-                for (DodeljenoPravoPristupaDTO dppDTO : dto.getKorisnik().getDodeljenaPravaPristupa()) {
-                  
-                    DodeljenoPravoPristupa dpp = dodeljenoPravoPrisupaService.convertToEntity(dppDTO);
-                    dodeljenaPravaPristupa.add(dpp);
-                }
-            }
-            korisnikEntity.setDodeljenaPravaPristupa(dodeljenaPravaPristupa);
-        }
+          
 
         
         Adresa adresaEntity = null;
@@ -195,19 +180,29 @@ public class StudentService extends BaseService<Student, StudentDTO, Long> {
                 }
             }
         }
-
         
-        return new Student(
-            dto.getId(),
-            korisnikEntity,
-            dto.getIme(),
-            dto.getPrezime(),
-            dto.getJmbg(),
-            adresaEntity,
-            studentskaSluzbaEntity, 
-            studentiNaGodiniList,
-            dto.getVidljiv()
-        );
+        
+        student.setIme(dto.getIme());
+        student.setPrezime(dto.getPrezime());
+        student.setJmbg(dto.getJmbg());
+        student.setAdresa(adresaEntity);
+        student.setStudentskaSluzba(studentskaSluzbaEntity);
+        student.setStudentiNaGodini(studentiNaGodiniList);
+        student.setVidljiv(dto.getVidljiv());
+        
+        
+        return student;
+//        return new Student(
+//            dto.getId(),
+//            korisnikEntity,
+//            dto.getIme(),
+//            dto.getPrezime(),
+//            dto.getJmbg(),
+//            adresaEntity,
+//            studentskaSluzbaEntity, 
+//            studentiNaGodiniList,
+//            dto.getVidljiv()
+//        );
     }
 
     @Override

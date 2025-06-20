@@ -1,6 +1,7 @@
 package server.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -40,7 +41,8 @@ public class SilabusService extends BaseService<Silabus, SilabusDTO, Long> {
 	@Override
 	protected SilabusDTO convertToDTO(Silabus entity) {
 		
-
+		
+		
 		ArrayList<SilabusTerminDTO> termini = new ArrayList<>();
 		for (SilabusTermin t : entity.getTermini()) {
 			SilabusTerminDTO zDTO = stService.convertToDTO(t);
@@ -66,8 +68,21 @@ public class SilabusService extends BaseService<Silabus, SilabusDTO, Long> {
 
 	@Override
 	protected void updateEntityFromDto(SilabusDTO dto, Silabus entity) {
-		// TODO Auto-generated method stub
-		
+
+		List<SilabusTermin> updatedEvaluacije = new ArrayList<>();
+	    if (dto.getTermini() != null) {
+	        for (SilabusTerminDTO ezDTO : dto.getTermini()) {
+	            if (ezDTO.getId() != null) {
+	            	stService.getRepository().findById(ezDTO.getId())
+	                    .ifPresent(updatedEvaluacije::add);
+	            }
+	        }
+	    }
+	    entity.getTermini().clear();
+	    for (SilabusTermin ez : updatedEvaluacije) {
+	        ez.setSilabus(entity);
+	        entity.getTermini().add(ez);
+	    }		
 	}
 
 }

@@ -15,7 +15,7 @@ export class DepartmaniComponent {
 
 
   departmani: Departman[] = [];
-  kolone: string[] = ['naziv', 'fakultet','sekretarDepartmana','direktorDepartmana','nastavnici'];
+  kolone: string[] = ['naziv', 'fakultet','sekretar','direktorDepartmana','nastavnici'];
 
   constructor(
     private departmanService: DepartmanService,
@@ -25,19 +25,18 @@ export class DepartmaniComponent {
 
   ngOnInit(): void {
     this.departmanService.getAll().subscribe({
-      
       next: (res) => {
-        this.departmani = res;
-
-        for (let departman of this.departmani) {
-          this.departmanNastavnikService.getByDepartmanId(departman.id).subscribe(veze => {
-            departman.nastavnici = veze.map(v => v.nastavnik); 
-          });
-        }
+        this.departmani = res.map(n => ({
+          ...n,
+          
+          sekretar: n.sekretarDepartmana ? `${n.sekretarDepartmana.ime} ${n.sekretarDepartmana.prezime}` : ""
+          
+        }));
       },
-      error: (err) => console.error('Greška prilikom učitavanja departmana:', err),
+      error: (err) => console.error('Greška prilikom učitavanja nastavnika:', err),
     });
   }
+
 
   izmeni(departman: Departman): void {
     this.router.navigate(['/departmani/izmeni', departman.id]);
