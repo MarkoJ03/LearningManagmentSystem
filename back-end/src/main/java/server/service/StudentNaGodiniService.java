@@ -1,6 +1,7 @@
 package server.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import java.util.List;
@@ -27,6 +28,7 @@ import server.model.SvObrazac;
 import server.repository.StudentNaGodiniRepository;
 import server.repository.StudentRepository;
 import server.repository.GodinaStudijaRepository;
+import server.repository.GrupaStudenataPredmetRepository;
 import server.repository.GrupaStudenataRepository;
 import server.repository.SvObrazacRepository;
 import server.repository.IshodEvaluacijeRepository;
@@ -36,7 +38,8 @@ public class StudentNaGodiniService extends BaseService<StudentNaGodini, Student
 
     @Autowired
     private StudentNaGodiniRepository studentNaGodiniRepository;
-
+    @Autowired
+    private GrupaStudenataPredmetRepository gspRepo;
     
     @Autowired
     private StudentRepository studentRepository;
@@ -277,6 +280,20 @@ public class StudentNaGodiniService extends BaseService<StudentNaGodini, Student
         
         entity.getIshodEvaluacije().clear();
         entity.getIshodEvaluacije().addAll(updatedIshodi);
+    }
+    
+    public List<StudentNaGodiniDTO> findStudentNaGodiniByPredmetId(Long predmetId) {
+        List<Long> grupaIds = gspRepo.findGrupaIdsByPredmetId(predmetId);
+
+        if (grupaIds.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        List<StudentNaGodini> studenti = studentNaGodiniRepository.findByGrupaStudenataIds(grupaIds);
+
+        return studenti.stream()
+            .map(this::convertToDTO)
+            .collect(Collectors.toList());
     }
 }
 

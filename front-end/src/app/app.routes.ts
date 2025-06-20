@@ -132,15 +132,12 @@ import { AdreseComponent } from './components/adrese/adrese.component';
 import { TipoviProgramaComponent } from './components/tipPrograma/tipovi-programa/tipovi-programa.component';
 import { EnastavnikObavestenjaPredmetComponent } from './components/enastavnik/enastavnik-obavestenja-predmet/enastavnik-obavestenja-predmet.component';
 import { EnastavnikStudentiPredmetComponent } from './components/enastavnik/enastavnik-studenti-predmet/enastavnik-studenti-predmet.component';
-import { EnastavnikIshodPredmetaComponent } from './components/enastavnik/enastavnik-ishod-predmeta/enastavnik-ishod-predmeta.component';
-import { EnastavnikIshodEvaluacijeComponent } from './components/enastavnik/enastavnik-ishod-evaluacije/enastavnik-ishod-evaluacije.component';
-import { EnastavnikEvaluacijaZnanjaComponent } from './components/enastavnik/enastavnik-evaluacija-znanja/enastavnik-evaluacija-znanja.component';
-import { EnastavnikTipNastaveComponent } from './components/enastavnik/enastavnik-tip-nastave/enastavnik-tip-nastave.component';
 import { EvaluacijeZnanjaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacije-znanja/evaluacije-znanja.component';
 import { EvaluacijaZnanjaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacija-znanja/evaluacija-znanja.component';
 import { EvaluacijaZnanjaFormaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacija-znanja-forma/evaluacija-znanja-forma.component';
 import { EnastavnikPredmetDetaljiComponent } from './components/enastavnik/enastavnik-predmet-detalji/enastavnik-predmet-detalji.component';
 import { SvObrazacComponent } from './components/estudent/estudent-sv-obrazac/estudent-sv-obrazac.component';
+import { RoleSelectionComponent } from './components/role-selection/role-selection.component';
 
 // import {  FakultetComponentComponent } from './components/fakultet-component/fakultet-component.component';
 
@@ -170,6 +167,7 @@ export const routes: Routes = [
 
 
 
+  { path: 'izbor-uloge', component: RoleSelectionComponent, canActivate: [authGuard], data: { requiredRoles: ['ROLE_ADMIN', 'ROLE_NASTAVNIK', 'ROLE_STUDENT', 'ROLE_STUDENTSKA_SLUZBA'] }},
 
     { path: 'student/:id', component: StudentSelectionComponent, data: {requiredRoles: ["ROLE_STUDENT"]}, canActivate: [authGuard] },
 
@@ -408,7 +406,7 @@ export const routes: Routes = [
 
       { path: '', redirectTo: 'objave', pathMatch: 'full' }
 
-    ], data: {requiredRoles: ["ROLE_STUDENT"]}, canActivate: [authGuard]
+    ], data: {requiredRoles: ["ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]
   },
 
   {
@@ -422,16 +420,10 @@ export const routes: Routes = [
       path: 'predmeti/:predmetId',
       component: EnastavnikPredmetDetaljiComponent,
       children: [
-        { path: 'tip-nastave', component: EnastavnikTipNastaveComponent },
-        { path: 'evaluacija-znanja', component: EnastavnikEvaluacijaZnanjaComponent },
-        { path: 'ishod-evaluacije', component: EnastavnikIshodEvaluacijeComponent },
-        { path: 'ishod-predmeta', component: EnastavnikIshodPredmetaComponent },
         { path: 'studenti', component: EnastavnikStudentiPredmetComponent },
-        { path: 'obavestenja', component: EnastavnikObavestenjaPredmetComponent },
-        // { path: '', redirectTo: 'aktivnosti', pathMatch: 'full' }
       ]
     },
-
+    
     { path: 'kalendar', component: EnastavnikKalendarComponent },
     { path: 'studenti', component: EnastavnikStudentiComponent },
 

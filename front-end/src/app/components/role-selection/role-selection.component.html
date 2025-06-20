@@ -1,0 +1,16 @@
+<app-univerzitet-header></app-univerzitet-header>
+
+<div class="container">
+  <h2>Dobrodošli!</h2>
+  <p>Molimo izaberite ulogu sa kojom želite da nastavite:</p>
+
+  <div class="role-kartice">
+    @for (role of roles; track role) {
+      <button class="role-kartica" (click)="selectRole(role)">
+        {{ role.replace('ROLE_', '') }}
+      </button>
+    }
+  </div>
+</div>
+
+<app-univerzitet-footer></app-univerzitet-footer>

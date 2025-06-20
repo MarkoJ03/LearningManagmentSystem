@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.dodaj-btn {
+  background-color: #b40000;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.dodaj-btn:hover {
+  background-color: #b40000;
+}
+
+.obavestenje-card {
+  position: relative;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.actions button {
+  background: transparent;
+  border: none;
+  color: #b40000;
+  margin-left: 8px;
+  cursor: pointer;
+}
+.actions button:hover {
+  text-decoration: underline;
+}

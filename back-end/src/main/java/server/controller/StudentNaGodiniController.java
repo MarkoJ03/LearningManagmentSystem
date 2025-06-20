@@ -26,4 +26,10 @@ public class StudentNaGodiniController extends BaseController<StudentNaGodini, S
     protected StudentNaGodiniService getService() {
         return studentNaGodiniService;
     }
+    
+    @GetMapping("/{predmetId}/studenti-na-godini")
+    public ResponseEntity<List<StudentNaGodiniDTO>> getStudentiNaGodiniByPredmet(@PathVariable Long predmetId) {
+        List<StudentNaGodiniDTO> studentiDTO = studentNaGodiniService.findStudentNaGodiniByPredmetId(predmetId);
+        return ResponseEntity.ok(studentiDTO);
+    }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, RouterLink } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Nastavnik } from '../../../models/Nastavnik';
@@ -13,7 +13,7 @@ import { LogoutService } from '../../../../services/logout.service';
   standalone: true,
   imports: [RouterLink, CommonModule],
 })
-export class EnastavnikSidebarComponent {
+export class EnastavnikSidebarComponent implements OnInit {
   nastavnik!: Nastavnik;
   nastavnikId!: number;
   uKontekstuPredmeta: boolean = false;

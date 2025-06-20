@@ -11,4 +11,8 @@ export class StudentNaGodiniService extends BaseService<StudentNaGodini> {
     super(http);
     this.setUrl('http://localhost:8080/api/studenti-na-godini');
   }
+
+  getByPredmetId(predmetId: number) {
+    return this.http.get<StudentNaGodini[]>(`http://localhost:8080/api/studenti-na-godini/${predmetId}/studenti-na-godini`);
+  }
 }

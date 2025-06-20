@@ -16,6 +16,11 @@
   font-weight: bold;
 }
 
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
 h2 {
   margin-top: 20px;
 }

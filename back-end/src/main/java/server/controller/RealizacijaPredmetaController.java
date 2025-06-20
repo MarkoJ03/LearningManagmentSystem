@@ -28,4 +28,9 @@ public class RealizacijaPredmetaController extends BaseController<RealizacijaPre
 		return realizacijaPredmetaService;
 	}
 
+	@GetMapping("/{id}/nazivi")
+    public ResponseEntity<RealizacijaPredmetaDTO> getNaziviForRealizacija(@PathVariable Long id) {
+        RealizacijaPredmetaDTO dto = realizacijaPredmetaService.getNazivDetails(id);
+        return ResponseEntity.ok(dto); 
+    }
 }

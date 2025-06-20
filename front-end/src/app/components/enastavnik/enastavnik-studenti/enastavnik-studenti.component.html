@@ -1,13 +1,21 @@
 <h2>Svi studenti</h2>
 
-<div *ngIf="studenti.length === 0">
+<input
+  type="text"
+  placeholder="Search"
+  [(ngModel)]="searchTerm"
+  (input)="filterStudenti()"
+  class="search-input"
+/>
+
+<div *ngIf="filteredStudenti.length === 0">
   <p>Nema studenata za prikaz.</p>
 </div>
 
-<ul *ngIf="studenti.length > 0">
-  <li 
-    *ngFor="let student of studenti" 
-    (click)="prikaziDetalje(student)" 
+<ul *ngIf="filteredStudenti.length > 0">
+  <li
+    *ngFor="let student of filteredStudenti"
+    (click)="prikaziDetalje(student)"
     [class.selected]="izabraniStudent === student"
     class="student-item"
   >

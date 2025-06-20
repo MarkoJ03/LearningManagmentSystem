@@ -202,6 +202,28 @@ public class RealizacijaPredmetaService extends BaseService<RealizacijaPredmeta,
 		}
 	}
 
-	
+	public RealizacijaPredmetaDTO getNazivDetails(Long id) {
+	    RealizacijaPredmeta rp = realizacijaPredmetaRepository.findWithDetailsById(id);
+
+	    String predmetNaziv = null;
+	    if (!rp.getPredmeti().isEmpty() && rp.getPredmeti().get(0).getPredmet() != null) {
+	        predmetNaziv = rp.getPredmeti().get(0).getPredmet().getNaziv();
+	    }
+
+	    String tipNastaveNaziv = rp.getTipNastave() != null ? rp.getTipNastave().getNaziv() : null;
+
+	    RealizacijaPredmetaDTO dto = new RealizacijaPredmetaDTO();
+	    dto.setId(rp.getId());
+	    dto.setTipNastave(new TipNastaveDTO(rp.getTipNastave().getId(), tipNastaveNaziv, null, rp.getTipNastave().getVidljiv()));
+	    dto.setPredmeti(List.of(
+	        new PredmetRealizacijePredmetaDTO(
+	            rp.getPredmeti().get(0).getId(),
+	            new PredmetDTO(rp.getPredmeti().get(0).getPredmet().getId(), predmetNaziv, null, null, null, null, null, null, null, null, null, null, null, null, null, rp.getPredmeti().get(0).getPredmet().getVidljiv()),
+	            null,
+	            rp.getPredmeti().get(0).getVidljiv()
+	        )
+	    ));
+	    return dto;
+	}
 
 }

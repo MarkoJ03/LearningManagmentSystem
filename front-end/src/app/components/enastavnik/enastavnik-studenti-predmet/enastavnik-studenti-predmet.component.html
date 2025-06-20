@@ -1,1 +1,18 @@
-<p>enastavnik-studenti-predmet works!</p>
+<h2>Studenti na predmetu</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ime</th>
+      <th>Prezime</th>
+      <th>Broj indeksa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sng of studentiNaGodini">
+      <td>{{ sng.student?.ime }}</td>
+      <td>{{ sng.student?.prezime }}</td>
+      <td>{{ sng.brojIndeksa }}</td>
+    </tr>
+  </tbody>
+</table>
