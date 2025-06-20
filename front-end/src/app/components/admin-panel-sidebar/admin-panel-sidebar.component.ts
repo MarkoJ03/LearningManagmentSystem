@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Korisnik } from '../../models/Korisnik';
 import { KorisnikService } from '../../services/korisnik.service';
+import { LogoutService } from '../../../services/logout.service';
 
 @Component({
   selector: 'app-admin-panel-sidebar',
@@ -16,7 +17,8 @@ korisnik!: Korisnik;
 
   constructor(
     private route: ActivatedRoute,
-    private korisnikService: KorisnikService
+    private korisnikService: KorisnikService,
+    private logoutService: LogoutService
   ) {}
 
   ngOnInit(): void {
@@ -30,5 +32,10 @@ korisnik!: Korisnik;
         console.error('Greška pri dohvatanju korisnik:', err);
       }
     });
+  }
+
+    logout(event: Event): void {
+    event.preventDefault();
+    this.logoutService.logout();
   }
 }

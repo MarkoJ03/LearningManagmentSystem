@@ -28,7 +28,7 @@ import server.utils.TokenUtils;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(securedEnabled = false, prePostEnabled = true)
+@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfiguration {
 
 	@Bean
@@ -129,7 +129,8 @@ public class SecurityConfiguration {
 			    .requestMatchers(HttpMethod.GET, "/api/tipovi-zvanja/**").permitAll()
 			    .requestMatchers(HttpMethod.GET, "/api/univerziteti/**").permitAll()
 			    .requestMatchers(HttpMethod.GET, "/api/zvanja/**").permitAll()
-			    .requestMatchers(HttpMethod.GET, "/api/sv-obrazac/**").permitAll()
+
+			    .requestMatchers(HttpMethod.GET, "/api/osoblje/**").permitAll()
 			    .requestMatchers("/api/auth/**").permitAll()
 
 			    .requestMatchers("/api/studijski-programi/**", "/api/godine-studija/**", 

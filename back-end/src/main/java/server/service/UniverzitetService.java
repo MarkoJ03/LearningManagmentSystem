@@ -193,7 +193,9 @@ import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import server.DTOs.AdresaDTO;
+import server.DTOs.DrzavaDTO;
 import server.DTOs.FakultetDTO;
+import server.DTOs.GradDTO;
 import server.DTOs.UniverzitetDTO;
 import server.model.Adresa;
 import server.model.Fakultet;
@@ -241,7 +243,9 @@ public class UniverzitetService extends BaseService<Univerzitet, UniverzitetDTO,
     	}
     	//namesti grad
     	return new UniverzitetDTO(entity.getId(), entity.getNaziv(), entity.getDatumOsnivanja(),
-    			new AdresaDTO(entity.getAdresa().getId(), null,entity.getAdresa().getUlica(), entity.getAdresa().getBroj(), null), 
+    			new AdresaDTO(entity.getAdresa().getId(), new GradDTO(entity.getAdresa().getGrad().getId(),entity.getAdresa().getGrad().getNaziv(),
+    					new DrzavaDTO(entity.getAdresa().getGrad().getDrzava().getId(),entity.getAdresa().getGrad().getDrzava().getNaziv(),null,entity.getAdresa().getGrad().getDrzava().getVidljiv()),entity.getAdresa().getGrad().getVidljiv()
+    					),entity.getAdresa().getUlica(), entity.getAdresa().getBroj(), null), 
     			fakulteti, entity.getEmail(), entity.getKontakt(), entity.getVidljiv());
     }
 

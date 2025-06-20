@@ -15,6 +15,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import server.DTOs.DodeljenoPravoPristupaDTO;
@@ -28,6 +29,7 @@ import server.model.Korisnik;
 import server.model.PravoPristupa;
 import server.repository.KorisnikRepository;
 import server.repository.PravoPristupaRepository;
+import server.security.SecurityConfiguration;
 
 @Service
 public class KorisnikService extends BaseService<Korisnik, KorisnikDTO, Long>{
@@ -42,6 +44,10 @@ public class KorisnikService extends BaseService<Korisnik, KorisnikDTO, Long>{
 
 	@Autowired
     private PravoPristupaRepository pravoPristupaRepository;
+	
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
   @Override
  protected CrudRepository<Korisnik, Long> getRepository() {
@@ -80,7 +86,7 @@ public class KorisnikService extends BaseService<Korisnik, KorisnikDTO, Long>{
       Korisnik korisnik = new Korisnik();
       korisnik.setId(dto.getId());
       korisnik.setEmail(dto.getEmail());
-      korisnik.setLozinka(dto.getLozinka());  
+      korisnik.setLozinka(passwordEncoder.encode(dto.getLozinka()));  
 
 
       Set<DodeljenoPravoPristupa> pravaEntiteti = new HashSet<>();
@@ -117,9 +123,10 @@ public class KorisnikService extends BaseService<Korisnik, KorisnikDTO, Long>{
 	    // Basic scalar updates
 	    entity.setEmail(dto.getEmail());
 
+
 	    if (dto.getLozinka() != null && !dto.getLozinka().isBlank()) {
-	        entity.setLozinka(dto.getLozinka());
-	    }
+	        entity.setLozinka(passwordEncoder.encode(dto.getLozinka()));
+	    }	
 
 	    entity.setVidljiv(dto.getVidljiv());
 

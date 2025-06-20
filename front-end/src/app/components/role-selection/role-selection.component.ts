@@ -38,7 +38,9 @@ export class RoleSelectionComponent {
         this.router.navigate([`/nastavnik/${id}/enastavnik`]);
       } else if (role === "ROLE_STUDENTSKA_SLUZBA") {
         this.router.navigate([`/osoblje/${id}/esluzba`]);
-      } else {
+      }else if (role === "ROLE_ADMIN") {
+        this.router.navigate([`/admin/${id}`]);
+        } else {
         this.router.navigate(['/']);
       }
     });

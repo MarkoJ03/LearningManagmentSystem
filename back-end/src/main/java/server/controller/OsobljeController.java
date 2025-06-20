@@ -19,7 +19,7 @@ import server.service.OsobljeService;
 
 @Controller
 @RequestMapping("/api/osoblje")
-@Secured({"ROLE_ADMIN, ROLE_STUDENTSKA_SLUZBA"})
+
 
 public class OsobljeController extends BaseController<Osoblje, OsobljeDTO, Long> {
 

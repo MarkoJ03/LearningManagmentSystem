@@ -398,7 +398,7 @@ export const routes: Routes = [
  
          { path: 'SilabusTermin', component: SilabusTerminiComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
 
-         { path: 'SilabusTermin/izmeni/:id', component: SilabusTerminiComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+         { path: 'SilabusTermin/izmeni/:id', component: SilabusTerminFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
          { path: 'SilabusTerminForma', component: SilabusTerminFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
          { path: 'SilabusTermin/:id', component: SilabusTerminiComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
 
