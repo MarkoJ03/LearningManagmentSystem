@@ -1,0 +1,14 @@
+<h2>Detalji o biblioteci</h2>
+
+<p *ngIf="biblioteka">
+{{biblioteka.studentska_sluzba}}
+<li *ngFor="let knjiga of biblioteka.bibliotekaKnjige; index as i; first as isFirst">
+  {{i}}/{{knjige?.length}}. {{knjiga}} <span *ngIf="isFirst">default</span>
+</li>
+
+</p>
+
+
+
+
+<a routerLink="/biblioteka">← Nazad na listu biblioteka</a>

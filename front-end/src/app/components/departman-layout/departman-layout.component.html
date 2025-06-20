@@ -1,0 +1,44 @@
+@if (departman) {
+  <div class="sve">
+
+    <div class="naslov">
+    <h1>{{departman.naziv}}</h1>
+  
+    </div>
+    <hr>
+    <div class="katedre-section">
+      <h2>Katedre</h2>
+
+      @for (kat of departman.katedre; track kat.id) {
+        <a class="katedra-kartica" [routerLink]="['/katedra', kat.id]">
+          <h3>{{ kat.naziv }}</h3>
+
+          <div class="podaci">
+            <strong>Šef Katedre:</strong>
+            <p>{{ kat.sefKatedre.ime }} {{ kat.sefKatedre.prezime }}</p>
+
+            <div *ngIf="sefoviKatedriZvanja[kat.sefKatedre.id]?.length">
+              <strong>Zvanja šefa:</strong>
+              @for (zvanje of sefoviKatedriZvanja[kat.sefKatedre.id]; track zvanje.tipZvanja.id) {
+                <p>{{ zvanje.tipZvanja.naziv }}</p>
+              }
+            </div>
+
+            <strong>Sekretar Katedre:</strong>
+            <p>{{ kat.sekretarKatedre.ime }} {{ kat.sekretarKatedre.prezime }}</p>
+
+            <div *ngIf="sekretariKatedriZvanja[kat.sekretarKatedre.id]?.length">
+              <strong>Zvanja sekretara:</strong>
+              @for (zvanje of sekretariKatedriZvanja[kat.sekretarKatedre.id]; track zvanje.tipZvanja.id) {
+                <p>{{ zvanje.tipZvanja.naziv }}</p>
+              }
+            </div>
+          </div>
+        </a>
+      }
+    </div>
+
+    <a [routerLink]="['/fakultet', departman.fakultet.id]" class="nazad-link">← Nazad na fakultet</a>
+
+  </div>
+}

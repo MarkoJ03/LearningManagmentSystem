@@ -1,0 +1,17 @@
+<h2>Moj kalendar</h2>
+
+<div *ngIf="error" class="error">
+  {{ error }}
+</div>
+
+<div *ngIf="termini.length === 0 && !error">
+  <p>Nema termina za prikaz.</p>
+</div>
+
+<div *ngIf="termini.length > 0" class="kalendari-container">
+  <div *ngFor="let termin of termini" class="kalendar-kartica">
+  <p><strong>Predmet:</strong> {{ termin.predmetNaziv }}</p>
+  <p><strong>Tip:</strong> {{ termin.tipNastaveNaziv }}</p>
+  <p><strong>Vreme:</strong> {{ termin.vremePocetka | date:'short' }} - {{ termin.vremeKraja | date:'short' }}</p>
+</div>
+</div>

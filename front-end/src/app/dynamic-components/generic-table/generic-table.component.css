@@ -1,0 +1,14 @@
+table {
+    border-collapse: collapse;
+    font-size: 16px;
+    text-align: left;
+  }
+  
+th, td {
+    border: 1px solid black;
+  }
+
+thead{
+    text-transform: capitalize;
+    font-weight: bold;
+}

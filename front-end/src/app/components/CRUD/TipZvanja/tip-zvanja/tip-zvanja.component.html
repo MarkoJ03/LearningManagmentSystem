@@ -1,0 +1,16 @@
+<div *ngIf="tipZvanja">
+<h2>Detalji o tipu zvanja</h2>
+
+<p *ngIf="tipZvanja">
+    Naziv: {{ tipZvanja.naziv }} <br>
+    Vidljiv: {{ tipZvanja.vidljiv }}
+</p>
+Nastavnici:
+<ul *ngIf="tipZvanja?.zvanja?.length">
+    <ng-container *ngFor="let zvanje of tipZvanja?.zvanja">
+        <li>{{ zvanje.nastavnik.ime }} {{ zvanje.nastavnik.prezime }}</li>
+    </ng-container>
+</ul>
+</div>
+<a routerLink="/tipovi-zvanja">← Nazad na listu svih tipova zvanja</a>
+

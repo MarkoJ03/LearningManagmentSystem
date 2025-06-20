@@ -1,0 +1,77 @@
+header {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+
+  nav {
+    background-color: brown;
+    color: white;
+    padding: 10px 0;
+  }
+
+  section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+
+    h1 {
+      font-weight: bold;
+      color: white;
+      text-align: center;
+    }
+
+    img {
+      height: 50px;
+      width: 50px;
+    }
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 10px;
+      cursor: pointer;
+      position: relative;
+      border-radius: 4px;
+
+      .padajuce-opcije {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgb(242, 242, 242);
+        color: black;
+        padding: 10px;
+        border-radius: 4px;
+        z-index: 100;
+      }
+
+      a {
+  text-decoration: none; 
+  color: inherit;
+    transition: transform 0.2s ease-in-out; 
+}
+
+a:hover {
+  color: black;
+  text-decoration: underline; 
+  transform: scale(1.1); 
+}
+
+      &:hover {
+        background-color: white;
+        color: black;
+
+        .padajuce-opcije {
+          display: block;
+        }
+      }
+    }
+  }
+}

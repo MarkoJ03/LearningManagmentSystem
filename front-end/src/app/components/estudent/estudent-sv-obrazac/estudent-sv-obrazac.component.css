@@ -1,0 +1,55 @@
+.sv-obrazac-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  max-width: 800px;
+  margin: 30px auto;
+  font-family:  sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  vertical-align: top;
+  background-color: #fdfdfd;
+}
+
+td:first-child {
+  background-color: #fff3eb;
+  font-weight: bold;
+  width: 40%;
+}
+
+.xml-btn-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.xml-btn {
+  padding: 10px 25px;
+  background-color: #a41c1c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.xml-btn:hover {
+  background-color: #891717;
+}

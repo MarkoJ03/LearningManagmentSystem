@@ -1,0 +1,39 @@
+.sidebar {
+  width: 220px;
+  background-color: #f7f7f7;
+  padding: 20px;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  display: block;
+  border-radius: 8px;
+  padding: 10px 12px;
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar a:hover {
+  background-color: #e6e6e6;
+  transform: scale(1.03);
+  color: #b30000;
+  font-weight: 600;
+}
+
+#polja-predmeta a {
+  background-color: rgb(221, 221, 221);
+   color: #b30000;
+}

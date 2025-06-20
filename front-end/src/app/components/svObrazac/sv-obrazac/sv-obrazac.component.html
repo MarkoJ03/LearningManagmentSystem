@@ -1,0 +1,13 @@
+<div *ngIf="obrazac">
+  <h2>Pregled SV obrasca</h2>
+  <p>Maternji jezik: {{ obrazac.maternjiJezik }}</p>
+  <p>Vrsta završene škole: {{ obrazac.vrstaZavreseneSrednje }}</p>
+  <p>Datum završetka: {{ obrazac.datumZavrsetkaSrednje }}</p>
+  <p>Bračni status: {{ obrazac.bracniStatus ? 'Da' : 'Ne' }}</p>
+  <p>Kontakt: {{ obrazac.kontakt }}</p>
+  <p>Zaposlen: {{ obrazac.zaposlen ? 'Da' : 'Ne' }}</p>
+  <p>Način finansiranja: {{ obrazac.nacinFinansiranja ? 'Budžet' : 'Samofinansiranje' }}</p>
+  <p>StudenstkaSluzba: {{obrazac.StudenstkaSluzba}}</p>
+    <p>StudentNaGodini: {{obrazac.StudentNaGodini}}</p>
+
+</div>

@@ -1,0 +1,12 @@
+<h2>Detalji o ishodu evaluacije</h2>
+
+<p *ngIf="ishodEvaluacije">
+    Bodovi: {{ ishodEvaluacije.bodovi }} <br>
+    Napomena: {{ ishodEvaluacije.napomena }} <br>
+    Broj indeksa: {{ ishodEvaluacije.studentNaGodini?.brojIndeksa }} <br>
+    Tip evaluacije: {{ ishodEvaluacije.evaluacijaZnanja?.tipEvaluacije?.naziv }} <br>
+    Ocena: {{ ishodEvaluacije.ishodPredmeta?.ocena }} <br>
+    Vidljiv: {{ ishodEvaluacije.vidljiv }} <br>
+</p>
+
+<a routerLink="/ishodi-evaluacija">← Nazad na listu ishoda evaluacija</a>

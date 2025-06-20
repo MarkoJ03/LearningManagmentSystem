@@ -1,0 +1,11 @@
+<p>drzava works!</p>
+<app-base-table 
+  [data]="drzave" 
+  [displayedColumns]="kolone" 
+  (edit)="izmeni($event)" 
+  (delete)="obrisi($event)"
+  (details)="detalji($event)"
+  (cancelEvent)="otkazi()">
+</app-base-table>
+
+<a routerLink="/DrzavaForma">Dodaj drzavu</a>

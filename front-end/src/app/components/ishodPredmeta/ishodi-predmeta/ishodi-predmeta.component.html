@@ -1,0 +1,11 @@
+<app-base-table 
+  [data]="ishodi" 
+  [displayedColumns]="kolone" 
+  (edit)="izmeni($event)" 
+  (delete)="obrisi($event)"
+  (details)="detalji($event)">
+</app-base-table>
+
+
+<a routerLink="/ishod-predmeta/dodaj">Dodaj ishod predmeta</a>
+

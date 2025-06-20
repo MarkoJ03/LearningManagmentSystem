@@ -1,0 +1,9 @@
+<div *ngIf="loading">Učitavanje predmeta...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<div *ngIf="predmet && !loading && !error" class="predmet-detalji">
+  <h2>{{ predmet.naziv }}</h2>
+  <app-enastavnik-obavestenja-predmet [obavestenja]="predmet.obavestenja || []"></app-enastavnik-obavestenja-predmet>
+</div>
+
+<router-outlet></router-outlet>

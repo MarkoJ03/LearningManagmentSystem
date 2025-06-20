@@ -1,0 +1,18 @@
+<h2>Moji Predmeti</h2>
+
+<div *ngIf="loading">Učitavanje predmeta...</div>
+
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<div *ngIf="!loading && !error && predmeti.length === 0">
+  <p>Nema predmeta za prikaz.</p>
+</div>
+
+<div *ngIf="!loading && !error && predmeti.length > 0" class="predmeti-container">
+  <div *ngFor="let predmet of predmeti; trackBy: trackByPredmetId" class="predmet-kartica">
+    <h3>{{ predmet.naziv }}</h3>
+    <button [routerLink]="['/nastavnik', nastavnikId, 'enastavnik', 'predmeti', predmet.id]">
+      Pogledaj detalje
+    </button>
+  </div>
+</div>

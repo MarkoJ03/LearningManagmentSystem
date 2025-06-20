@@ -1,0 +1,9 @@
+<app-base-table 
+  [data]="biblioteke" 
+  [displayedColumns]="kolone" 
+  (edit)="izmeni($event)" 
+  (delete)="obrisi($event)"
+  (details)="detalji($event)">
+</app-base-table>
+
+<a routerLink="/biblioteke/dodaj">Dodaj biblioteku</a>

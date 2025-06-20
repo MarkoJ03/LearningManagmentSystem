@@ -1,0 +1,10 @@
+<app-base-table 
+  [data]="ishodiEvaluacija" 
+  [displayedColumns]="kolone" 
+  (edit)="izmeni($event)" 
+  (delete)="obrisi($event)"
+  (details)="detalji($event)"
+  (cancelEvent)="otkazi()">
+</app-base-table>
+
+<a routerLink="/ishodi-evaluacija/forma">Dodaj ishod evaluacije</a>

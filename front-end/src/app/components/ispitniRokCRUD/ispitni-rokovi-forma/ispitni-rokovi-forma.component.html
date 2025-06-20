@@ -1,0 +1,6 @@
+<app-genericka-forma
+  *ngIf="formaModel"
+  [formaModel]="formaModel"
+  (submitEvent)="sacuvaj($event)"
+  (cancelEvent)="otkazi()"
+></app-genericka-forma>

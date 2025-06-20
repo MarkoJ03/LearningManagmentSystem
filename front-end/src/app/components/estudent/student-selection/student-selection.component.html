@@ -1,0 +1,31 @@
+
+<app-univerzitet-header></app-univerzitet-header>
+
+<div class="container" *ngIf="student">
+  <h2>Dobrodošao/la, {{ student.ime }} {{ student.prezime }}</h2>
+  <p>Molimo te da izabereš sa kojim indeksom želiš da nastaviš:</p>
+
+  <!-- <ul class="indeks-lista">
+    @for (sng of student.studentiNaGodini; track sng.id) {
+      <li>
+        <button (click)="izaberiIndeks(sng.id)">
+          {{ sng.brojIndeksa }}
+        </button>
+      </li>
+    }
+  </ul> -->
+</div>
+
+  <div class="indeks-kartica-link">
+    @for (sng of student.studentiNaGodini; track sng.id) {
+ <a class="" [routerLink]="['/studentNaGodini', sng.id, 'estudent', 'objave']">
+                <div class="indeks-kartica">
+                  <p>{{ sng.brojIndeksa }}</p>
+                </div>
+              </a>
+    }
+  </div>
+
+<div>
+  <app-univerzitet-footer></app-univerzitet-footer>
+  </div>

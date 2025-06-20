@@ -1,0 +1,9 @@
+<app-base-table
+  [data]="programi"
+  [displayedColumns]="kolone"
+  (edit)="izmeni($event)"
+  (delete)="obrisi($event)"
+  (details)="detalji($event)">
+</app-base-table>
+
+<a routerLink="/studijski-programi/dodaj">Dodaj studijski program</a>

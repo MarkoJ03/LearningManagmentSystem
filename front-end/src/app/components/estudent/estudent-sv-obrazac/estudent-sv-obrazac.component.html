@@ -1,0 +1,28 @@
+<div class="sv-obrazac-container" *ngIf="studentNaGodini">
+  <h2>SV obrazac</h2>
+  <hr>
+  <h3>{{ studentNaGodini.student.ime }} {{ studentNaGodini.student.prezime }} – {{ studentNaGodini.brojIndeksa }}</h3>
+
+  <table>
+    <tr><td>JMBG</td><td>{{ studentNaGodini.student.jmbg }}</td></tr>
+    <tr><td>Maternji jezik</td><td>{{ studentNaGodini.svObrazac.maternjiJezik }}</td></tr>
+    <tr><td>Vrsta prethodno završene srednje škole</td><td>{{ studentNaGodini.svObrazac.vrstaZavreseneSrednje }}</td></tr>
+    <tr><td>Datum završetka srednje škole</td><td>{{ studentNaGodini.svObrazac.datumZavrsetkaSrednje }}</td></tr>
+    <tr><td>Bračni status</td><td>{{ studentNaGodini.svObrazac.bracniStatus ? 'Oženjen/Udata' : 'Neoženjen/Neudata' }}</td></tr>
+    <tr><td>Kontakt telefon</td><td>{{ studentNaGodini.svObrazac.kontakt }}</td></tr>
+    <tr><td>Adresa prebivališta</td>
+      <td>
+        {{ studentNaGodini.student.adresa.ulica }}
+        {{ studentNaGodini.student.adresa.broj }},
+        {{ studentNaGodini.student.adresa.grad.naziv }},
+        {{ studentNaGodini.student.adresa.grad.drzava.naziv}}
+      </td>
+    </tr>
+    <tr><td>Zaposlen</td><td>{{ studentNaGodini.svObrazac.zaposlen ? 'Da' : 'Ne' }}</td></tr>
+    <tr><td>Način finansiranja</td><td>{{ studentNaGodini.svObrazac.nacinFinansiranja ? 'Budžet' : 'Samofinansiranje' }}</td></tr>
+  </table>
+
+  <div class="xml-btn-container">
+    <button class="xml-btn" (click)="exportujXml()">Exportuj u XML</button>
+  </div>
+</div>

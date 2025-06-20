@@ -1,0 +1,54 @@
+<h2>Prijava ispita </h2>
+
+@if (ispitniRokovi.length === 0) {
+  <p>Nema dostupnih ispitnih rokova.</p>
+} @else {
+  @for (rok of ispitniRokovi; track rok.id) {
+    <div class="rok-blok">
+      <h3 class="klikabilni-rok" (click)="toggleRok(rok.id)">
+        {{ rok.naziv }} ({{ rok.datumPocetka }} - {{ rok.datumZavrsetka }})
+        <span class="strelica">
+          {{ expandovaniRokovi[rok.id] ? '▲' : '▼' }}
+        </span>
+      </h3>
+
+      @if (expandovaniRokovi[rok.id]) {
+        @if (prijavljiviPredmeti.length === 0) {
+          <p>Svi predmeti su položeni.</p>
+        } @else {
+          <table class="prijava-tabela">
+            <thead>
+              <tr>
+                <th>Naziv</th>
+                <th>ESPB</th>
+                <th>Akcija</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (predmet of prijavljiviPredmeti; track predmet.id) {
+                <tr>
+                  <td>{{ predmet.naziv }}</td>
+                  <td>{{ predmet.esbp }}</td>
+                  <td>
+
+                    @if (rokJeAktivan(rok)){
+                                          <button 
+                    (click)="prijavi(predmet.id, rok.id)" 
+                    [disabled]="!rokJeAktivan(rok)">
+                    Prijavi
+                  </button>
+                    }@else {
+                  <p *ngIf="!rokJeAktivan(rok)" class="info-poruka">
+                  Prijava nije dostupna van perioda roka.
+                </p>
+              }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+      }
+    </div>
+  }
+}

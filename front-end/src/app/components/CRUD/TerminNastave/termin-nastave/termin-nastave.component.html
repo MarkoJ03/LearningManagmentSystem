@@ -1,0 +1,13 @@
+<h2>Detalji o terminu nastave</h2>
+
+<p *ngIf="terminNastave">
+    Vreme pocetka: {{ terminNastave.vremePocetka }} <br>
+    Vreme kraja:{{ terminNastave.vremeKraja }}<br>
+    Broj casova: {{ terminNastave.brojCasova }}<br>
+    Nastavnik: <span> {{ terminNastave.realizacijaPredmeta?.nastavnik?.ime }} {{ terminNastave.realizacijaPredmeta?.nastavnik?.prezime }}</span><br>
+    Kalendar: {{ terminNastave.kalendar.id }}<br>
+    Vidljiv: {{ terminNastave.vidljiv }}
+</p>
+
+<a routerLink="/termini-nastave">← Nazad na listu svih termina nastave</a>
+

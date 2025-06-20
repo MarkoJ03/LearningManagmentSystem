@@ -1,0 +1,72 @@
+.prijava-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: sans-serif;
+}
+
+*{
+  font-family: sans-serif;
+}
+.prijava-tabela th,
+.prijava-tabela td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.prijava-tabela thead {
+  background-color: brown;
+  color: white;
+}
+
+button {
+  background-color: rgb(209, 206, 206);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: brown;
+}
+
+h2 {
+  font-family: sans-serif;
+}
+.rok-blok {
+  margin-bottom: 32px;
+  padding: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.rok-blok h3 {
+  margin-bottom: 10px;
+  color: brown;
+}
+
+.klikabilni-rok {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.klikabilni-rok:hover {
+  color: #a52a2a;
+}
+
+.strelica {
+  font-size: 0.9em;
+  margin-left: 8px;
+  color: gray;
+}
+
+.info-poruka {
+  font-size: 13px;
+  color: #b40000;
+  margin-top: 5px;
+}

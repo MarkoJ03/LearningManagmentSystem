@@ -1,0 +1,50 @@
+.predmeti-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-family: sans-serif;
+}
+h2{
+  font-family: sans-serif;
+}
+
+h3{
+  font-family: sans-serif;
+}
+
+.predmeti-lista button {
+  background-color: rgb(209, 206, 206);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.predmeti-lista button:hover {
+  background-color: brown;
+}
+
+.aktivnosti-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-family: sans-serif;
+}
+
+p{
+    font-family: sans-serif;
+}
+
+.aktivnosti-tabela th,
+.aktivnosti-tabela td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.aktivnosti-tabela thead {
+  background-color: brown;
+  color: white;
+}

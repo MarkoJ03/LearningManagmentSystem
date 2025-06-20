@@ -1,0 +1,30 @@
+.student-item {
+  cursor: pointer;
+  padding: 8px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.student-item:hover {
+  background-color: #f0f0f0;
+}
+
+.student-item.selected {
+  background-color: #d0eaff;
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+hr {
+  margin: 20px 0;
+}

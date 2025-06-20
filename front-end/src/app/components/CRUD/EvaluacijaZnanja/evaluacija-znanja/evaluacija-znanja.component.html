@@ -1,0 +1,20 @@
+<div *ngIf="evaluacijaZnanja; else loading">
+  <h2>Detalji o evaluaciji znanja</h2>
+
+  <p>
+    Nastavnik: {{ evaluacijaZnanja.nastavnik?.ime }} {{ evaluacijaZnanja.nastavnik?.prezime }}<br>
+    Predmet: {{ evaluacijaZnanja.predmet?.naziv }}<br>
+    Tip evaluacije: {{ evaluacijaZnanja.tipEvaluacije?.naziv || 'Nije definisano' }}<br>
+    Početak: {{ evaluacijaZnanja.vremePocetka ? (evaluacijaZnanja.vremePocetka | date:'short') : 'Nije definisano'
+    }}<br>
+    Završetak: {{ evaluacijaZnanja.vremeZavrsetka ? (evaluacijaZnanja.vremeZavrsetka | date:'short') : 'Nije definisano'
+    }}<br>
+    Vidljiv: {{ evaluacijaZnanja.vidljiv ? 'Da' : 'Ne' }}
+  </p>
+
+  <a routerLink="/evaluacije-znanja">← Nazad na listu svih evaluacija znanja</a>
+</div>
+
+<ng-template #loading>
+  <p>Učitavanje detalja...</p>
+</ng-template>

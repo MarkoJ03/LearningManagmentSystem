@@ -1,0 +1,11 @@
+<h1>Tipovi programa</h1>
+
+<app-base-table
+  [data]="tipoviPrograma"
+  [displayedColumns]="kolone"
+  (edit)="izmeni($event)"
+  (delete)="obrisi($event)"
+  (details)="detalji($event)">
+</app-base-table>
+
+<a routerLink="/tipovi-programa/dodaj">Dodaj tip programa</a>

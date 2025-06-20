@@ -1,0 +1,67 @@
+.predmet-detalji {
+  padding: 2rem;
+  background-color: #f4f6f8;
+  min-height: 100vh;
+}
+
+.predmet-detalji h1 {
+  color: brown;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.detalji-kartica {
+
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  border-left: 6px solid brown;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+}
+
+.detalji-kartica p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.detalji-kartica strong {
+  color: #444;
+}
+
+.dokumenta {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  border-radius: 12px;
+  border-left: 4px solid #888;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.dokumenta h3 {
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+.dokumenta a {
+  text-decoration: none;
+  color: brown;
+  font-weight: 500;
+}
+
+.dokumenta a:hover {
+  text-decoration: underline;
+}
+
+.sve{
+  background-color: #f4f6f8;
+  font-family: sans-serif;
+}
+
+hr{
+  margin-bottom: 30px;
+}

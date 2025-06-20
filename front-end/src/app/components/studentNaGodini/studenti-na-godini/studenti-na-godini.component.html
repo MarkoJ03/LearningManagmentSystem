@@ -1,0 +1,9 @@
+<app-base-table
+  [data]="studentiNaGodini"
+  [displayedColumns]="kolone"
+  (edit)="izmeni($event)"
+  (delete)="obrisi($event)"
+  (details)="detalji($event)">
+</app-base-table>
+
+<a routerLink="/student-na-godini/dodaj">Dodaj studenta na godini</a>

@@ -1,0 +1,15 @@
+@if (univerzitet){
+<footer>
+    <section>
+        <h2>{{univerzitet.naziv}}</h2>
+        <img src="harvard.png" alt="slika-univerziteta">
+        <p>{{univerzitet.naziv}} &#xA9; 2025 Sva prava zadrzana</p>
+    </section>
+    <section>
+        <h2>Kontakt</h2>
+        <p>Adresa: {{univerzitet.adresa?.ulica}} {{univerzitet.adresa?.broj}}, {{univerzitet.adresa?.grad?.naziv}}, {{univerzitet.adresa?.grad?.drzava?.naziv}}</p>
+        <p>Telefon: {{univerzitet.kontakt}}</p>
+        <p>Email: {{univerzitet.email}}</p>
+    </section>
+</footer>
+}

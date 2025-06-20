@@ -1,0 +1,6 @@
+<div *ngIf="osoblje">
+  <h2>{{ osoblje.ime }} {{ osoblje.prezime }}</h2>
+  <p><strong>JMBG:</strong> {{ osoblje.jmbg }}</p>
+  <p><strong>Studentska služba:</strong> {{ osoblje.studentska_sluzba.naziv }}</p>
+  <p><strong>Vidljiv:</strong> {{ osoblje.vidljiv ? 'Da' : 'Ne' }}</p>
+</div>

@@ -1,0 +1,49 @@
+.ispiti-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: sans-serif;
+}
+
+.ispiti-tabela th,
+.ispiti-tabela td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.ispiti-tabela thead {
+  background-color: brown;
+  color: white;
+}
+
+.ispiti-tabela tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.rezime {
+  margin-top: 10px;
+  font-weight: bold;
+
+}
+
+h2 {
+  font-family: sans-serif;
+}
+
+
+
+.search-input {
+  padding: 8px 12px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: sans-serif;
+}
+
+*{
+  font-family: sans-serif;
+}

@@ -1,0 +1,19 @@
+<div class="header">
+  <h3>Obaveštenja</h3>
+  <button class="dodaj-btn" (click)="dodaj()">Dodaj obaveštenje</button>
+</div>
+
+<div *ngIf="obavestenja.length > 0; else noObavestenja">
+  <div class="obavestenje-card" *ngFor="let ob of obavestenja">
+    <div class="actions">
+      <button (click)="izmeni(ob.id)">Izmeni</button>
+      <button (click)="obrisi(ob.id)">Obriši</button>
+    </div>
+    <h4>{{ ob.naslov }}</h4>
+    <p>{{ ob.sadrzaj }}</p>
+  </div>
+</div>
+
+<ng-template #noObavestenja>
+  <p>Nema obaveštenja za ovaj predmet.</p>
+</ng-template>

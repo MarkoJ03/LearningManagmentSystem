@@ -1,0 +1,17 @@
+<h2>Detalji o departmanu</h2>
+
+<p *ngIf="departman">
+  {{ departman.naziv }}
+  {{ departman.fakultet }}
+  {{ departman.sekretarDepartmana }}
+  {{ departman.direktorDepartmana }}
+  
+ 
+
+<li *ngFor="let nastavnik of departman?.nastavnici; index as i; first as isFirst">
+  {{ i + 1 }}/{{ departman?.nastavnici?.length }}. {{ nastavnik.ime }} {{ nastavnik.prezime }} <span *ngIf="isFirst">default</span>
+</li>
+
+</p>
+
+<a routerLink="/departmani">← Nazad na listu departmana</a>

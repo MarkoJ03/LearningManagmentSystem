@@ -1,0 +1,24 @@
+<div id="objave"> 
+  @for (objava of prikazaneObjave; track objava.id) {
+    <app-objava-card
+      [naslov]="objava.naslov"
+      [sadrzaj]="objava.sadrzaj"
+      [id]="objava.id">
+    </app-objava-card>
+  }
+</div>
+
+<div class="paginacija">
+  <button (click)="idiNaStranicu(trenutnaStranica - 1)" [disabled]="trenutnaStranica === 1">«</button>
+  
+@for (i of [].constructor(ukupnoStranica); track i; let index = $index) {
+
+<button
+  (click)="idiNaStranicu(index + 1)"
+  [class.aktivna]="trenutnaStranica === (index + 1)">
+  {{ index + 1 }}
+</button>
+  }
+
+  <button (click)="idiNaStranicu(trenutnaStranica + 1)" [disabled]="trenutnaStranica === ukupnoStranica">»</button>
+</div>

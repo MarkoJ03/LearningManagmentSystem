@@ -1,0 +1,14 @@
+<div class="student-podaci-container" *ngIf="studentNaGodini">
+  <h2>Podaci o studentu</h2>
+  <hr />
+
+  <table>
+    <tr><td>Broj indeksa</td><td>{{ studentNaGodini.brojIndeksa }}</td></tr>
+    <tr><td>Ime</td><td>{{ studentNaGodini.student.ime }}</td></tr>
+    <tr><td>Prezime</td><td>{{ studentNaGodini.student.prezime }}</td></tr>
+      <tr><td>JMBG</td><td>{{ studentNaGodini.student.jmbg }}</td></tr>
+    <tr><td>Е-mail</td><td>{{ studentNaGodini.student.korisnik.email }}</td></tr>
+    <tr><td>Kontakt</td><td>{{ studentNaGodini.svObrazac.kontakt || '—' }}</td></tr>
+    <tr><td>Datum upisa</td><td>{{ studentNaGodini.datumUpisa | date:'dd.MM.yyyy.' }}</td></tr>
+  </table>
+</div>
