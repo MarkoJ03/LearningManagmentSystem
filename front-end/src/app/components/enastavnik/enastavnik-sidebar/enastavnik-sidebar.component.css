@@ -32,3 +32,8 @@
   color: #b30000;
   font-weight: 600;
 }
+
+#polja-predmeta a {
+  background-color: rgb(221, 221, 221);
+   color: #b30000;
+}

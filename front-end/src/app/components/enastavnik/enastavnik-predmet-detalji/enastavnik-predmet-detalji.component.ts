@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { Predmet } from '../../../models/Predmet';
 import { PredmetService } from '../../../services/predmet.service';
 import { CommonModule } from '@angular/common';
+import { EnastavnikObavestenjaPredmetComponent } from '../enastavnik-obavestenja-predmet/enastavnik-obavestenja-predmet.component';
 
 @Component({
   selector: 'app-enastavnik-predmet-detalji',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, EnastavnikObavestenjaPredmetComponent, RouterOutlet],
   templateUrl: './enastavnik-predmet-detalji.component.html',
   styleUrls: ['./enastavnik-predmet-detalji.component.css']
 })

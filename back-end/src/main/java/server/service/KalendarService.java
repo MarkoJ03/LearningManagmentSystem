@@ -12,6 +12,7 @@ import server.DTOs.EvaluacijaZnanjaDTO;
 import server.DTOs.GrupaStudenataDTO;
 import server.DTOs.TerminNastaveDTO;
 import server.DTOs.TipEvaluacijeDTO;
+import server.DTOs.TipNastaveDTO;
 import server.DTOs.RealizacijaPredmetaDTO; // Added this import
 import server.model.Kalendar;
 import server.model.StudentskaSluzba;
@@ -45,10 +46,6 @@ public class KalendarService extends BaseService<Kalendar, KalendarDTO, Long> {
     private GrupaStudenataRepository grupaStudenataRepository;     
     @Autowired
     private TerminNastaveRepository terminNastaveRepository;     
-
-
-    
-
 
     @Override
     protected CrudRepository<Kalendar, Long> getRepository() {
@@ -133,7 +130,6 @@ public class KalendarService extends BaseService<Kalendar, KalendarDTO, Long> {
                 terminiNastaveDTO.add(tnDTO);
             }
         }
-
         
         return new KalendarDTO(
             entity.getId(),

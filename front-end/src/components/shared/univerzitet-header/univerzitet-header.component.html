@@ -9,7 +9,7 @@
       <li appOnHoverDisplay>
         O Univerzitetu
         <div class="padajuce-opcije">
-        <p>Adresa: {{univerzitet.adresa.ulica}} {{univerzitet.adresa.broj}}, {{univerzitet.adresa.grad.naziv}}, {{univerzitet.adresa.grad.drzava.naziv}}</p>
+        <p>Adresa: {{univerzitet.adresa?.ulica}} {{univerzitet.adresa?.broj}}, {{univerzitet.adresa?.grad?.naziv}}, {{univerzitet.adresa?.grad?.drzava?.naziv}}</p>
         <p>Datum osnivanja: {{ univerzitet.datumOsnivanja | date: 'dd.MM.yyyy.' }}</p>
         </div>
       </li>

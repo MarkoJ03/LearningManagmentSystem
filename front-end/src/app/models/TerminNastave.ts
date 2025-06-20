@@ -10,4 +10,8 @@ export interface TerminNastave {
   realizacijaPredmeta: RealizacijaPredmeta;
   kalendar: Kalendar;
   vidljiv: boolean;
+
+  //za prikaz
+  predmetNaziv?: string;
+  tipNastaveNaziv?: string;
 }
