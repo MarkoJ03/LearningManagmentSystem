@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { ObjavaService } from '../../../services/objava.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ObjavaCardComponent } from '../../../../components/ui/objava-card/objava-card.component';
 
 @Component({
   selector: 'app-esluzba-objave',
-  imports: [CommonModule, ObjavaCardComponent],
+  imports: [CommonModule, ObjavaCardComponent,RouterLink],
   templateUrl: './esluzba-objave.component.html',
   styleUrl: './esluzba-objave.component.css'
 })

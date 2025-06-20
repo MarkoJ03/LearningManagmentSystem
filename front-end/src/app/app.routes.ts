@@ -152,6 +152,7 @@ import { SilabusTerminFormaComponent } from './components/silabusTermin/silabus-
 import { SilabusTerminiComponent } from './components/silabusTermin/silabus-termini/silabus-termini.component';
 import { IspitniRokoviComponent } from './components/ispitniRokCRUD/ispitni-rokovi/ispitni-rokovi.component';
 import { IspitniRokoviFormaComponent } from './components/ispitniRokCRUD/ispitni-rokovi-forma/ispitni-rokovi-forma.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 
 
 // import {  FakultetComponentComponent } from './components/fakultet-component/fakultet-component.component';
@@ -164,6 +165,9 @@ export const routes: Routes = [
     //     data: {requiredRoles: ["ROLE_ADMIN"]},
     //     canActivate: [authGuard]
     // },
+
+
+    { path: 'admin/:id', component: AdminPanelComponent , data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
     { path: 'ishod-predmeta', component: IshodiPredmetaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
   { path: 'ishod-predmeta/dodaj', component: IshodPredmetaFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]}, 
   { path: 'ishod-predmeta/izmeni/:id', component: IshodPredmetaFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]}, 
