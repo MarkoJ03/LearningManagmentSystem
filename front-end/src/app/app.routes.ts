@@ -150,6 +150,8 @@ import { SilabusiComponent } from './components/silabus/silabusi/silabusi.compon
 import { SilabusTerminComponent } from './components/silabus-termin/silabus-termin.component';
 import { SilabusTerminFormaComponent } from './components/silabusTermin/silabus-termin-forma/silabus-termin-forma.component';
 import { SilabusTerminiComponent } from './components/silabusTermin/silabus-termini/silabus-termini.component';
+import { IspitniRokoviComponent } from './components/ispitniRokCRUD/ispitni-rokovi/ispitni-rokovi.component';
+import { IspitniRokoviFormaComponent } from './components/ispitniRokCRUD/ispitni-rokovi-forma/ispitni-rokovi-forma.component';
 
 
 // import {  FakultetComponentComponent } from './components/fakultet-component/fakultet-component.component';
@@ -214,10 +216,10 @@ export const routes: Routes = [
     { path: 'tipovi-evaluacije/forma/:id', component: TipEvaluacijeFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
     { path: 'tipovi-evaluacije/:id', component: TipEvaluacijeComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
 
-    { path: 'univerziteti', component: UniverzitetiComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
-    { path: 'univerziteti/forma', component: UniverzitetFormaComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
-    { path: 'univerziteti/forma/:id', component: UniverzitetFormaComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
-    { path: 'univerziteti/:id', component: UniverzitetComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
+    { path: 'glavno', component: UniverzitetiComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
+    { path: 'glavno/forma', component: UniverzitetFormaComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
+    { path: 'glavno/forma/:id', component: UniverzitetFormaComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
+    { path: 'glavno/:id', component: UniverzitetComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
 
     { path: 'fakulteti', component: FakultetiComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
     { path: 'fakulteti/forma', component: FakultetFormaComponent, data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
@@ -298,6 +300,11 @@ export const routes: Routes = [
   { path: 'objave/dodaj', component: ObjavaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
   { path: 'objave/izmeni/:id', component: ObjavaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
 
+
+  {path: 'ispitni-rokovi',component: IspitniRokoviComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA", "ROLE_NASTAVNIK"]}, canActivate: [authGuard]},
+{path: 'ispitni-rokovi/dodaj',component: IspitniRokoviFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+{path: 'ispitni-rokovi/izmeni/:id',component: IspitniRokoviFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+// {path: 'studijski-programi/:id',component: StudijskiProgramComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
   
 
   { path: 'student-na-godini', component: StudentiNaGodiniComponent },

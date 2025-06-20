@@ -21,7 +21,7 @@ public class SilabusTerminDTO {
     private String opis;
     private NastavnikDTO nastavnik;
 
-    @JsonIgnore
+    
     private SilabusDTO silabus;
     
     private Boolean vidljiv;

@@ -1,0 +1,10 @@
+<app-base-table 
+  [data]="rokovi" 
+  [displayedColumns]="kolone" 
+  (edit)="izmeni($event)" 
+  (delete)="obrisi($event)"
+  (details)="detalji($event)">
+</app-base-table>
+
+
+<a routerLink="/ispitni-rokovi/dodaj">Dodaj rok</a>

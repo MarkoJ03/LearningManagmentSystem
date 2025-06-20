@@ -57,22 +57,22 @@ export class SilabusTerminFormaComponent {
     this.router.navigate(['/SilabusTermin']);
   }
 
-  public sacuvajSilabusTermin(vrednosti: any): void {
+public sacuvajSilabusTermin(vrednosti: any): void {
+  vrednosti.silabus = { id: vrednosti.silabus?.id ?? vrednosti.silabus?.['id'] };
+  vrednosti.nastavnik = { id: vrednosti.nastavnik?.id ?? vrednosti.nastavnik?.['id'] };
 
-
-
-    if (this.idSilabusTermin) {
-      this.silabusTerminService.update(this.idSilabusTermin, vrednosti).subscribe({
-        next: () => this.router.navigate(['/SilabusTermin']),
-        error: err => console.error('Greška pri izmeni adrese:', err)
-      });
-    } else {
-      this.silabusTerminService.create(vrednosti).subscribe({
-        next: () => this.router.navigate(['/SilabusTermin']),
-        error: err => console.error('Greška pri čuvanju adrese:', err)
-      });
-    }
+  if (this.idSilabusTermin) {
+    this.silabusTerminService.update(this.idSilabusTermin, vrednosti).subscribe({
+      next: () => this.router.navigate(['/SilabusTermin']),
+      error: err => console.error('Greška pri izmeni termina:', err)
+    });
+  } else {
+    this.silabusTerminService.create(vrednosti).subscribe({
+      next: () => this.router.navigate(['/SilabusTermin']),
+      error: err => console.error('Greška pri čuvanju termina:', err)
+    });
   }
+}
 
 
  private kreirajModel(podaci?: any): FormaModel {

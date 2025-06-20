@@ -1,6 +1,7 @@
 package server.service;
 
-import java.time.LocalDate; 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional; 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,13 +50,16 @@ public class SilabusTerminService extends BaseService<SilabusTermin, SilabusTerm
         SilabusDTO silabusDTO = null;
         if (entity.getSilabus() != null) {
           
-            silabusDTO = new SilabusDTO(entity.getSilabus().getId(), null, entity.getSilabus().getVidljiv());
+            silabusDTO = new SilabusDTO(entity.getSilabus().getId(), List.of(), entity.getSilabus().getVidljiv());
+//        	silabusDTO = silabusService.convertToDTO(entity.getSilabus());
         }
 
         NastavnikDTO nastavnikDTO = null;
         if (entity.getNastavnik() != null) {
-            nastavnikDTO = new NastavnikDTO(entity.getNastavnik().getId(),null, entity.getNastavnik().getIme(), entity.getNastavnik().getPrezime(), null,null,null,null,null,null,null);
-        }
+//            nastavnikDTO = new NastavnikDTO(entity.getNastavnik().getId(),null, entity.getNastavnik().getIme(), entity.getNastavnik().getPrezime(), null,null,null,null,null,null,null);
+//        }
+          nastavnikDTO = nastavnikService.convertToDTO(entity.getNastavnik());
+      }
 
         return new SilabusTerminDTO(
                 entity.getId(),
@@ -72,6 +76,14 @@ public class SilabusTerminService extends BaseService<SilabusTermin, SilabusTerm
     @Override
     protected SilabusTermin convertToEntity(SilabusTerminDTO dto) {
         SilabusTermin silabusTermin = new SilabusTermin();
+        
+        System.out.println("Silabus iz DTO: " + dto.getSilabus());
+        if (dto.getSilabus() != null) {
+            System.out.println("Silabus ID: " + dto.getSilabus().getId());
+        } else {
+            System.out.println("Silabus je null");
+        }
+
 
         silabusTermin.setId(dto.getId()); 
         silabusTermin.setDatum(dto.getDatum());
