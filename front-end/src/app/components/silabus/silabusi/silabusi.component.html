@@ -1,0 +1,10 @@
+<app-base-table
+  [data]="silabusi"
+  [displayedColumns]="kolone"
+  (edit)="izmeni($event)"
+  (delete)="obrisi($event)"
+  (details)="detalji($event)"
+  (cancelEvent)="otkazi()">
+</app-base-table>
+
+<a routerLink="/SilabusForma">Dodaj silabus</a>

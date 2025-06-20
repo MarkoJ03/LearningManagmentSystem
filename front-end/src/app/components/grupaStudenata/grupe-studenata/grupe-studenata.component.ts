@@ -20,14 +20,6 @@ export class GrupeStudenataComponent {
     private router: Router
   ) {}
 
-  // ngOnInit(): void {
-  //   this.grupaService.getAll().subscribe({
-  //     next: (res) => {
-  //       this.grupe = res;
-  //     },
-  //     error: (err) => console.error('Greška prilikom učitavanja grupa studenata:', err),
-  //   });
-  // }
 
    ngOnInit(): void {
     this.grupaService.getAll().subscribe({
@@ -42,7 +34,7 @@ student: (n.studentiNaGodini || []).map(sp => sp.id).join(', '),    }));
 
   }
   izmeni(grupa: GrupaStudenata): void {
-    this.router.navigate(['/grupe-studenata/izmeni', grupa.id]);
+    this.router.navigate(['/grupeStudenata/izmeni', grupa.id]);
   }
 
   obrisi(id: number): void {
@@ -52,11 +44,11 @@ student: (n.studentiNaGodini || []).map(sp => sp.id).join(', '),    }));
   }
 
   detalji(id: number): void {
-    this.router.navigate(['/grupe-studenata', id]);
+    this.router.navigate(['/grupeStudenata', id]);
   }
 
   otkazi(): void {
-    this.router.navigate(['/grupe-studenata']);
+    this.router.navigate(['/grupeStudenata']);
   }
 
 }

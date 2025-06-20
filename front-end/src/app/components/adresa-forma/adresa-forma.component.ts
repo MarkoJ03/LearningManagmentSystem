@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AdresaService } from '../../services/adresa.service';
 import { FormaModel } from '../genericka-forma/FormaModel';
 import { GenerickaFormaComponent } from '../genericka-forma/genericka-forma.component';
+import { Grad } from '../../models/Grad';
+import { gradService } from '../../services/grad.service';
 
 @Component({
   selector: 'app-adresa-forma',
@@ -16,15 +18,23 @@ export class AdresaFormaComponent {
 
   formaModel: FormaModel | null = null;
   idAdrese: number | null = null;
+    sviGradovi: Grad[] = [];
+  
 
   constructor(
     private adresaService: AdresaService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private gradService: gradService
   ) {}
 
   ngOnInit(): void {
-    const idParam = this.route.snapshot.paramMap.get('id');
+
+this.gradService.getAll().subscribe(grad => {
+      this.sviGradovi = grad;
+
+
+ const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam) {
       this.idAdrese = +idParam;
       this.adresaService.getById(this.idAdrese).subscribe(adresa => {
@@ -33,6 +43,13 @@ export class AdresaFormaComponent {
     } else {
       this.formaModel = this.kreirajModel();
     }
+
+
+      
+})
+
+
+   
   }
 
   otkazi(): void {
@@ -40,6 +57,9 @@ export class AdresaFormaComponent {
   }
 
   public sacuvajAdresa(vrednosti: any): void {
+
+
+
     if (this.idAdrese) {
       this.adresaService.update(this.idAdrese, vrednosti).subscribe({
         next: () => this.router.navigate(['/adrese']),
@@ -54,6 +74,8 @@ export class AdresaFormaComponent {
   }
 
  private kreirajModel(podaci?: any): FormaModel {
+
+   let selektovaniGrad = podaci?.grad ?? null
   return {
     naziv: podaci ? 'Izmena adrese' : 'Dodavanje adrese',
     polja: [
@@ -72,13 +94,15 @@ export class AdresaFormaComponent {
       },
       
       {
-        naziv: 'grad',
-        labela: 'Grad',
-        tip: 'select',
-        podrazumevanaVrednost: podaci?.grad ?? '',
-        validatori: [Validators.required]
-        
-      },
+                naziv: 'grad',
+                labela: 'grad',
+                tip: 'select',
+                podrazumevanaVrednost: selektovaniGrad,
+                opcije: this.sviGradovi,
+                displayFn: (s: Grad) =>
+                  s.naziv,
+                validatori: [Validators.required]
+              },
       {
         naziv: 'ulica',
         labela: 'Ulica',

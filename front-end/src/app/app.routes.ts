@@ -137,7 +137,20 @@ import { EvaluacijaZnanjaComponent } from './components/CRUD/EvaluacijaZnanja/ev
 import { EvaluacijaZnanjaFormaComponent } from './components/CRUD/EvaluacijaZnanja/evaluacija-znanja-forma/evaluacija-znanja-forma.component';
 import { EnastavnikPredmetDetaljiComponent } from './components/enastavnik/enastavnik-predmet-detalji/enastavnik-predmet-detalji.component';
 import { SvObrazacComponent } from './components/estudent/estudent-sv-obrazac/estudent-sv-obrazac.component';
+
 import { RoleSelectionComponent } from './components/role-selection/role-selection.component';
+
+import { DrzavaComponent } from './components/drzava/drzava.component';
+import { DrzavaFormaComponent } from './components/drzava/drzava-forma/drzava-forma.component';
+import { GradComponent } from './components/grad/grad.component';
+import { GradFormaComponent } from './components/grad/grad-forma/grad-forma.component';
+import { SilabusFormaComponent } from './components/silabus/silabus-forma/silabus-forma.component';
+import { SilabusComponent } from './components/silabus/silabus/silabus.component';
+import { SilabusiComponent } from './components/silabus/silabusi/silabusi.component';
+import { SilabusTerminComponent } from './components/silabus-termin/silabus-termin.component';
+import { SilabusTerminFormaComponent } from './components/silabusTermin/silabus-termin-forma/silabus-termin-forma.component';
+import { SilabusTerminiComponent } from './components/silabusTermin/silabus-termini/silabus-termini.component';
+
 
 // import {  FakultetComponentComponent } from './components/fakultet-component/fakultet-component.component';
 
@@ -348,10 +361,36 @@ export const routes: Routes = [
         { path: 'departmani', component: DepartmaniComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
         { path: 'departmani/izmeni/:id', component: DepartmanFormaComponent , data: {requiredRoles: ["ROLE_ADMIN"]}, canActivate: [authGuard]},
  
-        { path: 'adrese', component: AdreseComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+        { path: 'Grad', component: GradComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+ { path: 'Grad/:id', component: GradComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+ { path: 'Grad/izmeni/:id', component: GradFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+ { path: 'GradForma', component: GradFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+
+      { path: 'adrese', component: AdreseComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
  { path: 'adrese/:id', component: AdresaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
  { path: 'adrese/izmeni/:id', component: AdresaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
  { path: 'adreseForma', component: AdresaFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+
+         { path: 'Drzava', component: DrzavaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+ { path: 'Drzava/:id', component: DrzavaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+ { path: 'Drzava/izmeni/:id', component: DrzavaFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+ { path: 'DrzavaForma', component: DrzavaFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+
+ 
+      
+         { path: 'Silabus', component: SilabusiComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+
+         { path: 'Silabus/izmeni/:id', component: SilabusFormaComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+         { path: 'SilabusForma', component: SilabusFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+         { path: 'Silabus/:id', component: SilabusComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+
+ 
+         { path: 'SilabusTermin', component: SilabusTerminiComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+
+         { path: 'SilabusTermin/izmeni/:id', component: SilabusTerminiComponent, data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard] },
+         { path: 'SilabusTerminForma', component: SilabusTerminFormaComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+         { path: 'SilabusTermin/:id', component: SilabusTerminiComponent , data: {requiredRoles: ["ROLE_ADMIN", "ROLE_STUDENTSKA_SLUZBA"]}, canActivate: [authGuard]},
+
 
 
       { path: 'student/:id', component: StudentiComponent },

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import server.DTOs.AdresaDTO;
 import server.model.Adresa;
+import server.model.Drzava;
+import server.model.Grad;
 import server.repository.AdresaRepository;
 
 @Service
@@ -38,10 +40,26 @@ public class AdresaService extends BaseService<Adresa, AdresaDTO, Long>{
 
 	@Override
 	protected void updateEntityFromDto(AdresaDTO dto, Adresa entity) {
-		// TODO Auto-generated method stub
 		
-	}
+		Drzava drzava = new Drzava();
+		
+		drzava.setId(dto.getGrad().getDrzava().getId());
+		
+		entity.setUlica(dto.getUlica());
+		entity.setBroj(dto.getBroj());
+		entity.setVidljiv(dto.getVidljiv() != null ? dto.getVidljiv() : true);
 
+		if (dto.getGrad() != null && dto.getGrad().getId() != null) {
+			Grad grad = new Grad();
+			grad.setId(dto.getGrad().getId());
+			
+			grad.setDrzava(drzava);
+			
+			entity.setGrad(grad);
+		} else {
+			entity.setGrad(null);
+		}
+	}
 
 
 }

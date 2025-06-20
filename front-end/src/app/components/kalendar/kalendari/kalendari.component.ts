@@ -13,7 +13,7 @@ import { BaseTableComponent } from '../../base-table/base-table.component';
 })
 export class KalendariComponent implements OnInit {
   kalendari: Kalendar[] = [];
-  kolone: string[] = ['id', 'vidljiv', 'studentskaSluzbaId', 'tipEvaluacije', 'grupaStudenata','terminiNastave'];
+  kolone: string[] = ['id', 'vidljiv', 'tipEvaluacije', 'grupaStudenata','terminiNastave'];
 
   constructor(
     private kalendarService: KalendarService,

@@ -80,7 +80,7 @@ export class StudentNaGodiniFormaComponent implements OnInit {
   }
 
   otkazi(): void {
-    this.router.navigate(['/studenti-na-godini']);
+    this.router.navigate(['/student-na-godini']);
   }
 
   sacuvaj(vrednosti: any): void {
@@ -88,12 +88,12 @@ export class StudentNaGodiniFormaComponent implements OnInit {
       this.studentNaGodiniService
         .update(this.idStudentNaGodini, vrednosti)
         .subscribe({
-          next: () => this.router.navigate(['/studenti-na-godini']),
+          next: () => this.router.navigate(['/student-na-godini']),
           error: (err) => console.error('Greška:', err),
         });
     } else {
       this.studentNaGodiniService.create(vrednosti).subscribe({
-        next: () => this.router.navigate(['/studenti-na-godini']),
+        next: () => this.router.navigate(['/student-na-godini']),
         error: (err) => console.error('Greška:', err),
       });
     }
